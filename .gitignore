@@ -32,12 +32,15 @@ Temporary Items
 
 ### macOS Patch ###
 # iCloud generated files
-*.icloud
+*.iCloud
 
 ### Swift ###
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+*.xcuserstate
+
 
 ## User settings
 xcuserdata/
