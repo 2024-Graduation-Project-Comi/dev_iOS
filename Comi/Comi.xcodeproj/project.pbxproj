@@ -32,6 +32,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		860DDC802BDF5CF8007A8F13 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		860DDC812BDF5DCF007A8F13 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		864B3FB42B9F1DBA00F51FF6 = {
 			isa = PBXGroup;
 			children = (
@@ -51,9 +66,10 @@
 		864B3FBF2B9F1DBA00F51FF6 /* Comi */ = {
 			isa = PBXGroup;
 			children = (
+				860DDC812BDF5DCF007A8F13 /* Extension */,
+				860DDC802BDF5CF8007A8F13 /* Resource */,
 				864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */,
 				864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */,
-				864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */,
 				864B3FC62B9F1DBB00F51FF6 /* Preview Content */,
 			);
 			path = Comi;
