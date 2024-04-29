@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		860DDC8A2BDF66BB007A8F13 /* ExFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC892BDF66BB007A8F13 /* ExFont.swift */; };
+		860DDC8F2BDF6707007A8F13 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860DDC8B2BDF6707007A8F13 /* Pretendard-Regular.otf */; };
+		860DDC902BDF6707007A8F13 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860DDC8C2BDF6707007A8F13 /* Pretendard-SemiBold.otf */; };
+		860DDC912BDF6707007A8F13 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860DDC8D2BDF6707007A8F13 /* Pretendard-Medium.otf */; };
+		860DDC922BDF6707007A8F13 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860DDC8E2BDF6707007A8F13 /* Pretendard-Bold.otf */; };
+		860DDC962BDF6A2B007A8F13 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC952BDF6A2B007A8F13 /* Splash.swift */; };
+		860DDC9A2BDF7977007A8F13 /* BackGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC992BDF7977007A8F13 /* BackGround.swift */; };
+		860DDC9C2BDF7B0B007A8F13 /* OnboardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC9B2BDF7B0B007A8F13 /* OnboardPage.swift */; };
+		860DDC9E2BDF90E6007A8F13 /* BottomStartBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC9D2BDF90E6007A8F13 /* BottomStartBtn.swift */; };
+		860DDCA02BDF9EAC007A8F13 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC9F2BDF9EAC007A8F13 /* LoginView.swift */; };
+		860DDCA32BDFA230007A8F13 /* StartProcessData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDCA22BDFA230007A8F13 /* StartProcessData.swift */; };
+		860DDCA62BDFA39F007A8F13 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDCA52BDFA39F007A8F13 /* MainView.swift */; };
 		864B3FC12B9F1DBA00F51FF6 /* ComiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */; };
 		864B3FC32B9F1DBA00F51FF6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */; };
 		864B3FC52B9F1DBB00F51FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */; };
@@ -14,6 +26,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		860DDC882BDF6650007A8F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		860DDC892BDF66BB007A8F13 /* ExFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFont.swift; sourceTree = "<group>"; };
+		860DDC8B2BDF6707007A8F13 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../../../../../../../Library/Fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		860DDC8C2BDF6707007A8F13 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../../../../Library/Fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		860DDC8D2BDF6707007A8F13 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../../../../../../../Library/Fonts/Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		860DDC8E2BDF6707007A8F13 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Bold.otf"; path = "../../../../../../../Library/Fonts/Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		860DDC952BDF6A2B007A8F13 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
+		860DDC992BDF7977007A8F13 /* BackGround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGround.swift; sourceTree = "<group>"; };
+		860DDC9B2BDF7B0B007A8F13 /* OnboardPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardPage.swift; sourceTree = "<group>"; };
+		860DDC9D2BDF90E6007A8F13 /* BottomStartBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomStartBtn.swift; sourceTree = "<group>"; };
+		860DDC9F2BDF9EAC007A8F13 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		860DDCA22BDFA230007A8F13 /* StartProcessData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartProcessData.swift; sourceTree = "<group>"; };
+		860DDCA52BDFA39F007A8F13 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		864B3FBD2B9F1DBA00F51FF6 /* Comi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Comi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComiApp.swift; sourceTree = "<group>"; };
 		864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +57,88 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		860DDC802BDF5CF8007A8F13 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				860DDC832BDF661C007A8F13 /* Font */,
+				864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */,
+				860DDC992BDF7977007A8F13 /* BackGround.swift */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		860DDC812BDF5DCF007A8F13 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				860DDC892BDF66BB007A8F13 /* ExFont.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		860DDC832BDF661C007A8F13 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				860DDC8E2BDF6707007A8F13 /* Pretendard-Bold.otf */,
+				860DDC8D2BDF6707007A8F13 /* Pretendard-Medium.otf */,
+				860DDC8B2BDF6707007A8F13 /* Pretendard-Regular.otf */,
+				860DDC8C2BDF6707007A8F13 /* Pretendard-SemiBold.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		860DDC932BDF69C8007A8F13 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				860DDCA42BDFA38C007A8F13 /* MainProcess */,
+				860DDCA12BDFA1EB007A8F13 /* StartProcess */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		860DDC942BDF6A16007A8F13 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				860DDC952BDF6A2B007A8F13 /* Splash.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		860DDC972BDF77CC007A8F13 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				860DDC9B2BDF7B0B007A8F13 /* OnboardPage.swift */,
+				860DDC9D2BDF90E6007A8F13 /* BottomStartBtn.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		860DDC982BDF77D4007A8F13 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				860DDC9F2BDF9EAC007A8F13 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		860DDCA12BDFA1EB007A8F13 /* StartProcess */ = {
+			isa = PBXGroup;
+			children = (
+				860DDCA22BDFA230007A8F13 /* StartProcessData.swift */,
+				860DDC982BDF77D4007A8F13 /* Login */,
+				860DDC972BDF77CC007A8F13 /* Onboarding */,
+				860DDC942BDF6A16007A8F13 /* Splash */,
+			);
+			path = StartProcess;
+			sourceTree = "<group>";
+		};
+		860DDCA42BDFA38C007A8F13 /* MainProcess */ = {
+			isa = PBXGroup;
+			children = (
+				860DDCA52BDFA39F007A8F13 /* MainView.swift */,
+			);
+			path = MainProcess;
+			sourceTree = "<group>";
+		};
 		864B3FB42B9F1DBA00F51FF6 = {
 			isa = PBXGroup;
 			children = (
@@ -51,9 +158,12 @@
 		864B3FBF2B9F1DBA00F51FF6 /* Comi */ = {
 			isa = PBXGroup;
 			children = (
+				860DDC882BDF6650007A8F13 /* Info.plist */,
+				860DDC812BDF5DCF007A8F13 /* Extension */,
+				860DDC802BDF5CF8007A8F13 /* Resource */,
+				860DDC932BDF69C8007A8F13 /* Screen */,
 				864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */,
 				864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */,
-				864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */,
 				864B3FC62B9F1DBB00F51FF6 /* Preview Content */,
 			);
 			path = Comi;
@@ -126,7 +236,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				864B3FC82B9F1DBB00F51FF6 /* Preview Assets.xcassets in Resources */,
+				860DDC922BDF6707007A8F13 /* Pretendard-Bold.otf in Resources */,
+				860DDC912BDF6707007A8F13 /* Pretendard-Medium.otf in Resources */,
+				860DDC8F2BDF6707007A8F13 /* Pretendard-Regular.otf in Resources */,
 				864B3FC52B9F1DBB00F51FF6 /* Assets.xcassets in Resources */,
+				860DDC902BDF6707007A8F13 /* Pretendard-SemiBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +251,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				860DDCA32BDFA230007A8F13 /* StartProcessData.swift in Sources */,
+				860DDC9C2BDF7B0B007A8F13 /* OnboardPage.swift in Sources */,
 				864B3FC32B9F1DBA00F51FF6 /* ContentView.swift in Sources */,
+				860DDCA62BDFA39F007A8F13 /* MainView.swift in Sources */,
+				860DDC9A2BDF7977007A8F13 /* BackGround.swift in Sources */,
+				860DDC9E2BDF90E6007A8F13 /* BottomStartBtn.swift in Sources */,
 				864B3FC12B9F1DBA00F51FF6 /* ComiApp.swift in Sources */,
+				860DDC962BDF6A2B007A8F13 /* Splash.swift in Sources */,
+				860DDCA02BDF9EAC007A8F13 /* LoginView.swift in Sources */,
+				860DDC8A2BDF66BB007A8F13 /* ExFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -254,7 +376,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -277,6 +399,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = Y333NVBXPT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Comi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -310,6 +433,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = Y333NVBXPT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Comi/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
