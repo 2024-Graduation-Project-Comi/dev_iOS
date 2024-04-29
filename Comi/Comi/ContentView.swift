@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var splashView: Bool = false
+    @State var isLogin: Bool = false
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        if splashView {
+            if isLogin {
+                MainView()
+            } else {
+                OnboardPage(isLogin: $isLogin)
+            }
+
+        } else {
+            Splash()
+                .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    splashView = true
+                }
+            }
         }
-        .padding()
     }
 }
 
