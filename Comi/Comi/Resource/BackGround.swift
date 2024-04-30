@@ -9,18 +9,16 @@ import SwiftUI
 
 struct BackGround: View {
     var body: some View {
-        GeometryReader { geo in
-            let size = geo.size
-            VStack {
-                Spacer()
-                Circle()
-                    .frame(width: size.width)
-                    .foregroundStyle(.blue0)
-                    .offset(y: size.height/3)
-                    .blur(radius: 10)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        VStack {
+            Spacer()
+            Circle()
+                .frame(width: 480, height: 480)
+                .foregroundStyle(.blue0)
+                .offset(y: 240)
         }
+        .blur(radius: 20)
+        .background(.white)
+        .opacity(0.7)
         
     }
 }

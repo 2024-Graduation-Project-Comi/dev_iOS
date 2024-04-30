@@ -46,6 +46,6 @@ struct BottomStartBtn: View {
 }
 
 
-//#Preview {
-//    BottomStartBtn()
-//}
+#Preview {
+    BottomStartBtn(isStart: .constant(false))
+}
