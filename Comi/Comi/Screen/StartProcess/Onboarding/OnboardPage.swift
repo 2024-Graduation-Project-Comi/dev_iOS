@@ -31,6 +31,6 @@ struct OnboardPage: View {
     }
 }
 
-//#Preview {
-//    OnboardPage()
-//}
+#Preview {
+    OnboardPage(isLogin: .constant(false))
+}

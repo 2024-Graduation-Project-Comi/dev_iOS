@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct MainView: View {
+    @State var selectedTab: Tab = .history
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Spacer()
+            switch selectedTab {
+            case .home:
+                Text("home")
+            case .history:
+                HistoryView()
+            case .contact:
+                Text("contact")
+            case .profile:
+                Text("profile")
+            }
+            Spacer()
+            BottomTabBarView(selectedTab: $selectedTab)
+        }.background {
+            BackGround()
+        }
     }
 }
 
