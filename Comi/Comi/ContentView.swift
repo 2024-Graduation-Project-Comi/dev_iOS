@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var splashView: Bool = false
-    @State var isLogin: Bool = false
+    @State var isLogin: Bool = true
 
     var body: some View {
         if splashView {

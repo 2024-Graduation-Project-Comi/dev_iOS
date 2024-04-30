@@ -10,11 +10,13 @@ import SwiftUI
 
 extension Font {
     static let ptBold18: Font = .custom("Pretendard-Bold", size: 18)
+    static let ptBold22: Font = .custom("Pretendard-Bold", size: 22)
     static let ptSemiBold18: Font = .custom("Pretendard-SemiBold", size: 18)
     static let ptSemiBold14: Font = .custom("Pretendard-SemiBold", size: 14)
     static let ptSemiBold32: Font = .custom("Pretendard-SemiBold", size: 32)
     static let ptRegular18: Font = .custom("Pretendard-Regular", size: 18)
     static let ptRegular14: Font = .custom("Pretendard-Regular", size: 14)
+    static let ptRegular11: Font = .custom("Pretendard-Regular", size: 11)
 }
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
