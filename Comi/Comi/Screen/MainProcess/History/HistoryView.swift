@@ -12,10 +12,10 @@ struct HistoryView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text("기록")
+                Text("최근 기록")
                     .font(.ptBold22)
                 Spacer()
-                Image("Search")
+                //                Image("Search")
             }.padding(.bottom, 24)
 
             ScrollView(showsIndicators: false) {
@@ -34,12 +34,16 @@ struct HistoryView: View {
                         HistoryCard(data: data, selected: self.$selected)
                     }
                 }
+                    .frame(alignment: .leading)
             }
-                .frame(alignment: .leading)
-        }.padding(.horizontal, 24)
+        }
+            .padding(.horizontal, 24)
+            .padding(.bottom, 62)
+            .background(BackGround())
     }
 }
 
 #Preview {
     HistoryView()
+        .background(BackGround())
 }

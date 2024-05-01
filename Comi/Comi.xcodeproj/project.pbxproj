@@ -19,14 +19,19 @@
 		860DDCA02BDF9EAC007A8F13 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC9F2BDF9EAC007A8F13 /* LoginView.swift */; };
 		860DDCA32BDFA230007A8F13 /* StartProcessData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDCA22BDFA230007A8F13 /* StartProcessData.swift */; };
 		860DDCA62BDFA39F007A8F13 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDCA52BDFA39F007A8F13 /* MainView.swift */; };
+		8617DC932BE29E81007CFB73 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8617DC922BE29E81007CFB73 /* ProfileView.swift */; };
+		8617DC952BE29E87007CFB73 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8617DC942BE29E87007CFB73 /* HomeView.swift */; };
+		8617DC972BE2AE5A007CFB73 /* ModelDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8617DC962BE2AE5A007CFB73 /* ModelDetailView.swift */; };
+		86190AAE2BE16CB500D650A4 /* ContectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86190AAD2BE16CB500D650A4 /* ContectView.swift */; };
 		864B3FC12B9F1DBA00F51FF6 /* ComiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */; };
 		864B3FC32B9F1DBA00F51FF6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */; };
 		864B3FC52B9F1DBB00F51FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */; };
 		864B3FC82B9F1DBB00F51FF6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864B3FC72B9F1DBB00F51FF6 /* Preview Assets.xcassets */; };
+		868ED28B2BE214C100B43F74 /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868ED28A2BE214C100B43F74 /* testView.swift */; };
+		868ED28F2BE21C0900B43F74 /* sampleDataSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868ED28E2BE21C0900B43F74 /* sampleDataSets.swift */; };
 		86C162232BE0E05A00362250 /* BottomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162222BE0E05A00362250 /* BottomTabBarView.swift */; };
 		86C162252BE0E9BB00362250 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162242BE0E9BB00362250 /* HistoryView.swift */; };
 		86C162282BE0EAA500362250 /* HistoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162272BE0EAA500362250 /* HistoryCard.swift */; };
-		86C1622A2BE0EAC200362250 /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162292BE0EAC200362250 /* HistoryData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,15 +48,20 @@
 		860DDC9F2BDF9EAC007A8F13 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		860DDCA22BDFA230007A8F13 /* StartProcessData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartProcessData.swift; sourceTree = "<group>"; };
 		860DDCA52BDFA39F007A8F13 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		8617DC922BE29E81007CFB73 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		8617DC942BE29E87007CFB73 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		8617DC962BE2AE5A007CFB73 /* ModelDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDetailView.swift; sourceTree = "<group>"; };
+		86190AAD2BE16CB500D650A4 /* ContectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContectView.swift; sourceTree = "<group>"; };
 		864B3FBD2B9F1DBA00F51FF6 /* Comi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Comi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComiApp.swift; sourceTree = "<group>"; };
 		864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		864B3FC72B9F1DBB00F51FF6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		868ED28A2BE214C100B43F74 /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
+		868ED28E2BE21C0900B43F74 /* sampleDataSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sampleDataSets.swift; sourceTree = "<group>"; };
 		86C162222BE0E05A00362250 /* BottomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarView.swift; sourceTree = "<group>"; };
 		86C162242BE0E9BB00362250 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		86C162272BE0EAA500362250 /* HistoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCard.swift; sourceTree = "<group>"; };
-		86C162292BE0EAC200362250 /* HistoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,9 +154,39 @@
 			children = (
 				860DDCA52BDFA39F007A8F13 /* MainView.swift */,
 				86C162222BE0E05A00362250 /* BottomTabBarView.swift */,
+				868ED28E2BE21C0900B43F74 /* sampleDataSets.swift */,
+				8617DC902BE29E6F007CFB73 /* Home */,
 				86C162262BE0EA3A00362250 /* History */,
+				86190AAC2BE16CA200D650A4 /* Contact */,
+				8617DC912BE29E74007CFB73 /* Profile */,
 			);
 			path = MainProcess;
+			sourceTree = "<group>";
+		};
+		8617DC902BE29E6F007CFB73 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8617DC942BE29E87007CFB73 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8617DC912BE29E74007CFB73 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8617DC922BE29E81007CFB73 /* ProfileView.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		86190AAC2BE16CA200D650A4 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				86190AAD2BE16CB500D650A4 /* ContectView.swift */,
+				8617DC962BE2AE5A007CFB73 /* ModelDetailView.swift */,
+				868ED28A2BE214C100B43F74 /* testView.swift */,
+			);
+			path = Contact;
 			sourceTree = "<group>";
 		};
 		864B3FB42B9F1DBA00F51FF6 = {
@@ -192,7 +232,6 @@
 			children = (
 				86C162242BE0E9BB00362250 /* HistoryView.swift */,
 				86C162272BE0EAA500362250 /* HistoryCard.swift */,
-				86C162292BE0EAC200362250 /* HistoryData.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -272,16 +311,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				860DDCA32BDFA230007A8F13 /* StartProcessData.swift in Sources */,
+				868ED28F2BE21C0900B43F74 /* sampleDataSets.swift in Sources */,
 				86C162252BE0E9BB00362250 /* HistoryView.swift in Sources */,
 				860DDC9C2BDF7B0B007A8F13 /* OnboardPage.swift in Sources */,
+				8617DC972BE2AE5A007CFB73 /* ModelDetailView.swift in Sources */,
 				86C162282BE0EAA500362250 /* HistoryCard.swift in Sources */,
-				86C1622A2BE0EAC200362250 /* HistoryData.swift in Sources */,
+				868ED28B2BE214C100B43F74 /* testView.swift in Sources */,
 				864B3FC32B9F1DBA00F51FF6 /* ContentView.swift in Sources */,
 				860DDCA62BDFA39F007A8F13 /* MainView.swift in Sources */,
 				860DDC9A2BDF7977007A8F13 /* BackGround.swift in Sources */,
+				8617DC952BE29E87007CFB73 /* HomeView.swift in Sources */,
+				8617DC932BE29E81007CFB73 /* ProfileView.swift in Sources */,
 				860DDC9E2BDF90E6007A8F13 /* BottomStartBtn.swift in Sources */,
 				864B3FC12B9F1DBA00F51FF6 /* ComiApp.swift in Sources */,
 				860DDC962BDF6A2B007A8F13 /* Splash.swift in Sources */,
+				86190AAE2BE16CB500D650A4 /* ContectView.swift in Sources */,
 				86C162232BE0E05A00362250 /* BottomTabBarView.swift in Sources */,
 				860DDCA02BDF9EAC007A8F13 /* LoginView.swift in Sources */,
 				860DDC8A2BDF66BB007A8F13 /* ExFont.swift in Sources */,
