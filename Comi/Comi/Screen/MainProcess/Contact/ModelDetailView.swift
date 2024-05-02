@@ -17,7 +17,7 @@ struct ModelDetailView: View {
 
     var body: some View {
         GeometryReader { geo in
-            Image("카리나2")
+            Image("kari2")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()

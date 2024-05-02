@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		860DDC8A2BDF66BB007A8F13 /* ExFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC892BDF66BB007A8F13 /* ExFont.swift */; };
-		860DDC8F2BDF6707007A8F13 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860DDC8B2BDF6707007A8F13 /* Pretendard-Regular.otf */; };
-		860DDC902BDF6707007A8F13 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860DDC8C2BDF6707007A8F13 /* Pretendard-SemiBold.otf */; };
-		860DDC912BDF6707007A8F13 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860DDC8D2BDF6707007A8F13 /* Pretendard-Medium.otf */; };
-		860DDC922BDF6707007A8F13 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 860DDC8E2BDF6707007A8F13 /* Pretendard-Bold.otf */; };
 		860DDC962BDF6A2B007A8F13 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC952BDF6A2B007A8F13 /* Splash.swift */; };
 		860DDC9A2BDF7977007A8F13 /* BackGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC992BDF7977007A8F13 /* BackGround.swift */; };
 		860DDC9C2BDF7B0B007A8F13 /* OnboardPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC9B2BDF7B0B007A8F13 /* OnboardPage.swift */; };
@@ -37,10 +33,6 @@
 /* Begin PBXFileReference section */
 		860DDC882BDF6650007A8F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		860DDC892BDF66BB007A8F13 /* ExFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFont.swift; sourceTree = "<group>"; };
-		860DDC8B2BDF6707007A8F13 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../../../../../../../Library/Fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
-		860DDC8C2BDF6707007A8F13 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../../../../Library/Fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
-		860DDC8D2BDF6707007A8F13 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../../../../../../../Library/Fonts/Pretendard-Medium.otf"; sourceTree = "<group>"; };
-		860DDC8E2BDF6707007A8F13 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Bold.otf"; path = "../../../../../../../Library/Fonts/Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		860DDC952BDF6A2B007A8F13 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
 		860DDC992BDF7977007A8F13 /* BackGround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGround.swift; sourceTree = "<group>"; };
 		860DDC9B2BDF7B0B007A8F13 /* OnboardPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardPage.swift; sourceTree = "<group>"; };
@@ -58,6 +50,10 @@
 		864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		864B3FC72B9F1DBB00F51FF6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8664C7A02BE3FD0E001BB1CE /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../../../Library/Fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		8664C7A12BE3FD0E001BB1CE /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Bold.otf"; path = "../../../../../../Library/Fonts/Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		8664C7A22BE3FD0E001BB1CE /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../../../../../../Library/Fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		8664C7A32BE3FD0E001BB1CE /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../../../../../../Library/Fonts/Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		868ED28E2BE21C0900B43F74 /* sampleDataSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sampleDataSets.swift; sourceTree = "<group>"; };
 		86C162222BE0E05A00362250 /* BottomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarView.swift; sourceTree = "<group>"; };
 		86C162242BE0E9BB00362250 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -96,10 +92,10 @@
 		860DDC832BDF661C007A8F13 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				860DDC8E2BDF6707007A8F13 /* Pretendard-Bold.otf */,
-				860DDC8D2BDF6707007A8F13 /* Pretendard-Medium.otf */,
-				860DDC8B2BDF6707007A8F13 /* Pretendard-Regular.otf */,
-				860DDC8C2BDF6707007A8F13 /* Pretendard-SemiBold.otf */,
+				8664C7A12BE3FD0E001BB1CE /* Pretendard-Bold.otf */,
+				8664C7A32BE3FD0E001BB1CE /* Pretendard-Medium.otf */,
+				8664C7A22BE3FD0E001BB1CE /* Pretendard-Regular.otf */,
+				8664C7A02BE3FD0E001BB1CE /* Pretendard-SemiBold.otf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -295,11 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				864B3FC82B9F1DBB00F51FF6 /* Preview Assets.xcassets in Resources */,
-				860DDC922BDF6707007A8F13 /* Pretendard-Bold.otf in Resources */,
-				860DDC912BDF6707007A8F13 /* Pretendard-Medium.otf in Resources */,
-				860DDC8F2BDF6707007A8F13 /* Pretendard-Regular.otf in Resources */,
 				864B3FC52B9F1DBB00F51FF6 /* Assets.xcassets in Resources */,
-				860DDC902BDF6707007A8F13 /* Pretendard-SemiBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,7 +474,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "DEV 2024 Graduation Project";
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Osize";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -516,7 +510,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "DEV 2024 Graduation Project";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
