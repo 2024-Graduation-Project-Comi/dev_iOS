@@ -77,5 +77,5 @@ struct ModelModalView: View {
 
 
 #Preview {
-    ModelModalView(data: Model(id: 0, name: "카리나", state: .available), maxHeight: 600, state: .constant(true))
+    ModelModalView(data: Model(id: 0, name: "kari", state: .available), maxHeight: 600, state: .constant(true))
 }

@@ -118,7 +118,7 @@ private func sectionText(text: String) -> some View {
 private func modelItems(data: Model) -> some View {
     HStack {
         ZStack {
-            Image("마젠타")
+            Image("ma")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 62, height: 62)
