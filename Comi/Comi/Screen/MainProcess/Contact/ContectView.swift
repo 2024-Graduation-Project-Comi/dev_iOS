@@ -32,49 +32,11 @@ struct ContectView: View {
                         .padding(.bottom, 24)
                         .padding(.horizontal, 24)
                     List {
-                        VStack(alignment: .leading) {
-                            Text("즐겨찾기")
-                                .font(.ptRegular14)
-                                .foregroundStyle(.black)
-                                .padding(.bottom, 8)
-
-                            if !favorites.decodeSave().isEmpty {
-                                ForEach(favorites.decodeSave().reversed(), id: \.self) { data in
-                                    let model = data.group != nil ? Model(id: data.id, name: data.name, group: data.group, state: data.state) : Model(id: data.id, name: data.name, group: nil, state: data.state)
-                                    modelItems(data: model)
-                                        .onTapGesture {
-                                        selectedModel = model
-                                        isActive = true
-                                    }
-                                }
-                            } else {
-                                Text("원하는 모델을 저장하세요")
-                                    .font(.ptRegular11)
-                            }
-                        }
-                            .padding(.leading, 24)
-                            .listRowSeparator(.hidden)
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
-
+                            // TODO: 즐겨찾기 기능 구현 자리
+//                         favoritesFunc()
                         ForEach(groupedModels, id: \.0) { group, modelsInSection in
                             Section(header: sectionText(text: group)) {
                                 ForEach(modelsInSection, id: \.id) { model in
-//                                    NavigationLink {
-//                                        ModelDetailView(model: model)
-//                                            .navigationBarHidden(true)
-//                                    } label: {
-//                                        modelItems(data: model)
-//                                            .padding(.leading, 24)
-//                                    }
-//                                    modelItems(data: model)
-//                                        .padding(.leading, 24)
-//                                        .background(
-//                                        NavigationLink("", destination: {
-//                                            ModelDetailView(model: model)
-////                                                .navigationBarHidden(true)
-//                                        }).opacity(0)
-//                                    )
                                     modelItems(data: model)
                                         .padding(.leading, 24)
                                         .onTapGesture {
@@ -104,6 +66,34 @@ struct ContectView: View {
 
         }
 
+    }
+    
+    @ViewBuilder
+    private func favoritesFunc() -> some View {
+        VStack(alignment: .leading) {
+            Text("즐겨찾기")
+                .font(.ptRegular14)
+                .foregroundStyle(.black)
+                .padding(.bottom, 8)
+
+            if !favorites.decodeSave().isEmpty {
+                ForEach(favorites.decodeSave().reversed(), id: \.self) { data in
+                    let model = data.group != nil ? Model(id: data.id, name: data.name, group: data.group, state: data.state) : Model(id: data.id, name: data.name, group: nil, state: data.state)
+                    modelItems(data: model)
+                        .onTapGesture {
+                        selectedModel = model
+                        isActive = true
+                    }
+                }
+            } else {
+                Text("원하는 모델을 저장하세요")
+                    .font(.ptRegular11)
+            }
+        }
+            .padding(.leading, 24)
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color.clear)
     }
 }
 
@@ -144,8 +134,9 @@ private func modelItems(data: Model) -> some View {
         Text(data.name)
             .font(.ptSemiBold18)
             .foregroundStyle(.black)
+        Spacer()
     }
-        .padding(.bottom, 8)
+    .contentShape(Rectangle())
 }
 
 #Preview {
