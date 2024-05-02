@@ -7,96 +7,103 @@
 
 import SwiftUI
 
-struct ContectView: View {
+struct contectViewState {
+    @State var isActive: Bool
+    @State var selectedModel: Model
+}
 
+struct ContectView: View {
+    @Binding var selectedTab: Tab
+    
+    @StateObject var favorites = FavoritesViewModel()
+    @State private var isActive: Bool = false
+    @State private var selectedModel: Model
+    = Model(id: 0, name: "", group: nil, state: .unavailable)
+    
     private var groupedModels: [(String, [Model])] {
         let groupedDictionary = Dictionary(grouping: Models) { $0.group ?? "" }
         return groupedDictionary.sorted { $0.0 > $1.0 }
     }
 
-    @StateObject var favorites = FavoritesViewModel()
-    @State private var isActive: Bool = false
-    @State private var selectedModel: Model = Model(id: 0, name: "", group: nil, state: .unavailable)
-
     var body: some View {
         NavigationView {
             GeometryReader { geo in
-                let _ = geo.size
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 0) {
                     HStack {
                         Text("연락처")
                             .font(.ptBold22)
                         Spacer()
                         Image("Search")
                     }
-                        .padding(.bottom, 24)
-                        .padding(.horizontal, 24)
+                    .padding(.horizontal, 24)
+
                     List {
-                            // TODO: 즐겨찾기 기능 구현 자리
-//                         favoritesFunc()
-                        ForEach(groupedModels, id: \.0) { group, modelsInSection in
-                            Section(header: sectionText(text: group)) {
-                                ForEach(modelsInSection, id: \.id) { model in
-                                    modelItems(data: model)
-                                        .padding(.leading, 24)
-                                        .onTapGesture {
-                                        selectedModel = model
-                                        isActive = true
-                                    }
-                                }
-                            }
-                        }
-                            .padding(.bottom, 8)
-                            .listRowSeparator(.hidden)
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
+                        favoritesList()
+                        voiceList()
+                        emptyListArea()
 
                     }
                         .listStyle(.plain)
-                        .background(Color.clear.edgesIgnoringSafeArea(.all))
-
+                    BottomTabBarView(selectedTab: $selectedTab)
                 }
                     .background {
-                    BackGround()
                     NavigationLink(destination: ModelDetailView(model: selectedModel)
                         .navigationBarHidden(true), isActive: $isActive, label: { EmptyView() })
+                    BackGround()
                 }
-                    .padding(.bottom, 56)
             }
-
         }
-
     }
-    
-    @ViewBuilder
-    private func favoritesFunc() -> some View {
-        VStack(alignment: .leading) {
-            Text("즐겨찾기")
-                .font(.ptRegular14)
-                .foregroundStyle(.black)
-                .padding(.bottom, 8)
 
-            if !favorites.decodeSave().isEmpty {
+    @ViewBuilder
+    private func favoritesList() -> some View {
+        if !favorites.decodeSave().isEmpty {
+            Section(header: sectionText(text: "즐겨찾기")) {
                 ForEach(favorites.decodeSave().reversed(), id: \.self) { data in
                     let model = data.group != nil ? Model(id: data.id, name: data.name, group: data.group, state: data.state) : Model(id: data.id, name: data.name, group: nil, state: data.state)
                     modelItems(data: model)
+                        .padding(.leading, 24)
+                        .onTapGesture {
+                        selectedModel = model
+                        isActive = true
+                    }
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
+                        .listRowBackground(Color.clear)
+                }
+            } .listRowInsets(EdgeInsets())
+        }
+
+    }
+
+    @ViewBuilder
+    private func voiceList() -> some View {
+        ForEach(groupedModels, id: \.0) { group, modelsInSection in
+            Section(header: sectionText(text: group)) {
+                ForEach(modelsInSection, id: \.id) { model in
+                    modelItems(data: model)
+                        .padding(.leading, 24)
                         .onTapGesture {
                         selectedModel = model
                         isActive = true
                     }
                 }
-            } else {
-                Text("원하는 모델을 저장하세요")
-                    .font(.ptRegular11)
             }
         }
-            .padding(.leading, 24)
             .listRowSeparator(.hidden)
             .listRowInsets(EdgeInsets())
             .listRowBackground(Color.clear)
     }
 }
 
+@ViewBuilder
+private func emptyListArea() -> some View {
+    Color(.clear)
+        .frame(height: 32)
+        .listRowSeparator(.hidden)
+        .listRowInsets(EdgeInsets())
+        .listRowBackground(Color.clear)
+}
 
 @ViewBuilder
 private func sectionText(text: String) -> some View {
@@ -104,7 +111,7 @@ private func sectionText(text: String) -> some View {
         .font(.ptRegular14)
         .foregroundStyle(.black)
         .padding(.horizontal, 24)
-        .padding(.bottom, 8)
+        .padding(.vertical, 8)
 }
 
 @ViewBuilder
@@ -135,10 +142,10 @@ private func modelItems(data: Model) -> some View {
             .font(.ptSemiBold18)
             .foregroundStyle(.black)
         Spacer()
-    }
-    .contentShape(Rectangle())
+    }.padding(.bottom, 4)
+        .contentShape(Rectangle())
 }
 
 #Preview {
-    ContectView()
+    ContectView(selectedTab: .constant(.contact))
 }

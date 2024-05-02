@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @Binding var selectedTab: Tab
     var body: some View {
-        Text("profile view").background(BackGround())
+        VStack {
+            Text("profile view")
+            Spacer()
+            BottomTabBarView(selectedTab: $selectedTab)
+        }.background(BackGround())
     }
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(selectedTab: .constant(.profile))
 }

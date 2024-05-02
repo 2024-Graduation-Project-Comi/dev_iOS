@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Binding var selectedTab: Tab
     var body: some View {
-        Text("HomeView").background(BackGround())
+        VStack {
+            Text("HomeView")
+            Spacer()
+            BottomTabBarView(selectedTab: $selectedTab)
+        }.background(BackGround())
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView(selectedTab: .constant(.home))
 }
