@@ -15,9 +15,10 @@ struct ContectView: View {
     }
 
     @StateObject var favorites = FavoritesViewModel()
+    @State private var isActive: Bool = false
+    @State private var selectedModel: Model = Model(id: 0, name: "", group: nil, state: .unavailable)
 
     var body: some View {
-
         NavigationView {
             GeometryReader { geo in
                 let _ = geo.size
@@ -39,12 +40,11 @@ struct ContectView: View {
 
                             if !favorites.decodeSave().isEmpty {
                                 ForEach(favorites.decodeSave().reversed(), id: \.self) { data in
-                                    let model = Model(id: data.id, name: data.name, state: data.state)
-                                    NavigationLink {
-                                        ModelDetailView(model: model)
-                                            .navigationBarHidden(true)
-                                    } label: {
-                                        modelItems(data: model)
+                                    let model = data.group != nil ? Model(id: data.id, name: data.name, group: data.group, state: data.state) : Model(id: data.id, name: data.name, group: nil, state: data.state)
+                                    modelItems(data: model)
+                                        .onTapGesture {
+                                        selectedModel = model
+                                        isActive = true
                                     }
                                 }
                             } else {
@@ -60,26 +60,46 @@ struct ContectView: View {
                         ForEach(groupedModels, id: \.0) { group, modelsInSection in
                             Section(header: sectionText(text: group)) {
                                 ForEach(modelsInSection, id: \.id) { model in
-                                    NavigationLink {
-                                        ModelDetailView(model: model)
-                                            .navigationBarHidden(true)
-                                    } label: {
-                                        modelItems(data: model)
-                                            .padding(.leading, 24)
+//                                    NavigationLink {
+//                                        ModelDetailView(model: model)
+//                                            .navigationBarHidden(true)
+//                                    } label: {
+//                                        modelItems(data: model)
+//                                            .padding(.leading, 24)
+//                                    }
+//                                    modelItems(data: model)
+//                                        .padding(.leading, 24)
+//                                        .background(
+//                                        NavigationLink("", destination: {
+//                                            ModelDetailView(model: model)
+////                                                .navigationBarHidden(true)
+//                                        }).opacity(0)
+//                                    )
+                                    modelItems(data: model)
+                                        .padding(.leading, 24)
+                                        .onTapGesture {
+                                        selectedModel = model
+                                        isActive = true
                                     }
                                 }
                             }
                         }
+                            .padding(.bottom, 8)
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets())
                             .listRowBackground(Color.clear)
+
                     }
                         .listStyle(.plain)
                         .background(Color.clear.edgesIgnoringSafeArea(.all))
 
                 }
-                    .background(BackGround())
-                    .padding(.bottom, 62)
+                    .background {
+                    BackGround()
+                    NavigationLink(destination: ModelDetailView(model: selectedModel)
+                        .navigationBarHidden(true), isActive: $isActive, label: { EmptyView() })
+                }
+                    .padding(.bottom, 56)
             }
 
         }
