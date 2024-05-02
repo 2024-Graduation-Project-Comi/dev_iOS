@@ -38,7 +38,6 @@ struct ContectView: View {
                     .padding(.horizontal, 24)
 
                     List {
-                        // TODO: 즐겨찾기 기능 구현 자리
                         favoritesList()
                         voiceList()
                         emptyListArea()

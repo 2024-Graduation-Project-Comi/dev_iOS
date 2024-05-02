@@ -10,13 +10,30 @@ import SwiftUI
 struct ModelDetailView: View {
     @StateObject var favorites = FavoritesViewModel()
     @Environment(\.presentationMode) var presentationMode
+
+    @State private var showTitle: Bool = false
+
     var model: Model
+
     var body: some View {
-        VStack {
+        GeometryReader { geo in
+            Image("카리나2")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+                .onTapGesture {
+                    showTitle = false
+                }
             customNavBar()
-            Text("\(model.name) - \(model.id) - \(model.state)")
-         Spacer()
-        }.background(Color.pink)
+            VStack {
+                Spacer()
+                ZStack(alignment: .bottom) {
+                    ModelModalView(data: model, maxHeight: geo.size.height, state: $showTitle)
+                    bottomBtn()
+                }
+            }
+        }
+
     }
     @ViewBuilder
     private func customNavBar() -> some View {
@@ -41,9 +58,47 @@ struct ModelDetailView: View {
                 }
             }.padding(.horizontal, 24)
         }
+    }
 
+    @ViewBuilder
+    private func bottomBtn() -> some View {
+        VStack {
+            Button {
+                showTitle.toggle()
+            } label: {
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .frame(width: 342, height: 62)
+                        .background(
+                        LinearGradient(
+                            stops: [
+                                Gradient.Stop(color: .blue2, location: 0.00),
+                                Gradient.Stop(color: .blue1, location: 1.00),
+                            ],
+                            startPoint: UnitPoint(x: 0, y: 1),
+                            endPoint: UnitPoint(x: 1, y: 0)
+                        )
+                    )
+                        .cornerRadius(100)
+                    Text(showTitle ? "전화하기" : "대화 주제 선택하기")
+                        .font(.ptSemiBold18)
+                        .foregroundStyle(.white)
+
+                }
+                .offset(y: -15)
+            }
+        }
+            .frame(maxWidth: .infinity, minHeight: 116, maxHeight: 116, alignment: .center)
+            .background {
+            RoundedRectangle(cornerRadius: 32, style: .continuous)
+                .fill(.white)
+                .ignoresSafeArea()
+        }
     }
 }
+
+
 
 
 
