@@ -9,15 +9,17 @@ import SwiftUI
 
 struct HistoryView: View {
     @State private var selected: Int?
+    @Binding var selectedTab: Tab
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text("기록")
+                Text("최근 기록")
                     .font(.ptBold22)
                 Spacer()
                 Image("Search")
-            }.padding(.bottom, 24)
-
+            }
+                .padding(.bottom, 24)
+                .padding(.horizontal, 24)
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
                     Text("오늘")
@@ -34,12 +36,17 @@ struct HistoryView: View {
                         HistoryCard(data: data, selected: self.$selected)
                     }
                 }
+                    .padding(.horizontal, 24)
+                    .frame(alignment: .leading)
             }
-                .frame(alignment: .leading)
-        }.padding(.horizontal, 24)
+            .padding(.bottom, 32)
+            BottomTabBarView(selectedTab: $selectedTab)
+        }
+            .background(BackGround())
     }
 }
 
 #Preview {
-    HistoryView()
+    HistoryView(selectedTab: .constant(.history))
+        .background(BackGround())
 }

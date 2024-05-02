@@ -8,24 +8,18 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var selectedTab: Tab = .history
+    @State var selectedTab: Tab = .contact
     var body: some View {
-        VStack {
-            Spacer()
-            switch selectedTab {
-            case .home:
-                Text("home")
-            case .history:
-                HistoryView()
-            case .contact:
-                Text("contact")
-            case .profile:
-                Text("profile")
-            }
-            Spacer()
-            BottomTabBarView(selectedTab: $selectedTab)
-        }.background {
-            BackGround()
+        switch selectedTab {
+        case .home:
+            // MARK: 나중에 작업해야함
+            HomeView(selectedTab: $selectedTab)
+        case .history:
+            HistoryView(selectedTab: $selectedTab)
+        case .contact:
+            ContectView(selectedTab: $selectedTab)
+        case .profile:
+            ProfileView(selectedTab: $selectedTab)
         }
     }
 }

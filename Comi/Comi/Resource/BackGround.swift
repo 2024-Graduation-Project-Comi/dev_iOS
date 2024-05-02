@@ -16,9 +16,12 @@ struct BackGround: View {
                 .foregroundStyle(.blue0)
                 .offset(y: 240)
         }
+        .padding(0)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .blur(radius: 20)
         .background(.white)
         .opacity(0.7)
+        .ignoresSafeArea()
         
     }
 }

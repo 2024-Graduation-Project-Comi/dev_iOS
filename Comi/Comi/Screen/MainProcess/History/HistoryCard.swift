@@ -90,8 +90,3 @@ private func moreFunc() -> some View {
         }
     }
 }
-
-#Preview {
-    HistoryCard(data: HistoryData(call_id: 0, user_id: 0, model: Model(id: 0, name: "카리나", group: "에스파"), topic: .시사, conv_count: nil, ended: .now, times: millisecondsToMMSS(milliseconds: 230000)), selected: .constant(0))
-        .frame(maxWidth: .infinity)
-}
