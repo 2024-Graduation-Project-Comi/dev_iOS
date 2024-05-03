@@ -57,7 +57,7 @@ private func loginBtn() -> some View {
             .cornerRadius(100)
         Text("로그인")
             .font(.ptSemiBold18)
-            .foregroundStyle(.white)
+            .foregroundStyle(.cwhite)
     }
 }
 

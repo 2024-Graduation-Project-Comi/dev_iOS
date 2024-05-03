@@ -19,7 +19,7 @@ struct BackGround: View {
         .padding(0)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .blur(radius: 20)
-        .background(.white)
+        .background(.cwhite)
         .opacity(0.7)
         .ignoresSafeArea()
         
