@@ -18,7 +18,7 @@ struct ContentView: View {
             } else {
                 OnboardPage(isLogin: $isLogin)
             }
-
+            
         } else {
             Splash()
                 .onAppear {

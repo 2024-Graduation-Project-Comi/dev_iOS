@@ -133,7 +133,7 @@ private func modelItems(data: Model) -> some View {
                     .offset(x: 20, y: 20)
                     .overlay {
                     Circle()
-                        .stroke(Color.white, lineWidth: 1)
+                        .stroke(Color.cwhite, lineWidth: 1)
                         .offset(x: 20, y: 20)
                 }
             }

@@ -67,7 +67,7 @@ struct BottomTabBarView: View {
             .frame(maxWidth: .infinity, maxHeight: 56, alignment: .center)
             .background {
             RoundedRectangle(cornerRadius: 32, style: .continuous)
-                .fill(.white)
+                .fill(.cwhite)
                 .ignoresSafeArea()
         }
 
