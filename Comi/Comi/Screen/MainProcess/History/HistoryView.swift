@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct HistoryView: View {
-    @State private var selected: Int?
     @Binding var selectedTab: Tab
+    @State private var selected: Int?
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {

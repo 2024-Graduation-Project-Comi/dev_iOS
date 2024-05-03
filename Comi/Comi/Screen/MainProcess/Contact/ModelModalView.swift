@@ -11,14 +11,9 @@ struct ModelModalView: View {
     var data: Model
     var maxHeight: CGFloat
     @Binding var state: Bool
+    @Binding var isSelected: Bool
     @State private var offset: CGFloat = 0
-
-    private func close() {
-        withAnimation(.easeInOut) {
-            offset = 1000
-            state = false
-        }
-    }
+    @State private var selected: TopicData?
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -32,27 +27,15 @@ struct ModelModalView: View {
                     .inset(by: 0.5)
                     .stroke(Color(red: 0.93, green: 0.93, blue: 0.93), lineWidth: 1)
             )
-            // TODO: 변경하기
             VStack {
                 ScrollView(showsIndicators: false) {
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
-                    sampleListItem(data: data)
+                    ForEach(sampleTopicData, id:\.idx) { data in
+                        TopicCard(data: data, selected: self.$selected, isSelected: $isSelected)
+                        
+                    }
                     Spacer().frame(height: 16)
-                }.padding(EdgeInsets(top: 48, leading: 24, bottom: 0, trailing: 24))
+                }
+                .padding(EdgeInsets(top: 48, leading: 24, bottom: 0, trailing: 24))
                 Spacer().frame(height: 116)
             }
                 .frame(width: 390, height: state ? maxHeight * 0.9 : 264)
@@ -77,22 +60,16 @@ struct ModelModalView: View {
 
         }
     }
-}
-
-@ViewBuilder
-private func sampleListItem(data: Model) -> some View {
-    ZStack {
-        Capsule().fill(.white)
-            .frame(height: 60)
-        VStack {
-            Text(data.name)
-                .font(.ptSemiBold18)
-            Text("\(data.id) : \(data.state)")
-                .font(.ptRegular14)
+    private func close() {
+        withAnimation(.easeInOut) {
+            offset = 1000
+            state = false
         }
     }
 }
 
+
+
 #Preview {
-    ModelModalView(data: Model(id: 0, name: "kari", state: .available), maxHeight: 600, state: .constant(true))
+    ModelModalView(data: Model(id: 0, name: "kari", state: .available), maxHeight: 600, state: .constant(true), isSelected: .constant(true))
 }

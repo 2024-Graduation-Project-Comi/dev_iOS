@@ -8,21 +8,38 @@
 import Foundation
 import SwiftUI
 
+// MARK: Topic Data
+struct TopicData: Hashable {
+    let idx: Int
+    let topic: Topics
+    let desc: String
+}
+
+var sampleTopicData: [TopicData] = [
+    TopicData(idx: 0, topic: .연애, desc: "연애 시뮬레이션"),
+    TopicData(idx: 1, topic: .시사, desc: "오늘의 정치는?"),
+    TopicData(idx: 2, topic: .운동, desc: "운동에 대해 좀 아시나?"),
+    TopicData(idx: 3, topic: .일상생활, desc: "오늘 무슨일 있었는지 대화할래요?"),
+    TopicData(idx: 4, topic: .비지니스, desc: "회사에서 사용하는 표현에 대해 학습해봐요"),
+]
+
 // MARK: History
 struct HistoryData {
     let call_id: Int // id
     let user_id: Int // 유저 정보
     let model: Model // 모델 정보
-    let topic: topics //주제
+    let topic: Topics //주제
     let conv_count: Int? // 중복
     let ended: Date // 최근 기록
     let times: String //이용시간, ms단위
 }
 
-enum topics: String {
+enum Topics: String {
     case 연애
     case 시사
     case 운동
+    case 일상생활
+    case 비지니스
 }
 
 var sampleHistoryData: [HistoryData] = [
@@ -122,3 +139,5 @@ class FavoritesViewModel: ObservableObject {
         }
     }
 }
+
+

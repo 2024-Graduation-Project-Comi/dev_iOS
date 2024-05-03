@@ -34,6 +34,7 @@ struct BottomStartBtn: View {
                         .font(.ptSemiBold18)
                         .foregroundStyle(.white)
                 }
+                .offset(y: -15)
             }
         }
             .frame(maxWidth: .infinity, maxHeight: 116, alignment: .center)
