@@ -33,23 +33,28 @@ struct ModelModalView: View {
                     .stroke(Color(red: 0.93, green: 0.93, blue: 0.93), lineWidth: 1)
             )
             // TODO: 변경하기
-            ScrollView {
-                Text(data.name)
-                    .font(.ptSemiBold18)
-                Text("\(data.id) : \(data.state)")
-                    .font(.ptRegular14)
-                Divider()
-                Text(data.name)
-                    .font(.ptSemiBold18)
-                Text("\(data.id) : \(data.state)")
-                    .font(.ptRegular14)
-                Divider()
-                Text(data.name)
-                    .font(.ptSemiBold18)
-                Text("\(data.id) : \(data.state)")
-                    .font(.ptRegular14)
-                Divider()
-            }.padding(EdgeInsets(top: 48, leading: 24, bottom: 0, trailing: 24))
+            VStack {
+                ScrollView(showsIndicators: false) {
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    sampleListItem(data: data)
+                    Spacer().frame(height: 16)
+                }.padding(EdgeInsets(top: 48, leading: 24, bottom: 0, trailing: 24))
+                Spacer().frame(height: 116)
+            }
                 .frame(width: 390, height: state ? maxHeight * 0.9 : 264)
                 .opacity(state ? 1 : 0)
 
@@ -74,7 +79,19 @@ struct ModelModalView: View {
     }
 }
 
-
+@ViewBuilder
+private func sampleListItem(data: Model) -> some View {
+    ZStack {
+        Capsule().fill(.white)
+            .frame(height: 60)
+        VStack {
+            Text(data.name)
+                .font(.ptSemiBold18)
+            Text("\(data.id) : \(data.state)")
+                .font(.ptRegular14)
+        }
+    }
+}
 
 #Preview {
     ModelModalView(data: Model(id: 0, name: "kari", state: .available), maxHeight: 600, state: .constant(true))
