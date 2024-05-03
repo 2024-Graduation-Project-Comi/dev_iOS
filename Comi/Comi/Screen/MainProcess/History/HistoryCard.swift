@@ -66,7 +66,7 @@ private func moreFunc() -> some View {
                         .padding(.trailing, 20)
                     Text("채팅보기")
                         .font(.ptRegular18)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.cwhite)
                 }
             }
                 .frame(width: 151, height: 48)
@@ -84,7 +84,7 @@ private func moreFunc() -> some View {
                         .padding(.trailing, 20)
                     Text("전화하기")
                         .font(.ptRegular18)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.cwhite)
                 }
             }.frame(width: 151, height: 48)
         }

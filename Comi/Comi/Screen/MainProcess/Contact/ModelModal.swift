@@ -1,5 +1,5 @@
 //
-//  ModelModalView.swift
+//  ModelModal.swift
 //  Comi
 //
 //  Created by yimkeul on 5/2/24.
@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct ModelModalView: View {
+struct ModelModal: View {
     var data: Model
     var maxHeight: CGFloat
     @Binding var state: Bool
     @Binding var isSelected: Bool
     @State private var offset: CGFloat = 0
-    @State private var selected: TopicData?
+    @Binding var selected: TopicData?
 
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
                 .foregroundColor(.clear)
                 .frame(width: 390, height: state ? maxHeight * 0.9 : 264)
-                .background(.white.opacity(0.7))
+                .background(.cwhite.opacity(0.7))
                 .cornerRadius(32)
                 .overlay(
                 RoundedRectangle(cornerRadius: 32)
@@ -70,6 +70,6 @@ struct ModelModalView: View {
 
 
 
-#Preview {
-    ModelModalView(data: Model(id: 0, name: "kari", state: .available), maxHeight: 600, state: .constant(true), isSelected: .constant(true))
-}
+//#Preview {
+//    ModelModal(data: Model(id: 0, name: "kari", state: .available), maxHeight: 600, state: .constant(true), isSelected: .constant(true), selected: .constant())
+//}

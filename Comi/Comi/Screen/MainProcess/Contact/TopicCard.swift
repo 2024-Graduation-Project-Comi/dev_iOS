@@ -15,7 +15,7 @@ struct TopicCard: View {
         ZStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(.white)
+                    .fill(.cwhite)
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(data.topic.rawValue)
@@ -30,7 +30,7 @@ struct TopicCard: View {
             }
             .overlay {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .stroke(selected == data ? .blue3 : .white, lineWidth: 2)
+                    .stroke(selected == data ? .blue3 : .cwhite, lineWidth: 2)
             }
             .padding(2)
         }

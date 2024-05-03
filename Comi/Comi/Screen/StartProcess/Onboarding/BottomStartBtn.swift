@@ -32,7 +32,7 @@ struct BottomStartBtn: View {
                       .cornerRadius(100)
                     Text("시작하기")
                         .font(.ptSemiBold18)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.cwhite)
                 }
                 .offset(y: -15)
             }
@@ -40,7 +40,7 @@ struct BottomStartBtn: View {
             .frame(maxWidth: .infinity, maxHeight: 116, alignment: .center)
             .background {
             RoundedRectangle(cornerRadius: 32, style: .continuous)
-                .fill(.white)
+                .fill(.cwhite)
                 .ignoresSafeArea()
         }
     }
