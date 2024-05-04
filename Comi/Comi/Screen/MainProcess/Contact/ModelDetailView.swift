@@ -11,11 +11,14 @@ struct ModelDetailView: View {
     @StateObject var favorites = FavoritesViewModel()
     @Environment(\.dismiss) var dismiss
 
-    @State private var showTitle: Bool = true
+
+    @State private var showTitle: Bool = false
     @State private var isSelected: Bool = false //주제 선택을 했는지 확인
     @State private var selected: TopicData?
+    @State private var gotoCallingView: Bool = false
 
     var model: Model
+    @Binding var gotoRoot: Bool
 
     var body: some View {
         GeometryReader { geo in
@@ -25,6 +28,8 @@ struct ModelDetailView: View {
                 .ignoresSafeArea()
                 .onTapGesture {
                 showTitle = false
+                isSelected = false
+                selected = nil
             }
             customNavBar()
             VStack {
@@ -39,27 +44,26 @@ struct ModelDetailView: View {
     }
     @ViewBuilder
     private func customNavBar() -> some View {
-        VStack {
-            HStack {
-                Button {
-                    dismiss()
-                } label: {
-                    Image("Close")
-                }
+        HStack {
+            Button {
+                dismiss()
+            } label: {
+                Image("Close")
+                    .foregroundStyle(.cwhite)
+            }
 
-                Spacer()
+            Spacer()
 
-                Button {
-                    if favorites.decodeSave().contains(model) {
-                        favorites.popIDSave(idx: model.id)
-                    } else {
-                        favorites.encodeSave(value: model)
-                    }
-                } label: {
-                    Image(favorites.decodeSave().contains(model) ? "Heart" : "Heart Disalbed")
+            Button {
+                if favorites.decodeSave().contains(model) {
+                    favorites.popIDSave(idx: model.id)
+                } else {
+                    favorites.encodeSave(value: model)
                 }
-            }.padding(.horizontal, 24)
-        }
+            } label: {
+                Image(favorites.decodeSave().contains(model) ? "Heart" : "Heart Disalbed")
+            }
+        }.padding(.horizontal, 24)
     }
 
     @ViewBuilder
@@ -92,9 +96,8 @@ struct ModelDetailView: View {
                         .offset(y: -15)
                 }
             } else {
-                NavigationLink {
-                    // TODO: 구현해야함
-                    CallingView(modelData: model, topicData: $selected)
+                Button {
+                    gotoCallingView = true
                 } label: {
                     ZStack {
                         Rectangle()
@@ -118,9 +121,15 @@ struct ModelDetailView: View {
                     }
                         .offset(y: -15)
                 }
-                .disabled(isSelected ? false : true)
-                
-
+                    .background(
+                    NavigationLink(
+                        destination:
+                            CallingView(modelData: model, topicData: $selected, gotoRoot: $gotoRoot)
+                            .navigationBarHidden(true),
+                        isActive: $gotoCallingView,
+                        label: { EmptyView() }
+                    )
+                )
             }
 
         }
@@ -138,5 +147,5 @@ struct ModelDetailView: View {
 
 
 #Preview {
-    ModelDetailView(model: Model(id: 0, name: "카리나", state: .available))
+    ModelDetailView(model: Model(id: 0, name: "카리나", state: .available), gotoRoot: .constant(true))
 }
