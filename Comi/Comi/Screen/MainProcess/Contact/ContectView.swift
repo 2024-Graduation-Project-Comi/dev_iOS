@@ -7,19 +7,15 @@
 
 import SwiftUI
 
-struct contectViewState {
-    @State var isActive: Bool
-    @State var selectedModel: Model
-}
-
 struct ContectView: View {
     @Binding var selectedTab: Tab
-    
+
     @StateObject var favorites = FavoritesViewModel()
-    @State private var isActive: Bool = false
     @State private var selectedModel: Model
-    = Model(id: 0, name: "", group: nil, state: .unavailable)
-    
+        = Model(id: 0, name: "", group: nil, state: .unavailable)
+
+    @State private var gotoModelDetailView: Bool = false
+
     private var groupedModels: [(String, [Model])] {
         let groupedDictionary = Dictionary(grouping: Models) { $0.group ?? "" }
         return groupedDictionary.sorted { $0.0 > $1.0 }
@@ -35,7 +31,7 @@ struct ContectView: View {
                         Spacer()
                         Image("Search")
                     }
-                    .padding(.horizontal, 24)
+                        .padding(.horizontal, 24)
 
                     List {
                         favoritesList()
@@ -47,8 +43,11 @@ struct ContectView: View {
                     BottomTabBarView(selectedTab: $selectedTab)
                 }
                     .background {
-                    NavigationLink(destination: ModelDetailView(model: selectedModel)
-                        .navigationBarHidden(true), isActive: $isActive, label: { EmptyView() })
+                    NavigationLink(
+                        destination: ModelDetailView(model: selectedModel, gotoRoot: $gotoModelDetailView)
+                            .navigationBarHidden(true),
+                        isActive: $gotoModelDetailView,
+                        label: { EmptyView() })
                     BackGround()
                 }
             }
@@ -65,7 +64,7 @@ struct ContectView: View {
                         .padding(.leading, 24)
                         .onTapGesture {
                         selectedModel = model
-                        isActive = true
+                        gotoModelDetailView = true
                     }
                         .listRowSeparator(.hidden)
                         .listRowInsets(EdgeInsets())
@@ -85,7 +84,7 @@ struct ContectView: View {
                         .padding(.leading, 24)
                         .onTapGesture {
                         selectedModel = model
-                        isActive = true
+                        gotoModelDetailView = true
                     }
                 }
             }

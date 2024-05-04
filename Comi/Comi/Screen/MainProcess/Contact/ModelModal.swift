@@ -64,12 +64,8 @@ struct ModelModal: View {
         withAnimation(.easeInOut) {
             offset = 1000
             state = false
+            selected = nil
+            isSelected = false
         }
     }
 }
-
-
-
-//#Preview {
-//    ModelModal(data: Model(id: 0, name: "kari", state: .available), maxHeight: 600, state: .constant(true), isSelected: .constant(true), selected: .constant())
-//}
