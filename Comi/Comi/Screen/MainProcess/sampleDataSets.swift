@@ -28,7 +28,7 @@ struct HistoryData {
     let call_id: Int // id
     let user_id: Int // 유저 정보
     let model: Model // 모델 정보
-    let topic: Topics //주제
+    let topic: TopicData //주제
     let conv_count: Int? // 중복
     let ended: Date // 최근 기록
     let times: String //이용시간, ms단위
@@ -43,13 +43,13 @@ enum Topics: String {
 }
 
 var sampleHistoryData: [HistoryData] = [
-    HistoryData(call_id: 0, user_id: 0, model: Model(id: 0, name: "카리나", group: "에스파", state: .available), topic: .시사, conv_count: nil, ended: .now , times: millisecondsToMMSS(milliseconds: 230000)),
-    HistoryData(call_id: 1, user_id: 0, model: Model(id: 1, name: "윈터", group: "에스파", state: .available), topic: .연애, conv_count: 3, ended: Calendar.current.date(from: DateComponents(year:2021, month: 7, day: 1))!, times: millisecondsToMMSS(milliseconds: 230000)),
-    HistoryData(call_id: 2, user_id: 0, model: Model(id: 2, name: "닝닝", group: "에스파", state: .available), topic: .운동, conv_count: nil, ended: Calendar.current.date(from: DateComponents(year:2021, month: 7, day: 1))!, times: millisecondsToMMSS(milliseconds: 230000)),
-    HistoryData(call_id: 3, user_id: 0, model: Model(id: 3, name: "지젤", group: "에스파", state: .available), topic: .시사, conv_count: nil, ended: Calendar.current.date(from: DateComponents(year:2021, month: 7, day: 1))!, times: millisecondsToMMSS(milliseconds: 230000)),
-    HistoryData(call_id: 4, user_id: 0, model: Model(id: 4, name: "마젠타", group: "qwer", state: .available), topic: .운동, conv_count: nil, ended: Calendar.current.date(from: DateComponents(year:2021, month: 7, day: 1))!, times: millisecondsToMMSS(milliseconds: 230000)),
-    HistoryData(call_id: 5, user_id: 0, model: Model(id: 5, name: "히나", group: "qwer", state: .available), topic: .연애, conv_count: nil, ended: Calendar.current.date(from: DateComponents(year:2021, month: 7, day: 1))!, times: millisecondsToMMSS(milliseconds: 230000)),
-    HistoryData(call_id: 6, user_id: 0, model: Model(id: 6, name: "쵸단", group: "qwer", state: .available), topic: .시사, conv_count: nil, ended: Calendar.current.date(from: DateComponents(year:2021, month: 7, day: 1))!, times: millisecondsToMMSS(milliseconds: 230000))
+    HistoryData(call_id: 0, user_id: 0, model: Model(id: 0, name: "카리나", group: "에스파", state: .available), topic: sampleTopicData[0], conv_count: nil, ended: .now , times: millisecondsToMMSS(milliseconds: 230000)),
+    HistoryData(call_id: 1, user_id: 0, model: Model(id: 1, name: "윈터", group: "에스파", state: .available), topic: sampleTopicData[1], conv_count: 3, ended: Calendar.current.date(from: DateComponents(year:2021, month: 7, day: 1))!, times: millisecondsToMMSS(milliseconds: 230000)),
+    HistoryData(call_id: 2, user_id: 0, model: Model(id: 2, name: "닝닝", group: "에스파", state: .available), topic: sampleTopicData[2], conv_count: nil, ended: Calendar.current.date(from: DateComponents(year:2021, month: 7, day: 1))!, times: millisecondsToMMSS(milliseconds: 230000)),
+    HistoryData(call_id: 3, user_id: 0, model: Model(id: 3, name: "지젤", group: "에스파", state: .available), topic: sampleTopicData[4], conv_count: nil, ended: Calendar.current.date(from: DateComponents(year:2021, month: 7, day: 1))!, times: millisecondsToMMSS(milliseconds: 230000)),
+    HistoryData(call_id: 4, user_id: 0, model: Model(id: 4, name: "마젠타", group: "qwer", state: .available), topic: sampleTopicData[4], conv_count: nil, ended: Calendar.current.date(from: DateComponents(year:2021, month: 7, day: 1))!, times: millisecondsToMMSS(milliseconds: 230000)),
+    HistoryData(call_id: 5, user_id: 0, model: Model(id: 5, name: "히나", group: "qwer", state: .available), topic: sampleTopicData[0], conv_count: nil, ended: Calendar.current.date(from: DateComponents(year:2021, month: 7, day: 1))!, times: millisecondsToMMSS(milliseconds: 230000)),
+    HistoryData(call_id: 6, user_id: 0, model: Model(id: 6, name: "쵸단", group: "qwer", state: .available), topic: sampleTopicData[0], conv_count: nil, ended: Calendar.current.date(from: DateComponents(year:2021, month: 7, day: 1))!, times: millisecondsToMMSS(milliseconds: 230000))
 ]
 
 func millisecondsToMMSS(milliseconds: Int) -> String {
