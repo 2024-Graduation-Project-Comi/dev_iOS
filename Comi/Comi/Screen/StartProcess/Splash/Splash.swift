@@ -24,7 +24,9 @@ struct Splash: View {
                             .offset(x: (480 / 2) - 100)
                     }.blur(radius: 20)
                     Spacer()
-                }.opacity(0.7)
+                }
+                .background(.cwhite)
+                .opacity(0.7)
                 
                 VStack {
                     Text("Comi")
