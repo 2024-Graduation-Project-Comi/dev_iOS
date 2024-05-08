@@ -57,7 +57,7 @@ struct FeedbackContentView: View {
                                 checkType = false
                             }
                         } label: {
-                            Text("분석")
+                            Text("발음")
                                 .font(.ptRegular18)
                                 .foregroundStyle(checkType ? .cwhite : .blue1)
                         }

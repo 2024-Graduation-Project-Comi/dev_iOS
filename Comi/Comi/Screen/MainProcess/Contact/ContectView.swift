@@ -56,8 +56,9 @@ struct ContectView: View {
 
     @ViewBuilder
     private func favoritesList() -> some View {
-        if !favorites.decodeSave().isEmpty {
-            Section(header: sectionText(text: "즐겨찾기")) {
+
+        Section(header: sectionText(text: "즐겨찾기")) {
+            if !favorites.decodeSave().isEmpty {
                 ForEach(favorites.decodeSave().reversed(), id: \.self) { data in
                     let model = data.group != nil ? Model(id: data.id, name: data.name, group: data.group, state: data.state) : Model(id: data.id, name: data.name, group: nil, state: data.state)
                     modelItems(data: model)
@@ -70,8 +71,9 @@ struct ContectView: View {
                         .listRowInsets(EdgeInsets())
                         .listRowBackground(Color.clear)
                 }
-            } .listRowInsets(EdgeInsets())
-        }
+            }
+        }.listRowInsets(EdgeInsets())
+
 
     }
 
