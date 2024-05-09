@@ -40,7 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		860DDC882BDF6650007A8F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		860DDC882BDF6650007A8F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		860DDC892BDF66BB007A8F13 /* ExFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFont.swift; sourceTree = "<group>"; };
 		860DDC952BDF6A2B007A8F13 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
 		860DDC992BDF7977007A8F13 /* BackGround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGround.swift; sourceTree = "<group>"; };
@@ -221,9 +221,10 @@
 		864B3FBF2B9F1DBA00F51FF6 /* Comi */ = {
 			isa = PBXGroup;
 			children = (
-				860DDC882BDF6650007A8F13 /* Info.plist */,
+				BAE76CCC2BECE3BF0003C17A /* Support */,
 				860DDC812BDF5DCF007A8F13 /* Extension */,
 				860DDC802BDF5CF8007A8F13 /* Resource */,
+				BAE76CCB2BECE34B0003C17A /* Sources */,
 				860DDC932BDF69C8007A8F13 /* Screen */,
 				864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */,
 				864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */,
@@ -265,6 +266,21 @@
 				86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */,
 			);
 			path = Feedback;
+			sourceTree = "<group>";
+		};
+		BAE76CCB2BECE34B0003C17A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		BAE76CCC2BECE3BF0003C17A /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				860DDC882BDF6650007A8F13 /* Info.plist */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,7 +519,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = Y333NVBXPT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Comi/Info.plist;
+				INFOPLIST_FILE = Comi/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -540,7 +556,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = Y333NVBXPT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Comi/Info.plist;
+				INFOPLIST_FILE = Comi/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
