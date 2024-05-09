@@ -17,7 +17,7 @@ struct MainView: View {
         case .history:
             HistoryView(selectedTab: $selectedTab)
         case .contact:
-            ContectView(selectedTab: $selectedTab)
+            ContactsView(selectedTab: $selectedTab)
         case .profile:
             ProfileView(selectedTab: $selectedTab)
         }
