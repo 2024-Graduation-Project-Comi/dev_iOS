@@ -32,6 +32,8 @@
 		86AF00BB2BE54681007DAF5F /* TopicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF00BA2BE54681007DAF5F /* TopicCard.swift */; };
 		86AF00BE2BE567C0007DAF5F /* CallingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF00BD2BE567C0007DAF5F /* CallingView.swift */; };
 		86AF00C02BE56EF0007DAF5F /* CallBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF00BF2BE56EF0007DAF5F /* CallBackground.swift */; };
+		86BB85162BED2B2300B8B7A6 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 86BB85152BED2B2300B8B7A6 /* Realm */; };
+		86BB85182BED2B2300B8B7A6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 86BB85172BED2B2300B8B7A6 /* RealmSwift */; };
 		86C162232BE0E05A00362250 /* BottomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162222BE0E05A00362250 /* BottomTabBarView.swift */; };
 		86C162252BE0E9BB00362250 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162242BE0E9BB00362250 /* HistoryView.swift */; };
 		86C162282BE0EAA500362250 /* HistoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162272BE0EAA500362250 /* HistoryCard.swift */; };
@@ -82,6 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86BB85182BED2B2300B8B7A6 /* RealmSwift in Frameworks */,
+				86BB85162BED2B2300B8B7A6 /* Realm in Frameworks */,
 				BAE76CD22BECE7780003C17A /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +318,8 @@
 			name = Comi;
 			packageProductDependencies = (
 				BAE76CD12BECE7780003C17A /* Alamofire */,
+				86BB85152BED2B2300B8B7A6 /* Realm */,
+				86BB85172BED2B2300B8B7A6 /* RealmSwift */,
 			);
 			productName = Comi;
 			productReference = 864B3FBD2B9F1DBA00F51FF6 /* Comi.app */;
@@ -345,6 +351,7 @@
 			mainGroup = 864B3FB42B9F1DBA00F51FF6;
 			packageReferences = (
 				BAE76CD02BECE7780003C17A /* XCRemoteSwiftPackageReference "Alamofire" */,
+				86BB85142BED2B2300B8B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 864B3FBE2B9F1DBA00F51FF6 /* Products */;
 			projectDirPath = "";
@@ -624,6 +631,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		86BB85142BED2B2300B8B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		BAE76CD02BECE7780003C17A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -635,6 +650,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		86BB85152BED2B2300B8B7A6 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86BB85142BED2B2300B8B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		86BB85172BED2B2300B8B7A6 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86BB85142BED2B2300B8B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		BAE76CD12BECE7780003C17A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BAE76CD02BECE7780003C17A /* XCRemoteSwiftPackageReference "Alamofire" */;
