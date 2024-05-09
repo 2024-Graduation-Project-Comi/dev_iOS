@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContectView: View {
+struct ContactsView: View {
     @Binding var selectedTab: Tab
 
     @StateObject var favorites = FavoritesViewModel()
@@ -148,5 +148,5 @@ private func modelItems(data: Model) -> some View {
 }
 
 #Preview {
-    ContectView(selectedTab: .constant(.contact))
+    ContactsView(selectedTab: .constant(.contact))
 }

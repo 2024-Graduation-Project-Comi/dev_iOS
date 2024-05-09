@@ -18,7 +18,7 @@
 		8617DC932BE29E81007CFB73 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8617DC922BE29E81007CFB73 /* ProfileView.swift */; };
 		8617DC952BE29E87007CFB73 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8617DC942BE29E87007CFB73 /* HomeView.swift */; };
 		8617DC972BE2AE5A007CFB73 /* ModelDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8617DC962BE2AE5A007CFB73 /* ModelDetailView.swift */; };
-		86190AAE2BE16CB500D650A4 /* ContectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86190AAD2BE16CB500D650A4 /* ContectView.swift */; };
+		86190AAE2BE16CB500D650A4 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86190AAD2BE16CB500D650A4 /* ContactsView.swift */; };
 		8631A0BF2BE3D06D00C442B0 /* ModelModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8631A0BE2BE3D06D00C442B0 /* ModelModal.swift */; };
 		864B3FC12B9F1DBA00F51FF6 /* ComiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */; };
 		864B3FC32B9F1DBA00F51FF6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */; };
@@ -52,7 +52,7 @@
 		8617DC922BE29E81007CFB73 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		8617DC942BE29E87007CFB73 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8617DC962BE2AE5A007CFB73 /* ModelDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDetailView.swift; sourceTree = "<group>"; };
-		86190AAD2BE16CB500D650A4 /* ContectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContectView.swift; sourceTree = "<group>"; };
+		86190AAD2BE16CB500D650A4 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		8631A0BE2BE3D06D00C442B0 /* ModelModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelModal.swift; sourceTree = "<group>"; };
 		864B3FBD2B9F1DBA00F51FF6 /* Comi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Comi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComiApp.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 				868ED28E2BE21C0900B43F74 /* sampleDataSets.swift */,
 				8617DC902BE29E6F007CFB73 /* Home */,
 				86C162262BE0EA3A00362250 /* History */,
-				86190AAC2BE16CA200D650A4 /* Contact */,
+				86190AAC2BE16CA200D650A4 /* Contacts */,
 				86AF00BC2BE55C66007DAF5F /* Calling */,
 				86D192CA2BE68B5200C4CDAE /* Feedback */,
 				8617DC912BE29E74007CFB73 /* Profile */,
@@ -191,15 +191,15 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		86190AAC2BE16CA200D650A4 /* Contact */ = {
+		86190AAC2BE16CA200D650A4 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				86190AAD2BE16CB500D650A4 /* ContectView.swift */,
+				86190AAD2BE16CB500D650A4 /* ContactsView.swift */,
 				8617DC962BE2AE5A007CFB73 /* ModelDetailView.swift */,
 				8631A0BE2BE3D06D00C442B0 /* ModelModal.swift */,
 				86AF00BA2BE54681007DAF5F /* TopicCard.swift */,
 			);
-			path = Contact;
+			path = Contacts;
 			sourceTree = "<group>";
 		};
 		864B3FB42B9F1DBA00F51FF6 = {
@@ -360,7 +360,7 @@
 				860DDC9E2BDF90E6007A8F13 /* BottomStartBtn.swift in Sources */,
 				864B3FC12B9F1DBA00F51FF6 /* ComiApp.swift in Sources */,
 				860DDC962BDF6A2B007A8F13 /* Splash.swift in Sources */,
-				86190AAE2BE16CB500D650A4 /* ContectView.swift in Sources */,
+				86190AAE2BE16CB500D650A4 /* ContactsView.swift in Sources */,
 				86C162232BE0E05A00362250 /* BottomTabBarView.swift in Sources */,
 				860DDCA02BDF9EAC007A8F13 /* LoginView.swift in Sources */,
 				860DDC8A2BDF66BB007A8F13 /* ExFont.swift in Sources */,
