@@ -352,6 +352,7 @@
 			packageReferences = (
 				BAE76CD02BECE7780003C17A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				86BB85142BED2B2300B8B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				86BB851C2BED3A6800B8B7A6 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 			);
 			productRefGroup = 864B3FBE2B9F1DBA00F51FF6 /* Products */;
 			projectDirPath = "";
@@ -637,6 +638,14 @@
 			requirement = {
 				branch = master;
 				kind = branch;
+			};
+		};
+		86BB851C2BED3A6800B8B7A6 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
 			};
 		};
 		BAE76CD02BECE7780003C17A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
