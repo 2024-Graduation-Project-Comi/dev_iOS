@@ -10,15 +10,17 @@ import SwiftUI
 struct ContentView: View {
     @State private var splashView: Bool = false
     @State var isLogin: Bool = true
-
+    @StateObject var modelViewModel = ModelViewModel()
+    
     var body: some View {
         if splashView {
             if isLogin {
                 MainView()
+                    .environmentObject(modelViewModel)
             } else {
                 OnboardPage(isLogin: $isLogin)
             }
-            
+
         } else {
             Splash()
                 .onAppear {
@@ -26,6 +28,7 @@ struct ContentView: View {
                     splashView = true
                 }
             }
+                .environmentObject(modelViewModel)
         }
     }
 }

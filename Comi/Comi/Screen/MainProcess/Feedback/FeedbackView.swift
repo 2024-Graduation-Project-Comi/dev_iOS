@@ -10,7 +10,7 @@ import SwiftUI
 struct FeedbackView: View {
     @Environment(\.dismiss) var dismiss
 
-    var model: Model
+    var model: sModels
     var topicData: TopicData?
     @Binding var gotoRoot: Bool
 
@@ -177,5 +177,5 @@ struct FeedbackView: View {
 
 
 #Preview {
-    FeedbackView(model: Model(id: 0, name: "카리나", state: .available), gotoRoot: .constant(true))
+    FeedbackView(model: sModels(id: 0, name: "카리나", state: .available, image: ""), gotoRoot: .constant(true))
 }
