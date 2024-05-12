@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct Splash: View {
+
     @EnvironmentObject var modelViewModel: ModelViewModel
-    
+
     var body: some View {
         GeometryReader { geo in
             let size = geo.size
@@ -29,7 +30,7 @@ struct Splash: View {
                 }
                 .background(.cwhite)
                 .opacity(0.7)
-                
+
                 VStack {
                     Text("Comi")
                         .font(.ptSemiBold32)

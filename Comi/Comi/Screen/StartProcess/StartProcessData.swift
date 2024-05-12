@@ -8,10 +8,10 @@
 import Foundation
 
 class StartProcessData: ObservableObject {
+
     @Published var isLogin: Bool = false
-    
+
     func changeLoginState() {
         isLogin = true
     }
 }
-

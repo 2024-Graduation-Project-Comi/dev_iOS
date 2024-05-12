@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Binding var selectedTab: Tab
+    @Binding var selectedTab: Tabs
     var body: some View {
         VStack {
             Text("profile view")

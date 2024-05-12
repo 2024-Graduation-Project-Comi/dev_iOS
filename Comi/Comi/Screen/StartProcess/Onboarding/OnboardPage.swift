@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct OnboardPage: View {
+
     @State private var isStart: Bool = false
     @Binding var isLogin: Bool
+
     var body: some View {
         if isStart == false {
-            GeometryReader { geo in
-                let _ = geo.size
-
+            GeometryReader { _ in
                 VStack {
                     // TODO: TabView .page
                     Spacer()
@@ -27,7 +27,6 @@ struct OnboardPage: View {
         } else {
             LoginView(isLogin: $isLogin)
         }
-        
     }
 }
 

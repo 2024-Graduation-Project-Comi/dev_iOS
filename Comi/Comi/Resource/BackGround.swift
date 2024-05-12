@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BackGround: View {
+
     var body: some View {
         VStack {
             Spacer()
@@ -22,7 +23,6 @@ struct BackGround: View {
         .background(.cwhite)
         .opacity(0.7)
         .ignoresSafeArea()
-        
     }
 }
 

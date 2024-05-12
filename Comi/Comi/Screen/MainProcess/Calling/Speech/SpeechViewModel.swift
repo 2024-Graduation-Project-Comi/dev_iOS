@@ -10,6 +10,7 @@ import AVFoundation
 import Alamofire
 
 class SpeechViewModel: ObservableObject {
+
     private var audioRecorder: AVAudioRecorder?
     private var audioPlayer: AVAudioPlayer?
     private var recordingTimer: Timer?
@@ -38,15 +39,12 @@ class SpeechViewModel: ObservableObject {
             do {
                 try recordingSession.setCategory(.playAndRecord)
                 try recordingSession.setActive(true)
-                
                 recordingSession.requestRecordPermission{ [weak self] granted in
                     guard granted else {
                         print("Error: User denied recording permission.")
                         return
                     }
-                    
                     guard let self = self else { return }
-                    
                     let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                     let audioFileName = documentPath.appendingPathComponent("recording.wav")
                     let settings = [
@@ -55,13 +53,11 @@ class SpeechViewModel: ObservableObject {
                         AVNumberOfChannelsKey: 1,
                         AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
                     ]
-                    
                     do {
                         self.audioRecorder = try AVAudioRecorder(url: audioFileName, settings: settings)
                         try FileManager.default.createDirectory(at: documentPath, withIntermediateDirectories: true, attributes: nil)
                         self.audioRecorder?.record()
                         self.audioRecorder?.isMeteringEnabled = true
-                        
                         DispatchQueue.main.async {
                             self.isRecording = true
 //                            self.startRecrdingTimer()
@@ -74,6 +70,5 @@ class SpeechViewModel: ObservableObject {
                 print("Error: Failed to set up recording session.")
             }
         }
-        
     }
 }

@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct FeedbackView: View {
+
     @Environment(\.dismiss) var dismiss
-
-    var model: sModels
-    var topicData: TopicData?
-    @Binding var gotoRoot: Bool
-
     @State private var isSelect: Bool = false
-    
+    @Binding var gotoRoot: Bool
+    var model: Models
+    var topicData: String
 
     var body: some View {
         VStack {
@@ -58,8 +56,6 @@ struct FeedbackView: View {
             bottomBtn()
         }
             .background(BackGround())
-
-
     }
 
     @ViewBuilder
@@ -72,11 +68,10 @@ struct FeedbackView: View {
                     .foregroundStyle(.disabled)
                     .font(.system(size: 24, weight: .semibold))
             }
-            
             HStack(spacing: 4) {
                 Text(model.name)
                     .font(.ptSemiBold18)
-                Text(topicData?.topic.rawValue ?? "자유주제")
+                Text(topicData)
                     .font(.ptRegular18)
             }.foregroundStyle(.black)
             Spacer()
@@ -102,7 +97,7 @@ struct FeedbackView: View {
                             LinearGradient(
                               stops: [
                                 Gradient.Stop(color: Color(red: 0.15, green: 0.83, blue: 0.67), location: 0.00),
-                                Gradient.Stop(color: Color(red: 0.46, green: 0.59, blue: 1), location: 1.00),
+                                Gradient.Stop(color: Color(red: 0.46, green: 0.59, blue: 1), location: 1.00)
                               ],
                               startPoint: UnitPoint(x: 0, y: 1),
                               endPoint: UnitPoint(x: 1, y: 0)
@@ -120,7 +115,7 @@ struct FeedbackView: View {
             .frame(maxWidth: .infinity, maxHeight: 110)
             .padding(.horizontal, 24)
     }
-    
+
     @ViewBuilder
     private func bottomBtn() -> some View {
         ZStack {
@@ -149,7 +144,7 @@ struct FeedbackView: View {
                             LinearGradient(
                                 stops: [
                                     Gradient.Stop(color: .blue2, location: 0.00),
-                                    Gradient.Stop(color: .blue1, location: 1.00),
+                                    Gradient.Stop(color: .blue1, location: 1.00)
                                 ],
                                 startPoint: UnitPoint(x: 0, y: 1),
                                 endPoint: UnitPoint(x: 1, y: 0)
@@ -175,7 +170,6 @@ struct FeedbackView: View {
     }
 }
 
-
 #Preview {
-    FeedbackView(model: sModels(id: 0, name: "카리나", state: .available, image: ""), gotoRoot: .constant(true))
+    FeedbackView(gotoRoot: .constant(true), model: Models(id: 0, name: "카리나", state: .available, image: ""), topicData: "")
 }

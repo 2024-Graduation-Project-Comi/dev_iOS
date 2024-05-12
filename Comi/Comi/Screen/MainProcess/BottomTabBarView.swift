@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum Tab {
+enum Tabs {
     case home
     case history
     case contact
@@ -15,11 +15,11 @@ enum Tab {
 }
 
 struct BottomTabBarView: View {
-    @Binding var selectedTab: Tab
+    @Binding var selectedTab: Tabs
     var body: some View {
         HStack {
             Spacer()
-            Button () {
+            Button {
                 selectedTab = .home
             } label: {
                 VStack(spacing: 0) {
@@ -30,7 +30,7 @@ struct BottomTabBarView: View {
                 }
             }
             Spacer()
-            Button () {
+            Button {
                 selectedTab = .history
             } label: {
                 VStack(spacing: 0) {
@@ -41,7 +41,7 @@ struct BottomTabBarView: View {
                 }
             }
             Spacer()
-            Button () {
+            Button {
                 selectedTab = .contact
             } label: {
                 VStack(spacing: 0) {
@@ -52,7 +52,7 @@ struct BottomTabBarView: View {
                 }
             }
             Spacer()
-            Button () {
+            Button {
                 selectedTab = .profile
             } label: {
                 VStack(spacing: 0) {

@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct BottomStartBtn: View {
+
     @Binding var isStart: Bool
+
     var body: some View {
         VStack {
-            
             Button {
                 isStart = true
             } label: {
@@ -23,7 +24,7 @@ struct BottomStartBtn: View {
                         LinearGradient(
                           stops: [
                             Gradient.Stop(color: .blue2, location: 0.00),
-                            Gradient.Stop(color: .blue1, location: 1.00),
+                            Gradient.Stop(color: .blue1, location: 1.00)
                           ],
                           startPoint: UnitPoint(x: 0, y: 1),
                           endPoint: UnitPoint(x: 1, y: 0)
@@ -45,7 +46,6 @@ struct BottomStartBtn: View {
         }
     }
 }
-
 
 #Preview {
     BottomStartBtn(isStart: .constant(false))

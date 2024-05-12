@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    @Binding var selectedTab: Tab
+
+    @Binding var selectedTab: Tabs
 
     var body: some View {
         VStack {

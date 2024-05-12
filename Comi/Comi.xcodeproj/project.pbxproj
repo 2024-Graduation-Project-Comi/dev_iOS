@@ -21,12 +21,18 @@
 		86190AAE2BE16CB500D650A4 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86190AAD2BE16CB500D650A4 /* ContactsView.swift */; };
 		8631A0BF2BE3D06D00C442B0 /* ModelModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8631A0BE2BE3D06D00C442B0 /* ModelModal.swift */; };
 		86447C0B2BEFDC8300C1988E /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86447C0A2BEFDC8300C1988E /* ModelData.swift */; };
+		86447C112BF0F46400C1988E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 86447C102BF0F46400C1988E /* RealmSwift */; };
+		86447C192BF1169300C1988E /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86447C182BF1169300C1988E /* FavoritesViewModel.swift */; };
+		86447C1D2BF1171300C1988E /* ModelsSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86447C1C2BF1171300C1988E /* ModelsSet.swift */; };
+		86447C202BF1182800C1988E /* TopicsSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86447C1F2BF1182800C1988E /* TopicsSet.swift */; };
+		86447C222BF1183000C1988E /* TopicsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86447C212BF1183000C1988E /* TopicsDB.swift */; };
+		86447C252BF11B6C00C1988E /* CallRecordsSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86447C242BF11B6C00C1988E /* CallRecordsSet.swift */; };
+		86447C272BF11B7700C1988E /* CallRecordsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86447C262BF11B7700C1988E /* CallRecordsDB.swift */; };
 		864B3FC12B9F1DBA00F51FF6 /* ComiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */; };
 		864B3FC32B9F1DBA00F51FF6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */; };
 		864B3FC52B9F1DBB00F51FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */; };
 		864B3FC82B9F1DBB00F51FF6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864B3FC72B9F1DBB00F51FF6 /* Preview Assets.xcassets */; };
 		8660CA102BEE02D30099AEC8 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8660CA0F2BEE02D30099AEC8 /* Supabase */; };
-		868ED28F2BE21C0900B43F74 /* sampleDataSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868ED28E2BE21C0900B43F74 /* sampleDataSets.swift */; };
 		86AF00B62BE54391007DAF5F /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86AF00B22BE54391007DAF5F /* Pretendard-SemiBold.otf */; };
 		86AF00B72BE54391007DAF5F /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86AF00B32BE54391007DAF5F /* Pretendard-Medium.otf */; };
 		86AF00B82BE54391007DAF5F /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86AF00B42BE54391007DAF5F /* Pretendard-Regular.otf */; };
@@ -34,13 +40,12 @@
 		86AF00BB2BE54681007DAF5F /* TopicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF00BA2BE54681007DAF5F /* TopicCard.swift */; };
 		86AF00BE2BE567C0007DAF5F /* CallingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF00BD2BE567C0007DAF5F /* CallingView.swift */; };
 		86AF00C02BE56EF0007DAF5F /* CallBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AF00BF2BE56EF0007DAF5F /* CallBackground.swift */; };
-		86BB85182BED2B2300B8B7A6 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 86BB85172BED2B2300B8B7A6 /* RealmSwift */; };
 		86C162232BE0E05A00362250 /* BottomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162222BE0E05A00362250 /* BottomTabBarView.swift */; };
 		86C162252BE0E9BB00362250 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162242BE0E9BB00362250 /* HistoryView.swift */; };
 		86C162282BE0EAA500362250 /* HistoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162272BE0EAA500362250 /* HistoryCard.swift */; };
 		86D192CC2BE68B6200C4CDAE /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D192CB2BE68B6200C4CDAE /* FeedbackView.swift */; };
 		86D192CE2BE69ECE00C4CDAE /* FeedbackContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */; };
-		86F0ED962BEDCCE300D1B8E8 /* SupaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0ED952BEDCCE300D1B8E8 /* SupaTest.swift */; };
+		86F0ED962BEDCCE300D1B8E8 /* ModelsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */; };
 		BAE76CCF2BECE6650003C17A /* SpeechViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */; };
 		BAE76CD22BECE7780003C17A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BAE76CD12BECE7780003C17A /* Alamofire */; };
 		BAE76CD62BF0DE1B0003C17A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */; };
@@ -62,12 +67,17 @@
 		86190AAD2BE16CB500D650A4 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		8631A0BE2BE3D06D00C442B0 /* ModelModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelModal.swift; sourceTree = "<group>"; };
 		86447C0A2BEFDC8300C1988E /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		86447C182BF1169300C1988E /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		86447C1C2BF1171300C1988E /* ModelsSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsSet.swift; sourceTree = "<group>"; };
+		86447C1F2BF1182800C1988E /* TopicsSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsSet.swift; sourceTree = "<group>"; };
+		86447C212BF1183000C1988E /* TopicsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDB.swift; sourceTree = "<group>"; };
+		86447C242BF11B6C00C1988E /* CallRecordsSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordsSet.swift; sourceTree = "<group>"; };
+		86447C262BF11B7700C1988E /* CallRecordsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordsDB.swift; sourceTree = "<group>"; };
 		864B3FBD2B9F1DBA00F51FF6 /* Comi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Comi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComiApp.swift; sourceTree = "<group>"; };
 		864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		864B3FC72B9F1DBB00F51FF6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		868ED28E2BE21C0900B43F74 /* sampleDataSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sampleDataSets.swift; sourceTree = "<group>"; };
 		86AF00B22BE54391007DAF5F /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../../../../Library/Fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		86AF00B32BE54391007DAF5F /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../../../../../../../Library/Fonts/Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		86AF00B42BE54391007DAF5F /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../../../../../../../Library/Fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
@@ -80,7 +90,7 @@
 		86C162272BE0EAA500362250 /* HistoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCard.swift; sourceTree = "<group>"; };
 		86D192CB2BE68B6200C4CDAE /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackContentView.swift; sourceTree = "<group>"; };
-		86F0ED952BEDCCE300D1B8E8 /* SupaTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaTest.swift; sourceTree = "<group>"; };
+		86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsDB.swift; sourceTree = "<group>"; };
 		BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewModel.swift; sourceTree = "<group>"; };
 		BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86BB85182BED2B2300B8B7A6 /* RealmSwift in Frameworks */,
+				86447C112BF0F46400C1988E /* RealmSwift in Frameworks */,
 				BAE76CD22BECE7780003C17A /* Alamofire in Frameworks */,
 				8660CA102BEE02D30099AEC8 /* Supabase in Frameworks */,
 			);
@@ -178,7 +188,6 @@
 			children = (
 				860DDCA52BDFA39F007A8F13 /* MainView.swift */,
 				86C162222BE0E05A00362250 /* BottomTabBarView.swift */,
-				868ED28E2BE21C0900B43F74 /* sampleDataSets.swift */,
 				8617DC902BE29E6F007CFB73 /* Home */,
 				86C162262BE0EA3A00362250 /* History */,
 				86190AAC2BE16CA200D650A4 /* Contacts */,
@@ -212,6 +221,7 @@
 				8617DC962BE2AE5A007CFB73 /* ModelDetailView.swift */,
 				8631A0BE2BE3D06D00C442B0 /* ModelModal.swift */,
 				86AF00BA2BE54681007DAF5F /* TopicCard.swift */,
+				86447C182BF1169300C1988E /* FavoritesViewModel.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -222,6 +232,43 @@
 				86447C0A2BEFDC8300C1988E /* ModelData.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		86447C1A2BF116C800C1988E /* Supabase */ = {
+			isa = PBXGroup;
+			children = (
+				86447C232BF11B3A00C1988E /* CallRecords */,
+				86447C1E2BF117EB00C1988E /* Topics */,
+				86447C1B2BF116D600C1988E /* Models */,
+			);
+			path = Supabase;
+			sourceTree = "<group>";
+		};
+		86447C1B2BF116D600C1988E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				86447C1C2BF1171300C1988E /* ModelsSet.swift */,
+				86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		86447C1E2BF117EB00C1988E /* Topics */ = {
+			isa = PBXGroup;
+			children = (
+				86447C1F2BF1182800C1988E /* TopicsSet.swift */,
+				86447C212BF1183000C1988E /* TopicsDB.swift */,
+			);
+			path = Topics;
+			sourceTree = "<group>";
+		};
+		86447C232BF11B3A00C1988E /* CallRecords */ = {
+			isa = PBXGroup;
+			children = (
+				86447C242BF11B6C00C1988E /* CallRecordsSet.swift */,
+				86447C262BF11B7700C1988E /* CallRecordsDB.swift */,
+			);
+			path = CallRecords;
 			sourceTree = "<group>";
 		};
 		864B3FB42B9F1DBA00F51FF6 = {
@@ -311,7 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				860DDC882BDF6650007A8F13 /* Info.plist */,
-				86F0ED952BEDCCE300D1B8E8 /* SupaTest.swift */,
+				86447C1A2BF116C800C1988E /* Supabase */,
 				86447C0C2BEFF60D00C1988E /* Realm */,
 			);
 			path = Support;
@@ -344,8 +391,8 @@
 			name = Comi;
 			packageProductDependencies = (
 				BAE76CD12BECE7780003C17A /* Alamofire */,
-				86BB85172BED2B2300B8B7A6 /* RealmSwift */,
 				8660CA0F2BEE02D30099AEC8 /* Supabase */,
+				86447C102BF0F46400C1988E /* RealmSwift */,
 			);
 			productName = Comi;
 			productReference = 864B3FBD2B9F1DBA00F51FF6 /* Comi.app */;
@@ -377,8 +424,8 @@
 			mainGroup = 864B3FB42B9F1DBA00F51FF6;
 			packageReferences = (
 				BAE76CD02BECE7780003C17A /* XCRemoteSwiftPackageReference "Alamofire" */,
-				86BB85142BED2B2300B8B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				8660CA0E2BEE02D30099AEC8 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				86447C0F2BF0F46400C1988E /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 864B3FBE2B9F1DBA00F51FF6 /* Products */;
 			projectDirPath = "";
@@ -434,13 +481,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				860DDCA32BDFA230007A8F13 /* StartProcessData.swift in Sources */,
-				868ED28F2BE21C0900B43F74 /* sampleDataSets.swift in Sources */,
 				86D192CC2BE68B6200C4CDAE /* FeedbackView.swift in Sources */,
 				86C162252BE0E9BB00362250 /* HistoryView.swift in Sources */,
 				BAE76CCF2BECE6650003C17A /* SpeechViewModel.swift in Sources */,
 				860DDC9C2BDF7B0B007A8F13 /* OnboardPage.swift in Sources */,
 				8617DC972BE2AE5A007CFB73 /* ModelDetailView.swift in Sources */,
+				86447C1D2BF1171300C1988E /* ModelsSet.swift in Sources */,
 				86C162282BE0EAA500362250 /* HistoryCard.swift in Sources */,
+				86447C252BF11B6C00C1988E /* CallRecordsSet.swift in Sources */,
 				86447C0B2BEFDC8300C1988E /* ModelData.swift in Sources */,
 				86AF00BB2BE54681007DAF5F /* TopicCard.swift in Sources */,
 				864B3FC32B9F1DBA00F51FF6 /* ContentView.swift in Sources */,
@@ -448,13 +496,17 @@
 				86AF00BE2BE567C0007DAF5F /* CallingView.swift in Sources */,
 				860DDCA62BDFA39F007A8F13 /* MainView.swift in Sources */,
 				860DDC9A2BDF7977007A8F13 /* BackGround.swift in Sources */,
+				86447C222BF1183000C1988E /* TopicsDB.swift in Sources */,
 				8617DC952BE29E87007CFB73 /* HomeView.swift in Sources */,
 				86AF00C02BE56EF0007DAF5F /* CallBackground.swift in Sources */,
+				86447C202BF1182800C1988E /* TopicsSet.swift in Sources */,
+				86447C272BF11B7700C1988E /* CallRecordsDB.swift in Sources */,
 				8617DC932BE29E81007CFB73 /* ProfileView.swift in Sources */,
 				860DDC9E2BDF90E6007A8F13 /* BottomStartBtn.swift in Sources */,
-				86F0ED962BEDCCE300D1B8E8 /* SupaTest.swift in Sources */,
+				86F0ED962BEDCCE300D1B8E8 /* ModelsDB.swift in Sources */,
 				864B3FC12B9F1DBA00F51FF6 /* ComiApp.swift in Sources */,
 				860DDC962BDF6A2B007A8F13 /* Splash.swift in Sources */,
+				86447C192BF1169300C1988E /* FavoritesViewModel.swift in Sources */,
 				86190AAE2BE16CB500D650A4 /* ContactsView.swift in Sources */,
 				86C162232BE0E05A00362250 /* BottomTabBarView.swift in Sources */,
 				860DDCA02BDF9EAC007A8F13 /* LoginView.swift in Sources */,
@@ -685,20 +737,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		86447C0F2BF0F46400C1988E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		8660CA0E2BEE02D30099AEC8 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase/supabase-swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.5.1;
-			};
-		};
-		86BB85142BED2B2300B8B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		BAE76CD02BECE7780003C17A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
@@ -712,15 +764,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		86447C102BF0F46400C1988E /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86447C0F2BF0F46400C1988E /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		8660CA0F2BEE02D30099AEC8 /* Supabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8660CA0E2BEE02D30099AEC8 /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
-		};
-		86BB85172BED2B2300B8B7A6 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 86BB85142BED2B2300B8B7A6 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
 		};
 		BAE76CD12BECE7780003C17A /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
