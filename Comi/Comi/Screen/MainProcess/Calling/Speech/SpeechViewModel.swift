@@ -44,10 +44,34 @@ class SpeechViewModel: ObservableObject {
                         print("Error: User denied recording permission.")
                         return
                     }
+                    
+                    guard let self = self else { return }
+                    
+                    let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                    let audioFileName = documentPath.appendingPathComponent("recording.wav")
+                    let settings = [
+                        AVFormatIDKey: Int(kAudioFormatLinearPCM),
+                        AVSampleRateKey: 44100,
+                        AVNumberOfChannelsKey: 1,
+                        AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+                    ]
+                    
+                    do {
+                        self.audioRecorder = try AVAudioRecorder(url: audioFileName, settings: settings)
+                        try FileManager.default.createDirectory(at: documentPath, withIntermediateDirectories: true, attributes: nil)
+                        self.audioRecorder?.record()
+                        self.audioRecorder?.isMeteringEnabled = true
+                        
+                        DispatchQueue.main.async {
+                            self.isRecording = true
+//                            self.startRecrdingTimer()
+                        }
+                    } catch {
+                        print("Error: Failed to start recording process.")
+                    }
                 }
-                
             } catch {
-                
+                print("Error: Failed to set up recording session.")
             }
         }
         

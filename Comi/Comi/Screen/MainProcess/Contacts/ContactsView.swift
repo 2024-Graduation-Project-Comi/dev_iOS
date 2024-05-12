@@ -17,7 +17,7 @@ struct ContactsView: View {
     @State private var gotoModelDetailView: Bool = false
 
     private var groupedModels: [(String, [Model])] {
-        let groupedDictionary = Dictionary(grouping: Models) { $0.group ?? "" }
+        let groupedDictionary = Dictionary(grouping: models) { $0.group ?? "" }
         return groupedDictionary.sorted { $0.0 > $1.0 }
     }
 

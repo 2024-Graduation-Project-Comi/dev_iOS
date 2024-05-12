@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CallBackground: View {
-    @Binding var status: callState
+    @Binding var status: CallState
     var body: some View {
         ZStack {
             if status == .ai || status == .ready {
