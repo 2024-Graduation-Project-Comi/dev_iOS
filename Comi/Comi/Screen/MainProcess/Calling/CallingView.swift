@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum callState {
+enum CallState {
     case ready
     case ai
     case wait
@@ -15,6 +15,7 @@ enum callState {
 }
 
 struct CallingView: View {
+
     @State private var background: callState = .ready
     var modelData: sModels
     @Binding var topicData: TopicData?

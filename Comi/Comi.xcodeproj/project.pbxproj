@@ -43,6 +43,7 @@
 		86F0ED962BEDCCE300D1B8E8 /* SupaTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0ED952BEDCCE300D1B8E8 /* SupaTest.swift */; };
 		BAE76CCF2BECE6650003C17A /* SpeechViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */; };
 		BAE76CD22BECE7780003C17A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BAE76CD12BECE7780003C17A /* Alamofire */; };
+		BAE76CD62BF0DE1B0003C17A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackContentView.swift; sourceTree = "<group>"; };
 		86F0ED952BEDCCE300D1B8E8 /* SupaTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaTest.swift; sourceTree = "<group>"; };
 		BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewModel.swift; sourceTree = "<group>"; };
+		BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 		864B3FB42B9F1DBA00F51FF6 = {
 			isa = PBXGroup;
 			children = (
+				BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */,
 				864B3FBF2B9F1DBA00F51FF6 /* Comi */,
 				864B3FBE2B9F1DBA00F51FF6 /* Products */,
 				86F0ED862BEDA7DB00D1B8E8 /* Frameworks */,
@@ -329,6 +332,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 864B3FCB2B9F1DBB00F51FF6 /* Build configuration list for PBXNativeTarget "Comi" */;
 			buildPhases = (
+				BAE76CD32BF0DDC50003C17A /* SwiftLint Script */,
 				864B3FB92B9F1DBA00F51FF6 /* Sources */,
 				864B3FBA2B9F1DBA00F51FF6 /* Frameworks */,
 				864B3FBB2B9F1DBA00F51FF6 /* Resources */,
@@ -393,6 +397,7 @@
 				86AF00B62BE54391007DAF5F /* Pretendard-SemiBold.otf in Resources */,
 				86AF00B92BE54391007DAF5F /* Pretendard-Bold.otf in Resources */,
 				864B3FC82B9F1DBB00F51FF6 /* Preview Assets.xcassets in Resources */,
+				BAE76CD62BF0DE1B0003C17A /* .swiftlint.yml in Resources */,
 				86AF00B82BE54391007DAF5F /* Pretendard-Regular.otf in Resources */,
 				864B3FC52B9F1DBB00F51FF6 /* Assets.xcassets in Resources */,
 				86AF00B72BE54391007DAF5F /* Pretendard-Medium.otf in Resources */,
@@ -400,6 +405,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BAE76CD32BF0DDC50003C17A /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		864B3FB92B9F1DBA00F51FF6 /* Sources */ = {
@@ -570,6 +597,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = Y333NVBXPT;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Comi/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -607,6 +635,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = Y333NVBXPT;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Comi/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

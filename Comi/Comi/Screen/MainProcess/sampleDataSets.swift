@@ -20,18 +20,19 @@ var sampleTopicData: [TopicData] = [
     TopicData(idx: 1, topic: .시사, desc: "오늘의 정치는?"),
     TopicData(idx: 2, topic: .운동, desc: "운동에 대해 좀 아시나?"),
     TopicData(idx: 3, topic: .일상생활, desc: "오늘 무슨일 있었는지 대화할래요?"),
-    TopicData(idx: 4, topic: .비지니스, desc: "회사에서 사용하는 표현에 대해 학습해봐요"),
+    TopicData(idx: 4, topic: .비지니스, desc: "회사에서 사용하는 표현에 대해 학습해봐요")
 ]
 
 // MARK: History
 struct HistoryData {
     let call_id: Int // id
     let user_id: Int // 유저 정보
+
     let model: sModels // 모델 정보
     let topic: TopicData //주제
     let conv_count: Int? // 중복
     let ended: Date // 최근 기록
-    let times: String //이용시간, ms단위
+    let times: String // 이용시간, ms단위
 }
 
 enum Topics: String {
@@ -81,9 +82,41 @@ func formatDate(data: Date) -> String {
 
 
 
+
+
+// MARK: Model & Contacts
+struct Model: Codable, Hashable {
+    var id: Int
+    var name: String
+    var group: String?
+    var state: ModelState
+}
+enum ModelState: Codable, Hashable {
+    case available
+    case unavailable
+    case locked
+}
+
+let models:[Model] = [
+    Model(id: 0, name: "카리나", group: "에스파", state: .available),
+    Model(id: 1, name: "윈터", group: "에스파", state: .available),
+    Model(id: 2, name: "닝닝", group: "에스파", state: .available),
+    Model(id: 3, name: "지젤", group: "에스파", state: .available),
+    Model(id: 4, name: "마젠타", group: "QWER", state: .available),
+    Model(id: 5, name: "히나", group: "QWER", state: .available),
+    Model(id: 6, name: "쵸단", group: "QWER", state: .available),
+    Model(id: 7, name: "시연", group: "QWER", state: .unavailable),
+    Model(id: 8, name: "송우기", group: "(여자)아이들", state: .locked),
+    Model(id: 9, name: "민니", group: "(여자)아이들", state: .locked),
+    Model(id: 10, name: "미연", group: "(여자)아이들", state: .locked),
+    Model(id: 11, name: "전소연", group: "(여자)아이들", state: .locked)
+]
+
+
 class FavoritesViewModel: ObservableObject {
-    @AppStorage("favorites") var FavoritesModel:Data = Data()
+    @AppStorage("favorites") var favoritesModel: Data = Data()
     
+
     func decodeSave() -> [sModels] {
         if let decodedArray = try? JSONDecoder().decode([sModels].self, from: FavoritesModel) {
             return decodedArray
@@ -97,7 +130,7 @@ class FavoritesViewModel: ObservableObject {
         var currentArray = decodeSave()
         currentArray.append(value)
         if let encodedArray = try? JSONEncoder().encode(currentArray) {
-            FavoritesModel = encodedArray
+            favoritesModel = encodedArray
         }
     }
 
@@ -105,7 +138,7 @@ class FavoritesViewModel: ObservableObject {
         var currentArray = decodeSave()
         currentArray = currentArray.filter { idx != $0.id }
         if let encodedArray = try? JSONEncoder().encode(currentArray) {
-            FavoritesModel = encodedArray
+            favoritesModel = encodedArray
         }
     }
 }
