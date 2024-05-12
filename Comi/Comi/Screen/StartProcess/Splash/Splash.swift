@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Splash: View {
+    @EnvironmentObject var modelViewModel: ModelViewModel
+    
     var body: some View {
         GeometryReader { geo in
             let size = geo.size
@@ -34,6 +36,15 @@ struct Splash: View {
                     Text("이상형의 목소리와 함께 배우는 외국어 학습")
                         .font(.ptRegular14)
                 }.frame(width: size.width, height: size.height)
+        }
+        .onAppear {
+            if modelViewModel.checkDB() {
+                Task {
+                    modelViewModel.copySupaData()
+                }
+            } else {
+                modelViewModel.fetchData()
+            }
         }
     }
 }

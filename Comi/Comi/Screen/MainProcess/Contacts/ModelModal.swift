@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ModelModal: View {
-    var data: Model
+    
+    var data: sModels
     var maxHeight: CGFloat
     @Binding var state: Bool
     @Binding var isSelected: Bool

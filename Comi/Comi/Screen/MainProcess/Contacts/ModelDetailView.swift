@@ -11,13 +11,12 @@ struct ModelDetailView: View {
     @StateObject var favorites = FavoritesViewModel()
     @Environment(\.dismiss) var dismiss
 
-
     @State private var showTitle: Bool = false
     @State private var isSelected: Bool = false //주제 선택을 했는지 확인
     @State private var selected: TopicData?
     @State private var gotoCallingView: Bool = false
 
-    var model: Model
+    var model: sModels
     @Binding var gotoRoot: Bool
 
     var body: some View {
@@ -147,5 +146,5 @@ struct ModelDetailView: View {
 
 
 #Preview {
-    ModelDetailView(model: Model(id: 0, name: "카리나", state: .available), gotoRoot: .constant(true))
+    ModelDetailView(model: sModels(id: 0, name: "카리나", state: .available, image: ""), gotoRoot: .constant(true))
 }
