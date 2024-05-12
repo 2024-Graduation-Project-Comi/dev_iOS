@@ -11,13 +11,15 @@ struct ContactsView: View {
     @Binding var selectedTab: Tab
 
     @StateObject var favorites = FavoritesViewModel()
-    @State private var selectedModel: Model
-        = Model(id: 0, name: "", group: nil, state: .unavailable)
+    @State private var selectedModel: sModels
+        = sModels(id: 0, name: "", group: nil, state: .available, image: "")
 
     @State private var gotoModelDetailView: Bool = false
+    @EnvironmentObject var modelViewModel: ModelViewModel
 
-    private var groupedModels: [(String, [Model])] {
-        let groupedDictionary = Dictionary(grouping: models) { $0.group ?? "" }
+
+    private var groupedModels: [(String, [sModels])] {
+        let groupedDictionary = Dictionary(grouping: modelViewModel.models) { $0.group ?? "" }
         return groupedDictionary.sorted { $0.0 > $1.0 }
     }
 
@@ -60,7 +62,8 @@ struct ContactsView: View {
         Section(header: sectionText(text: "즐겨찾기")) {
             if !favorites.decodeSave().isEmpty {
                 ForEach(favorites.decodeSave().reversed(), id: \.self) { data in
-                    let model = data.group != nil ? Model(id: data.id, name: data.name, group: data.group, state: data.state) : Model(id: data.id, name: data.name, group: nil, state: data.state)
+                    let model = sModels(id: data.id, name: data.name, group: data.group ?? nil, state: data.state, image: "")
+
                     modelItems(data: model)
                         .padding(.leading, 24)
                         .onTapGesture {
@@ -116,7 +119,7 @@ private func sectionText(text: String) -> some View {
 }
 
 @ViewBuilder
-private func modelItems(data: Model) -> some View {
+private func modelItems(data: sModels) -> some View {
     HStack {
         ZStack {
             Image("ma")

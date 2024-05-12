@@ -15,8 +15,9 @@ enum CallState {
 }
 
 struct CallingView: View {
-    @State private var background: CallState = .ready
-    var modelData: Model
+
+    @State private var background: callState = .ready
+    var modelData: sModels
     @Binding var topicData: TopicData?
     @Binding var gotoRoot: Bool
     @State private var gotoFeedback: Bool = false
@@ -30,7 +31,7 @@ struct CallingView: View {
             .background(CallBackground(status: $background))
     }
     @ViewBuilder
-    private func callInterface(modelData: Model, topicData: TopicData?) -> some View {
+    private func callInterface(modelData: sModels, topicData: TopicData?) -> some View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
@@ -116,5 +117,5 @@ struct CallingView: View {
 
 
 #Preview {
-    CallingView(modelData: Model(id: 0, name: "카리나", state: .available), topicData: .constant(.init(idx: 0, topic: .비지니스, desc: "")), gotoRoot: .constant(true))
+    CallingView(modelData: sModels(id: 0, name: "카리나", state: .available, image: ""), topicData: .constant(.init(idx: 0, topic: .비지니스, desc: "")), gotoRoot: .constant(true))
 }

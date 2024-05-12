@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Binding var selectedTab: Tab
+
     var body: some View {
         VStack {
             Text("HomeView")
