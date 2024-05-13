@@ -21,17 +21,19 @@ class CallRecordsDB: ObservableObject {
 
     let client = SupabaseClient(supabaseURL: URL(string: "https://evurjcnsdykxdkwnlwub.supabase.co")!, supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV2dXJqY25zZHlreGRrd25sd3ViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMxNTk2MDIsImV4cCI6MjAyODczNTYwMn0.VgrdCMbT-uqJpth4WQm7jcGCg8EAaIBKQcg2D3Hf1vE")
 
-    func getData() async {
-        do {
-            let datas: [CallRecords] = try await client
-                .from("CallRecords")
-                .select()
-                .execute()
-                .value
+    func getData() {
+        Task {
+            do {
+                let datas: [CallRecords] = try await client
+                    .from("CallRecords")
+                    .select()
+                    .execute()
+                    .value
 
-            self.data = datas
-        } catch {
-            print(error)
+                self.data = datas
+            } catch {
+                print(error)
+            }
         }
     }
 
