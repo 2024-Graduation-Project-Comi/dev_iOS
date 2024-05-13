@@ -57,7 +57,7 @@ class ModelViewModel: ObservableObject {
         let arrData = Array(filteredData)
         var trans: [Models] = []
         for data in arrData {
-            let temp = Models(id: data.id, name: data.name, group: data.group ?? nil, state: ModelState(rawValue: data.state) ?? .available, image: "")
+            let temp = Models(id: data.id, name: data.name, group: data.group ?? nil, state: ModelState(rawValue: data.state) ?? .available, image: data.image)
             trans.append(temp)
         }
         print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)

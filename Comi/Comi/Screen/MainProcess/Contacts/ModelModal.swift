@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ModelModal: View {
 
+    @EnvironmentObject var topics:TopicsDB
     @State private var offset: CGFloat = 0
     @Binding var showTopics: Bool
     @Binding var isSelected: Bool
     @Binding var selected: Topics?
-    @ObservedObject var topics = TopicsDB()
     var model: Models
     var maxHeight: CGFloat
 
@@ -31,13 +31,9 @@ struct ModelModal: View {
             )
             VStack {
                 ScrollView(showsIndicators: false) {
-                    if topics.data.isEmpty {
-                        Text("AAA")
-                    } else {
-                        ForEach(topics.data, id: \.id) { data in
+                    ForEach(topics.data, id: \.id) { data in
                             TopicCard(selected: self.$selected, isSelected: $isSelected, topic: data)
                         }
-                    }
                     Spacer().frame(height: 16)
                 }
                     .padding(EdgeInsets(top: 48, leading: 24, bottom: 0, trailing: 24))
@@ -56,12 +52,8 @@ struct ModelModal: View {
                 .offset(y: 32)
                 .frame(width: 390, height: showTopics ? maxHeight * 0.9 : 264)
                 .opacity(showTopics ? 0 : 1)
-        } .animation(.easeInOut(duration: 0.5), value: showTopics)
-            .onAppear {
-            Task {
-                await topics.getData()
-            }
         }
+            .animation(.easeInOut(duration: 0.5), value: showTopics)
             .onTapGesture {
             showTopics.toggle()
             if showTopics == false {
