@@ -27,7 +27,7 @@ struct HistoryCard: View {
                     VStack(alignment: .leading) {
                         Text(data.convCnt == nil ? modelInfo.name : "\(modelInfo.name)(\(Int(data.convCnt!)))")
                             .font(.ptSemiBold18)
-                        Text("\(data.topic) · \(CallRecordsDB.shared.millisecondsToMMSS(milliseconds: data.times)))")
+                        Text("\(data.topic) · \(CallRecordsDB.shared.millisecondsToMMSS(milliseconds: data.times))")
                             .font(.ptRegular14)
                     }
                     Spacer()
