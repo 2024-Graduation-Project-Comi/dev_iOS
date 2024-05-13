@@ -99,7 +99,7 @@ struct HistoryCard: View {
                 }.frame(width: 151, height: 48)
             }
                 .background(
-                    NavigationLink(destination: CallingView(gotoRoot: $gotoCallingView, topicTitle: self.data.topic, modelData: self.modelInfo)
+                    NavigationLink(destination: CallingView(gotoRoot: $gotoCallingView, topicTitle: self.data.topic, model: self.modelInfo)
                     .navigationBarBackButtonHidden(),
                 isActive: $gotoCallingView,
                 label: { EmptyView() }

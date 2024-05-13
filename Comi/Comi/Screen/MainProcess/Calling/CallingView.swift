@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 enum CallState {
     case ready
@@ -20,11 +21,11 @@ struct CallingView: View {
     @State private var gotoFeedback: Bool = false
     @Binding var gotoRoot: Bool
     var topicTitle: String
-    var modelData: Models
+    var model: Models
 
     var body: some View {
         VStack {
-            callInterface(modelData: modelData, topicData: topicTitle)
+            callInterface(modelData: model, topicData: topicTitle)
             Spacer()
             // TODO: 영균 기능 합치고 텍스트
         }
@@ -41,9 +42,11 @@ struct CallingView: View {
 
                 VStack {
                     HStack(alignment: .center, spacing: 16) {
-                        Image("kari")
+                        KFImage(URL(string: model.image))
+                            .fade(duration: 0.25)
+                            .startLoadingBeforeViewAppear(true)
                             .resizable()
-                            .scaledToFit()
+                            .scaledToFill()
                             .frame(width: 62, height: 62)
                             .clipShape(Circle())
 
@@ -114,5 +117,5 @@ struct CallingView: View {
 }
 
 #Preview {
-    CallingView(gotoRoot: .constant(true), topicTitle: "", modelData: Models(id: 0, name: "테스트", group: nil, state: .available, image: ""))
+    CallingView(gotoRoot: .constant(true), topicTitle: "", model: Models(id: 0, name: "테스트", group: nil, state: .available, image: ""))
 }

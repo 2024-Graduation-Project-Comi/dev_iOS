@@ -150,7 +150,7 @@ struct ModelDetailView: View {
             .disabled(isSelected ? false : true)
             .background(
             NavigationLink(
-                destination: CallingView(gotoRoot: $gotoRoot, topicTitle: selected?.title ?? "", modelData: self.model)
+                destination: CallingView(gotoRoot: $gotoRoot, topicTitle: selected?.title ?? "", model: self.model)
                     .navigationBarHidden(true),
                 isActive: $gotoCallingView,
                 label: { EmptyView() }
