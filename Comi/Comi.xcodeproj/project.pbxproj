@@ -52,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		860DADD62BF1A1F7005A3095 /* Comi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Comi.app; path = "/Users/yimkeul/code/xcode/dev_iOS/Comi/build/Debug-iphoneos/Comi.app"; sourceTree = "<absolute>"; };
 		860DDC882BDF6650007A8F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		860DDC892BDF66BB007A8F13 /* ExFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFont.swift; sourceTree = "<group>"; };
 		860DDC952BDF6A2B007A8F13 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
@@ -73,7 +74,6 @@
 		86447C212BF1183000C1988E /* TopicsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDB.swift; sourceTree = "<group>"; };
 		86447C242BF11B6C00C1988E /* CallRecordsSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordsSet.swift; sourceTree = "<group>"; };
 		86447C262BF11B7700C1988E /* CallRecordsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordsDB.swift; sourceTree = "<group>"; };
-		864B3FBD2B9F1DBA00F51FF6 /* Comi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Comi.app; path = "/Users/yimkeul/code/xcode/dev_iOS/Comi/build/Debug-iphoneos/Comi.app"; sourceTree = "<absolute>"; };
 		864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComiApp.swift; sourceTree = "<group>"; };
 		864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -378,7 +378,7 @@
 				86447C102BF0F46400C1988E /* RealmSwift */,
 			);
 			productName = Comi;
-			productReference = 864B3FBD2B9F1DBA00F51FF6 /* Comi.app */;
+			productReference = 860DADD62BF1A1F7005A3095 /* Comi.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
