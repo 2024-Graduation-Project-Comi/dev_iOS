@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct HistoryView: View {
-    @Binding var selectedTab: Tab
+
     @State private var selected: Int?
+    @Binding var selectedTab: Tabs
+    @ObservedObject var callRecords = CallRecordsDB()
+
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 0) {
@@ -26,15 +29,18 @@ struct HistoryView: View {
                         Text("오늘")
                             .font(.ptRegular14)
                             .padding(.bottom, 8)
-                        ForEach(sampleHistoryData.filter { Calendar.current.isDate($0.ended, inSameDayAs: Date()) }, id: \.call_id) { data in
-                            HistoryCard(data: data, selected: self.$selected)
+                        ForEach(callRecords.data.filter { Calendar.current.isDate($0.ended, inSameDayAs: Date()) }, id: \.callId) { data in
+                            let modelInfo = callRecords.findModelInfo(modelId: data.modelId) ?? Models(id: 999, name: "에러", group: nil, state: .unavailable, image: "")
+                            HistoryCard(selected: self.$selected, modelInfo: modelInfo, data: data)
                         }
 
                         Text("이전")
                             .font(.ptRegular14)
                             .padding(.bottom, 8)
-                        ForEach(sampleHistoryData.filter { !Calendar.current.isDate($0.ended, inSameDayAs: Date()) }, id: \.call_id) { data in
-                            HistoryCard(data: data, selected: self.$selected)
+
+                        ForEach(callRecords.data.filter { !Calendar.current.isDate($0.ended, inSameDayAs: Date()) }, id: \.callId) { data in
+                            let modelInfo = callRecords.findModelInfo(modelId: data.modelId) ?? Models(id: 999, name: "에러", group: nil, state: .unavailable, image: "")
+                            HistoryCard(selected: self.$selected, modelInfo: modelInfo, data: data)
                         }
                     }
                         .padding(.horizontal, 24)
@@ -44,6 +50,11 @@ struct HistoryView: View {
                 BottomTabBarView(selectedTab: $selectedTab)
             }
                 .background(BackGround())
+        }
+        .onAppear {
+            Task {
+                await callRecords.getData()
+            }
         }
     }
 }

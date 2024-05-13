@@ -16,14 +16,15 @@ enum CallState {
 
 struct CallingView: View {
 
-    @State private var background: callState = .ready
-    var modelData: sModels
-    @Binding var topicData: TopicData?
-    @Binding var gotoRoot: Bool
+    @State private var background: CallState = .ready
     @State private var gotoFeedback: Bool = false
+    @Binding var gotoRoot: Bool
+    var topicTitle: String
+    var modelData: Models
+
     var body: some View {
         VStack {
-            callInterface(modelData: modelData, topicData: topicData)
+            callInterface(modelData: modelData, topicData: topicTitle)
             Spacer()
             // TODO: 영균 기능 합치고 텍스트
         }
@@ -31,7 +32,7 @@ struct CallingView: View {
             .background(CallBackground(status: $background))
     }
     @ViewBuilder
-    private func callInterface(modelData: sModels, topicData: TopicData?) -> some View {
+    private func callInterface(modelData: Models, topicData: String) -> some View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
@@ -59,13 +60,11 @@ struct CallingView: View {
                                 .clipShape(Circle())
                         }.background(
                             NavigationLink(
-                            destination: FeedbackView(model: modelData, topicData: topicData,gotoRoot: $gotoRoot)
-                                .navigationBarHidden(true),
-                            isActive: $gotoFeedback,
-                            label: {EmptyView()}
-                            )
-                        )
-                        
+                                destination: FeedbackView(gotoRoot: $gotoRoot, model: modelData, topicData: topicData)
+                                    .navigationBarHidden(true),
+                                isActive: $gotoFeedback,
+                                label: { EmptyView() }
+                            ))
                     }
                         .padding(.horizontal, 16)
                         .padding(.top, 8)
@@ -84,7 +83,7 @@ struct CallingView: View {
                                 .font(.ptRegular11)
                                 .foregroundStyle(.disabled)
                                 .padding(.leading, 24)
-                            Text(topicData?.topic.rawValue ?? "--")
+                            Text(topicData)
                                 .font(.ptSemiBold14)
                                 .foregroundStyle(.cwhite)
                             Spacer()
@@ -114,8 +113,6 @@ struct CallingView: View {
     }
 }
 
-
-
 #Preview {
-    CallingView(modelData: sModels(id: 0, name: "카리나", state: .available, image: ""), topicData: .constant(.init(idx: 0, topic: .비지니스, desc: "")), gotoRoot: .constant(true))
+    CallingView(gotoRoot: .constant(true), topicTitle: "", modelData: Models(id: 0, name: "테스트", group: nil, state: .available, image: ""))
 }

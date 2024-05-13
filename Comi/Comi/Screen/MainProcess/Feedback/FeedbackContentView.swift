@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct FeedbackContentView: View {
+
     @Environment(\.dismiss) var dismiss
     @State private var checkType: Bool = false
+
     var body: some View {
         VStack {
             backButton()
@@ -19,6 +21,7 @@ struct FeedbackContentView: View {
             Spacer()
         }.background(BackGround())
     }
+
     @ViewBuilder
     private func backButton() -> some View {
         HStack {
@@ -35,8 +38,8 @@ struct FeedbackContentView: View {
             Spacer()
             Image("Close")
                 .foregroundStyle(.clear)
-                
-        }.padding(.horizontal, 24)
+        }
+            .padding(.horizontal, 24)
             .padding(.bottom, 21)
     }
 
@@ -48,7 +51,7 @@ struct FeedbackContentView: View {
                 Text("날짜 조정해야함")
                     .font(.ptRegular14)
                     .foregroundStyle(.cwhite)
-                
+
                 VStack {
                     HStack {
                         Spacer()
@@ -86,8 +89,6 @@ struct FeedbackContentView: View {
                             .offset(x: checkType ? 71 : -71)
                     }
                 }
-                
-
             }
         }
             .frame(maxWidth: .infinity, maxHeight: 110)

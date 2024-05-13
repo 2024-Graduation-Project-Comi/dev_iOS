@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var selectedTab: Tab = .contact
+
+    @State var selectedTab: Tabs = .contact
+
     var body: some View {
         switch selectedTab {
         case .home:

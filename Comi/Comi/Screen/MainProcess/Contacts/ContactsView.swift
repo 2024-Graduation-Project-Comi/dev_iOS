@@ -8,24 +8,23 @@
 import SwiftUI
 
 struct ContactsView: View {
-    @Binding var selectedTab: Tab
 
-    @StateObject var favorites = FavoritesViewModel()
-    @State private var selectedModel: sModels
-        = sModels(id: 0, name: "", group: nil, state: .available, image: "")
+    @EnvironmentObject var modelViewModel: ModelViewModel
+    @State private var selectedModel: Models
+        = Models(id: 0, name: "", group: nil, state: .available, image: "")
 
     @State private var gotoModelDetailView: Bool = false
-    @EnvironmentObject var modelViewModel: ModelViewModel
+    @Binding var selectedTab: Tabs
+    @StateObject var favorites = FavoritesViewModel()
 
-
-    private var groupedModels: [(String, [sModels])] {
+    private var groupedModels: [(String, [Models])] {
         let groupedDictionary = Dictionary(grouping: modelViewModel.models) { $0.group ?? "" }
         return groupedDictionary.sorted { $0.0 > $1.0 }
     }
 
     var body: some View {
         NavigationView {
-            GeometryReader { geo in
+            GeometryReader { _ in
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
                         Text("연락처")
@@ -46,7 +45,7 @@ struct ContactsView: View {
                 }
                     .background {
                     NavigationLink(
-                        destination: ModelDetailView(model: selectedModel, gotoRoot: $gotoModelDetailView)
+                        destination: ModelDetailView(gotoRoot: $gotoModelDetailView, model: selectedModel)
                             .navigationBarHidden(true),
                         isActive: $gotoModelDetailView,
                         label: { EmptyView() })
@@ -62,7 +61,7 @@ struct ContactsView: View {
         Section(header: sectionText(text: "즐겨찾기")) {
             if !favorites.decodeSave().isEmpty {
                 ForEach(favorites.decodeSave().reversed(), id: \.self) { data in
-                    let model = sModels(id: data.id, name: data.name, group: data.group ?? nil, state: data.state, image: "")
+                    let model = Models(id: data.id, name: data.name, group: data.group ?? nil, state: data.state, image: "")
 
                     modelItems(data: model)
                         .padding(.leading, 24)
@@ -76,8 +75,6 @@ struct ContactsView: View {
                 }
             }
         }.listRowInsets(EdgeInsets())
-
-
     }
 
     @ViewBuilder
@@ -119,7 +116,7 @@ private func sectionText(text: String) -> some View {
 }
 
 @ViewBuilder
-private func modelItems(data: sModels) -> some View {
+private func modelItems(data: Models) -> some View {
     HStack {
         ZStack {
             Image("ma")

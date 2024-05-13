@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
+
     @Binding var isLogin: Bool
-    
+
     var body: some View {
         ZStack {
             BackGround()
@@ -37,7 +38,6 @@ struct LoginView: View {
     }
 }
 
-
 @ViewBuilder
 private func loginBtn() -> some View {
     ZStack {
@@ -48,7 +48,7 @@ private func loginBtn() -> some View {
             LinearGradient(
                 stops: [
                     Gradient.Stop(color: .blue2, location: 0.00),
-                    Gradient.Stop(color: .blue1, location: 1.00),
+                    Gradient.Stop(color: .blue1, location: 1.00)
                 ],
                 startPoint: UnitPoint(x: 0, y: 1),
                 endPoint: UnitPoint(x: 1, y: 0)
@@ -61,6 +61,6 @@ private func loginBtn() -> some View {
     }
 }
 
-//#Preview {
-//    LoginView(isLogin: <#Binding<Bool>#>)
-//}
+#Preview {
+    LoginView(isLogin: .constant(false))
+}

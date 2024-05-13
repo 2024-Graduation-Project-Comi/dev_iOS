@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+
     @State private var splashView: Bool = false
     @State var isLogin: Bool = true
     @StateObject var modelViewModel = ModelViewModel()
-    
+
     var body: some View {
         if splashView {
             if isLogin {

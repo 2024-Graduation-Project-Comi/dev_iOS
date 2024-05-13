@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct ModelDetailView: View {
-    @StateObject var favorites = FavoritesViewModel()
+
     @Environment(\.dismiss) var dismiss
-
-    @State private var showTitle: Bool = false
-    @State private var isSelected: Bool = false //주제 선택을 했는지 확인
-    @State private var selected: TopicData?
+    @State private var showTopics: Bool = false
+    @State private var isSelected: Bool = false
+    @State private var selected: Topics?
     @State private var gotoCallingView: Bool = false
-
-    var model: sModels
+    @StateObject var favorites = FavoritesViewModel()
     @Binding var gotoRoot: Bool
+    var model: Models
 
     var body: some View {
         GeometryReader { geo in
@@ -26,7 +25,7 @@ struct ModelDetailView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
                 .onTapGesture {
-                showTitle = false
+                showTopics = false
                 isSelected = false
                 selected = nil
             }
@@ -34,7 +33,7 @@ struct ModelDetailView: View {
             VStack {
                 Spacer()
                 ZStack(alignment: .bottom) {
-                    ModelModal(data: model, maxHeight: geo.size.height, state: $showTitle, isSelected: $isSelected, selected: $selected)
+                    ModelModal(showTopics: $showTopics, isSelected: $isSelected, selected: $selected, model: model, maxHeight: geo.size.height)
                     bottomBtn()
                 }
             }
@@ -68,9 +67,9 @@ struct ModelDetailView: View {
     @ViewBuilder
     private func bottomBtn() -> some View {
         ZStack {
-            if showTitle == false {
+            if showTopics == false {
                 Button {
-                    showTitle.toggle()
+                    showTopics.toggle()
                 } label: {
                     ZStack {
                         Rectangle()
@@ -80,14 +79,14 @@ struct ModelDetailView: View {
                             LinearGradient(
                                 stops: [
                                     Gradient.Stop(color: .blue2, location: 0.00),
-                                    Gradient.Stop(color: .blue1, location: 1.00),
+                                    Gradient.Stop(color: .blue1, location: 1.00)
                                 ],
                                 startPoint: UnitPoint(x: 0, y: 1),
                                 endPoint: UnitPoint(x: 1, y: 0)
                             )
                         )
                             .cornerRadius(100)
-                        Text(showTitle ? "전화하기" : "대화 주제 선택하기")
+                        Text(showTopics ? "전화하기" : "대화 주제 선택하기")
                             .font(.ptSemiBold18)
                             .foregroundStyle(.cwhite)
 
@@ -106,14 +105,14 @@ struct ModelDetailView: View {
                             LinearGradient(
                                 stops: [
                                     Gradient.Stop(color: isSelected ? .blue2 : .constantsSemi, location: 0.00),
-                                    Gradient.Stop(color: isSelected ? .blue1 : Color.disabled, location: 1.00),
+                                    Gradient.Stop(color: isSelected ? .blue1 : Color.disabled, location: 1.00)
                                 ],
                                 startPoint: UnitPoint(x: 0, y: 1),
                                 endPoint: UnitPoint(x: 1, y: 0)
                             )
                         )
                             .cornerRadius(100)
-                        Text(showTitle ? "전화하기" : "대화 주제 선택하기")
+                        Text(showTopics ? "전화하기" : "대화 주제 선택하기")
                             .font(.ptSemiBold18)
                             .foregroundStyle(.cwhite)
 
@@ -122,8 +121,7 @@ struct ModelDetailView: View {
                 }
                     .background(
                     NavigationLink(
-                        destination:
-                            CallingView(modelData: model, topicData: $selected, gotoRoot: $gotoRoot)
+                        destination: CallingView(gotoRoot: $gotoRoot, topicTitle: selected?.title ?? "", modelData: self.model)
                             .navigationBarHidden(true),
                         isActive: $gotoCallingView,
                         label: { EmptyView() }
@@ -141,10 +139,6 @@ struct ModelDetailView: View {
     }
 }
 
-
-
-
-
 #Preview {
-    ModelDetailView(model: sModels(id: 0, name: "카리나", state: .available, image: ""), gotoRoot: .constant(true))
+    ModelDetailView(gotoRoot: .constant(true), model: Models(id: 0, name: "카리나", state: .available, image: ""))
 }

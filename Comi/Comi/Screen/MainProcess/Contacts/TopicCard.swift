@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct TopicCard: View {
-    var data: TopicData
-    @Binding var selected: TopicData?
+
+    @Binding var selected: Topics?
     @Binding var isSelected: Bool
+    var topic: Topics
+
     var body: some View {
         ZStack {
             ZStack {
@@ -18,9 +20,9 @@ struct TopicCard: View {
                     .fill(.cwhite)
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(data.topic.rawValue)
+                        Text(topic.title)
                             .font(.ptSemiBold16)
-                        Text(data.desc)
+                        Text(topic.desc)
                             .font(.ptRegular14)
                             .foregroundStyle(.constantsSemi)
                     }
@@ -30,18 +32,17 @@ struct TopicCard: View {
             }
             .overlay {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .stroke(selected == data ? .blue3 : .cwhite, lineWidth: 2)
+                    .stroke(selected == topic ? .blue3 : .cwhite, lineWidth: 2)
             }
             .padding(2)
         }
             .frame(maxWidth: .infinity, minHeight: 78, maxHeight: 78)
             .onTapGesture {
                 withAnimation(.easeInOut(duration: 0.2)) {
-                selected = selected == data ? nil : data
-                isSelected = selected == data ? true : false
+                selected = selected == topic ? nil : topic
+                isSelected = selected == topic ? true : false
             }
         }
 
     }
 }
-

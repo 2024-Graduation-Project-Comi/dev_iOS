@@ -8,56 +8,54 @@
 import SwiftUI
 
 struct HistoryCard: View {
-    var data: HistoryData
-    @Binding var selected: Int?
+
     @State private var recentedDate = ""
     @State private var animated: Bool = false
     @State private var isMore: Bool = false
     @State private var gotoCallingView: Bool = false
     @State private var gotoFeedbackView: Bool = false
-    @State private var topics: TopicData?
+    @Binding var selected: Int?
+    var modelInfo: Models
+    var data: CallRecords
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 16, style: /*@START_MENU_TOKEN@*/.continuous/*@END_MENU_TOKEN@*/)
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .fill(.cardBG)
             VStack {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(data.conv_count == nil ? data.model.name : "\(data.model.name)(\(Int(data.conv_count!)))")
+                        Text(data.convCnt == nil ? modelInfo.name : "\(modelInfo.name)(\(Int(data.convCnt!)))")
                             .font(.ptSemiBold18)
-                        Text("\(data.topic.topic) · \(data.times)")
+                        Text("\(data.topic) · \(CallRecordsDB.shared.millisecondsToMMSS(milliseconds: data.times)))")
                             .font(.ptRegular14)
                     }
                     Spacer()
                     Text(recentedDate)
                         .font(.ptRegular14)
                         .foregroundStyle(.constantsSemi)
-
                 }
-                if selected == data.call_id {
+                if selected == data.callId {
                     moreFunc()
                 }
             }.padding(16)
-
         }
-            .frame(maxWidth: .infinity, minHeight: 78)
-            .padding(.bottom, 8)
-            .onTapGesture {
+        .frame(maxWidth: .infinity, minHeight: 78)
+        .padding(.bottom, 8)
+        .onTapGesture {
             withAnimation {
-                selected = selected == data.call_id ? nil : data.call_id
+                selected = selected == data.callId ? nil : data.callId
             }
         }
-            .onAppear(perform: {
-            recentedDate = formatDate(data: data.ended)
-            topics = data.topic
-        })
+        .onAppear {
+            recentedDate = CallRecordsDB.shared.formatDate(data: data.ended)
+        }
     }
+
     @ViewBuilder
     private func moreFunc() -> some View {
         HStack {
             Button {
-//                print("채팅")
                 gotoFeedbackView = true
             } label: {
                 ZStack {
@@ -74,13 +72,13 @@ struct HistoryCard: View {
                 }
                     .frame(width: 151, height: 48)
             }
-            .background(
+                .background(
                 NavigationLink(
                     destination:
-                        FeedbackView(model: data.model, topicData: self.topics, gotoRoot: $gotoFeedbackView)
+                        FeedbackView(gotoRoot: $gotoFeedbackView, model: modelInfo, topicData: data.topic)
                         .navigationBarBackButtonHidden(),
                     isActive: $gotoFeedbackView,
-                    label: {EmptyView()}
+                    label: { EmptyView() }
                 )
             )
             Button {
@@ -100,17 +98,13 @@ struct HistoryCard: View {
                     }
                 }.frame(width: 151, height: 48)
             }
-            .background(
-                NavigationLink(
-                    destination: 
-                        CallingView(modelData: data.model, topicData: self.$topics, gotoRoot: $gotoCallingView)
-                        .navigationBarBackButtonHidden(),
-                    isActive: $gotoCallingView,
-                    label: {EmptyView()}
+                .background(
+                    NavigationLink(destination: CallingView(gotoRoot: $gotoCallingView, topicTitle: self.data.topic, modelData: self.modelInfo)
+                    .navigationBarBackButtonHidden(),
+                isActive: $gotoCallingView,
+                label: { EmptyView() }
                 )
             )
         }
     }
 }
-
-

@@ -17,13 +17,14 @@ class ModelData: Object, ObjectKeyIdentifiable {
 }
 
 class ModelViewModel: ObservableObject {
-    @Published var models: [sModels]
-        
+
+    @Published var models: [Models]
+
     init() {
         self.models = []
     }
 
-    func setData(modelData: sModels) {
+    func setData(modelData: Models) {
         let realm = try! Realm()
         let realmData = ModelData()
         realmData.id = modelData.id
@@ -38,6 +39,7 @@ class ModelViewModel: ObservableObject {
             realm.add(realmData)
         }
     }
+
     func checkDB() -> Bool {
         let realm = try! Realm()
         let target = realm.objects(ModelData.self)
@@ -48,14 +50,14 @@ class ModelViewModel: ObservableObject {
         }
         return target.isEmpty
     }
-    
+
     func fetchData() {
         let realm = try! Realm()
         let filteredData = realm.objects(ModelData.self)
         let arrData = Array(filteredData)
-        var trans: [sModels] = []
+        var trans: [Models] = []
         for data in arrData {
-            let temp = sModels(id: data.id, name: data.name, group: data.group ?? nil, state: smodelState(rawValue: data.state) ?? .available, image: "")
+            let temp = Models(id: data.id, name: data.name, group: data.group ?? nil, state: ModelState(rawValue: data.state) ?? .available, image: "")
             trans.append(temp)
         }
         print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
@@ -65,7 +67,7 @@ class ModelViewModel: ObservableObject {
 
     func copySupaData() {
         Task {
-            let datas = await SupaViewModel.shared.getModels()
+            let datas = await ModelsDB.shared.getData()
             for data in datas {
                 setData(modelData: data)
             }
