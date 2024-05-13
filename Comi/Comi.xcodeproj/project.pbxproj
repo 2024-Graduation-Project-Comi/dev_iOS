@@ -34,8 +34,8 @@
 		867DA7B42BF205A7002BDA1C /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 867DA7B32BF205A7002BDA1C /* Supabase */; };
 		867DA7B72BF205B6002BDA1C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 867DA7B62BF205B6002BDA1C /* Kingfisher */; };
 		867DA7BA2BF205D2002BDA1C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 867DA7B92BF205D2002BDA1C /* RealmSwift */; };
-		867DA7BD2BF211AF002BDA1C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 867DA7BC2BF211AF002BDA1C /* Alamofire */; };
 		867DA7BE2BF213FF002BDA1C /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 867DA7B92BF205D2002BDA1C /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		867DA7C22BF21C3C002BDA1C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 867DA7C12BF21C3C002BDA1C /* Alamofire */; };
 		86AF00B62BE54391007DAF5F /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86AF00B22BE54391007DAF5F /* Pretendard-SemiBold.otf */; };
 		86AF00B72BE54391007DAF5F /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86AF00B32BE54391007DAF5F /* Pretendard-Medium.otf */; };
 		86AF00B82BE54391007DAF5F /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86AF00B42BE54391007DAF5F /* Pretendard-Regular.otf */; };
@@ -117,7 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				867DA7BA2BF205D2002BDA1C /* RealmSwift in Frameworks */,
-				867DA7BD2BF211AF002BDA1C /* Alamofire in Frameworks */,
+				867DA7C22BF21C3C002BDA1C /* Alamofire in Frameworks */,
 				867DA7B72BF205B6002BDA1C /* Kingfisher in Frameworks */,
 				867DA7B42BF205A7002BDA1C /* Supabase in Frameworks */,
 			);
@@ -411,7 +411,7 @@
 				867DA7B32BF205A7002BDA1C /* Supabase */,
 				867DA7B62BF205B6002BDA1C /* Kingfisher */,
 				867DA7B92BF205D2002BDA1C /* RealmSwift */,
-				867DA7BC2BF211AF002BDA1C /* Alamofire */,
+				867DA7C12BF21C3C002BDA1C /* Alamofire */,
 			);
 			productName = Comi;
 			productReference = 864B3FBD2B9F1DBA00F51FF6 /* Comi.app */;
@@ -445,7 +445,7 @@
 				867DA7B22BF205A7002BDA1C /* XCRemoteSwiftPackageReference "supabase-swift" */,
 				867DA7B52BF205B6002BDA1C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				867DA7B82BF205D2002BDA1C /* XCRemoteSwiftPackageReference "realm-swift" */,
-				867DA7BB2BF211AF002BDA1C /* XCRemoteSwiftPackageReference "Alamofire" */,
+				867DA7C02BF21C3C002BDA1C /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 864B3FBE2B9F1DBA00F51FF6 /* Products */;
 			projectDirPath = "";
@@ -781,7 +781,7 @@
 				kind = branch;
 			};
 		};
-		867DA7BB2BF211AF002BDA1C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		867DA7C02BF21C3C002BDA1C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -807,9 +807,9 @@
 			package = 867DA7B82BF205D2002BDA1C /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
-		867DA7BC2BF211AF002BDA1C /* Alamofire */ = {
+		867DA7C12BF21C3C002BDA1C /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 867DA7BB2BF211AF002BDA1C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 867DA7C02BF21C3C002BDA1C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
