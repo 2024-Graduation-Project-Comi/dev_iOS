@@ -39,7 +39,7 @@ class SpeechViewModel: ObservableObject {
             do {
                 try recordingSession.setCategory(.playAndRecord)
                 try recordingSession.setActive(true)
-                recordingSession.requestRecordPermission{ [weak self] granted in
+                recordingSession.requestRecordPermission { [weak self] granted in
                     guard granted else {
                         print("Error: User denied recording permission.")
                         return
