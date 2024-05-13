@@ -19,6 +19,7 @@
 		8617DC952BE29E87007CFB73 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8617DC942BE29E87007CFB73 /* HomeView.swift */; };
 		8617DC972BE2AE5A007CFB73 /* ModelDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8617DC962BE2AE5A007CFB73 /* ModelDetailView.swift */; };
 		86190AAE2BE16CB500D650A4 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86190AAD2BE16CB500D650A4 /* ContactsView.swift */; };
+		861DB7D82BF1EC150036FAD1 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 861DB7D72BF1EC150036FAD1 /* Kingfisher */; };
 		8631A0BF2BE3D06D00C442B0 /* ModelModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8631A0BE2BE3D06D00C442B0 /* ModelModal.swift */; };
 		86447C0B2BEFDC8300C1988E /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86447C0A2BEFDC8300C1988E /* ModelData.swift */; };
 		86447C112BF0F46400C1988E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 86447C102BF0F46400C1988E /* RealmSwift */; };
@@ -100,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				861DB7D82BF1EC150036FAD1 /* Kingfisher in Frameworks */,
 				86447C112BF0F46400C1988E /* RealmSwift in Frameworks */,
 				BAE76CD22BECE7780003C17A /* Alamofire in Frameworks */,
 				8660CA102BEE02D30099AEC8 /* Supabase in Frameworks */,
@@ -393,6 +395,7 @@
 				BAE76CD12BECE7780003C17A /* Alamofire */,
 				8660CA0F2BEE02D30099AEC8 /* Supabase */,
 				86447C102BF0F46400C1988E /* RealmSwift */,
+				861DB7D72BF1EC150036FAD1 /* Kingfisher */,
 			);
 			productName = Comi;
 			productReference = 864B3FBD2B9F1DBA00F51FF6 /* Comi.app */;
@@ -426,6 +429,7 @@
 				BAE76CD02BECE7780003C17A /* XCRemoteSwiftPackageReference "Alamofire" */,
 				8660CA0E2BEE02D30099AEC8 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 				86447C0F2BF0F46400C1988E /* XCRemoteSwiftPackageReference "realm-swift" */,
+				861DB7D62BF1EC150036FAD1 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 864B3FBE2B9F1DBA00F51FF6 /* Products */;
 			projectDirPath = "";
@@ -737,6 +741,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		861DB7D62BF1EC150036FAD1 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
 		86447C0F2BF0F46400C1988E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
@@ -764,6 +776,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		861DB7D72BF1EC150036FAD1 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 861DB7D62BF1EC150036FAD1 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		86447C102BF0F46400C1988E /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 86447C0F2BF0F46400C1988E /* XCRemoteSwiftPackageReference "realm-swift" */;

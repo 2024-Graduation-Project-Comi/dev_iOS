@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ModelDetailView: View {
 
@@ -21,9 +22,13 @@ struct ModelDetailView: View {
 
     var body: some View {
         GeometryReader { geo in
-            Image("kari2")
+            let size = geo.size
+            KFImage(URL(string: model.image))
+                .fade(duration: 0.25)
+                .startLoadingBeforeViewAppear(true)
                 .resizable()
                 .scaledToFill()
+                .frame(width: size.width, height: size.height)
                 .ignoresSafeArea()
                 .onTapGesture {
                 showTopics = false
