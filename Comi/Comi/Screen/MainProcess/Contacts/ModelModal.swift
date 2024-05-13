@@ -38,7 +38,6 @@ struct ModelModal: View {
                             TopicCard(selected: self.$selected, isSelected: $isSelected, topic: data)
                         }
                     }
-                    
                     Spacer().frame(height: 16)
                 }
                     .padding(EdgeInsets(top: 48, leading: 24, bottom: 0, trailing: 24))
