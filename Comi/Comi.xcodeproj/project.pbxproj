@@ -73,7 +73,7 @@
 		86447C212BF1183000C1988E /* TopicsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsDB.swift; sourceTree = "<group>"; };
 		86447C242BF11B6C00C1988E /* CallRecordsSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordsSet.swift; sourceTree = "<group>"; };
 		86447C262BF11B7700C1988E /* CallRecordsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordsDB.swift; sourceTree = "<group>"; };
-		864B3FBD2B9F1DBA00F51FF6 /* Comi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Comi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		864B3FBD2B9F1DBA00F51FF6 /* Comi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Comi.app; path = "/Users/yimkeul/code/xcode/dev_iOS/Comi/build/Debug-iphoneos/Comi.app"; sourceTree = "<absolute>"; };
 		864B3FC02B9F1DBA00F51FF6 /* ComiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComiApp.swift; sourceTree = "<group>"; };
 		864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -276,17 +276,7 @@
 			children = (
 				BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */,
 				864B3FBF2B9F1DBA00F51FF6 /* Comi */,
-				864B3FBE2B9F1DBA00F51FF6 /* Products */,
-				86F0ED862BEDA7DB00D1B8E8 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		864B3FBE2B9F1DBA00F51FF6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				864B3FBD2B9F1DBA00F51FF6 /* Comi.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		864B3FBF2B9F1DBA00F51FF6 /* Comi */ = {
@@ -338,13 +328,6 @@
 				86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */,
 			);
 			path = Feedback;
-			sourceTree = "<group>";
-		};
-		86F0ED862BEDA7DB00D1B8E8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		BAE76CCB2BECE34B0003C17A /* Sources */ = {
@@ -427,7 +410,7 @@
 				8660CA0E2BEE02D30099AEC8 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 				86447C0F2BF0F46400C1988E /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
-			productRefGroup = 864B3FBE2B9F1DBA00F51FF6 /* Products */;
+			productRefGroup = 864B3FB42B9F1DBA00F51FF6;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
