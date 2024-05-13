@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ModelDetailView: View {
 
@@ -14,15 +15,20 @@ struct ModelDetailView: View {
     @State private var isSelected: Bool = false
     @State private var selected: Topics?
     @State private var gotoCallingView: Bool = false
-    @StateObject var favorites = FavoritesViewModel()
     @Binding var gotoRoot: Bool
+    @StateObject var favorites = FavoritesViewModel()
+    @StateObject var topics = TopicsDB()
     var model: Models
 
     var body: some View {
         GeometryReader { geo in
-            Image("kari2")
+            let size = geo.size
+            KFImage(URL(string: model.image))
+                .fade(duration: 0.25)
+                .startLoadingBeforeViewAppear(true)
                 .resizable()
                 .scaledToFill()
+                .frame(width: size.width, height: size.height)
                 .ignoresSafeArea()
                 .onTapGesture {
                 showTopics = false
@@ -34,9 +40,13 @@ struct ModelDetailView: View {
                 Spacer()
                 ZStack(alignment: .bottom) {
                     ModelModal(showTopics: $showTopics, isSelected: $isSelected, selected: $selected, model: model, maxHeight: geo.size.height)
+                        .environmentObject(topics)
                     bottomBtn()
                 }
             }
+        }
+            .onAppear {
+            topics.getData()
         }
 
     }
@@ -137,12 +147,12 @@ struct ModelDetailView: View {
             }
                 .offset(y: -15)
         }
+            .disabled(isSelected ? false : true)
             .background(
             NavigationLink(
-                destination: CallingView(gotoRoot: $gotoRoot, topicTitle: selected?.title ?? "", modelData: self.model)
+                destination: CallingView(gotoRoot: $gotoRoot, topicTitle: selected?.title ?? "", model: self.model)
                     .navigationBarHidden(true),
-                // TODO: $gotoCallingView에서 isSelected로 수정한것, 나중에 확인
-                isActive: $isSelected,
+                isActive: $gotoCallingView,
                 label: { EmptyView() }
             )
         )

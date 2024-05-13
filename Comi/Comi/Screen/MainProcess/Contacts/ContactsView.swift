@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ContactsView: View {
 
@@ -61,7 +62,7 @@ struct ContactsView: View {
         Section(header: sectionText(text: "즐겨찾기")) {
             if !favorites.decodeSave().isEmpty {
                 ForEach(favorites.decodeSave().reversed(), id: \.self) { data in
-                    let model = Models(id: data.id, name: data.name, group: data.group ?? nil, state: data.state, image: "")
+                    let model = Models(id: data.id, name: data.name, group: data.group ?? nil, state: data.state, image: data.image)
 
                     modelItems(data: model)
                         .padding(.leading, 24)
@@ -119,11 +120,14 @@ private func sectionText(text: String) -> some View {
 private func modelItems(data: Models) -> some View {
     HStack {
         ZStack {
-            Image("ma")
+            KFImage(URL(string: data.image))
+                .fade(duration: 0.25)
+                .startLoadingBeforeViewAppear(true)
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
                 .frame(width: 62, height: 62)
                 .clipShape(Circle())
+
             if data.state == .locked {
                 Image("Lock")
                     .offset(x: 20, y: 20)
