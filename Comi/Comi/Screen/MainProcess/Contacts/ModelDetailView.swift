@@ -68,67 +68,10 @@ struct ModelDetailView: View {
     private func bottomBtn() -> some View {
         ZStack {
             if showTopics == false {
-                Button {
-                    showTopics.toggle()
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 342, height: 62)
-                            .background(
-                            LinearGradient(
-                                stops: [
-                                    Gradient.Stop(color: .blue2, location: 0.00),
-                                    Gradient.Stop(color: .blue1, location: 1.00)
-                                ],
-                                startPoint: UnitPoint(x: 0, y: 1),
-                                endPoint: UnitPoint(x: 1, y: 0)
-                            )
-                        )
-                            .cornerRadius(100)
-                        Text(showTopics ? "전화하기" : "대화 주제 선택하기")
-                            .font(.ptSemiBold18)
-                            .foregroundStyle(.cwhite)
-
-                    }
-                        .offset(y: -15)
-                }
+                showTopicButton()
             } else {
-                Button {
-                    gotoCallingView = true
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 342, height: 62)
-                            .background(
-                            LinearGradient(
-                                stops: [
-                                    Gradient.Stop(color: isSelected ? .blue2 : .constantsSemi, location: 0.00),
-                                    Gradient.Stop(color: isSelected ? .blue1 : Color.disabled, location: 1.00)
-                                ],
-                                startPoint: UnitPoint(x: 0, y: 1),
-                                endPoint: UnitPoint(x: 1, y: 0)
-                            )
-                        )
-                            .cornerRadius(100)
-                        Text(showTopics ? "전화하기" : "대화 주제 선택하기")
-                            .font(.ptSemiBold18)
-                            .foregroundStyle(.cwhite)
-
-                    }
-                        .offset(y: -15)
-                }
-                    .background(
-                    NavigationLink(
-                        destination: CallingView(gotoRoot: $gotoRoot, topicTitle: selected?.title ?? "", modelData: self.model)
-                            .navigationBarHidden(true),
-                        isActive: $gotoCallingView,
-                        label: { EmptyView() }
-                    )
-                )
+                goCallViewButton()
             }
-
         }
             .frame(maxWidth: .infinity, minHeight: 116, maxHeight: 116, alignment: .center)
             .background {
@@ -136,6 +79,73 @@ struct ModelDetailView: View {
                 .fill(.cwhite)
                 .ignoresSafeArea()
         }
+    }
+
+    @ViewBuilder
+    private func showTopicButton() -> some View {
+        Button {
+            showTopics.toggle()
+        } label: {
+            ZStack {
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: 342, height: 62)
+                    .background(
+                    LinearGradient(
+                        stops: [
+                            Gradient.Stop(color: .blue2, location: 0.00),
+                            Gradient.Stop(color: .blue1, location: 1.00)
+                        ],
+                        startPoint: UnitPoint(x: 0, y: 1),
+                        endPoint: UnitPoint(x: 1, y: 0)
+                    )
+                )
+                    .cornerRadius(100)
+                Text(showTopics ? "전화하기" : "대화 주제 선택하기")
+                    .font(.ptSemiBold18)
+                    .foregroundStyle(.cwhite)
+
+            }
+                .offset(y: -15)
+        }
+    }
+
+    @ViewBuilder
+    private func goCallViewButton() -> some View {
+        Button {
+            gotoCallingView = true
+        } label: {
+            ZStack {
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: 342, height: 62)
+                    .background(
+                    LinearGradient(
+                        stops: [
+                            Gradient.Stop(color: isSelected ? .blue2 : .constantsSemi, location: 0.00),
+                            Gradient.Stop(color: isSelected ? .blue1 : Color.disabled, location: 1.00)
+                        ],
+                        startPoint: UnitPoint(x: 0, y: 1),
+                        endPoint: UnitPoint(x: 1, y: 0)
+                    )
+                )
+                    .cornerRadius(100)
+                Text(showTopics ? "전화하기" : "대화 주제 선택하기")
+                    .font(.ptSemiBold18)
+                    .foregroundStyle(.cwhite)
+
+            }
+                .offset(y: -15)
+        }
+            .background(
+            NavigationLink(
+                destination: CallingView(gotoRoot: $gotoRoot, topicTitle: selected?.title ?? "", modelData: self.model)
+                    .navigationBarHidden(true),
+                // TODO: $gotoCallingView에서 isSelected로 수정한것, 나중에 확인
+                isActive: $isSelected,
+                label: { EmptyView() }
+            )
+        )
     }
 }
 
