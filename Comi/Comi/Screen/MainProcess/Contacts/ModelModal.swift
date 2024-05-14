@@ -14,7 +14,7 @@ struct ModelModal: View {
     @Binding var showTopics: Bool
     @Binding var isSelected: Bool
     @Binding var selected: Topics?
-    var model: Models
+    var model: RealmModel
     var maxHeight: CGFloat
 
     var body: some View {

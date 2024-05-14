@@ -29,7 +29,7 @@ class ModelsDB: ObservableObject {
             return datas
         } catch {
             print(error)
+            return []
         }
-        return []
     }
 }

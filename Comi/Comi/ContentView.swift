@@ -11,13 +11,13 @@ struct ContentView: View {
 
     @State private var splashView: Bool = false
     @State var isLogin: Bool = true
-    @StateObject var modelViewModel = ModelViewModel()
+    @StateObject var realmViewModel = RealmViewModel()
 
     var body: some View {
         if splashView {
             if isLogin {
                 MainView()
-                    .environmentObject(modelViewModel)
+                    .environmentObject(realmViewModel)
             } else {
                 OnboardPage(isLogin: $isLogin)
             }
@@ -29,7 +29,7 @@ struct ContentView: View {
                     splashView = true
                 }
             }
-                .environmentObject(modelViewModel)
+                .environmentObject(realmViewModel)
         }
     }
 }

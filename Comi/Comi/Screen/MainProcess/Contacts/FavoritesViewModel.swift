@@ -10,8 +10,8 @@ import SwiftUI
 
 class FavoritesViewModel: ObservableObject {
     @AppStorage("favorites") var favoritesModel: Data = Data()
-    func decodeSave() -> [Models] {
-        if let decodedArray = try? JSONDecoder().decode([Models].self, from: favoritesModel) {
+    func decodeSave() -> [RealmModel] {
+        if let decodedArray = try? JSONDecoder().decode([RealmModel].self, from: favoritesModel) {
             return decodedArray
         } else {
             return []
@@ -19,7 +19,7 @@ class FavoritesViewModel: ObservableObject {
     }
 
     // 배열에 값을 추가하는 메서드
-    func encodeSave(value: Models) {
+    func encodeSave(value: RealmModel) {
         var currentArray = decodeSave()
         currentArray.append(value)
         if let encodedArray = try? JSONEncoder().encode(currentArray) {

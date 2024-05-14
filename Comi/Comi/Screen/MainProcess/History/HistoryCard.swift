@@ -15,8 +15,8 @@ struct HistoryCard: View {
     @State private var gotoCallingView: Bool = false
     @State private var gotoFeedbackView: Bool = false
     @Binding var selected: Int?
-    var modelInfo: Models
-    var data: CallRecords
+    var modelInfo: RealmModel
+    var data: RealmCallRecord
 
     var body: some View {
         ZStack {
@@ -25,9 +25,9 @@ struct HistoryCard: View {
             VStack {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(data.convCnt == nil ? modelInfo.name : "\(modelInfo.name)(\(Int(data.convCnt!)))")
+                        Text(data.convCount == 0 ? modelInfo.name : "\(modelInfo.name)(\(Int(data.convCount)))")
                             .font(.ptSemiBold18)
-                        Text("\(data.topic) · \(CallRecordsDB.shared.millisecondsToMMSS(milliseconds: data.times)))")
+                        Text("\(data.topic) · \(data.times)")
                             .font(.ptRegular14)
                     }
                     Spacer()
@@ -35,7 +35,7 @@ struct HistoryCard: View {
                         .font(.ptRegular14)
                         .foregroundStyle(.constantsSemi)
                 }
-                if selected == data.callId {
+                if selected == data.id {
                     moreFunc()
                 }
             }.padding(16)
@@ -44,11 +44,11 @@ struct HistoryCard: View {
         .padding(.bottom, 8)
         .onTapGesture {
             withAnimation {
-                selected = selected == data.callId ? nil : data.callId
+                selected = selected == data.id ? nil : data.id
             }
         }
         .onAppear {
-            recentedDate = CallRecordsDB.shared.formatDate(data: data.ended)
+            recentedDate = RealmViewModel.shared.formatDate(data: data.ended)
         }
     }
 
