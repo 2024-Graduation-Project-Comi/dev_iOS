@@ -48,7 +48,7 @@ struct HistoryCard: View {
             }
         }
         .onAppear {
-            recentedDate = CallRecordsDB.shared.formatDate(data: data.ended)
+            recentedDate = RealmViewModel.shared.formatDate(data: data.ended)
         }
     }
 
