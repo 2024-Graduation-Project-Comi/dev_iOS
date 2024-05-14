@@ -10,7 +10,6 @@ import Kingfisher
 
 struct ContactsView: View {
 
-//    @EnvironmentObject var modelViewModel: ModelViewModel
     @EnvironmentObject var realmViewModel: RealmViewModel
     @State private var selectedModel: RealmModel
         = RealmModel(id: 0, name: "", group: nil, state: .available, image: "")
@@ -20,7 +19,6 @@ struct ContactsView: View {
     @StateObject var favorites = FavoritesViewModel()
 
     private var groupedModels: [(String, [RealmModel])] {
-//        let groupedDictionary = Dictionary(grouping: modelViewModel.models) { $0.group ?? "" }
         let groupedDictionary = Dictionary(grouping: realmViewModel.modelData.models) { $0.group ?? "" }
         return groupedDictionary.sorted { $0.0 > $1.0 }
     }

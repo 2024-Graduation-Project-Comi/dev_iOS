@@ -37,7 +37,7 @@ class ModelViewModel: ObservableObject {
             realmData.image = modelData.image
 
             try realm.write {
-                realm.add(realmData)
+                realm.add(realmData, update: .modified)
             }
         } catch {
             print(error)

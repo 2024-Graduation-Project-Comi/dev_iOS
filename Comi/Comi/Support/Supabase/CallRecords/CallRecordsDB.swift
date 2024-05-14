@@ -24,6 +24,7 @@ class CallRecordsDB: ObservableObject {
             let datas: [CallRecords] = try await client
                 .from("CallRecords")
                 .select()
+                .eq("user_id", value: 1)
                 .execute()
                 .value
             return datas
