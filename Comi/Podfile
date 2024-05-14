@@ -1,0 +1,11 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+platform :ios, '15.0'
+
+target 'Comi' do
+  use_frameworks!
+
+  pod 'MicrosoftCognitiveServicesSpeech-iOS', '~> 1.37.0'
+  pod 'Alamofire', '~> 5.9.1'
+end
