@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Splash: View {
 
-    @EnvironmentObject var modelViewModel: ModelViewModel
+    @EnvironmentObject var realmViewModel: RealmViewModel
 
     var body: some View {
         GeometryReader { geo in
@@ -39,12 +39,8 @@ struct Splash: View {
             }.frame(width: size.width, height: size.height)
         }
             .onAppear {
-            if modelViewModel.checkDB() {
-                Task {
-                    modelViewModel.copySupaData()
-                }
-            } else {
-                modelViewModel.fetchData()
+            Task {
+                await realmViewModel.start()
             }
         }
     }

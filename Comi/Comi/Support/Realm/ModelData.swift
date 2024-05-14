@@ -18,51 +18,46 @@ class ModelData: Object, ObjectKeyIdentifiable {
 
 class ModelViewModel: ObservableObject {
 
-    @Published var models: [Models]
+    @Published var models: [RealmModel]
 
     init() {
         self.models = []
     }
 
     func setData(modelData: Models) {
-        let realm = try! Realm()
-        let realmData = ModelData()
-        realmData.id = modelData.id
-        realmData.name = modelData.name
-        if modelData.group != nil {
-            realmData.group = modelData.group
-        }
-        realmData.state = modelData.state.rawValue
-        realmData.image = modelData.image
+        do {
+            let realm = try Realm()
+            let realmData = ModelData()
+            realmData.id = modelData.id
+            realmData.name = modelData.name
+            if modelData.group != nil {
+                realmData.group = modelData.group
+            }
+            realmData.state = modelData.state.rawValue
+            realmData.image = modelData.image
 
-        try! realm.write {
-            realm.add(realmData)
+            try realm.write {
+                realm.add(realmData)
+            }
+        } catch {
+            print(error)
         }
-    }
-
-    func checkDB() -> Bool {
-        let realm = try! Realm()
-        let target = realm.objects(ModelData.self)
-        if target.isEmpty {
-            print("model DB is null ")
-        } else {
-            print("model DB has data")
-        }
-        return target.isEmpty
     }
 
     func fetchData() {
-        let realm = try! Realm()
-        let filteredData = realm.objects(ModelData.self)
-        let arrData = Array(filteredData)
-        var trans: [Models] = []
-        for data in arrData {
-            let temp = Models(id: data.id, name: data.name, group: data.group ?? nil, state: ModelState(rawValue: data.state) ?? .available, image: data.image)
-            trans.append(temp)
+        do {
+            let realm = try Realm()
+            let target = realm.objects(ModelData.self)
+            let arrData = Array(target)
+            var trans: [RealmModel] = []
+            for data in arrData {
+                let temp = RealmModel(id: data.id, name: data.name, group: data.group ?? nil, state: RealmModelState(rawValue: data.state) ?? .unavailable, image: data.image)
+                trans.append(temp)
+            }
+            models = trans
+        } catch {
+            print(error)
         }
-        print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
-        models = trans
-        print(models)
     }
 
     func copySupaData() {
@@ -72,8 +67,19 @@ class ModelViewModel: ObservableObject {
                 setData(modelData: data)
             }
             fetchData()
-            print("copy success")
+            print("Modle copy success")
         }
+    }
+
+    func readyData() {
+        if checkDB(type: .modelData) {
+            Task {
+                copySupaData()
+            }
+        } else {
+            fetchData()
+        }
+        print("Model Ready")
     }
 
 }

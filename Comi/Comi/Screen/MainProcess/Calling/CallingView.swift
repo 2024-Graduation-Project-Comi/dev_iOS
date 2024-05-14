@@ -22,7 +22,7 @@ struct CallingView: View {
     @StateObject private var viewModel = SpeechViewModel()
     @Binding var gotoRoot: Bool
     var topicTitle: String
-    var model: Models
+    var model: RealmModel
 
     var body: some View {
         VStack {
@@ -45,7 +45,7 @@ struct CallingView: View {
             .background(CallBackground(status: $background))
     }
     @ViewBuilder
-    private func callInterface(modelData: Models, topicData: String) -> some View {
+    private func callInterface(modelData: RealmModel, topicData: String) -> some View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
@@ -129,5 +129,5 @@ struct CallingView: View {
 }
 
 #Preview {
-    CallingView(gotoRoot: .constant(true), topicTitle: "", model: Models(id: 0, name: "테스트", group: nil, state: .available, image: ""))
+    CallingView(gotoRoot: .constant(true), topicTitle: "", model: RealmModel(id: 0, name: "테스트", group: nil, state: .available, image: ""))
 }
