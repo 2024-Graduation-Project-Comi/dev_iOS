@@ -11,6 +11,8 @@ import SwiftUI
 
 class RealmViewModel: ObservableObject {
 
+    static var shared = RealmViewModel()
+
     @ObservedObject var modelData = ModelViewModel()
     @ObservedObject var callRecordData = CallRecordViewModel()
 
@@ -34,6 +36,32 @@ class RealmViewModel: ObservableObject {
             return nil
         }
         return result
+    }
+
+    func millisecondsToMMSS(milliseconds: Int) -> String {
+        let totalSeconds = milliseconds / 1000
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+
+    func formatDate(data: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        let currentDate = Date()
+        let isToday = Calendar.current.isDate(data, inSameDayAs: currentDate)
+
+        if isToday {
+            // 오늘의 날짜와 같은 경우
+            dateFormatter.dateFormat = "a hh:mm"
+            let formattedString = dateFormatter.string(from: data)
+            return formattedString
+        } else {
+            // 오늘의 날짜와 다른 경우
+            dateFormatter.dateFormat = "yyyy.MM.dd"
+            let formattedString = dateFormatter.string(from: data)
+            return formattedString
+        }
     }
 }
 

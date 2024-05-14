@@ -43,7 +43,7 @@ class CallRecordViewModel: ObservableObject {
                 }
             }()
             realmData.ended = callRecordData.ended
-            realmData.times = CallRecordsDB.shared.millisecondsToMMSS(milliseconds: callRecordData.times)
+            realmData.times = RealmViewModel.shared.millisecondsToMMSS(milliseconds: callRecordData.times)
             try realm.write {
                 realm.add(realmData)
             }
