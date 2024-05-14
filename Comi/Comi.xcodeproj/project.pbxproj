@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A4A3416E8F8F7BA92D3A4DE /* Pods_Comi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FA63F31B30E470C5EADFE96 /* Pods_Comi.framework */; };
 		860DDC8A2BDF66BB007A8F13 /* ExFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC892BDF66BB007A8F13 /* ExFont.swift */; };
 		860DDC962BDF6A2B007A8F13 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC952BDF6A2B007A8F13 /* Splash.swift */; };
 		860DDC9A2BDF7977007A8F13 /* BackGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC992BDF7977007A8F13 /* BackGround.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2FA63F31B30E470C5EADFE96 /* Pods_Comi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Comi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		860DDC882BDF6650007A8F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		860DDC892BDF66BB007A8F13 /* ExFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFont.swift; sourceTree = "<group>"; };
 		860DDC952BDF6A2B007A8F13 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
@@ -115,8 +117,10 @@
 		86D192CB2BE68B6200C4CDAE /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackContentView.swift; sourceTree = "<group>"; };
 		86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsDB.swift; sourceTree = "<group>"; };
+		A042D59D3D5A60D50393302A /* Pods-Comi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Comi.release.xcconfig"; path = "Target Support Files/Pods-Comi/Pods-Comi.release.xcconfig"; sourceTree = "<group>"; };
 		BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewModel.swift; sourceTree = "<group>"; };
 		BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		F3CF34929CB873A660CAF25F /* Pods-Comi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Comi.debug.xcconfig"; path = "Target Support Files/Pods-Comi/Pods-Comi.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,7 @@
 				867DA7C22BF21C3C002BDA1C /* Alamofire in Frameworks */,
 				867DA7B72BF205B6002BDA1C /* Kingfisher in Frameworks */,
 				867DA7B42BF205A7002BDA1C /* Supabase in Frameworks */,
+				5A4A3416E8F8F7BA92D3A4DE /* Pods_Comi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +312,7 @@
 				864B3FBF2B9F1DBA00F51FF6 /* Comi */,
 				864B3FBE2B9F1DBA00F51FF6 /* Products */,
 				86F0ED862BEDA7DB00D1B8E8 /* Frameworks */,
+				ABB268EBBB0D7382AAA16D42 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -372,8 +378,19 @@
 		86F0ED862BEDA7DB00D1B8E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2FA63F31B30E470C5EADFE96 /* Pods_Comi.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ABB268EBBB0D7382AAA16D42 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3CF34929CB873A660CAF25F /* Pods-Comi.debug.xcconfig */,
+				A042D59D3D5A60D50393302A /* Pods-Comi.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		BAE76CCB2BECE34B0003C17A /* Sources */ = {
@@ -408,11 +425,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 864B3FCB2B9F1DBB00F51FF6 /* Build configuration list for PBXNativeTarget "Comi" */;
 			buildPhases = (
+				08410C05FCFB6CFE0B6BF7A8 /* [CP] Check Pods Manifest.lock */,
 				BAE76CD32BF0DDC50003C17A /* SwiftLint Script */,
 				864B3FB92B9F1DBA00F51FF6 /* Sources */,
 				864B3FBA2B9F1DBA00F51FF6 /* Frameworks */,
 				864B3FBB2B9F1DBA00F51FF6 /* Resources */,
 				867DA7BF2BF213FF002BDA1C /* Embed Frameworks */,
+				9B3CC64143DDB65A73321CF7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -486,6 +505,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		08410C05FCFB6CFE0B6BF7A8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Comi-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B3CC64143DDB65A73321CF7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Comi/Pods-Comi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Comi/Pods-Comi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Comi/Pods-Comi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BAE76CD32BF0DDC50003C17A /* SwiftLint Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -675,6 +733,7 @@
 		};
 		864B3FCC2B9F1DBB00F51FF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3CF34929CB873A660CAF25F /* Pods-Comi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -713,6 +772,7 @@
 		};
 		864B3FCD2B9F1DBB00F51FF6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A042D59D3D5A60D50393302A /* Pods-Comi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -19,6 +19,7 @@ struct CallingView: View {
 
     @State private var background: CallState = .ready
     @State private var gotoFeedback: Bool = false
+    @StateObject private var viewModel = SpeechViewModel()
     @Binding var gotoRoot: Bool
     var topicTitle: String
     var model: RealmModel
@@ -28,6 +29,17 @@ struct CallingView: View {
             callInterface(modelData: model, topicData: topicTitle)
             Spacer()
             // TODO: 영균 기능 합치고 텍스트
+            Button {
+                if viewModel.isRecording {
+                    viewModel.stopRecording()
+                } else {
+                    viewModel.startRecording()
+                }
+            } label: {
+                Text(viewModel.isRecording ? "Stop Recording" : "Start Recording")
+            }
+            .padding()
+
         }
             .padding(.horizontal, 24)
             .background(CallBackground(status: $background))
