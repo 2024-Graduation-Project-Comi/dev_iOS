@@ -8,4 +8,6 @@ target 'Comi' do
 
   pod 'MicrosoftCognitiveServicesSpeech-iOS', '~> 1.37.0'
   pod 'Alamofire', '~> 5.9.1'
+  pod 'RealmSwift'
+  pod 'Kingfisher', '~> 7.0'
 end

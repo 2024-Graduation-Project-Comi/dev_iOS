@@ -1,20 +1,34 @@
 PODS:
   - Alamofire (5.9.1)
+  - Kingfisher (7.11.0)
   - MicrosoftCognitiveServicesSpeech-iOS (1.37.0)
+  - Realm (10.50.0):
+    - Realm/Headers (= 10.50.0)
+  - Realm/Headers (10.50.0)
+  - RealmSwift (10.50.0):
+    - Realm (= 10.50.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.9.1)
+  - Kingfisher (~> 7.0)
   - MicrosoftCognitiveServicesSpeech-iOS (~> 1.37.0)
+  - RealmSwift
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Kingfisher
     - MicrosoftCognitiveServicesSpeech-iOS
+    - Realm
+    - RealmSwift
 
 SPEC CHECKSUMS:
   Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
+  Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   MicrosoftCognitiveServicesSpeech-iOS: 766852ccd56e0c74bafbe9ea7033083c5f748d04
+  Realm: a0a6a99e3dfa8959358a95c3c05845b5e5d6af30
+  RealmSwift: fa111fb98e092a4dff1d0785ad0c3483feda607a
 
-PODFILE CHECKSUM: a6383dc4e1ca8e1b3e1f44d1717175417f8c5e82
+PODFILE CHECKSUM: 34202dce795922eeaffbcfdd86c008841d4feaf5
 
 COCOAPODS: 1.15.2
