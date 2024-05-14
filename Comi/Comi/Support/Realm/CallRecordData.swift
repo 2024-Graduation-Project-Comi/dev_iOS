@@ -45,7 +45,7 @@ class CallRecordViewModel: ObservableObject {
             realmData.ended = callRecordData.ended
             realmData.times = RealmViewModel.shared.millisecondsToMMSS(milliseconds: callRecordData.times)
             try realm.write {
-                realm.add(realmData)
+                realm.add(realmData, update: .modified)
             }
         } catch {
             print(error)

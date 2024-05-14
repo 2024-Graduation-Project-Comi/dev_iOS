@@ -15,11 +15,13 @@ class RealmViewModel: ObservableObject {
 
     @ObservedObject var modelData = ModelViewModel()
     @ObservedObject var callRecordData = CallRecordViewModel()
+    @ObservedObject var userData = UserViewModel()
 
     func start() async {
         print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
         modelData.readyData()
         callRecordData.readyData()
+        userData.readyData()
     }
 
     func findModelInfo(modelId: Int) -> RealmModel? {
@@ -88,9 +90,20 @@ struct RealmCallRecord: Hashable {
     var times: String
 }
 
+struct RealmUser: Hashable {
+    var userId: Int
+    var createdAt: Date
+    var email: String
+    var social: String
+    var remainTime: Int
+    var isLogin: Bool
+}
+
+// MARK: Realm DB 종류
 enum RealmType {
     case modelData
     case callRecordData
+    case userData
 
     var objectType: Object.Type {
         switch self {
@@ -98,6 +111,8 @@ enum RealmType {
             return ModelData.self
         case .callRecordData:
             return CallRecordData.self
+        case .userData:
+            return UserData.self
         }
     }
 }
@@ -107,9 +122,9 @@ func checkDB(type: RealmType) -> Bool {
         let realm = try Realm()
         let target = realm.objects(type.objectType)
         if target.isEmpty {
-            print("model DB is null ")
+            print("\(type) DB is null ")
         } else {
-            print("model DB has data")
+            print("\(type) DB has data")
         }
         return target.isEmpty
     } catch {
