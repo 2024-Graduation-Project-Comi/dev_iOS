@@ -18,7 +18,7 @@ struct ModelDetailView: View {
     @Binding var gotoRoot: Bool
     @StateObject var favorites = FavoritesViewModel()
     @StateObject var topics = TopicsDB()
-    var model: Models
+    var model: RealmModel
 
     var body: some View {
         GeometryReader { geo in
@@ -160,5 +160,5 @@ struct ModelDetailView: View {
 }
 
 #Preview {
-    ModelDetailView(gotoRoot: .constant(true), model: Models(id: 0, name: "카리나", state: .available, image: ""))
+    ModelDetailView(gotoRoot: .constant(true), model: RealmModel(id: 0, name: "카리나", state: .available, image: ""))
 }

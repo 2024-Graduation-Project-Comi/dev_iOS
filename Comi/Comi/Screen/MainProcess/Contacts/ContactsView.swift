@@ -10,16 +10,18 @@ import Kingfisher
 
 struct ContactsView: View {
 
-    @EnvironmentObject var modelViewModel: ModelViewModel
-    @State private var selectedModel: Models
-        = Models(id: 0, name: "", group: nil, state: .available, image: "")
+//    @EnvironmentObject var modelViewModel: ModelViewModel
+    @EnvironmentObject var realmViewModel: RealmViewModel
+    @State private var selectedModel: RealmModel
+        = RealmModel(id: 0, name: "", group: nil, state: .available, image: "")
 
     @State private var gotoModelDetailView: Bool = false
     @Binding var selectedTab: Tabs
     @StateObject var favorites = FavoritesViewModel()
 
-    private var groupedModels: [(String, [Models])] {
-        let groupedDictionary = Dictionary(grouping: modelViewModel.models) { $0.group ?? "" }
+    private var groupedModels: [(String, [RealmModel])] {
+//        let groupedDictionary = Dictionary(grouping: modelViewModel.models) { $0.group ?? "" }
+        let groupedDictionary = Dictionary(grouping: realmViewModel.modelData.models) { $0.group ?? "" }
         return groupedDictionary.sorted { $0.0 > $1.0 }
     }
 
@@ -62,7 +64,7 @@ struct ContactsView: View {
         Section(header: sectionText(text: "즐겨찾기")) {
             if !favorites.decodeSave().isEmpty {
                 ForEach(favorites.decodeSave().reversed(), id: \.self) { data in
-                    let model = Models(id: data.id, name: data.name, group: data.group ?? nil, state: data.state, image: data.image)
+                    let model = RealmModel(id: data.id, name: data.name, group: data.group ?? nil, state: data.state, image: data.image)
 
                     modelItems(data: model)
                         .padding(.leading, 24)
@@ -117,7 +119,7 @@ private func sectionText(text: String) -> some View {
 }
 
 @ViewBuilder
-private func modelItems(data: Models) -> some View {
+private func modelItems(data: RealmModel) -> some View {
     HStack {
         ZStack {
             KFImage(URL(string: data.image))

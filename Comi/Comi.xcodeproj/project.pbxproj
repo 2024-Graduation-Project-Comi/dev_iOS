@@ -36,6 +36,8 @@
 		867DA7BA2BF205D2002BDA1C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 867DA7B92BF205D2002BDA1C /* RealmSwift */; };
 		867DA7BE2BF213FF002BDA1C /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 867DA7B92BF205D2002BDA1C /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		867DA7C22BF21C3C002BDA1C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 867DA7C12BF21C3C002BDA1C /* Alamofire */; };
+		867DA7C42BF22F52002BDA1C /* CallRecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DA7C32BF22F52002BDA1C /* CallRecordData.swift */; };
+		867DA7C62BF2368E002BDA1C /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DA7C52BF2368E002BDA1C /* RealmViewModel.swift */; };
 		86AF00B62BE54391007DAF5F /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86AF00B22BE54391007DAF5F /* Pretendard-SemiBold.otf */; };
 		86AF00B72BE54391007DAF5F /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86AF00B32BE54391007DAF5F /* Pretendard-Medium.otf */; };
 		86AF00B82BE54391007DAF5F /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86AF00B42BE54391007DAF5F /* Pretendard-Regular.otf */; };
@@ -94,6 +96,8 @@
 		864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		864B3FC72B9F1DBB00F51FF6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		867DA7C32BF22F52002BDA1C /* CallRecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordData.swift; sourceTree = "<group>"; };
+		867DA7C52BF2368E002BDA1C /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
 		86AF00B22BE54391007DAF5F /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../../../../Library/Fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		86AF00B32BE54391007DAF5F /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../../../../../../../Library/Fonts/Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		86AF00B42BE54391007DAF5F /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../../../../../../../Library/Fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
@@ -246,7 +250,9 @@
 		86447C0C2BEFF60D00C1988E /* Realm */ = {
 			isa = PBXGroup;
 			children = (
+				867DA7C52BF2368E002BDA1C /* RealmViewModel.swift */,
 				86447C0A2BEFDC8300C1988E /* ModelData.swift */,
+				867DA7C32BF22F52002BDA1C /* CallRecordData.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -500,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				867DA7C42BF22F52002BDA1C /* CallRecordData.swift in Sources */,
 				860DDCA32BDFA230007A8F13 /* StartProcessData.swift in Sources */,
 				86D192CC2BE68B6200C4CDAE /* FeedbackView.swift in Sources */,
 				86C162252BE0E9BB00362250 /* HistoryView.swift in Sources */,
@@ -528,6 +535,7 @@
 				860DDC962BDF6A2B007A8F13 /* Splash.swift in Sources */,
 				86447C192BF1169300C1988E /* FavoritesViewModel.swift in Sources */,
 				86190AAE2BE16CB500D650A4 /* ContactsView.swift in Sources */,
+				867DA7C62BF2368E002BDA1C /* RealmViewModel.swift in Sources */,
 				86C162232BE0E05A00362250 /* BottomTabBarView.swift in Sources */,
 				860DDCA02BDF9EAC007A8F13 /* LoginView.swift in Sources */,
 				860DDC8A2BDF66BB007A8F13 /* ExFont.swift in Sources */,
