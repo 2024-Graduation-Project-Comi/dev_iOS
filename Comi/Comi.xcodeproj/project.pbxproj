@@ -31,6 +31,8 @@
 		864B3FC32B9F1DBA00F51FF6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */; };
 		864B3FC52B9F1DBB00F51FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */; };
 		864B3FC82B9F1DBB00F51FF6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864B3FC72B9F1DBB00F51FF6 /* Preview Assets.xcassets */; };
+		867B25262BF33FF200861B66 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867B25252BF33FF200861B66 /* UserData.swift */; };
+		867B25282BF3424B00861B66 /* RealmSampleCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867B25272BF3424B00861B66 /* RealmSampleCode.swift */; };
 		867DA7B42BF205A7002BDA1C /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 867DA7B32BF205A7002BDA1C /* Supabase */; };
 		867DA7B72BF205B6002BDA1C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 867DA7B62BF205B6002BDA1C /* Kingfisher */; };
 		867DA7BA2BF205D2002BDA1C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 867DA7B92BF205D2002BDA1C /* RealmSwift */; };
@@ -96,6 +98,8 @@
 		864B3FC22B9F1DBA00F51FF6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		864B3FC72B9F1DBB00F51FF6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		867B25252BF33FF200861B66 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		867B25272BF3424B00861B66 /* RealmSampleCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSampleCode.swift; sourceTree = "<group>"; };
 		867DA7C32BF22F52002BDA1C /* CallRecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordData.swift; sourceTree = "<group>"; };
 		867DA7C52BF2368E002BDA1C /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
 		86AF00B22BE54391007DAF5F /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../../../../Library/Fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
@@ -253,6 +257,8 @@
 				867DA7C52BF2368E002BDA1C /* RealmViewModel.swift */,
 				86447C0A2BEFDC8300C1988E /* ModelData.swift */,
 				867DA7C32BF22F52002BDA1C /* CallRecordData.swift */,
+				867B25252BF33FF200861B66 /* UserData.swift */,
+				867B25272BF3424B00861B66 /* RealmSampleCode.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -512,6 +518,7 @@
 				86C162252BE0E9BB00362250 /* HistoryView.swift in Sources */,
 				BAE76CCF2BECE6650003C17A /* SpeechViewModel.swift in Sources */,
 				860DDC9C2BDF7B0B007A8F13 /* OnboardPage.swift in Sources */,
+				867B25282BF3424B00861B66 /* RealmSampleCode.swift in Sources */,
 				8617DC972BE2AE5A007CFB73 /* ModelDetailView.swift in Sources */,
 				86447C1D2BF1171300C1988E /* ModelsSet.swift in Sources */,
 				86C162282BE0EAA500362250 /* HistoryCard.swift in Sources */,
@@ -529,6 +536,7 @@
 				86447C202BF1182800C1988E /* TopicsSet.swift in Sources */,
 				86447C272BF11B7700C1988E /* CallRecordsDB.swift in Sources */,
 				8617DC932BE29E81007CFB73 /* ProfileView.swift in Sources */,
+				867B25262BF33FF200861B66 /* UserData.swift in Sources */,
 				860DDC9E2BDF90E6007A8F13 /* BottomStartBtn.swift in Sources */,
 				86F0ED962BEDCCE300D1B8E8 /* ModelsDB.swift in Sources */,
 				864B3FC12B9F1DBA00F51FF6 /* ComiApp.swift in Sources */,
