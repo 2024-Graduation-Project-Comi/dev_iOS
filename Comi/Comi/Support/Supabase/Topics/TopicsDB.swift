@@ -29,7 +29,6 @@ class TopicsDB: ObservableObject {
                     .value
 
                 let sorted = datas.sorted { $0.id > $1.id }
-                print("Get Topics : \(sorted)")
                 self.data = sorted
             } catch {
                 print(error)

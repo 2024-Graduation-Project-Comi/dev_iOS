@@ -36,18 +36,25 @@ struct HistoryCard: View {
                         .foregroundStyle(.constantsSemi)
                 }
                 if selected == data.id {
-                    moreFunc()
+                    ZStack {
+                        Spacer()
+                            .frame(height: 46)
+                        moreFunc()
+//                            .transition(.asymmetric(insertion: AnyTransition.move(edge: .bottom),
+//                                                    removal: AnyTransition.opacity.animation(.easeIn))
+//                        )
+                    }
                 }
             }.padding(16)
         }
-        .frame(maxWidth: .infinity, minHeight: 78)
-        .padding(.bottom, 8)
-        .onTapGesture {
+            .frame(maxWidth: .infinity, minHeight: 78)
+            .padding(.bottom, 8)
+            .onTapGesture {
             withAnimation {
                 selected = selected == data.id ? nil : data.id
             }
         }
-        .onAppear {
+            .onAppear {
             recentedDate = RealmViewModel.shared.formatDate(data: data.ended)
         }
     }
@@ -58,19 +65,7 @@ struct HistoryCard: View {
             Button {
                 gotoFeedbackView = true
             } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16, style: .continuous)
-                        .fill(.blue2)
-
-                    HStack(spacing: 0) {
-                        Image("Chat")
-                            .padding(.trailing, 20)
-                        Text("채팅보기")
-                            .font(.ptRegular18)
-                            .foregroundStyle(.cwhite)
-                    }
-                }
-                    .frame(width: 151, height: 48)
+                moreFuncButton(image: "Chat filled", title: "채팅보기")
             }
                 .background(
                 NavigationLink(
@@ -84,27 +79,42 @@ struct HistoryCard: View {
             Button {
                 gotoCallingView = true
             } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16, style: /*@START_MENU_TOKEN@*/.continuous/*@END_MENU_TOKEN@*/)
-                        .fill(.blue2)
-                        .opacity(0.87)
-
-                    HStack(spacing: 0) {
-                        Image("Call")
-                            .padding(.trailing, 20)
-                        Text("전화하기")
-                            .font(.ptRegular18)
-                            .foregroundStyle(.cwhite)
-                    }
-                }.frame(width: 151, height: 48)
+                moreFuncButton(image: "Call filled", title: "전화하기")
             }
                 .background(
-                    NavigationLink(destination: CallingView(gotoRoot: $gotoCallingView, topicTitle: self.data.topic, model: self.modelInfo)
+                NavigationLink(destination: CallingView(gotoRoot: $gotoCallingView, topicTitle: self.data.topic, model: self.modelInfo)
                     .navigationBarBackButtonHidden(),
                 isActive: $gotoCallingView,
                 label: { EmptyView() }
                 )
             )
         }
+            .task {
+//            DisQueue./
+        }
+//        .onAppear {
+////            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, )
+//        }
+    }
+
+    @ViewBuilder
+    private func moreFuncButton(image: String, title: String) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .fill(.cwhite)
+                .overlay {
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .stroke(Color.blue2, lineWidth: 1)
+            }
+
+            HStack(spacing: 0) {
+                Image(image)
+                    .padding(.trailing, 20)
+                Text(title)
+                    .font(.ptRegular18)
+                    .foregroundStyle(.blue2)
+            }
+        }
+            .frame(width: 151, height: 48)
     }
 }
