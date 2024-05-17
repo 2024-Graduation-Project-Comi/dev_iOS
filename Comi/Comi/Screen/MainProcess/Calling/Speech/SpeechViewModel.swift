@@ -8,6 +8,8 @@
 import Foundation
 import AVFoundation
 import Alamofire
+import Speech
+import MicrosoftCognitiveServicesSpeech
 
 class SpeechViewModel: ObservableObject {
 
@@ -21,23 +23,24 @@ class SpeechViewModel: ObservableObject {
     @Published var isRecording = false
     @Published var isPlaying = false
     @Published var audioURL: URL?
+    @Published var speechedText: String?
 
     func startRecording() {
         guard !isRecording else {return}
-        
+
         let recordingSession = AVAudioSession.sharedInstance()
         do {
             try recordingSession.setCategory(.playAndRecord)
             try recordingSession.setActive(true)
-            
+
             recordingSession.requestRecordPermission { [weak self] granted in
                 guard granted else {
                     print("Error: User denied recording permission.")
                     return
                 }
-                
+
                 guard let self = self else { return }
-                
+
                 let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 let audioFilename = documentPath.appendingPathComponent("recording.wav")
                 let settings = [
@@ -46,13 +49,13 @@ class SpeechViewModel: ObservableObject {
                     AVNumberOfChannelsKey: 1,
                     AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
                 ]
-                
+
                 do {
                     self.audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
                     try FileManager.default.createDirectory(at: documentPath, withIntermediateDirectories: true, attributes: nil)
                     self.audioRecorder?.record()
                     self.audioRecorder?.isMeteringEnabled = true
-                    
+
                     DispatchQueue.main.async {
                         self.isRecording = true
                         self.startRecordingTimer()
@@ -118,6 +121,127 @@ class SpeechViewModel: ObservableObject {
         recordingTimer?.invalidate()
         recordingTimer = nil
         consecutiveNoInputCount = 0
+    }
+
+    // MARK: Azure API를 사용해서 발음 평가 및 STT
+    func pronEval() {
+        guard let path = audioURL else { return }
+        guard let sub = Bundle.main.azureApiKey else {
+            print("Azure Key 로드 실패")
+            return
+        }
+        guard let region = Bundle.main.azureRegion else {
+            print("Azure Region 로드 실패")
+            return
+        }
+        // Replace with your own subscription key and service region (e.g., "westus").
+        // Creates an instance of a speech config with specified subscription key and service region.
+        let speechConfig = try! SPXSpeechConfiguration(subscription: sub, region: region)
+        // Read audio data from file. In real scenario this can be from memory or network
+        let audioDataWithHeader = try! Data(contentsOf: path)
+        let audioData = Array(audioDataWithHeader[46..<audioDataWithHeader.count])
+
+        let startTime = Date()
+
+        let audioFormat = SPXAudioStreamFormat(usingPCMWithSampleRate: 44100, bitsPerSample: 16, channels: 1)!
+        guard let audioInputStream = SPXPushAudioInputStream(audioFormat: audioFormat) else {
+            print("Error: Failed to create audio input stream.")
+            return
+        }
+
+        guard let audioConfig = SPXAudioConfiguration(streamInput: audioInputStream) else {
+            print("Error: audioConfig is Nil")
+            return
+        }
+
+        let speechRecognizer = try! SPXSpeechRecognizer(speechConfiguration: speechConfig, language: "en-US", audioConfiguration: audioConfig)
+
+        let referenceText = ""
+        let pronAssessmentConfig = try! SPXPronunciationAssessmentConfiguration(referenceText, gradingSystem: SPXPronunciationAssessmentGradingSystem.hundredMark, granularity: SPXPronunciationAssessmentGranularity.word, enableMiscue: true)
+
+        pronAssessmentConfig.enableProsodyAssessment()
+
+        try! pronAssessmentConfig.apply(to: speechRecognizer)
+
+        audioInputStream.write(Data(audioData))
+        audioInputStream.write(Data())
+
+        // Handle the recognition result
+        try! speechRecognizer.recognizeOnceAsync { result in
+            guard let pronunciationResult = SPXPronunciationAssessmentResult(result) else {
+                print("Error: pronunciationResult is Nil")
+                return
+            }
+
+            var finalResult = ""
+            let resultText = "Accuracy score: \(pronunciationResult.accuracyScore), Prosody score: \(pronunciationResult.prosodyScore), Pronunciation score: \(pronunciationResult.pronunciationScore), Completeness Score: \(pronunciationResult.completenessScore), Fluency score: \(pronunciationResult.fluencyScore)"
+            print(resultText)
+            finalResult.append("\(resultText)\n")
+            finalResult.append("\nword    accuracyScore   errorType\n")
+
+            if let words = pronunciationResult.words {
+                var totalWords = ""
+                for word in words {
+                    let wordString = word.word ?? ""
+                    let errorType = word.errorType ?? ""
+                    finalResult.append("\(wordString)    \(word.accuracyScore)   \(errorType)\n")
+                    totalWords.append("\(wordString) ")
+                }
+                print(totalWords)
+            }
+
+            let endTime = Date()
+            let timeCost = endTime.timeIntervalSince(startTime) * 1000
+            print("Time cost: \(timeCost)ms")
+        }
+    }
+
+    // MARK: 애플 기본 제공 Speech 라이브러리를 사용한 STT 기능
+    func pronEvalBuiltIn() {
+        guard let path = audioURL else { return }
+
+        let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+        // 음성 권한 요청
+        SFSpeechRecognizer.requestAuthorization { status in
+            switch status {
+            case .notDetermined:
+                print("\(status.rawValue)")
+            case .denied:
+                print("\(status.rawValue)")
+            case .restricted:
+                print("\(status.rawValue)")
+            case .authorized:
+                print("\(status.rawValue)")
+            @unknown default:
+                print("Unknown case")
+            }
+        }
+
+        if speechRecognizer!.isAvailable {
+            let startTime = Date()
+            let request = SFSpeechURLRecognitionRequest(url: path)
+            speechRecognizer?.supportsOnDeviceRecognition = true
+            speechRecognizer?.recognitionTask(
+                with: request,
+                resultHandler: { (result, error) in
+                    if let error = error {
+                        print("Error: \(error.localizedDescription)")
+                    }
+
+                    guard let result = result else {
+                        print("Error: speechRecognizer result not exist.")
+                        return
+                    }
+                    print(result.bestTranscription.formattedString)
+                    if result.isFinal {
+                        self.speechedText = result.bestTranscription.formattedString
+
+                        let endTime = Date()
+                        let timeCost = endTime.timeIntervalSince(startTime) * 1000
+                        print("Time cost: \(timeCost)ms")
+                    }
+                })
+        }
     }
 }
 

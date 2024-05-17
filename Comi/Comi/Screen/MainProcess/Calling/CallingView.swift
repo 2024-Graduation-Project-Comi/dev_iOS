@@ -29,17 +29,41 @@ struct CallingView: View {
             callInterface(modelData: model, topicData: topicTitle)
             Spacer()
             // TODO: 영균 기능 합치고 텍스트
-            Button {
-                if viewModel.isRecording {
-                    viewModel.stopRecording()
-                } else {
-                    viewModel.startRecording()
+            VStack {
+                Text(viewModel.speechedText ?? "Say it!!")
+                Button {
+                    if viewModel.isRecording {
+                        viewModel.stopRecording()
+                    } else {
+                        viewModel.startRecording()
+                    }
+                } label: {
+                    Text(viewModel.isRecording ? "Stop Recording" : "Start Recording")
                 }
-            } label: {
-                Text(viewModel.isRecording ? "Stop Recording" : "Start Recording")
-            }
-            .padding()
+                .padding()
 
+                Button {
+                    if viewModel.isRecording {
+                        viewModel.stopRecording()
+                    } else {
+                        viewModel.pronEvalBuiltIn()
+                    }
+                } label: {
+                    Text(viewModel.isRecording ? "Stop Recording" : "Pronunciation evaluation internal")
+                }
+                .padding()
+      
+                Button {
+                    if viewModel.isRecording {
+                        viewModel.stopRecording()
+                    } else {
+                        viewModel.pronEval()
+                    }
+                } label: {
+                    Text(viewModel.isRecording ? "Stop Recording" : "Pronunciation evaluation azure")
+                }
+                .padding()
+            }
         }
             .padding(.horizontal, 24)
             .background(CallBackground(status: $background))
