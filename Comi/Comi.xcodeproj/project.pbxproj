@@ -105,7 +105,6 @@
 		BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AzureInfo.plist; sourceTree = "<group>"; };
 		BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewModel.swift; sourceTree = "<group>"; };
 		BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		BAF5B9742BF7239B00ADCC08 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
 		BAF5B97A2BF7253400ADCC08 /* AzureInfo++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AzureInfo++Bundle.swift"; sourceTree = "<group>"; };
 		F105F5AECDC82DF7E227FF24 /* Pods-Comi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Comi.release.xcconfig"; path = "Target Support Files/Pods-Comi/Pods-Comi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -292,7 +291,6 @@
 		864B3FB42B9F1DBA00F51FF6 = {
 			isa = PBXGroup;
 			children = (
-				BAF5B9742BF7239B00ADCC08 /* Secret.xcconfig */,
 				BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */,
 				864B3FBF2B9F1DBA00F51FF6 /* Comi */,
 				864B3FBE2B9F1DBA00F51FF6 /* Products */,
@@ -381,9 +379,9 @@
 			isa = PBXGroup;
 			children = (
 				860DDC882BDF6650007A8F13 /* Info.plist */,
+				BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */,
 				86447C1A2BF116C800C1988E /* Supabase */,
 				86447C0C2BEFF60D00C1988E /* Realm */,
-				BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */,
 			);
 			path = Support;
 			sourceTree = "<group>";
