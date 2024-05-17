@@ -57,7 +57,7 @@ struct ModelDetailView: View {
                 dismiss()
             } label: {
                 Image("Close")
-                    .foregroundStyle(.cwhite)
+                    .foregroundColor(.cwhite)
             }
 
             Spacer()

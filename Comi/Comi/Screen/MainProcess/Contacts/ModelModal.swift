@@ -45,8 +45,9 @@ struct ModelModal: View {
             VStack {
                 Text(model.name)
                     .font(.ptSemiBold18)
-                Text("\(model.id) : \(model.state)")
-                    .font(.ptRegular14)
+                // TODO: player로 수정
+                RoundedRectangle(cornerRadius: 100, style: .continuous)
+                    .frame(width: 240, height: 28)
                 Spacer()
             }
                 .offset(y: 32)
