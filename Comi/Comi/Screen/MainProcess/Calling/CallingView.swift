@@ -52,7 +52,6 @@ struct CallingView: View {
                     Text(viewModel.isRecording ? "Stop Recording" : "Pronunciation evaluation internal")
                 }
                 .padding()
-      
                 Button {
                     if viewModel.isRecording {
                         viewModel.stopRecording()

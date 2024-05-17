@@ -14,6 +14,8 @@ struct HistoryCard: View {
     @State private var isMore: Bool = false
     @State private var gotoCallingView: Bool = false
     @State private var gotoFeedbackView: Bool = false
+    @State private var showMoreFunc: Bool = false
+    @State private var showBG: Bool = false
     @Binding var selected: Int?
     var modelInfo: RealmModel
     var data: RealmCallRecord
@@ -21,8 +23,11 @@ struct HistoryCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(.cardBG)
+                .fill(showBG ? .newChatGray : .clear)
             VStack {
+                Rectangle()
+                    .fill(.clear)
+                    .frame(height: 1)
                 HStack {
                     VStack(alignment: .leading) {
                         Text(data.convCount == 0 ? modelInfo.name : "\(modelInfo.name)(\(Int(data.convCount)))")
@@ -35,21 +40,40 @@ struct HistoryCard: View {
                         .font(.ptRegular14)
                         .foregroundStyle(.constantsSemi)
                 }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                    withAnimation {
+                        toggleSelection(for: data.id)
+                    }
+                }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+
                 if selected == data.id {
                     moreFunc()
+                        .onAppear {
+                        showBG = true
+                        withAnimation(.easeInOut.delay(0.2)) {
+                            showMoreFunc = true
+                        }
+                    }
+                        .onDisappear {
+                        showMoreFunc = false
+                        showBG = false
+                    }
+                } else {
+                    Divider()
                 }
-            }.padding(16)
-        }
-        .frame(maxWidth: .infinity, minHeight: 78)
-        .padding(.bottom, 8)
-        .onTapGesture {
-            withAnimation {
-                selected = selected == data.id ? nil : data.id
             }
         }
-        .onAppear {
+            .frame(maxWidth: .infinity, minHeight: 78)
+            .onAppear {
             recentedDate = RealmViewModel.shared.formatDate(data: data.ended)
-        }
+            }
+    }
+
+    private func toggleSelection(for id: Int) {
+        selected = (selected == data.id) ? nil : data.id
     }
 
     @ViewBuilder
@@ -58,19 +82,7 @@ struct HistoryCard: View {
             Button {
                 gotoFeedbackView = true
             } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16, style: .continuous)
-                        .fill(.blue2)
-
-                    HStack(spacing: 0) {
-                        Image("Chat")
-                            .padding(.trailing, 20)
-                        Text("채팅보기")
-                            .font(.ptRegular18)
-                            .foregroundStyle(.cwhite)
-                    }
-                }
-                    .frame(width: 151, height: 48)
+                moreFuncButton(image: "Chat filled", title: "채팅보기")
             }
                 .background(
                 NavigationLink(
@@ -84,27 +96,38 @@ struct HistoryCard: View {
             Button {
                 gotoCallingView = true
             } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16, style: /*@START_MENU_TOKEN@*/.continuous/*@END_MENU_TOKEN@*/)
-                        .fill(.blue2)
-                        .opacity(0.87)
-
-                    HStack(spacing: 0) {
-                        Image("Call")
-                            .padding(.trailing, 20)
-                        Text("전화하기")
-                            .font(.ptRegular18)
-                            .foregroundStyle(.cwhite)
-                    }
-                }.frame(width: 151, height: 48)
+                moreFuncButton(image: "Call filled", title: "전화하기")
             }
                 .background(
-                    NavigationLink(destination: CallingView(gotoRoot: $gotoCallingView, topicTitle: self.data.topic, model: self.modelInfo)
+                NavigationLink(destination: CallingView(gotoRoot: $gotoCallingView, topicTitle: self.data.topic, model: self.modelInfo)
                     .navigationBarBackButtonHidden(),
                 isActive: $gotoCallingView,
                 label: { EmptyView() }
                 )
             )
         }
+            .padding(.bottom, 16)
+            .opacity(showMoreFunc ? 1 : 0)
+    }
+
+    @ViewBuilder
+    private func moreFuncButton(image: String, title: String) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .fill(.cwhite)
+                .overlay {
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .stroke(Color.blue2, lineWidth: 1)
+            }
+
+            HStack(spacing: 0) {
+                Image(image)
+                    .padding(.trailing, 20)
+                Text(title)
+                    .font(.ptRegular18)
+                    .foregroundStyle(.blue2)
+            }
+        }
+            .frame(width: 151, height: 48)
     }
 }
