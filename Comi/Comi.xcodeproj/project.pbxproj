@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4FACA5F39584DD5D35DB4D46 /* Pods_Comi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4427C9DC82A69BAF8D77E4BF /* Pods_Comi.framework */; };
+		390A97765EEB3B38070627D0 /* Pods_Comi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0C36C82EAD07ADEAEBD718C /* Pods_Comi.framework */; };
 		860761E82BF3A4A1003AA468 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 860761E72BF3A4A1003AA468 /* Supabase */; };
 		860DDC8A2BDF66BB007A8F13 /* ExFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC892BDF66BB007A8F13 /* ExFont.swift */; };
 		860DDC962BDF6A2B007A8F13 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860DDC952BDF6A2B007A8F13 /* Splash.swift */; };
@@ -50,12 +50,13 @@
 		86D192CC2BE68B6200C4CDAE /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D192CB2BE68B6200C4CDAE /* FeedbackView.swift */; };
 		86D192CE2BE69ECE00C4CDAE /* FeedbackContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */; };
 		86F0ED962BEDCCE300D1B8E8 /* ModelsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */; };
+		BA740F8B2BF72EDC00CA1885 /* AzureInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */; };
 		BAE76CCF2BECE6650003C17A /* SpeechViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */; };
 		BAE76CD62BF0DE1B0003C17A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */; };
+		BAF5B97B2BF7253400ADCC08 /* AzureInfo++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF5B97A2BF7253400ADCC08 /* AzureInfo++Bundle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4427C9DC82A69BAF8D77E4BF /* Pods_Comi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Comi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		860DDC882BDF6650007A8F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		860DDC892BDF66BB007A8F13 /* ExFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExFont.swift; sourceTree = "<group>"; };
 		860DDC952BDF6A2B007A8F13 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
@@ -99,10 +100,14 @@
 		86D192CB2BE68B6200C4CDAE /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackContentView.swift; sourceTree = "<group>"; };
 		86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsDB.swift; sourceTree = "<group>"; };
-		A042D59D3D5A60D50393302A /* Pods-Comi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Comi.release.xcconfig"; path = "Target Support Files/Pods-Comi/Pods-Comi.release.xcconfig"; sourceTree = "<group>"; };
+		B0C36C82EAD07ADEAEBD718C /* Pods_Comi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Comi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7E050BA6F61CD507CE2C49E /* Pods-Comi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Comi.debug.xcconfig"; path = "Target Support Files/Pods-Comi/Pods-Comi.debug.xcconfig"; sourceTree = "<group>"; };
+		BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AzureInfo.plist; sourceTree = "<group>"; };
 		BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewModel.swift; sourceTree = "<group>"; };
 		BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		F3CF34929CB873A660CAF25F /* Pods-Comi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Comi.debug.xcconfig"; path = "Target Support Files/Pods-Comi/Pods-Comi.debug.xcconfig"; sourceTree = "<group>"; };
+		BAF5B9742BF7239B00ADCC08 /* Secret.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secret.xcconfig; sourceTree = "<group>"; };
+		BAF5B97A2BF7253400ADCC08 /* AzureInfo++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AzureInfo++Bundle.swift"; sourceTree = "<group>"; };
+		F105F5AECDC82DF7E227FF24 /* Pods-Comi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Comi.release.xcconfig"; path = "Target Support Files/Pods-Comi/Pods-Comi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +116,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				860761E82BF3A4A1003AA468 /* Supabase in Frameworks */,
-				4FACA5F39584DD5D35DB4D46 /* Pods_Comi.framework in Frameworks */,
+				390A97765EEB3B38070627D0 /* Pods_Comi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,11 +292,12 @@
 		864B3FB42B9F1DBA00F51FF6 = {
 			isa = PBXGroup;
 			children = (
+				BAF5B9742BF7239B00ADCC08 /* Secret.xcconfig */,
 				BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */,
 				864B3FBF2B9F1DBA00F51FF6 /* Comi */,
 				864B3FBE2B9F1DBA00F51FF6 /* Products */,
-				86F0ED862BEDA7DB00D1B8E8 /* Frameworks */,
 				ABB268EBBB0D7382AAA16D42 /* Pods */,
+				C7C2C8E91BD874C60DD47A18 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -306,6 +312,7 @@
 		864B3FBF2B9F1DBA00F51FF6 /* Comi */ = {
 			isa = PBXGroup;
 			children = (
+				BAF5B9792BF724D800ADCC08 /* Extensions */,
 				BAE76CCC2BECE3BF0003C17A /* Support */,
 				860DDC812BDF5DCF007A8F13 /* Extension */,
 				860DDC802BDF5CF8007A8F13 /* Resource */,
@@ -354,19 +361,11 @@
 			path = Feedback;
 			sourceTree = "<group>";
 		};
-		86F0ED862BEDA7DB00D1B8E8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4427C9DC82A69BAF8D77E4BF /* Pods_Comi.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		ABB268EBBB0D7382AAA16D42 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F3CF34929CB873A660CAF25F /* Pods-Comi.debug.xcconfig */,
-				A042D59D3D5A60D50393302A /* Pods-Comi.release.xcconfig */,
+				B7E050BA6F61CD507CE2C49E /* Pods-Comi.debug.xcconfig */,
+				F105F5AECDC82DF7E227FF24 /* Pods-Comi.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -384,6 +383,7 @@
 				860DDC882BDF6650007A8F13 /* Info.plist */,
 				86447C1A2BF116C800C1988E /* Supabase */,
 				86447C0C2BEFF60D00C1988E /* Realm */,
+				BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -396,6 +396,22 @@
 			path = Speech;
 			sourceTree = "<group>";
 		};
+		BAF5B9792BF724D800ADCC08 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BAF5B97A2BF7253400ADCC08 /* AzureInfo++Bundle.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C7C2C8E91BD874C60DD47A18 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B0C36C82EAD07ADEAEBD718C /* Pods_Comi.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -403,12 +419,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 864B3FCB2B9F1DBB00F51FF6 /* Build configuration list for PBXNativeTarget "Comi" */;
 			buildPhases = (
-				08410C05FCFB6CFE0B6BF7A8 /* [CP] Check Pods Manifest.lock */,
+				4415D0AF9809E9C92CE84D2F /* [CP] Check Pods Manifest.lock */,
 				BAE76CD32BF0DDC50003C17A /* SwiftLint Script */,
 				864B3FB92B9F1DBA00F51FF6 /* Sources */,
 				864B3FBA2B9F1DBA00F51FF6 /* Frameworks */,
 				864B3FBB2B9F1DBA00F51FF6 /* Resources */,
-				9B3CC64143DDB65A73321CF7 /* [CP] Embed Pods Frameworks */,
+				E68AA140AE58F37BCBFC0FA2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -467,6 +483,7 @@
 				86AF00B92BE54391007DAF5F /* Pretendard-Bold.otf in Resources */,
 				864B3FC82B9F1DBB00F51FF6 /* Preview Assets.xcassets in Resources */,
 				BAE76CD62BF0DE1B0003C17A /* .swiftlint.yml in Resources */,
+				BA740F8B2BF72EDC00CA1885 /* AzureInfo.plist in Resources */,
 				86AF00B82BE54391007DAF5F /* Pretendard-Regular.otf in Resources */,
 				864B3FC52B9F1DBB00F51FF6 /* Assets.xcassets in Resources */,
 				86AF00B72BE54391007DAF5F /* Pretendard-Medium.otf in Resources */,
@@ -476,7 +493,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		08410C05FCFB6CFE0B6BF7A8 /* [CP] Check Pods Manifest.lock */ = {
+		4415D0AF9809E9C92CE84D2F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -498,23 +515,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9B3CC64143DDB65A73321CF7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Comi/Pods-Comi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Comi/Pods-Comi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Comi/Pods-Comi-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BAE76CD32BF0DDC50003C17A /* SwiftLint Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -534,6 +534,23 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
 		};
+		E68AA140AE58F37BCBFC0FA2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Comi/Pods-Comi-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Comi/Pods-Comi-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Comi/Pods-Comi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -547,6 +564,7 @@
 				86C162252BE0E9BB00362250 /* HistoryView.swift in Sources */,
 				BAE76CCF2BECE6650003C17A /* SpeechViewModel.swift in Sources */,
 				860DDC9C2BDF7B0B007A8F13 /* OnboardPage.swift in Sources */,
+				BAF5B97B2BF7253400ADCC08 /* AzureInfo++Bundle.swift in Sources */,
 				867B25282BF3424B00861B66 /* RealmSampleCode.swift in Sources */,
 				8617DC972BE2AE5A007CFB73 /* ModelDetailView.swift in Sources */,
 				86447C1D2BF1171300C1988E /* ModelsSet.swift in Sources */,
@@ -704,7 +722,7 @@
 		};
 		864B3FCC2B9F1DBB00F51FF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3CF34929CB873A660CAF25F /* Pods-Comi.debug.xcconfig */;
+			baseConfigurationReference = B7E050BA6F61CD507CE2C49E /* Pods-Comi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -718,6 +736,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Comi/Support/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 권한 허용";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -743,7 +762,7 @@
 		};
 		864B3FCD2B9F1DBB00F51FF6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A042D59D3D5A60D50393302A /* Pods-Comi.release.xcconfig */;
+			baseConfigurationReference = F105F5AECDC82DF7E227FF24 /* Pods-Comi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -757,6 +776,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Comi/Support/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 권한 허용";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
