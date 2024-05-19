@@ -171,5 +171,5 @@ struct FeedbackView: View {
 }
 
 #Preview {
-    FeedbackView(gotoRoot: .constant(true), model: RealmModel(id: 0, name: "카리나", state: .available, image: ""), topicData: "")
+    FeedbackView(gotoRoot: .constant(true), model: RealmModel(id: 0, name: "카리나", englishName: "karina", state: .available, image: ""), topicData: "")
 }

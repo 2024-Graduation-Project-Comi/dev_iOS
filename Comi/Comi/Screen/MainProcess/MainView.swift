@@ -14,7 +14,8 @@ struct MainView: View {
     var body: some View {
         switch selectedTab {
         case .home:
-            HomeView(selectedTab: $selectedTab)
+//            HomeView(selectedTab: $selectedTab)
+            ConversationView()
         case .history:
             HistoryView(selectedTab: $selectedTab)
         case .contact:

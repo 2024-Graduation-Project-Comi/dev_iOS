@@ -55,6 +55,8 @@
 		86D192CE2BE69ECE00C4CDAE /* FeedbackContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */; };
 		86F0ED962BEDCCE300D1B8E8 /* ModelsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */; };
 		BA740F8B2BF72EDC00CA1885 /* AzureInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */; };
+		BA740F922BF744C400CA1885 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA740F912BF744C400CA1885 /* ConversationViewModel.swift */; };
+		BA740F942BF7A8FC00CA1885 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA740F932BF7A8FC00CA1885 /* ConversationView.swift */; };
 		BAE76CCF2BECE6650003C17A /* SpeechViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */; };
 		BAE76CD62BF0DE1B0003C17A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */; };
 		BAF5B97B2BF7253400ADCC08 /* AzureInfo++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF5B97A2BF7253400ADCC08 /* AzureInfo++Bundle.swift */; };
@@ -111,6 +113,8 @@
 		B0C36C82EAD07ADEAEBD718C /* Pods_Comi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Comi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E050BA6F61CD507CE2C49E /* Pods-Comi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Comi.debug.xcconfig"; path = "Target Support Files/Pods-Comi/Pods-Comi.debug.xcconfig"; sourceTree = "<group>"; };
 		BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AzureInfo.plist; sourceTree = "<group>"; };
+		BA740F912BF744C400CA1885 /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
+		BA740F932BF7A8FC00CA1885 /* ConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
 		BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewModel.swift; sourceTree = "<group>"; };
 		BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BAF5B97A2BF7253400ADCC08 /* AzureInfo++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AzureInfo++Bundle.swift"; sourceTree = "<group>"; };
@@ -353,6 +357,7 @@
 		86AF00BC2BE55C66007DAF5F /* Calling */ = {
 			isa = PBXGroup;
 			children = (
+				BA740F902BF744B700CA1885 /* Conversation */,
 				BAE76CCD2BECE6560003C17A /* Speech */,
 				86AF00BD2BE567C0007DAF5F /* CallingView.swift */,
 				86AF00BF2BE56EF0007DAF5F /* CallBackground.swift */,
@@ -385,6 +390,15 @@
 				F105F5AECDC82DF7E227FF24 /* Pods-Comi.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BA740F902BF744B700CA1885 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				BA740F912BF744C400CA1885 /* ConversationViewModel.swift */,
+				BA740F932BF7A8FC00CA1885 /* ConversationView.swift */,
+			);
+			path = Conversation;
 			sourceTree = "<group>";
 		};
 		BAE76CCB2BECE34B0003C17A /* Sources */ = {
@@ -588,6 +602,8 @@
 				864B3FC32B9F1DBA00F51FF6 /* ContentView.swift in Sources */,
 				8631A0BF2BE3D06D00C442B0 /* ModelModal.swift in Sources */,
 				86AF00BE2BE567C0007DAF5F /* CallingView.swift in Sources */,
+				BA740F942BF7A8FC00CA1885 /* ConversationView.swift in Sources */,
+				BA740F922BF744C400CA1885 /* ConversationViewModel.swift in Sources */,
 				860DDCA62BDFA39F007A8F13 /* MainView.swift in Sources */,
 				860DDC9A2BDF7977007A8F13 /* BackGround.swift in Sources */,
 				86447C222BF1183000C1988E /* TopicsDB.swift in Sources */,
@@ -751,6 +767,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Comi/Support/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 권한 허용";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 인식 기능을 사용하기 위한 권한 요청";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -791,6 +808,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Comi/Support/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "마이크 권한 허용";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "음성 인식 기능을 사용하기 위한 권한 요청";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
