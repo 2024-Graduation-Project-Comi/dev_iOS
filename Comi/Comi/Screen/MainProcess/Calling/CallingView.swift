@@ -37,12 +37,20 @@ struct CallingView: View {
             Spacer()
             // TODO: 영균 기능 합치고 텍스트
             VStack {
-                if response != nil {
-                    Text(response?.conv ?? "")
-                } else {
-                    Text("채팅 생성을 기다리는 중이에요...")
+                HStack {
+                    VStack { // AI 대화창
+                        if response != nil {
+                            Text(response?.conv ?? "")
+                        } else {
+                            Text("채팅 생성을 기다리는 중이에요...")
+                        }
+                    }
+                    VStack { // User 대화창
+
+                    }
                 }
             }
+            Spacer()
             Divider()
             VStack {
                 Text(speechViewModel.speechedText ?? "Say it!!")
@@ -78,19 +86,39 @@ struct CallingView: View {
                     Text(speechViewModel.isRecording ? "Stop Recording" : "Pronunciation evaluation azure")
                 }
                 .padding()
+
+                Button {
+                    let requestData = ConversationRequestData(answer: speechViewModel.speechedText!, id: "999", conversationLanguage: "en", model: "winter")
+                    conversationViewModel.sendConversation(requestData: requestData) { result in
+                        switch result {
+                        case .success(let responseData):
+                            print("Conversation: \(responseData.conv)")
+                            print("Explanation: \(responseData.explain)")
+                            print("Evaluation: \(responseData.eval)")
+                            print("Fix: \(String(describing: responseData.fix))")
+                            response = responseData
+                        case .failure(let error):
+                            print("Error occurred: \(error)")
+                        }
+                    }
+                } label: {
+                    Text("send next conversation.")
+                }
+
             }
         }
             .padding(.horizontal, 24)
             .background(CallBackground(status: $background))
             .onAppear {
                 let createConversationRequest: ChatRequestData = ChatRequestData(id: "999", topic: topicTitle, conversationLanguage: "en", explanationLanguage: "ko", model: model.name)
-                conversationViewModel.startConversation(chatRequestData: createConversationRequest) { result in
+//                conversationViewModel.startConversation(chatRequestData: createConversationRequest) { result in
+                conversationViewModel.startConversation2(chatRequestData: createConversationRequest) { result in
                     switch result {
                     case .success(let responseData):
                         print("Conversation: \(responseData.conv)")
                         print("Explanation: \(responseData.explain)")
                         print("Evaluation: \(responseData.eval)")
-                        print("Fix: \(responseData.fix)")
+                        print("Fix: \(String(describing: responseData.fix))")
                         response = responseData
                     case .failure(let error):
                         print("Error occurred: \(error)")
