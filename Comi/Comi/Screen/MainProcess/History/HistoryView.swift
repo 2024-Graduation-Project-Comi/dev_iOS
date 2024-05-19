@@ -34,7 +34,7 @@ struct HistoryView: View {
                                 .filter { Calendar.current.isDate($0.ended, inSameDayAs: Date()) }, id: \.self
                         ) { data in
                             let modelInfo =
-                                realmViewModel.findModelInfo(modelId: data.modelId) ?? RealmModel(id: 999, name: "에러", group: nil, state: .unavailable, image: "")
+                            realmViewModel.findModelInfo(modelId: data.modelId) ?? RealmModel(id: 999, name: "에러", englishName: "error", group: nil, state: .unavailable, image: "")
                             HistoryCard(selected: self.$selected, modelInfo: modelInfo, data: data)
                         }
                         Spacer().frame(height: 28)
@@ -46,7 +46,7 @@ struct HistoryView: View {
                                 .filter { !Calendar.current.isDate($0.ended, inSameDayAs: Date()) }, id: \.self
                         ) { data in
                             let modelInfo =
-                                realmViewModel.findModelInfo(modelId: data.modelId) ?? RealmModel(id: 999, name: "에러", group: nil, state: .unavailable, image: "")
+                            realmViewModel.findModelInfo(modelId: data.modelId) ?? RealmModel(id: 999, name: "에러", englishName: "error", group: nil, state: .unavailable, image: "")
                             HistoryCard(selected: self.$selected, modelInfo: modelInfo, data: data)
                         }
                     }

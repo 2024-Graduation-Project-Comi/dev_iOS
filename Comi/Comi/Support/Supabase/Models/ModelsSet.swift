@@ -13,9 +13,11 @@ struct Models: Codable, Hashable {
     var group: String?
     let state: ModelState
     let image: String
+    let englishName: String
 
     enum CodingKeys: String, CodingKey {
         case id = "model_id"
+        case englishName = "en_name"
         case name, group, state, image
     }
 }

@@ -12,7 +12,7 @@ struct ContactsView: View {
 
     @EnvironmentObject var realmViewModel: RealmViewModel
     @State private var selectedModel: RealmModel
-        = RealmModel(id: 0, name: "", group: nil, state: .available, image: "")
+    = RealmModel(id: 0, name: "", englishName: "", group: nil, state: .available, image: "")
 
     @State private var gotoModelDetailView: Bool = false
     @Binding var selectedTab: Tabs
@@ -111,7 +111,7 @@ struct ContactsView: View {
         Section(header: sectionText(text: "즐겨찾기")) {
             if !favorites.decodeSave().isEmpty {
                 ForEach(favorites.decodeSave().reversed(), id: \.self) { data in
-                    let model = RealmModel(id: data.id, name: data.name, group: data.group ?? nil, state: data.state, image: data.image)
+                    let model = RealmModel(id: data.id, name: data.name, englishName: data.englishName, group: data.group ?? nil, state: data.state, image: data.image)
 
                     modelItems(data: model)
                         .padding(.leading, 24)

@@ -70,6 +70,7 @@ class RealmViewModel: ObservableObject {
 struct RealmModel: Codable, Hashable {
     var id: Int
     var name: String
+    var englishName: String
     var group: String?
     var state: RealmModelState
     var image: String

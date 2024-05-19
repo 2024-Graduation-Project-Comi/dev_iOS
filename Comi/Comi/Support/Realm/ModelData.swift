@@ -14,6 +14,7 @@ class ModelData: Object, ObjectKeyIdentifiable {
     @Persisted var group: String?
     @Persisted var state: Int
     @Persisted var image: String
+    @Persisted var englishName: String
 }
 
 class ModelViewModel: ObservableObject {
@@ -30,6 +31,7 @@ class ModelViewModel: ObservableObject {
             let realmData = ModelData()
             realmData.id = modelData.id
             realmData.name = modelData.name
+            realmData.englishName = modelData.englishName
             if modelData.group != nil {
                 realmData.group = modelData.group
             }
@@ -51,7 +53,7 @@ class ModelViewModel: ObservableObject {
             let arrData = Array(target)
             var trans: [RealmModel] = []
             for data in arrData {
-                let temp = RealmModel(id: data.id, name: data.name, group: data.group ?? nil, state: RealmModelState(rawValue: data.state) ?? .unavailable, image: data.image)
+                let temp = RealmModel(id: data.id, name: data.name, englishName: data.englishName, group: data.group ?? nil, state: RealmModelState(rawValue: data.state) ?? .unavailable, image: data.image)
                 trans.append(temp)
             }
             models = trans
