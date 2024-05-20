@@ -1,5 +1,5 @@
 //
-//  Splash.swift
+//  SplashView.swift
 //  Comi
 //
 //  Created by yimkeul on 4/29/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Splash: View {
+struct SplashView: View {
 
     @EnvironmentObject var realmViewModel: RealmViewModel
 
@@ -46,6 +46,6 @@ struct Splash: View {
 }
 
 #Preview {
-    Splash()
+    SplashView()
         .environmentObject(RealmViewModel())
 }

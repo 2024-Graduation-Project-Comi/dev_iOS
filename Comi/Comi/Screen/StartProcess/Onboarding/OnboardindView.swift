@@ -1,5 +1,5 @@
 //
-//  OnboardPage.swift
+//  OnboardindView.swift
 //  Comi
 //
 //  Created by yimkeul on 4/29/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OnboardPage: View {
+struct OnboardindView: View {
 
     @State private var isStart: Bool = false
     @Binding var isLogin: Bool
@@ -31,5 +31,5 @@ struct OnboardPage: View {
 }
 
 #Preview {
-    OnboardPage(isLogin: .constant(false))
+    OnboardindView(isLogin: .constant(false))
 }

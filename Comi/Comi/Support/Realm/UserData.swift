@@ -34,7 +34,7 @@ class UserViewModel: ObservableObject {
             realmData.email = "example@example.com"
             realmData.social = "sample"
             realmData.remainTime = 300
-            realmData.isLogin = true
+            realmData.isLogin = false
             try realm.write {
                 realm.add(realmData, update: .modified)
             }
@@ -61,6 +61,7 @@ class UserViewModel: ObservableObject {
                 trans.append(temp)
             }
             models = trans.first ?? RealmUser(userId: 1, createdAt: Date.now, email: "", social: "", remainTime: 0, isLogin: false)
+            print("TT : ", models)
         } catch {
             print(error)
         }
@@ -73,7 +74,13 @@ class UserViewModel: ObservableObject {
             print("User copy success")
         }
     }
-
+    func updateData(id: Int) {
+        Task {
+            updateUserLoginData(id: id)
+            fetchData()
+            print("User update success")
+        }
+    }
     func readyData() {
         if checkDB(type: .userData) {
             copyData()
@@ -81,6 +88,24 @@ class UserViewModel: ObservableObject {
             fetchData()
         }
         print("user Ready")
+    }
+
+    func updateUserLoginData(id: Int) {
+        do {
+            let realm = try Realm()
+            let target = realm.objects(UserData.self)
+                .filter { $0.userId == id }
+            try realm.write {
+                target.first?.createdAt = Date.now
+                target.first?.email = "sample@example.com"
+                target.first?.social = "sample"
+                target.first?.remainTime = 300
+                target.first?.isLogin = true
+            }
+            print("TT up: \(target)")
+        } catch {
+            print("user login udate 실패")
+        }
     }
 
 }
