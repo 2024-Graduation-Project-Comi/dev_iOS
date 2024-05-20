@@ -61,7 +61,7 @@ class UserViewModel: ObservableObject {
                 trans.append(temp)
             }
             models = trans.first ?? RealmUser(userId: 1, createdAt: Date.now, email: "", social: "", remainTime: 0, isLogin: false)
-            print("TT : ", models)
+            print("UserData: ", models)
         } catch {
             print(error)
         }
@@ -74,12 +74,10 @@ class UserViewModel: ObservableObject {
             print("User copy success")
         }
     }
-    func updateData(id: Int) {
-        Task {
-            updateUserLoginData(id: id)
-            fetchData()
-            print("User update success")
-        }
+    func updateData(id: Int) async {
+        updateUserLoginData(id: id)
+        fetchData()
+        print("User update success")
     }
     func readyData() {
         if checkDB(type: .userData) {
@@ -102,7 +100,6 @@ class UserViewModel: ObservableObject {
                 target.first?.remainTime = 300
                 target.first?.isLogin = true
             }
-            print("TT up: \(target)")
         } catch {
             print("user login udate 실패")
         }

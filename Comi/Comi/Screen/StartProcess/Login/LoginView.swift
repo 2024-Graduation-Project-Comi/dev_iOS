@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
 
+    @EnvironmentObject var realmViewModel: RealmViewModel
     @Binding var isLogin: Bool
 
     var body: some View {
@@ -17,7 +18,10 @@ struct LoginView: View {
             VStack {
                 Spacer()
                 Button {
-                    isLogin = true
+                    Task {
+                        await realmViewModel.userData.updateData(id: 1)
+                        isLogin = realmViewModel.userData.models.isLogin
+                    }
                 } label: {
                     loginBtn()
                 }

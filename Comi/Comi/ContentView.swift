@@ -10,8 +10,8 @@ import SwiftUI
 struct ContentView: View {
 
     @State private var splashView: Bool = false
-    @State var isLogin: Bool = true
-    @StateObject var realmViewModel = RealmViewModel()
+    @State var isLogin: Bool = false
+    @EnvironmentObject var realmViewModel: RealmViewModel
 
     var body: some View {
         if splashView {
@@ -19,7 +19,8 @@ struct ContentView: View {
                 MainView()
                     .environmentObject(realmViewModel)
             } else {
-                OnboardingView(isLogin: $isLogin)
+                LoginView(isLogin: $isLogin)
+                    .environmentObject(realmViewModel)
             }
 
         } else {
@@ -27,6 +28,8 @@ struct ContentView: View {
                 .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     splashView = true
+                    isLogin = realmViewModel.userData.models.isLogin
+                    print("ContentView-Splash 후 isLogin : \(isLogin)")
                 }
             }
                 .environmentObject(realmViewModel)
