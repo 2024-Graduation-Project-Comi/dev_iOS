@@ -10,10 +10,13 @@ import SwiftUI
 struct HomeView: View {
 
     @Binding var selectedTab: Tabs
-
+    var lan: String = Locale.current.languageCode ?? "Unknow"
     var body: some View {
         VStack {
+            Spacer()
             Text("HomeView")
+            Spacer()
+            Text(lan)
             Spacer()
             BottomTabBarView(selectedTab: $selectedTab)
         }.background(BackGround())

@@ -21,6 +21,7 @@
 		8617DC952BE29E87007CFB73 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8617DC942BE29E87007CFB73 /* HomeView.swift */; };
 		8617DC972BE2AE5A007CFB73 /* ModelDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8617DC962BE2AE5A007CFB73 /* ModelDetailView.swift */; };
 		86190AAE2BE16CB500D650A4 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86190AAD2BE16CB500D650A4 /* ContactsView.swift */; };
+		861C49052BFB5F83008D9706 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 861C49032BFB5F83008D9706 /* Localizable.strings */; };
 		8631A0BF2BE3D06D00C442B0 /* ModelModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8631A0BE2BE3D06D00C442B0 /* ModelModal.swift */; };
 		86447C0B2BEFDC8300C1988E /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86447C0A2BEFDC8300C1988E /* ModelData.swift */; };
 		86447C192BF1169300C1988E /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86447C182BF1169300C1988E /* FavoritesViewModel.swift */; };
@@ -76,6 +77,10 @@
 		8617DC942BE29E87007CFB73 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8617DC962BE2AE5A007CFB73 /* ModelDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDetailView.swift; sourceTree = "<group>"; };
 		86190AAD2BE16CB500D650A4 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		861C49042BFB5F83008D9706 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		861C49062BFB5FBC008D9706 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		861C49072BFB5FCE008D9706 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		861C49082BFB5FD8008D9706 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8631A0BE2BE3D06D00C442B0 /* ModelModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelModal.swift; sourceTree = "<group>"; };
 		86447C0A2BEFDC8300C1988E /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		86447C182BF1169300C1988E /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
@@ -307,6 +312,7 @@
 		864B3FB42B9F1DBA00F51FF6 = {
 			isa = PBXGroup;
 			children = (
+				861C49032BFB5F83008D9706 /* Localizable.strings */,
 				BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */,
 				864B3FBF2B9F1DBA00F51FF6 /* Comi */,
 				864B3FBE2B9F1DBA00F51FF6 /* Products */,
@@ -479,11 +485,14 @@
 			};
 			buildConfigurationList = 864B3FB82B9F1DBA00F51FF6 /* Build configuration list for PBXProject "Comi" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				ko,
 				Base,
+				en,
+				ja,
+				fr,
 			);
 			mainGroup = 864B3FB42B9F1DBA00F51FF6;
 			packageReferences = (
@@ -508,6 +517,7 @@
 				86AF00B92BE54391007DAF5F /* Pretendard-Bold.otf in Resources */,
 				864B3FC82B9F1DBB00F51FF6 /* Preview Assets.xcassets in Resources */,
 				BAE76CD62BF0DE1B0003C17A /* .swiftlint.yml in Resources */,
+				861C49052BFB5F83008D9706 /* Localizable.strings in Resources */,
 				BA740F8B2BF72EDC00CA1885 /* AzureInfo.plist in Resources */,
 				86AF00B82BE54391007DAF5F /* Pretendard-Regular.otf in Resources */,
 				864B3FC52B9F1DBB00F51FF6 /* Assets.xcassets in Resources */,
@@ -630,12 +640,27 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		861C49032BFB5F83008D9706 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				861C49042BFB5F83008D9706 /* ko */,
+				861C49062BFB5FBC008D9706 /* en */,
+				861C49072BFB5FCE008D9706 /* ja */,
+				861C49082BFB5FD8008D9706 /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		864B3FC92B9F1DBB00F51FF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -699,6 +724,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
