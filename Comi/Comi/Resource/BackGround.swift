@@ -21,7 +21,6 @@ struct BackGround: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .blur(radius: 20)
         .background(.cwhite)
-        .opacity(0.7)
         .ignoresSafeArea()
     }
 }

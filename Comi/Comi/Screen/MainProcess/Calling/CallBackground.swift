@@ -13,23 +13,33 @@ struct CallBackground: View {
 
     var body: some View {
         ZStack {
-            if status == .ai || status == .ready {
+            if status == .ready {
+                Circle()
+                    .foregroundStyle(.pink0)
+                    .frame(width: 480, height: 480)
+                    .offset(x: (-480 / 2))
+                Circle()
+                    .foregroundStyle(.pink1)
+                    .frame(width: 280, height: 280)
+                    .offset(x: (-480 / 2))
                 Circle()
                     .foregroundStyle(.callBlue0)
                     .frame(width: 480, height: 480)
+                    .offset(x: (480 / 2))
                 Circle()
                     .foregroundStyle(.callBlue1)
                     .frame(width: 280, height: 280)
-                if status == .ready {
-                    Circle()
-                        .foregroundStyle(.pink0)
-                        .frame(width: 480, height: 480)
-                        .offset(x: (-480 / 2))
-                    Circle()
-                        .foregroundStyle(.pink1)
-                        .frame(width: 280, height: 280)
-                        .offset(x: (-480 / 2))
-                }
+                    .offset(x: (480 / 2))
+            }
+            if status == .ai {
+                Circle()
+                    .foregroundStyle(.pink0)
+                    .frame(width: 480, height: 480)
+                    .offset(x: (-480 / 2))
+                Circle()
+                    .foregroundStyle(.pink1)
+                    .frame(width: 280, height: 280)
+                    .offset(x: (-480 / 2))
             }
             if status == .wait || status == .user {
                 Circle()
@@ -45,11 +55,10 @@ struct CallBackground: View {
             }
         }
             .blur(radius: 40)
-            .background(.cwhite.opacity(0.3))
-
+            .background(Color.cwhite)
     }
 }
 
 #Preview {
-    CallBackground(status: .constant(.user))
+    CallBackground(status: .constant(.ready))
 }

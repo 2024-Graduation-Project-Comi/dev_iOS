@@ -22,7 +22,7 @@ struct CallingView: View {
         "윈터": "winter"
     ]
 
-    @State private var background: CallState = .ready
+    @State private var background: CallState = .ai
     @State private var gotoFeedback: Bool = false
     @State var response: ChatResponseData?
     @StateObject private var speechViewModel = SpeechViewModel()

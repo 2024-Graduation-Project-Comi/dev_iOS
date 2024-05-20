@@ -29,7 +29,6 @@ struct Splash: View {
                 Spacer()
             }
                 .background(.cwhite)
-                .opacity(0.7)
 
             VStack {
                 Text("Comi")
@@ -48,4 +47,5 @@ struct Splash: View {
 
 #Preview {
     Splash()
+        .environmentObject(RealmViewModel())
 }
