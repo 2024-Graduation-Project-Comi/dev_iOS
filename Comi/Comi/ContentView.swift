@@ -19,11 +19,11 @@ struct ContentView: View {
                 MainView()
                     .environmentObject(realmViewModel)
             } else {
-                OnboardPage(isLogin: $isLogin)
+                OnboardingView(isLogin: $isLogin)
             }
 
         } else {
-            Splash()
+            SplashView()
                 .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     splashView = true

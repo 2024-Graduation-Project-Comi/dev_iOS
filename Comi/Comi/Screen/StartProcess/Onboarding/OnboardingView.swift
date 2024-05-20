@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OnboardindView: View {
+struct OnboardingView: View {
 
     @State private var isStart: Bool = false
     @Binding var isLogin: Bool
@@ -31,5 +31,5 @@ struct OnboardindView: View {
 }
 
 #Preview {
-    OnboardindView(isLogin: .constant(false))
+    OnboardingView(isLogin: .constant(false))
 }
