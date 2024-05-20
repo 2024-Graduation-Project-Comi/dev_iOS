@@ -12,7 +12,7 @@ struct ContactsView: View {
 
     @EnvironmentObject var realmViewModel: RealmViewModel
     @State private var selectedModel: RealmModel
-    = RealmModel(id: 0, name: "", englishName: "", group: nil, state: .available, image: "")
+        = RealmModel(id: 0, name: "", englishName: "", group: nil, state: .available, image: "")
 
     @State private var gotoModelDetailView: Bool = false
     @Binding var selectedTab: Tabs
@@ -31,7 +31,7 @@ struct ContactsView: View {
                         Text("연락처")
                             .font(.ptBold22)
                     }
-                        .padding(.bottom, 16)
+                        .padding(.vertical, 16)
                         .padding(.horizontal, 24)
                     SearchBar()
                         .padding(.bottom, 8)

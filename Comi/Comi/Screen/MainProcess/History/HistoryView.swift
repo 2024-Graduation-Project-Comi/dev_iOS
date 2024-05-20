@@ -21,7 +21,7 @@ struct HistoryView: View {
                         .font(.ptBold22)
                     Spacer()
                 }
-                    .padding(.bottom, 16)
+                    .padding(.vertical, 16)
                     .padding(.horizontal, 24)
                 SearchBar()
                     .padding(.bottom, 16)

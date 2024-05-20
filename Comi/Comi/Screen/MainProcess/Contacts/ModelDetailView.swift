@@ -39,7 +39,7 @@ struct ModelDetailView: View {
             VStack {
                 Spacer()
                 ZStack(alignment: .bottom) {
-                    ModelModal(showTopics: $showTopics, isSelected: $isSelected, selected: $selected, model: model, maxHeight: geo.size.height)
+                    ModelModal(showTopics: $showTopics, isSelected: $isSelected, selected: $selected, model: model, maxSize: geo.size)
                         .environmentObject(topics)
                     bottomBtn()
                 }
@@ -71,7 +71,9 @@ struct ModelDetailView: View {
             } label: {
                 Image(favorites.decodeSave().contains(model) ? "Heart" : "Heart Disalbed")
             }
-        }.padding(.horizontal, 24)
+        }
+            .padding(.vertical, 16)
+            .padding(.horizontal, 24)
     }
 
     @ViewBuilder

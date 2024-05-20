@@ -173,7 +173,7 @@ struct CallingView: View {
                                 .font(.ptRegular11)
                                 .foregroundStyle(.disabled)
                                 .padding(.leading, 24)
-                            Text("TODO")
+                            Text("TODOABCDEFG")
                                 .font(.ptSemiBold14)
                                 .foregroundStyle(.cwhite)
                             Text("주제")
@@ -191,7 +191,7 @@ struct CallingView: View {
                                 Text("00:00")
                                     .font(.ptRegular14)
                             }.frame(width: 84, height: 38)
-                                .padding(4)
+                                .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 4))
                         }
                     }
                         .padding(.horizontal, 8)
@@ -207,6 +207,7 @@ struct CallingView: View {
                     .foregroundStyle(.constantsSemi)
             }
         }
+        .padding(.vertical, 16)
     }
 }
 
