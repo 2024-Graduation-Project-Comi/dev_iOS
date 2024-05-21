@@ -26,15 +26,7 @@ class RealmViewModel: ObservableObject {
     }
 
     func findModelInfo(modelId: Int) -> RealmModel? {
-        let modelsRealm = ModelViewModel()
-
-        if checkDB(type: .modelData) {
-            modelsRealm.copySupaData()
-        } else {
-            modelsRealm.fetchData()
-        }
-
-        let modelsDatas: [RealmModel] = modelsRealm.models
+        let modelsDatas: [RealmModel] = modelData.models
         guard let result = modelsDatas.first(where: { $0.id == modelId }) else {
             return nil
         }

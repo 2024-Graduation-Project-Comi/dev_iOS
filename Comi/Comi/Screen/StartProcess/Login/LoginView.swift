@@ -35,18 +35,16 @@ struct LoginView: View {
                 .font(.ptRegular14)
                 .foregroundStyle(.black)
             Spacer()
-            Button {
+
+            BottomActionButton(action: {
                 Task {
                     await realmViewModel.userData.updateData(id: 1)
                     isLogin = realmViewModel.userData.models.isLogin
                 }
-            } label: {
-                loginBtn()
-            }
-                .padding(.bottom, 48)
-        }.background(BackGround())
+            }, title: "간편 로그인")
+        }
+            .background(BackGround())
     }
-
 }
 
 @ViewBuilder

@@ -13,7 +13,15 @@ struct ProfileView: View {
     @Binding var selectedTab: Tabs
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack {
+                Text("프로필")
+                    .font(.ptBold22)
+                Spacer()
+            }
+            .padding(.vertical, 16)
+            .padding(.horizontal, 24)
+
             Spacer()
             Text("profile view")
             Text("userId : \(realmViewModel.userData.models.userId)")

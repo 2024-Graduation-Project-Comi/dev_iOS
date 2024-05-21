@@ -25,6 +25,10 @@
 		861C490B2BFBA99E008D9706 /* CheckLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861C490A2BFBA99E008D9706 /* CheckLevelView.swift */; };
 		861C49122BFBADA1008D9706 /* SettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861C49112BFBADA1008D9706 /* SettingData.swift */; };
 		861C49162BFBB272008D9706 /* UserSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861C49152BFBB272008D9706 /* UserSettingViewModel.swift */; };
+		861C49182BFC2D65008D9706 /* BottomActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861C49172BFC2D65008D9706 /* BottomActionButton.swift */; };
+		861C491A2BFC345A008D9706 /* ExRoundCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861C49192BFC345A008D9706 /* ExRoundCorner.swift */; };
+		861C491C2BFC5634008D9706 /* ServiceLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861C491B2BFC5634008D9706 /* ServiceLanguage.swift */; };
+		861C491E2BFC59DC008D9706 /* LanguageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861C491D2BFC59DC008D9706 /* LanguageCard.swift */; };
 		8631A0BF2BE3D06D00C442B0 /* ModelModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8631A0BE2BE3D06D00C442B0 /* ModelModal.swift */; };
 		86447C0B2BEFDC8300C1988E /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86447C0A2BEFDC8300C1988E /* ModelData.swift */; };
 		86447C192BF1169300C1988E /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86447C182BF1169300C1988E /* FavoritesViewModel.swift */; };
@@ -87,6 +91,10 @@
 		861C490A2BFBA99E008D9706 /* CheckLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLevelView.swift; sourceTree = "<group>"; };
 		861C49112BFBADA1008D9706 /* SettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingData.swift; sourceTree = "<group>"; };
 		861C49152BFBB272008D9706 /* UserSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingViewModel.swift; sourceTree = "<group>"; };
+		861C49172BFC2D65008D9706 /* BottomActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomActionButton.swift; sourceTree = "<group>"; };
+		861C49192BFC345A008D9706 /* ExRoundCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExRoundCorner.swift; sourceTree = "<group>"; };
+		861C491B2BFC5634008D9706 /* ServiceLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLanguage.swift; sourceTree = "<group>"; };
+		861C491D2BFC59DC008D9706 /* LanguageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCard.swift; sourceTree = "<group>"; };
 		8631A0BE2BE3D06D00C442B0 /* ModelModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelModal.swift; sourceTree = "<group>"; };
 		86447C0A2BEFDC8300C1988E /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		86447C182BF1169300C1988E /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
@@ -161,6 +169,7 @@
 				BAF5B97A2BF7253400ADCC08 /* AzureInfo++Bundle.swift */,
 				8697B0432BF73D3500F1C5EB /* SupabaseInfo++Bundle.swift */,
 				860DDC892BDF66BB007A8F13 /* ExFont.swift */,
+				861C49192BFC345A008D9706 /* ExRoundCorner.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -214,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				860DDCA22BDFA230007A8F13 /* StartProcessData.swift */,
+				861C49172BFC2D65008D9706 /* BottomActionButton.swift */,
 				860DDC982BDF77D4007A8F13 /* Login */,
 				861C49092BFBA980008D9706 /* CheckLevel */,
 				860DDC972BDF77CC007A8F13 /* Onboarding */,
@@ -270,6 +280,8 @@
 			isa = PBXGroup;
 			children = (
 				861C490A2BFBA99E008D9706 /* CheckLevelView.swift */,
+				861C491B2BFC5634008D9706 /* ServiceLanguage.swift */,
+				861C491D2BFC59DC008D9706 /* LanguageCard.swift */,
 			);
 			path = CheckLevel;
 			sourceTree = "<group>";
@@ -647,18 +659,22 @@
 				86AF00BB2BE54681007DAF5F /* TopicCard.swift in Sources */,
 				864B3FC32B9F1DBA00F51FF6 /* ContentView.swift in Sources */,
 				8631A0BF2BE3D06D00C442B0 /* ModelModal.swift in Sources */,
+				861C491C2BFC5634008D9706 /* ServiceLanguage.swift in Sources */,
 				86AF00BE2BE567C0007DAF5F /* CallingView.swift in Sources */,
 				BA740F942BF7A8FC00CA1885 /* ConversationView.swift in Sources */,
 				BA740F922BF744C400CA1885 /* ConversationViewModel.swift in Sources */,
 				860DDCA62BDFA39F007A8F13 /* MainView.swift in Sources */,
 				860DDC9A2BDF7977007A8F13 /* BackGround.swift in Sources */,
 				86447C222BF1183000C1988E /* TopicsDB.swift in Sources */,
+				861C491A2BFC345A008D9706 /* ExRoundCorner.swift in Sources */,
 				8617DC952BE29E87007CFB73 /* HomeView.swift in Sources */,
 				86AF00C02BE56EF0007DAF5F /* CallBackground.swift in Sources */,
 				86447C202BF1182800C1988E /* TopicsSet.swift in Sources */,
+				861C49182BFC2D65008D9706 /* BottomActionButton.swift in Sources */,
 				86447C272BF11B7700C1988E /* CallRecordsDB.swift in Sources */,
 				8617DC932BE29E81007CFB73 /* ProfileView.swift in Sources */,
 				867B25262BF33FF200861B66 /* UserData.swift in Sources */,
+				861C491E2BFC59DC008D9706 /* LanguageCard.swift in Sources */,
 				860DDC9E2BDF90E6007A8F13 /* BottomStartBtn.swift in Sources */,
 				86F0ED962BEDCCE300D1B8E8 /* ModelsDB.swift in Sources */,
 				864B3FC12B9F1DBA00F51FF6 /* ComiApp.swift in Sources */,

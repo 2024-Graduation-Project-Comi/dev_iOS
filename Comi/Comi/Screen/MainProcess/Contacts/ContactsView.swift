@@ -13,7 +13,6 @@ struct ContactsView: View {
     @EnvironmentObject var realmViewModel: RealmViewModel
     @State private var selectedModel: RealmModel
         = RealmModel(id: 0, name: "", englishName: "", group: nil, state: .available, image: "")
-
     @State private var gotoModelDetailView: Bool = false
     @Binding var selectedTab: Tabs
     @StateObject var favorites = FavoritesViewModel()
@@ -24,35 +23,31 @@ struct ContactsView: View {
     }
 
     var body: some View {
-        NavigationView {
-            GeometryReader { _ in
-                VStack(alignment: .leading, spacing: 0) {
-                    HStack {
-                        Text("연락처")
-                            .font(.ptBold22)
-                    }
-                        .padding(.vertical, 16)
-                        .padding(.horizontal, 24)
-                    SearchBar()
-                        .padding(.bottom, 8)
-                    List {
-                        favoritesList()
-                        voiceList()
-                        emptyListArea()
-
-                    }
-                        .listStyle(.plain)
-                    BottomTabBarView(selectedTab: $selectedTab)
-                }
-                    .background {
-                    NavigationLink(
-                        destination: ModelDetailView(gotoRoot: $gotoModelDetailView, model: selectedModel)
-                            .navigationBarHidden(true),
-                        isActive: $gotoModelDetailView,
-                        label: { EmptyView() })
-                    BackGround()
-                }
+        VStack(alignment: .leading, spacing: 0) {
+            HStack {
+                Text("연락처")
+                    .font(.ptBold22)
             }
+                .padding(.vertical, 16)
+                .padding(.horizontal, 24)
+            SearchBar()
+                .padding(.bottom, 8)
+            List {
+                favoritesList()
+                voiceList()
+                emptyListArea()
+            }.background(
+                NavigationLink(
+                    destination: ModelDetailView(gotoRoot: $gotoModelDetailView, model: selectedModel)
+                        .navigationBarHidden(true),
+                    isActive: $gotoModelDetailView,
+                    label: { EmptyView() }))
+                .listStyle(.plain)
+            Spacer()
+            BottomTabBarView(selectedTab: $selectedTab)
+        }
+            .background {
+            BackGround()
         }
     }
 

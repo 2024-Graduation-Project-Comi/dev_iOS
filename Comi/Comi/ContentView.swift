@@ -18,7 +18,7 @@ struct ContentView: View {
         if splashView {
             if isLogin && isReady {
                 MainView()
-                    .environmentObject(realmViewModel)
+//                    .environmentObject(realmViewModel)
             } else {
                 LoginView(isLogin: $isLogin, isReady: $isReady)
                     .environmentObject(realmViewModel)
@@ -39,4 +39,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(RealmViewModel())
 }
