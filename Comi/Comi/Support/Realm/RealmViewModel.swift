@@ -16,6 +16,7 @@ class RealmViewModel: ObservableObject {
     @ObservedObject var modelData = ModelViewModel()
     @ObservedObject var callRecordData = CallRecordViewModel()
     @ObservedObject var userData = UserViewModel()
+    @ObservedObject var settingData = SettingViewModel()
 
     func start() async {
         print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
@@ -100,11 +101,19 @@ struct RealmUser: Hashable {
     var isLogin: Bool
 }
 
+struct RealmSetting: Hashable {
+    var userId: Int
+    var level: Int?
+    var learning: String?
+    var local: String
+}
+
 // MARK: Realm DB 종류
 enum RealmType {
     case modelData
     case callRecordData
     case userData
+    case setting
 
     var objectType: Object.Type {
         switch self {
@@ -114,6 +123,8 @@ enum RealmType {
             return CallRecordData.self
         case .userData:
             return UserData.self
+        case .setting:
+            return SettingData.self
         }
     }
 }

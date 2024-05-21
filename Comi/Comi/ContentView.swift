@@ -9,17 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
 
+    @EnvironmentObject var realmViewModel: RealmViewModel
     @State private var splashView: Bool = false
     @State var isLogin: Bool = false
-    @EnvironmentObject var realmViewModel: RealmViewModel
+    @State var isReady: Bool = false
 
     var body: some View {
         if splashView {
-            if isLogin {
+            if isLogin && isReady {
                 MainView()
                     .environmentObject(realmViewModel)
             } else {
-                LoginView(isLogin: $isLogin)
+                LoginView(isLogin: $isLogin, isReady: $isReady)
                     .environmentObject(realmViewModel)
             }
 
@@ -29,7 +30,6 @@ struct ContentView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     splashView = true
                     isLogin = realmViewModel.userData.models.isLogin
-                    print("ContentView-Splash 후 isLogin : \(isLogin)")
                 }
             }
                 .environmentObject(realmViewModel)
