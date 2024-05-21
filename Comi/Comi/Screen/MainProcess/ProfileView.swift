@@ -13,7 +13,7 @@ struct ProfileView: View {
     @Binding var selectedTab: Tabs
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(spacing: 0) {
             HStack {
                 Text("프로필")
                     .font(.ptBold22)
@@ -28,6 +28,7 @@ struct ProfileView: View {
             Text("email : \(realmViewModel.userData.models.email)")
             Text("remainTime : \(realmViewModel.userData.models.remainTime)")
             Text("isLogin : \(realmViewModel.userData.models.isLogin)")
+            Text("isReady : \(realmViewModel.userData.models.isReady)")
             Text("Setting")
             Text("userId : \(realmViewModel.settingData.models.userId)")
             Text("level : \(realmViewModel.settingData.models.level)")
