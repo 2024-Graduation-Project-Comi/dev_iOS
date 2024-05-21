@@ -9,9 +9,9 @@ import Foundation
 import RealmSwift
 
 class SettingData: Object, ObjectKeyIdentifiable {
-    @Persisted(primaryKey: true) var id: Int
-    @Persisted var level: Int?
-    @Persisted var learning: String?
+    @Persisted var id: Int
+    @Persisted var level: Int
+    @Persisted var learning: String
     @Persisted var local: String
 }
 
@@ -20,20 +20,19 @@ class SettingViewModel: ObservableObject {
     @Published var models: RealmSetting
 
     init() {
-        self.models = .init(userId: 0, local: "")
+        self.models = .init(userId: 0, level: 0, learning: "", local: "")
     }
 
-    func setData(modelData: RealmSetting) {
+    func setData() {
         do {
             let realm = try Realm()
             let realmData = SettingData()
-            realmData.id = modelData.userId
-            realmData.level = modelData.level ?? 0
-            realmData.learning = modelData.learning ?? ""
-            realmData.local = modelData.local
-
+            realmData.id = 0
+            realmData.level = 0
+            realmData.learning = ""
+            realmData.local = ""
             try realm.write {
-                realm.add(realmData, update: .modified)
+                realm.add(realmData)
             }
         } catch {
             print(error)
@@ -47,26 +46,27 @@ class SettingViewModel: ObservableObject {
             let arrData = Array(target)
             var trans: [RealmSetting] = []
             for data in arrData {
-                let temp = RealmSetting(userId: data.id, level: data.level ?? 0, learning: data.learning ?? "", local: data.local)
+                let temp = RealmSetting(userId: data.id, level: data.level, learning: data.learning, local: data.local)
                 trans.append(temp)
             }
-            models = trans.first ?? .init(userId: 0, local: "")
+            models = trans.first ?? .init(userId: 0, level: 0, learning: "", local: "")
+            print("Setting Data : \(models)")
         } catch {
             print(error)
         }
     }
-    
-    func copyData(modelData: RealmSetting) {
+
+    func copyData() {
         Task {
-            setData(modelData: modelData)
+            setData()
             fetchData()
             print("User Setting Copy Success")
         }
     }
-    
-    func readyData(modelData: RealmSetting) {
+
+    func readyData() {
         if checkDB(type: .setting) {
-            copyData(modelData: modelData)
+            copyData()
         } else {
             fetchData()
         }
@@ -82,13 +82,14 @@ class SettingViewModel: ObservableObject {
     func updateUserSettingData(data: RealmSetting) {
         do {
             let realm = try Realm()
-            let target = realm.objects(SettingData.self)
-                .filter { $0.id == data.userId }
-
+            guard let target = realm.objects(SettingData.self).first else {
+                return
+            }
             try realm.write {
-                target.first?.level = data.level
-                target.first?.learning = data.learning
-                target.first?.local = data.local
+                target.id = data.userId
+                target.level = data.level
+                target.learning = data.learning
+                target.local = data.local
             }
         } catch {
             print("user setting update 실패")

@@ -14,8 +14,8 @@ class UserSettingViewModel: ObservableObject {
         let url = "http://211.216.233.107:88/user/init"
         let param: [String: Any] = [
             "user_id": data.userId,
-            "proficiency_level": Int(data.level ?? 0),
-            "learning_language": data.learning ?? "",
+            "proficiency_level": Int(data.level),
+            "learning_language": data.learning,
             "local_language": data.local
         ]
 

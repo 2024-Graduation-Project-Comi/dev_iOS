@@ -1,5 +1,5 @@
 //
-//  CheckLevelView.swift
+//  CheckLangView.swift
 //  Comi
 //
 //  Created by yimkeul on 5/21/24.
@@ -8,18 +8,18 @@
 import SwiftUI
 import Alamofire
 
-struct CheckLevelView: View {
+struct CheckLangView: View {
 
     @EnvironmentObject var realmViewModel: RealmViewModel
-    @State var userSetting: RealmSetting = .init(userId: 0, local: "")
+    @State var userSetting: RealmSetting = .init(userId: 0, level: 0, learning: "",local: "")
     @State private var selected: LanguageData?
     @State private var isSelect: Bool = false
+    @State private var gotoLevelView: Bool = false
     @Binding var isReady: Bool
-    @StateObject var userSettingViewModel = UserSettingViewModel()
 
     var body: some View {
-        VStack {
-            VStack(spacing: 0) {
+        VStack(spacing: 0) {
+            VStack {
                 Text("언어 선택")
                     .font(.ptSemiBold32)
                     .foregroundStyle(.black)
@@ -31,32 +31,32 @@ struct CheckLevelView: View {
                     .foregroundStyle(.black)
                 ScrollView(showsIndicators: false) {
                     ForEach(languageDatas, id: \.self) { data in
-                        LanguageCard(selected: self.$selected, isSelect: $isSelect, languageData: data)
+                        LanguageCard(selected: self.$selected, isSelect: $isSelect, userSetting: $userSetting, languageData: data)
                     }
-                }.padding(.top, 80)
+                }
+                    .padding(.top, 80)
             }.padding(.horizontal, 24)
             Spacer()
-            BottomActionButton(action: { userSettingViewModel.postInit(data: userSetting) { result in
-                    isReady = result
-                    print("클릭 : \(isReady)")
-                }
-            }, title: "테스트 시작")
-            .opacity(isSelect ? 1 : 0)
-            .offset(y: isSelect ? 0 : 100)
+            BottomActionButton(action: { gotoLevelView.toggle() }, title: "테스트 시작")
+                .opacity(isSelect ? 1 : 0)
+                .offset(y: isSelect ? 0 : 100)
+                .background {
+                    NavigationLink(destination: CheckLevelView(userSetting: $userSetting, isReady: $isReady)
+                    .navigationBarBackButtonHidden(),
+                isActive: $gotoLevelView,
+                label: { EmptyView() })
+            }
+
         }
-
             .background(BackGround())
-
             .onAppear {
             userSetting.userId = realmViewModel.userData.models.userId
             userSetting.local = Locale.current.languageCode ?? ""
-//            userSetting.learning = "en"
-//            userSetting.level = 1
         }
     }
 }
 
 #Preview {
-    CheckLevelView(isReady: .constant(false))
+    CheckLangView(isReady: .constant(false))
         .environmentObject(RealmViewModel())
 }

@@ -23,6 +23,7 @@ class RealmViewModel: ObservableObject {
         modelData.readyData()
         callRecordData.readyData()
         userData.readyData()
+        settingData.readyData()
     }
 
     func findModelInfo(modelId: Int) -> RealmModel? {
@@ -91,12 +92,13 @@ struct RealmUser: Hashable {
     var social: String
     var remainTime: Int
     var isLogin: Bool
+    var isReady: Bool
 }
 
 struct RealmSetting: Hashable {
     var userId: Int
-    var level: Int?
-    var learning: String?
+    var level: Int
+    var learning: String
     var local: String
 }
 

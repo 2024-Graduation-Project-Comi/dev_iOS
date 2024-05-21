@@ -17,8 +17,11 @@ struct LoginView: View {
         if isLogin == false {
             loginView()
         } else {
-            CheckLevelView(isReady: $isReady)
-                .environmentObject(realmViewModel)
+            NavigationView {
+                CheckLangView(isReady: $isReady)
+                    .environmentObject(realmViewModel)
+                    .navigationBarHidden(true)
+            }
         }
     }
 
