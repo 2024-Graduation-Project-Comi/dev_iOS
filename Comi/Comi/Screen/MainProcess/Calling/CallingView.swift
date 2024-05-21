@@ -21,7 +21,7 @@ struct CallingView: View {
         "카리나": "karina",
         "윈터": "winter"
     ]
-
+    @EnvironmentObject var realmViewModel: RealmViewModel
     @State private var background: CallState = .ai
     @State private var gotoFeedback: Bool = false
     @State var response: ChatResponseData?
@@ -173,7 +173,7 @@ struct CallingView: View {
                                 .font(.ptRegular11)
                                 .foregroundStyle(.disabled)
                                 .padding(.leading, 24)
-                            Text("TODOABCDEFG")
+                            Text("\(realmViewModel.settingData.models.learning)")
                                 .font(.ptSemiBold14)
                                 .foregroundStyle(.cwhite)
                             Text("주제")
@@ -213,4 +213,5 @@ struct CallingView: View {
 
 #Preview {
     CallingView(gotoRoot: .constant(true), topicTitle: "", model: RealmModel(id: 0, name: "테스트", englishName: "test", group: nil, state: .available, image: ""))
+        .environmentObject(RealmViewModel())
 }
