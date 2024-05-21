@@ -45,7 +45,6 @@ struct ContactsView: View {
                     isActive: $gotoModelDetailView,
                     label: { EmptyView() }))
                 .listStyle(.plain)
-            Spacer()
             BottomTabBarView(selectedTab: $selectedTab)
         }
             .background {

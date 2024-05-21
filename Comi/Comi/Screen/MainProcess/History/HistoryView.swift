@@ -53,7 +53,6 @@ struct HistoryView: View {
                     .frame(alignment: .leading)
             }
                 .padding(.bottom, 32)
-            Spacer()
             BottomTabBarView(selectedTab: $selectedTab)
         }
             .background {

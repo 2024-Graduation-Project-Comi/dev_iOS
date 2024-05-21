@@ -52,14 +52,18 @@ struct ModelDetailView: View {
     }
     @ViewBuilder
     private func customNavBar() -> some View {
-        HStack {
+        HStack(alignment: .center) {
             Button {
                 dismiss()
             } label: {
                 Image("Close")
                     .foregroundColor(.cwhite)
-            }
+            }.frame(width: 32, height: 32)
 
+            Spacer()
+            Text("\(model.name)")
+                .font(.ptSemiBold22)
+                .foregroundColor(.cwhite)
             Spacer()
 
             Button {
@@ -70,10 +74,13 @@ struct ModelDetailView: View {
                 }
             } label: {
                 Image(favorites.decodeSave().contains(model) ? "Heart" : "Heart Disalbed")
-            }
+            }.frame(width: 32, height: 32)
         }
-            .padding(.vertical, 16)
+            .padding(.bottom, 16)
             .padding(.horizontal, 24)
+            .background(
+            Color.black.opacity(0.05)
+        )
     }
 
     @ViewBuilder
