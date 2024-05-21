@@ -9,19 +9,19 @@ import SwiftUI
 
 struct ModelModal: View {
 
-    @EnvironmentObject var topics:TopicsDB
+    @EnvironmentObject var topics: TopicsDB
     @State private var offset: CGFloat = 0
     @Binding var showTopics: Bool
     @Binding var isSelected: Bool
     @Binding var selected: Topics?
     var model: RealmModel
-    var maxHeight: CGFloat
+    var maxSize: CGSize
 
     var body: some View {
         ZStack(alignment: .top) {
             Rectangle()
                 .foregroundColor(.clear)
-                .frame(width: 390, height: showTopics ? maxHeight * 0.9 : 264)
+                .frame(width: maxSize.width, height: showTopics ? maxSize.height * 0.9 : 264)
                 .background(.cwhite.opacity(0.7))
                 .cornerRadius(32)
                 .overlay(
@@ -32,14 +32,14 @@ struct ModelModal: View {
             VStack {
                 ScrollView(showsIndicators: false) {
                     ForEach(topics.data, id: \.id) { data in
-                            TopicCard(selected: self.$selected, isSelected: $isSelected, topic: data)
-                        }
+                        TopicCard(selected: self.$selected, isSelected: $isSelected, topic: data)
+                    }
                     Spacer().frame(height: 16)
                 }
                     .padding(EdgeInsets(top: 48, leading: 24, bottom: 0, trailing: 24))
                 Spacer().frame(height: 116)
             }
-                .frame(width: 390, height: showTopics ? maxHeight * 0.9 : 264)
+                .frame(width: maxSize.width, height: showTopics ? maxSize.height * 0.9 : 264)
                 .opacity(showTopics ? 1 : 0)
 
             VStack {
@@ -51,7 +51,7 @@ struct ModelModal: View {
                 Spacer()
             }
                 .offset(y: 32)
-                .frame(width: 390, height: showTopics ? maxHeight * 0.9 : 264)
+                .frame(width: maxSize.width, height: showTopics ? maxSize.height * 0.9 : 264)
                 .opacity(showTopics ? 0 : 1)
         }
             .animation(.easeInOut(duration: 0.5), value: showTopics)

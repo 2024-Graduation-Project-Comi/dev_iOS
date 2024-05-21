@@ -13,13 +13,26 @@ struct ProfileView: View {
     @Binding var selectedTab: Tabs
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack {
+                Text("프로필")
+                    .font(.ptBold22)
+                Spacer()
+            }
+            .padding(.vertical, 16)
+            .padding(.horizontal, 24)
+
             Spacer()
             Text("profile view")
             Text("userId : \(realmViewModel.userData.models.userId)")
             Text("email : \(realmViewModel.userData.models.email)")
             Text("remainTime : \(realmViewModel.userData.models.remainTime)")
             Text("isLogin : \(realmViewModel.userData.models.isLogin)")
+            Text("Setting")
+            Text("userId : \(realmViewModel.settingData.models.userId)")
+            Text("level : \(realmViewModel.settingData.models.level)")
+            Text("learning : \(realmViewModel.settingData.models.learning)")
+            Text("local : \(realmViewModel.settingData.models.local)")
             Spacer()
             BottomTabBarView(selectedTab: $selectedTab)
         }.background(BackGround())

@@ -21,8 +21,8 @@ struct CallingView: View {
         "카리나": "karina",
         "윈터": "winter"
     ]
-
-    @State private var background: CallState = .ready
+    @EnvironmentObject var realmViewModel: RealmViewModel
+    @State private var background: CallState = .ai
     @State private var gotoFeedback: Bool = false
     @State var response: ChatResponseData?
     @StateObject private var speechViewModel = SpeechViewModel()
@@ -173,7 +173,7 @@ struct CallingView: View {
                                 .font(.ptRegular11)
                                 .foregroundStyle(.disabled)
                                 .padding(.leading, 24)
-                            Text("TODO")
+                            Text("\(realmViewModel.settingData.models.learning)")
                                 .font(.ptSemiBold14)
                                 .foregroundStyle(.cwhite)
                             Text("주제")
@@ -191,7 +191,7 @@ struct CallingView: View {
                                 Text("00:00")
                                     .font(.ptRegular14)
                             }.frame(width: 84, height: 38)
-                                .padding(4)
+                                .padding(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 4))
                         }
                     }
                         .padding(.horizontal, 8)
@@ -207,9 +207,11 @@ struct CallingView: View {
                     .foregroundStyle(.constantsSemi)
             }
         }
+        .padding(.vertical, 16)
     }
 }
 
 #Preview {
     CallingView(gotoRoot: .constant(true), topicTitle: "", model: RealmModel(id: 0, name: "테스트", englishName: "test", group: nil, state: .available, image: ""))
+        .environmentObject(RealmViewModel())
 }

@@ -39,8 +39,8 @@ struct FeedbackContentView: View {
             Image("Close")
                 .foregroundStyle(.clear)
         }
+            .padding(.vertical, 16)
             .padding(.horizontal, 24)
-            .padding(.bottom, 21)
     }
 
     @ViewBuilder

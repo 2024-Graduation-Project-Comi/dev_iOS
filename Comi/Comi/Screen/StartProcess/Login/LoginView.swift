@@ -9,32 +9,44 @@ import SwiftUI
 
 struct LoginView: View {
 
+    @EnvironmentObject var realmViewModel: RealmViewModel
     @Binding var isLogin: Bool
+    @Binding var isReady: Bool
 
     var body: some View {
-        ZStack {
-            BackGround()
-            VStack {
-                Spacer()
-                Button {
-                    isLogin = true
-                } label: {
-                    loginBtn()
-                }
-
-                HStack {
-                    Text("회원이 아니신가요?")
-                        .font(.ptRegular14)
-                        .foregroundStyle(.gray)
-                    Button { } label: {
-                        Text("회원가입")
-                            .font(.ptRegular14)
-                    }
-                }
-                    .padding(.top, 63)
-                    .padding(.bottom, 16)
+        if isLogin == false {
+            loginView()
+        } else {
+            NavigationView {
+                CheckLangView(isReady: $isReady)
+                    .environmentObject(realmViewModel)
+                    .navigationBarHidden(true)
             }
         }
+    }
+
+    @ViewBuilder
+    private func loginView() -> some View {
+        VStack {
+            Text("COMI")
+                .font(.ptSemiBold32)
+                .foregroundStyle(.black)
+                .padding(.top, 80)
+                .padding(.bottom, 12)
+
+            Text("이상형의 목소리와 함께 배우는 AI 외국어 학습")
+                .font(.ptRegular14)
+                .foregroundStyle(.black)
+            Spacer()
+
+            BottomActionButton(action: {
+                Task {
+                    await realmViewModel.userData.updateData(id: 1)
+                    isLogin = realmViewModel.userData.models.isLogin
+                }
+            }, title: "간편 로그인")
+        }
+            .background(BackGround())
     }
 }
 
@@ -55,12 +67,12 @@ private func loginBtn() -> some View {
             )
         )
             .cornerRadius(100)
-        Text("로그인")
+        Text("간편 로그인")
             .font(.ptSemiBold18)
             .foregroundStyle(.cwhite)
     }
 }
 
 #Preview {
-    LoginView(isLogin: .constant(false))
+    LoginView(isLogin: .constant(false), isReady: .constant(false))
 }

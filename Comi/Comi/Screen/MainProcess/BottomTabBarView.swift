@@ -64,14 +64,13 @@ struct BottomTabBarView: View {
             }
             Spacer()
         }
-            .frame(maxWidth: .infinity, maxHeight: 56, alignment: .center)
+            .frame(maxWidth: .infinity, minHeight: 56, maxHeight: 56, alignment: .center)
             .background {
-            RoundedRectangle(cornerRadius: 32, style: .continuous)
+            Rectangle()
                 .fill(.cwhite)
-                .shadow(color: .black.opacity(0.08), radius: 10, x: 0, y: 0)
+                .cornerRadius(32, corners: [.topLeft, .topRight])
                 .ignoresSafeArea()
         }
-
     }
 }
 

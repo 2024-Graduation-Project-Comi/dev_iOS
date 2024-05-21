@@ -9,19 +9,20 @@ import Foundation
 import RealmSwift
 
 class UserData: Object, ObjectKeyIdentifiable {
-    @Persisted(primaryKey: true) var userId: Int
+    @Persisted var userId: Int
     @Persisted var createdAt: Date
     @Persisted var email: String
     @Persisted var social: String
     @Persisted var remainTime: Int
     @Persisted var isLogin: Bool
+    @Persisted var isReady: Bool
 }
 
 class UserViewModel: ObservableObject {
 
     @Published var models: RealmUser
     init() {
-        self.models = .init(userId: 1, createdAt: Date.now, email: "", social: "", remainTime: 0, isLogin: false)
+        self.models = .init(userId: 0, createdAt: Date.now, email: "", social: "", remainTime: 0, isLogin: false, isReady: false)
     }
 
     // TODO: 수정필요
@@ -29,14 +30,14 @@ class UserViewModel: ObservableObject {
         do {
             let realm = try Realm()
             let realmData = UserData()
-            realmData.userId = 1
+            realmData.userId = 0
             realmData.createdAt = Date.now
             realmData.email = "example@example.com"
             realmData.social = "sample"
             realmData.remainTime = 300
-            realmData.isLogin = true
+            realmData.isLogin = false
             try realm.write {
-                realm.add(realmData, update: .modified)
+                realm.add(realmData)
             }
         } catch {
             print(error)
@@ -56,11 +57,13 @@ class UserViewModel: ObservableObject {
                     email: data.email,
                     social: data.social,
                     remainTime: data.remainTime,
-                    isLogin: data.isLogin
+                    isLogin: data.isLogin,
+                    isReady: data.isReady
                 )
                 trans.append(temp)
             }
-            models = trans.first ?? RealmUser(userId: 1, createdAt: Date.now, email: "", social: "", remainTime: 0, isLogin: false)
+            models = trans.first ?? RealmUser(userId: 0, createdAt: Date.now, email: "", social: "", remainTime: 0, isLogin: false, isReady: false)
+            print("UserData: ", models)
         } catch {
             print(error)
         }
@@ -73,7 +76,11 @@ class UserViewModel: ObservableObject {
             print("User copy success")
         }
     }
-
+    func updateData(id: Int) async {
+        updateUserLoginData(id: id)
+        fetchData()
+        print("User update success")
+    }
     func readyData() {
         if checkDB(type: .userData) {
             copyData()
@@ -81,6 +88,26 @@ class UserViewModel: ObservableObject {
             fetchData()
         }
         print("user Ready")
+    }
+
+    func updateUserLoginData(id: Int) {
+        do {
+            let realm = try Realm()
+            guard let target = realm.objects(UserData.self).first else {
+                return
+            }
+            try realm.write {
+                target.userId = id
+                target.createdAt = Date.now
+                target.email = "sample@example.com"
+                target.social = "sample"
+                target.remainTime = 300
+                target.isLogin = true
+                target.isReady = true
+            }
+        } catch {
+            print("user login udate 실패")
+        }
     }
 
 }

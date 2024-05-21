@@ -9,18 +9,24 @@ import SwiftUI
 
 struct MainView: View {
 
-    @State var selectedTab: Tabs = .history
+    @State var selectedTab: Tabs = .home
 
     var body: some View {
-        switch selectedTab {
-        case .home:
-            HomeView(selectedTab: $selectedTab)
-        case .history:
-            HistoryView(selectedTab: $selectedTab)
-        case .contact:
-            ContactsView(selectedTab: $selectedTab)
-        case .profile:
-            ProfileView(selectedTab: $selectedTab)
+        NavigationView {
+            switch selectedTab {
+            case .home:
+                HomeView(selectedTab: $selectedTab)
+                    .navigationBarHidden(true)
+            case .history:
+                HistoryView(selectedTab: $selectedTab)
+                    .navigationBarHidden(true)
+            case .contact:
+                ContactsView(selectedTab: $selectedTab)
+                    .navigationBarHidden(true)
+            case .profile:
+                ProfileView(selectedTab: $selectedTab)
+                    .navigationBarHidden(true)
+            }
         }
     }
 }

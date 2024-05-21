@@ -75,7 +75,9 @@ struct FeedbackView: View {
                     .font(.ptRegular18)
             }.foregroundStyle(.black)
             Spacer()
-        }.padding(.horizontal, 24)
+        }
+        .padding(.vertical, 16)
+        .padding(.horizontal, 24)
     }
     @ViewBuilder
     private func feedBackInterface() -> some View {

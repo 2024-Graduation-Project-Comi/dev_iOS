@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct ComiApp: App {
+    @StateObject var realmViewModel = RealmViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(realmViewModel)
         }
     }
 }
