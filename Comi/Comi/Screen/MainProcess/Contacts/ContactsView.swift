@@ -43,61 +43,11 @@ struct ContactsView: View {
                     isActive: $gotoModelDetailView,
                     label: { EmptyView() }))
                 .listStyle(.plain)
-            Spacer()
             BottomTabBarView(selectedTab: $selectedTab)
         }
             .background {
             BackGround()
         }
-    }
-
-    @ViewBuilder
-    private func modelItems(data: RealmModel) -> some View {
-        HStack(spacing: 0) {
-            HStack {
-                ZStack {
-                    KFImage(URL(string: data.image))
-                        .fade(duration: 0.25)
-                        .startLoadingBeforeViewAppear(true)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 62, height: 62)
-                        .clipShape(Circle())
-
-                    if data.state == .locked {
-                        Image("Lock")
-                            .offset(x: 20, y: 20)
-                    } else {
-                        Circle()
-                            .fill(data.state == .available ? .availableCircle : .unavailableCircle)
-                            .frame(width: 16, height: 16)
-                            .offset(x: 20, y: 20)
-                            .overlay {
-                            Circle()
-                                .stroke(Color.cwhite, lineWidth: 1)
-                                .offset(x: 20, y: 20)
-                        }
-                    }
-                }
-                Text(data.name)
-                    .font(.ptSemiBold18)
-                    .foregroundStyle(.black)
-                Spacer()
-            }
-                .contentShape(Rectangle())
-                .onTapGesture {
-                selectedModel = data
-                gotoModelDetailView = true
-            }
-            Button {
-                // TODO: 모델별 목소리 데이터로 수정
-                print("play sound")
-            } label: {
-                Image("PlayButton")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-            }.padding(.trailing, 24)
-        }.padding(.bottom, 4)
     }
 
     @ViewBuilder
@@ -108,8 +58,8 @@ struct ContactsView: View {
                 ForEach(favorites.decodeSave().reversed(), id: \.self) { data in
                     let model = RealmModel(id: data.id, name: data.name, englishName: data.englishName, group: data.group ?? nil, state: data.state, image: data.image)
 
-                    modelItems(data: model)
-                        .padding(.leading, 24)
+                    ModelCard(selectedModel: $selectedModel, gotoModelDetailView: $gotoModelDetailView, data: model)
+                        .padding(.horizontal, 24)
                         .listRowSeparator(.hidden)
                         .listRowInsets(EdgeInsets())
                         .listRowBackground(Color.clear)
@@ -123,8 +73,8 @@ struct ContactsView: View {
         ForEach(groupedModels, id: \.0) { group, modelsInSection in
             Section(header: sectionText(text: group)) {
                 ForEach(modelsInSection, id: \.id) { model in
-                    modelItems(data: model)
-                        .padding(.leading, 24)
+                    ModelCard(selectedModel: $selectedModel, gotoModelDetailView: $gotoModelDetailView, data: model)
+                        .padding(.horizontal, 24)
                 }
             }
         }

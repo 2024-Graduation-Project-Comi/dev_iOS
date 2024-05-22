@@ -19,9 +19,12 @@ struct ModelModal: View {
 
     var body: some View {
         ZStack(alignment: .top) {
+            // TOOD: 음성 재생 기능 추가
+//            playSound()
+
             Rectangle()
                 .foregroundColor(.clear)
-                .frame(width: maxSize.width, height: showTopics ? maxSize.height * 0.9 : 264)
+                .frame(width: maxSize.width, height: showTopics ? maxSize.height * 0.9 : 90)
                 .background(.cwhite.opacity(0.7))
                 .cornerRadius(32)
                 .overlay(
@@ -29,30 +32,19 @@ struct ModelModal: View {
                     .inset(by: 0.5)
                     .stroke(Color(red: 0.93, green: 0.93, blue: 0.93), lineWidth: 1)
             )
+
             VStack {
                 ScrollView(showsIndicators: false) {
                     ForEach(topics.data, id: \.id) { data in
                         TopicCard(selected: self.$selected, isSelected: $isSelected, topic: data)
                     }
-                    Spacer().frame(height: 16)
+                    Spacer().frame(height: 110)
                 }
-                    .padding(EdgeInsets(top: 48, leading: 24, bottom: 0, trailing: 24))
-                Spacer().frame(height: 116)
+                    .padding(.top, 32)
+                    .padding(.horizontal, 24)
             }
-                .frame(width: maxSize.width, height: showTopics ? maxSize.height * 0.9 : 264)
+                .frame(width: maxSize.width, height: showTopics ? maxSize.height * 0.9 : 90)
                 .opacity(showTopics ? 1 : 0)
-
-            VStack {
-                Text(model.name)
-                    .font(.ptSemiBold18)
-                // TODO: player로 수정
-                RoundedRectangle(cornerRadius: 100, style: .continuous)
-                    .frame(width: 240, height: 28)
-                Spacer()
-            }
-                .offset(y: 32)
-                .frame(width: maxSize.width, height: showTopics ? maxSize.height * 0.9 : 264)
-                .opacity(showTopics ? 0 : 1)
         }
             .animation(.easeInOut(duration: 0.5), value: showTopics)
             .onTapGesture {
@@ -60,9 +52,24 @@ struct ModelModal: View {
             if showTopics == false {
                 close()
             }
-
         }
     }
+
+    @ViewBuilder
+    private func playSound() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 100, style: .continuous)
+                .frame(width: 160, height: 28)
+            RoundedRectangle(cornerRadius: 100, style: .continuous)
+                .foregroundStyle(.cwhite)
+                .frame(width: 100, height: 2)
+        }
+            .offset(y: showTopics ? 1000 : -40)
+            .onTapGesture {
+            print("play")
+        }
+    }
+
     private func close() {
         withAnimation(.easeInOut) {
             offset = 1000

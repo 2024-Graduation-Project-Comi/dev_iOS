@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
 
-    @State var selectedTab: Tabs = .home
+    @State var selectedTab: Tabs = .contact
 
     var body: some View {
         NavigationView {

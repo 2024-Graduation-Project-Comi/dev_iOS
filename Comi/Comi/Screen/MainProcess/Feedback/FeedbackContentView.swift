@@ -11,19 +11,28 @@ struct FeedbackContentView: View {
 
     @Environment(\.dismiss) var dismiss
     @State private var checkType: Bool = false
+    // 원형 그래프 변수
+    @State private var value: CGFloat = 0.01
+    @State private var showValue: Bool = false
+    @State private var scoreColor: Color = .clear
 
     var body: some View {
         VStack {
-            backButton()
+            customNavBar()
             feedBackInterface()
+            Group {
+                Text(checkType ? "어휘 점수" : "발음 점수")
+                    .font(.ptSemiBold18)
+                ScorePieChart(value: $value, showValue: $showValue, scoreColor: $scoreColor)
+                    .padding(.top, 24)
+            }.padding(.top, 12)
             Spacer()
-            Text("분석 화면")
-            Spacer()
-        }.background(BackGround())
+        }
+        .background(BackGround())
     }
 
     @ViewBuilder
-    private func backButton() -> some View {
+    private func customNavBar() -> some View {
         HStack {
             Button {
                 dismiss()
@@ -47,48 +56,64 @@ struct FeedbackContentView: View {
     private func feedBackInterface() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 32, style: .continuous)
-            VStack(spacing: 16) {
-                Text("날짜 조정해야함")
+            VStack {
+                Text("2024년 00월 00일 월요일")
                     .font(.ptRegular14)
                     .foregroundStyle(.cwhite)
+                    .padding(.top, 16)
 
-                VStack {
-                    HStack {
-                        Spacer()
-                        Button {
-                            withAnimation {
-                                checkType = false
-                            }
-                        } label: {
-                            Text("발음")
-                                .font(.ptRegular18)
-                                .foregroundStyle(checkType ? .cwhite : .blue1)
-                        }
-                        Spacer()
-                        Spacer()
-                        Button {
-                            withAnimation {
-                                checkType = true
-                            }
-                        } label: {
-                            Text("어휘")
-                                .font(.ptRegular18)
-                                .foregroundStyle(checkType ? .blue1 : .cwhite)
-                        }
-                        Spacer()
-                    }
-                        .padding(.horizontal, 32)
+                GeometryReader { geo in
+                    let size = geo.size
                     ZStack {
-                        RoundedRectangle(cornerRadius: 100, style: .continuous)
-                            .fill(.disabled)
-                            .padding(.horizontal, 32)
-                            .frame(height: 8)
-                        RoundedRectangle(cornerRadius: 100, style: .continuous)
-                            .fill(.blue1)
-                            .frame(width: 139, height: 8)
-                            .offset(x: checkType ? 71 : -71)
+                        RoundedRectangle(cornerRadius: 30, style: .continuous)
+                            .fill(.cwhite)
+                            .frame(width: size.width, height: 56)
+                        RoundedRectangle(cornerRadius: 30, style: .continuous)
+                            .foregroundColor(.clear)
+                            .frame(width: size.width / 2, height: 48)
+                            .background(
+                            LinearGradient(
+                                stops: [
+                                    Gradient.Stop(color: Color(red: 0.28, green: 0.43, blue: 0.88), location: 0.00),
+                                    Gradient.Stop(color: Color(red: 0.46, green: 0.59, blue: 1), location: 1.00)
+                                ],
+                                startPoint: UnitPoint(x: 0, y: 1),
+                                endPoint: UnitPoint(x: 1, y: 0)
+                            )
+                        )
+                            .cornerRadius(30)
+                            .offset(x: checkType ? size.width / 4 - 4 : -size.width / 4 + 4)
+
+                        HStack {
+                            Spacer()
+                                .frame(width: 68)
+                            Button {
+                                withAnimation {
+                                    checkType.toggle()
+                                }
+                            } label: {
+                                Text("발음")
+                                    .font(.ptSemiBold18)
+                                    .foregroundStyle(checkType ? .constantsSemi : .cwhite)
+                            }
+                            Spacer()
+                            Button {
+                                withAnimation {
+                                    checkType.toggle()
+                                }
+                            } label: {
+                                Text("어휘")
+                                    .font(.ptSemiBold18)
+                                    .foregroundStyle(checkType ? .cwhite : .constantsSemi)
+
+                            }
+                            Spacer()
+                                .frame(width: 68)
+                        }
                     }
+                        .frame(width: size.width, height: size.height)
                 }
+                    .padding(.horizontal, 4)
             }
         }
             .frame(maxWidth: .infinity, maxHeight: 110)

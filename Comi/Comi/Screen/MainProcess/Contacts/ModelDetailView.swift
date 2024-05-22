@@ -52,14 +52,18 @@ struct ModelDetailView: View {
     }
     @ViewBuilder
     private func customNavBar() -> some View {
-        HStack {
+        HStack(alignment: .center) {
             Button {
                 dismiss()
             } label: {
                 Image("Close")
                     .foregroundColor(.cwhite)
-            }
+            }.frame(width: 32, height: 32)
 
+            Spacer()
+            Text("\(model.name)")
+                .font(.ptSemiBold22)
+                .foregroundColor(.cwhite)
             Spacer()
 
             Button {
@@ -70,10 +74,13 @@ struct ModelDetailView: View {
                 }
             } label: {
                 Image(favorites.decodeSave().contains(model) ? "Heart" : "Heart Disalbed")
-            }
+            }.frame(width: 32, height: 32)
         }
-            .padding(.vertical, 16)
+            .padding(.bottom, 16)
             .padding(.horizontal, 24)
+            .background(
+            Color.black.opacity(0.05)
+        )
     }
 
     @ViewBuilder
@@ -85,10 +92,11 @@ struct ModelDetailView: View {
                 goCallViewButton()
             }
         }
-            .frame(maxWidth: .infinity, minHeight: 116, maxHeight: 116, alignment: .center)
+            .frame(maxWidth: .infinity, minHeight: 82, maxHeight: 82, alignment: .center)
             .background {
-            RoundedRectangle(cornerRadius: 32, style: .continuous)
+            Rectangle()
                 .fill(.cwhite)
+                .cornerRadius(32, corners: [.topLeft, .topRight])
                 .ignoresSafeArea()
         }
     }
@@ -101,7 +109,7 @@ struct ModelDetailView: View {
             ZStack {
                 Rectangle()
                     .foregroundColor(.clear)
-                    .frame(width: 342, height: 62)
+                    .frame(maxWidth: .infinity, maxHeight: 62)
                     .background(
                     LinearGradient(
                         stops: [
@@ -113,12 +121,12 @@ struct ModelDetailView: View {
                     )
                 )
                     .cornerRadius(100)
+                    .padding(.horizontal, 24)
                 Text(showTopics ? "전화하기" : "대화 주제 선택하기")
                     .font(.ptSemiBold18)
                     .foregroundStyle(.cwhite)
 
             }
-                .offset(y: -15)
         }
     }
 
@@ -130,7 +138,7 @@ struct ModelDetailView: View {
             ZStack {
                 Rectangle()
                     .foregroundColor(.clear)
-                    .frame(width: 342, height: 62)
+                    .frame(maxWidth: .infinity, maxHeight: 62)
                     .background(
                     LinearGradient(
                         stops: [
@@ -142,12 +150,12 @@ struct ModelDetailView: View {
                     )
                 )
                     .cornerRadius(100)
+                    .padding(.horizontal, 24)
                 Text(showTopics ? "전화하기" : "대화 주제 선택하기")
                     .font(.ptSemiBold18)
                     .foregroundStyle(.cwhite)
 
             }
-                .offset(y: -15)
         }
             .disabled(isSelected ? false : true)
             .background(

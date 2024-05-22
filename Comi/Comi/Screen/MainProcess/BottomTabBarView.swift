@@ -69,6 +69,7 @@ struct BottomTabBarView: View {
             Rectangle()
                 .fill(.cwhite)
                 .cornerRadius(32, corners: [.topLeft, .topRight])
+                .shadow(color: .black.opacity(0.08), radius: 10, x: 0, y: 0)
                 .ignoresSafeArea()
         }
     }
