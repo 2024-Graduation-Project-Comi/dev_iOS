@@ -11,6 +11,10 @@ struct FeedbackContentView: View {
 
     @Environment(\.dismiss) var dismiss
     @State private var checkType: Bool = false
+    // 원형 그래프 변수
+    @State private var value:CGFloat = 0.01
+    @State private var showValue: Bool = false
+    @State private var scoreColor: Color = .clear
 
     var body: some View {
         VStack {
@@ -18,6 +22,8 @@ struct FeedbackContentView: View {
             feedBackInterface()
             Spacer()
             Text("분석 화면")
+            Spacer()
+            ScorePieChart(value: $value, showValue: $showValue, scoreColor: $scoreColor)
             Spacer()
         }.background(BackGround())
     }

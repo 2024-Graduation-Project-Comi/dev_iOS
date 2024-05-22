@@ -53,6 +53,7 @@
 		8697B0462BF73E3900F1C5EB /* SupaClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8697B0452BF73E3900F1C5EB /* SupaClient.swift */; };
 		8697B0652BF7CB0100F1C5EB /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8697B0642BF7CB0100F1C5EB /* SearchBar.swift */; };
 		86A636BC2BFCEDD900840B86 /* ModelCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A636BB2BFCEDD900840B86 /* ModelCard.swift */; };
+		86A636C02BFDBB8200840B86 /* ScorePieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A636BF2BFDBB8200840B86 /* ScorePieChart.swift */; };
 		86AF00B62BE54391007DAF5F /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86AF00B22BE54391007DAF5F /* Pretendard-SemiBold.otf */; };
 		86AF00B72BE54391007DAF5F /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86AF00B32BE54391007DAF5F /* Pretendard-Medium.otf */; };
 		86AF00B82BE54391007DAF5F /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86AF00B42BE54391007DAF5F /* Pretendard-Regular.otf */; };
@@ -124,6 +125,7 @@
 		8697B0452BF73E3900F1C5EB /* SupaClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaClient.swift; sourceTree = "<group>"; };
 		8697B0642BF7CB0100F1C5EB /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		86A636BB2BFCEDD900840B86 /* ModelCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCard.swift; sourceTree = "<group>"; };
+		86A636BF2BFDBB8200840B86 /* ScorePieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorePieChart.swift; sourceTree = "<group>"; };
 		86AF00B22BE54391007DAF5F /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../../../../Library/Fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		86AF00B32BE54391007DAF5F /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../../../../../../../Library/Fonts/Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		86AF00B42BE54391007DAF5F /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../../../../../../../Library/Fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 			children = (
 				86D192CB2BE68B6200C4CDAE /* FeedbackView.swift */,
 				86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */,
+				86A636BF2BFDBB8200840B86 /* ScorePieChart.swift */,
 			);
 			path = Feedback;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				867DA7C62BF2368E002BDA1C /* RealmViewModel.swift in Sources */,
 				86C162232BE0E05A00362250 /* BottomTabBarView.swift in Sources */,
 				860DDCA02BDF9EAC007A8F13 /* LoginView.swift in Sources */,
+				86A636C02BFDBB8200840B86 /* ScorePieChart.swift in Sources */,
 				8697B0652BF7CB0100F1C5EB /* SearchBar.swift in Sources */,
 				860DDC8A2BDF66BB007A8F13 /* ExFont.swift in Sources */,
 				86D192CE2BE69ECE00C4CDAE /* FeedbackContentView.swift in Sources */,
