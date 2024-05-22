@@ -46,7 +46,7 @@ struct ConversationView: View {
                         print("Conversation: \(responseData.conv)")
                         print("Explanation: \(responseData.explain)")
                         print("Evaluation: \(responseData.eval)")
-                        print("Fix: \(responseData.fix)")
+                        print("Fix: \(responseData.fix ?? "")")
                         response = responseData
                     case .failure(let error):
                         print("Error occurred: \(error)")

@@ -14,7 +14,7 @@ struct CallBackground: View {
     var body: some View {
         ZStack {
             if status == .ready {
-                ZStack{
+                ZStack {
                     Circle()
                         .foregroundStyle(.pink0)
                         .frame(width: 480, height: 480)
