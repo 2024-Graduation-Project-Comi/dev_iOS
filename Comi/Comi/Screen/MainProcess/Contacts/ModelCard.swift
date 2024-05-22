@@ -10,6 +10,7 @@ import Kingfisher
 
 struct ModelCard: View {
 
+    @State private var showAlert: Bool = false
     @Binding var selectedModel: RealmModel
     @Binding var gotoModelDetailView: Bool
     var data: RealmModel
@@ -46,10 +47,24 @@ struct ModelCard: View {
                     .foregroundStyle(.black)
                 Spacer()
             }
+            .alert(isPresented: $showAlert) {
+                switch data.state {
+                case .locked:
+                    return Alert(title: Text("알림"), message: Text("추가 결제 후 사용 가능한 모델입니다"))
+                case .unavailable:
+                    return Alert(title: Text("알림"), message: Text("업데이트 예정 모델입니다"))
+                default :
+                    return Alert(title: Text(""))
+                }
+            }
                 .contentShape(Rectangle())
                 .onTapGesture {
-                selectedModel = data
-                gotoModelDetailView = true
+                if data.state == .available {
+                    selectedModel = data
+                    gotoModelDetailView = true
+                } else {
+                    showAlert = true
+                }
             }
             // TODO: 음성 미리듣기는 나중에
 //            playButton()

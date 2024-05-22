@@ -13,8 +13,6 @@ struct ContactsView: View {
     @EnvironmentObject var realmViewModel: RealmViewModel
     @State private var selectedModel: RealmModel
         = RealmModel(id: 0, name: "", englishName: "", group: nil, state: .available, image: "")
-    @State private var selectedModel2: RealmModel
-        = RealmModel(id: 0, name: "", englishName: "", group: nil, state: .available, image: "")
     @State private var gotoModelDetailView: Bool = false
     @Binding var selectedTab: Tabs
     @StateObject var favorites = FavoritesViewModel()

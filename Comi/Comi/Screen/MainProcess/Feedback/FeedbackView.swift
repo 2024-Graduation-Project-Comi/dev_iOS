@@ -18,7 +18,7 @@ struct FeedbackView: View {
 
     var body: some View {
         VStack {
-            backButton()
+            customNavBar()
             GeometryReader { geo in
                 let size = geo.size
                 // TODO: 채팅화면
@@ -33,17 +33,16 @@ struct FeedbackView: View {
                 feedBackInterface()
                     .offset(y: 8)
             }
-            Spacer()
             bottomBtn()
         }
             .fullScreenCover(isPresented: $isOnboarding) {
-                FeedbackManualTabView(isOnboarding: $isOnboarding)
+            FeedbackManualTabView(isOnboarding: $isOnboarding)
         }
             .background(BackGround())
     }
 
     @ViewBuilder
-    private func backButton() -> some View {
+    private func customNavBar() -> some View {
         HStack {
             Button {
                 gotoRoot = false
@@ -63,12 +62,13 @@ struct FeedbackView: View {
             .padding(.vertical, 16)
             .padding(.horizontal, 24)
     }
+
     @ViewBuilder
     private func feedBackInterface() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 32, style: .continuous)
             VStack {
-                Text("날짜 조정해야함")
+                Text("2024년 00월 00일 월요일")
                     .font(.ptRegular14)
                     .foregroundStyle(.cwhite)
                 NavigationLink {
@@ -105,54 +105,62 @@ struct FeedbackView: View {
     @ViewBuilder
     private func bottomBtn() -> some View {
         ZStack {
-            if isSelect { } else {
-                HStack {
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .background(
-                                .newChatGray
-                        )
-                            .cornerRadius(100)
-
-                        VStack {
-                            Text("새로운 대화")
-                                .font(.ptSemiBold18)
-                                .foregroundStyle(.constantsSemi)
-                        }
-                    }
-                        .frame(maxWidth: 163, maxHeight: 50)
-                    Spacer()
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .background(
-                            LinearGradient(
-                                stops: [
-                                    Gradient.Stop(color: .blue2, location: 0.00),
-                                    Gradient.Stop(color: .blue1, location: 1.00)
-                                ],
-                                startPoint: UnitPoint(x: 0, y: 1),
-                                endPoint: UnitPoint(x: 1, y: 0)
-                            )
-                        )
-                            .cornerRadius(100)
-
-                        VStack {
-                            Text("전화하기")
-                                .font(.ptSemiBold18)
-                                .foregroundStyle(.cwhite)
-                        }
-                    }
-                        .frame(maxWidth: 163, maxHeight: 50)
-                }.padding(.horizontal, 24)
-            }
-        }.frame(maxWidth: .infinity, minHeight: 116, maxHeight: 116, alignment: .center)
+            HStack {
+                newConversationBtn()
+                Spacer()
+                callBtn()
+            }.padding(.horizontal, 24)
+        }
+            .frame(maxWidth: .infinity, minHeight: 82, maxHeight: 82, alignment: .center)
             .background {
-            RoundedRectangle(cornerRadius: 32, style: .continuous)
+            Rectangle()
                 .fill(.cwhite)
+                .cornerRadius(32, corners: [.topLeft, .topRight])
                 .ignoresSafeArea()
         }
+    }
+
+    @ViewBuilder
+    private func newConversationBtn() -> some View {
+        ZStack {
+            Rectangle()
+                .fill(.cwhite)
+                .padding(1)
+                .overlay {
+                RoundedRectangle(cornerRadius: 100, style: .continuous)
+                    .stroke(Color.blue2, lineWidth: 1)
+            }
+            Text("새로운 대화")
+                .font(.ptSemiBold18)
+                .foregroundStyle(.constantsSemi)
+        }
+            .frame(maxWidth: 163, maxHeight: 50)
+    }
+
+    @ViewBuilder
+    private func callBtn() -> some View {
+        ZStack {
+            Rectangle()
+                .foregroundColor(.clear)
+                .background(
+                LinearGradient(
+                    stops: [
+                        Gradient.Stop(color: .blue2, location: 0.00),
+                        Gradient.Stop(color: .blue1, location: 1.00)
+                    ],
+                    startPoint: UnitPoint(x: 0, y: 1),
+                    endPoint: UnitPoint(x: 1, y: 0)
+                )
+            )
+                .cornerRadius(100)
+
+            VStack {
+                Text("전화하기")
+                    .font(.ptSemiBold18)
+                    .foregroundStyle(.cwhite)
+            }
+        }
+            .frame(maxWidth: 163, maxHeight: 50)
     }
 }
 
