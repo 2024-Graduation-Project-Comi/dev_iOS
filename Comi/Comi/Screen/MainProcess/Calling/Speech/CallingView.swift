@@ -27,6 +27,7 @@ struct CallingView: View {
     @StateObject private var audioCaptureViewModel = AudioCaptureViewModel()
     @Binding var gotoRoot: Bool
     @State var isUserSpeaking = false
+    @State var userSpeechedText = ""
 
     var topicTitle: String
     var model: RealmModel
@@ -76,7 +77,9 @@ struct CallingView: View {
                     if speechViewModel.isRecording {
                         speechViewModel.stopRecording()
                     } else {
-                        speechViewModel.pronEvalBuiltIn()
+                        speechViewModel.pronEvalBuiltIn { recognizedText in
+                            userSpeechedText = recognizedText ?? ""
+                        }
                     }
                 } label: {
                     Text(speechViewModel.isRecording ? "Stop Recording" : "Pronunciation evaluation internal")
@@ -155,26 +158,47 @@ struct CallingView: View {
                 if !isRecording {
                     // 녹음이 종료되었을 때 수행할 작업
                     print("Recording stopped")
-                    speechViewModel.pronEvalBuiltIn()
-                    print("Pronunciation evaluation internal")
-                    // 아래는 중복되는 로직이므로 캡슐화 하고싶다.
-                    let requestData = ConversationRequestData(answer: speechViewModel.speechedText ?? "", id: String(realmViewModel.userData.models.userId))
-                    conversationViewModel.sendConversation(requestData: requestData) { result in
-                        switch result {
-                        case .success(let responseData):
-                            print("Conversation: \(responseData.conv)")
-                            print("Explanation: \(responseData.explain)")
-                            print("Evaluation: \(responseData.eval)")
-                            print("Fix: \(String(describing: responseData.fix))")
-                            response = responseData
+                    speechViewModel.pronEvalBuiltIn { recognizedText in
+                        print("Pronunciation evaluation internal")
+                        let requestData = ConversationRequestData(answer: recognizedText ?? "", id: String(realmViewModel.userData.models.userId))
+                        conversationViewModel.sendConversation(requestData: requestData) { result in
+                            switch result {
+                            case .success(let responseData):
+                                print("Conversation: \(responseData.conv)")
+                                print("Explanation: \(responseData.explain)")
+                                print("Evaluation: \(responseData.eval)")
+                                print("Fix: \(String(describing: responseData.fix))")
+                                response = responseData
 
-                            let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as Dictionary
-                            audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
-                                isUserSpeaking = true
+                                let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as [String: Any]
+                                audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
+                                    DispatchQueue.main.async {
+                                        isUserSpeaking = true
+                                    }
+                                }
+                            case .failure(let error):
+                                print("Error occurred: \(error)")
                             }
-                        case .failure(let error):
-                            print("Error occurred: \(error)")
                         }
+//                    print("Pronunciation evaluation internal")
+//                    // 아래는 중복되는 로직이므로 캡슐화 하고싶다.
+//                    let requestData = ConversationRequestData(answer: speechViewModel.speechedText ?? "", id: String(realmViewModel.userData.models.userId))
+//                    conversationViewModel.sendConversation(requestData: requestData) { result in
+//                        switch result {
+//                        case .success(let responseData):
+//                            print("Conversation: \(responseData.conv)")
+//                            print("Explanation: \(responseData.explain)")
+//                            print("Evaluation: \(responseData.eval)")
+//                            print("Fix: \(String(describing: responseData.fix))")
+//                            response = responseData
+//
+//                            let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as Dictionary
+//                            audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
+//                                isUserSpeaking = true
+//                            }
+//                        case .failure(let error):
+//                            print("Error occurred: \(error)")
+//                        }
                     }
                     // 여기서 추가적인 로직을 실행할 수 있습니다.
                 }

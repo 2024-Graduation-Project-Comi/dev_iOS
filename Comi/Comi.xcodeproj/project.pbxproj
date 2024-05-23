@@ -74,7 +74,6 @@
 		86F0ED962BEDCCE300D1B8E8 /* ModelsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */; };
 		BA740F8B2BF72EDC00CA1885 /* AzureInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */; };
 		BA740F922BF744C400CA1885 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA740F912BF744C400CA1885 /* ConversationViewModel.swift */; };
-		BAB37C152BFB402600943009 /* AudioStreamPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB37C142BFB402600943009 /* AudioStreamPlayer.swift */; };
 		BAE3E4AF2BFF91AD00784AED /* AudioCaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE3E4AE2BFF91AD00784AED /* AudioCaptureViewModel.swift */; };
 		BAE3E4B12BFF92F000784AED /* FixedWidthInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE3E4B02BFF92F000784AED /* FixedWidthInteger.swift */; };
 		BAE3E4B42BFF9FEC00784AED /* ChatAzureResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE3E4B32BFF9FEC00784AED /* ChatAzureResponseData.swift */; };
@@ -156,7 +155,6 @@
 		B7E050BA6F61CD507CE2C49E /* Pods-Comi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Comi.debug.xcconfig"; path = "Target Support Files/Pods-Comi/Pods-Comi.debug.xcconfig"; sourceTree = "<group>"; };
 		BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AzureInfo.plist; sourceTree = "<group>"; };
 		BA740F912BF744C400CA1885 /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
-		BAB37C142BFB402600943009 /* AudioStreamPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStreamPlayer.swift; sourceTree = "<group>"; };
 		BAE3E4AE2BFF91AD00784AED /* AudioCaptureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCaptureViewModel.swift; sourceTree = "<group>"; };
 		BAE3E4B02BFF92F000784AED /* FixedWidthInteger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthInteger.swift; sourceTree = "<group>"; };
 		BAE3E4B32BFF9FEC00784AED /* ChatAzureResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAzureResponseData.swift; sourceTree = "<group>"; };
@@ -460,7 +458,6 @@
 			children = (
 				BA740F902BF744B700CA1885 /* Conversation */,
 				BAE76CCD2BECE6560003C17A /* Speech */,
-				86AF00BD2BE567C0007DAF5F /* CallingView.swift */,
 				86AF00BF2BE56EF0007DAF5F /* CallBackground.swift */,
 			);
 			path = Calling;
@@ -545,7 +542,7 @@
 			isa = PBXGroup;
 			children = (
 				BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */,
-				BAB37C142BFB402600943009 /* AudioStreamPlayer.swift */,
+				86AF00BD2BE567C0007DAF5F /* CallingView.swift */,
 			);
 			path = Speech;
 			sourceTree = "<group>";
@@ -749,7 +746,6 @@
 				86AF00C02BE56EF0007DAF5F /* CallBackground.swift in Sources */,
 				BAE3E4B12BFF92F000784AED /* FixedWidthInteger.swift in Sources */,
 				86A636BC2BFCEDD900840B86 /* ModelCard.swift in Sources */,
-				BAB37C152BFB402600943009 /* AudioStreamPlayer.swift in Sources */,
 				86447C202BF1182800C1988E /* TopicsSet.swift in Sources */,
 				861C49182BFC2D65008D9706 /* BottomActionButton.swift in Sources */,
 				86447C272BF11B7700C1988E /* CallRecordsDB.swift in Sources */,

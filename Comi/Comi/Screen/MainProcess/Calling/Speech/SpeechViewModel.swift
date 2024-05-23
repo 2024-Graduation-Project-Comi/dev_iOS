@@ -205,23 +205,24 @@ class SpeechViewModel: ObservableObject {
     }
 
     // MARK: 애플 기본 제공 Speech 라이브러리를 사용한 STT 기능
-    func pronEvalBuiltIn() {
-        guard let path = audioURL else { return }
+    func pronEvalBuiltIn(completion: @escaping (String?) -> Void) {
+        guard let path = audioURL else {
+            completion(nil)
+            return
+        }
         // TODO: en-US 를 사용자 언어에 맞춰서 할 수 있도록 해야함
         let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
         // 음성 권한 요청
         SFSpeechRecognizer.requestAuthorization { status in
             switch status {
-            case .notDetermined:
+            case .notDetermined, .denied, .restricted:
                 print("\(status.rawValue)")
-            case .denied:
-                print("\(status.rawValue)")
-            case .restricted:
-                print("\(status.rawValue)")
+                completion(nil)
             case .authorized:
                 print("\(status.rawValue)")
             @unknown default:
                 print("Unknown case")
+                completion(nil)
             }
         }
 
@@ -233,15 +234,18 @@ class SpeechViewModel: ObservableObject {
                 resultHandler: { (result, error) in
                     if let error = error {
                         print("Error: \(error.localizedDescription)")
+                        completion(nil)
                     }
 
                     guard let result = result else {
                         print("Error: speechRecognizer result not exist.")
+                        completion(nil)
                         return
                     }
                     print(result.bestTranscription.formattedString)
                     if result.isFinal {
                         self.speechedText = result.bestTranscription.formattedString
+                        completion(self.speechedText)
                     }
                 })
         }
