@@ -100,6 +100,7 @@ struct RealmSetting: Hashable {
     var level: Int
     var learning: String
     var local: String
+    var globalCode: String
 }
 
 // MARK: Realm DB 종류

@@ -74,7 +74,10 @@
 		86F0ED962BEDCCE300D1B8E8 /* ModelsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */; };
 		BA740F8B2BF72EDC00CA1885 /* AzureInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */; };
 		BA740F922BF744C400CA1885 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA740F912BF744C400CA1885 /* ConversationViewModel.swift */; };
-		BA740F942BF7A8FC00CA1885 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA740F932BF7A8FC00CA1885 /* ConversationView.swift */; };
+		BAB37C152BFB402600943009 /* AudioStreamPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB37C142BFB402600943009 /* AudioStreamPlayer.swift */; };
+		BAE3E4AF2BFF91AD00784AED /* AudioCaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE3E4AE2BFF91AD00784AED /* AudioCaptureViewModel.swift */; };
+		BAE3E4B12BFF92F000784AED /* FixedWidthInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE3E4B02BFF92F000784AED /* FixedWidthInteger.swift */; };
+		BAE3E4B42BFF9FEC00784AED /* ChatAzureResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE3E4B32BFF9FEC00784AED /* ChatAzureResponseData.swift */; };
 		BAE76CCF2BECE6650003C17A /* SpeechViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */; };
 		BAE76CD62BF0DE1B0003C17A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */; };
 		BAF5B97B2BF7253400ADCC08 /* AzureInfo++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF5B97A2BF7253400ADCC08 /* AzureInfo++Bundle.swift */; };
@@ -153,7 +156,10 @@
 		B7E050BA6F61CD507CE2C49E /* Pods-Comi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Comi.debug.xcconfig"; path = "Target Support Files/Pods-Comi/Pods-Comi.debug.xcconfig"; sourceTree = "<group>"; };
 		BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AzureInfo.plist; sourceTree = "<group>"; };
 		BA740F912BF744C400CA1885 /* ConversationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewModel.swift; sourceTree = "<group>"; };
-		BA740F932BF7A8FC00CA1885 /* ConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
+		BAB37C142BFB402600943009 /* AudioStreamPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStreamPlayer.swift; sourceTree = "<group>"; };
+		BAE3E4AE2BFF91AD00784AED /* AudioCaptureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCaptureViewModel.swift; sourceTree = "<group>"; };
+		BAE3E4B02BFF92F000784AED /* FixedWidthInteger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthInteger.swift; sourceTree = "<group>"; };
+		BAE3E4B32BFF9FEC00784AED /* ChatAzureResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAzureResponseData.swift; sourceTree = "<group>"; };
 		BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewModel.swift; sourceTree = "<group>"; };
 		BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BAF5B97A2BF7253400ADCC08 /* AzureInfo++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AzureInfo++Bundle.swift"; sourceTree = "<group>"; };
@@ -190,6 +196,7 @@
 				8697B0432BF73D3500F1C5EB /* SupabaseInfo++Bundle.swift */,
 				860DDC892BDF66BB007A8F13 /* ExFont.swift */,
 				861C49192BFC345A008D9706 /* ExRoundCorner.swift */,
+				BAE3E4B02BFF92F000784AED /* FixedWidthInteger.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -492,14 +499,30 @@
 			isa = PBXGroup;
 			children = (
 				BA740F912BF744C400CA1885 /* ConversationViewModel.swift */,
-				BA740F932BF7A8FC00CA1885 /* ConversationView.swift */,
 			);
 			path = Conversation;
+			sourceTree = "<group>";
+		};
+		BAE3E4AD2BFF914B00784AED /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				BAE3E4AE2BFF91AD00784AED /* AudioCaptureViewModel.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		BAE3E4B22BFF9FA400784AED /* Azure */ = {
+			isa = PBXGroup;
+			children = (
+				BAE3E4B32BFF9FEC00784AED /* ChatAzureResponseData.swift */,
+			);
+			path = Azure;
 			sourceTree = "<group>";
 		};
 		BAE76CCB2BECE34B0003C17A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				BAE3E4AD2BFF914B00784AED /* Audio */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -513,6 +536,7 @@
 				86447C1A2BF116C800C1988E /* Supabase */,
 				86447C0C2BEFF60D00C1988E /* Realm */,
 				861C49132BFBB23B008D9706 /* Alamofire */,
+				BAE3E4B22BFF9FA400784AED /* Azure */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -521,6 +545,7 @@
 			isa = PBXGroup;
 			children = (
 				BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */,
+				BAB37C142BFB402600943009 /* AudioStreamPlayer.swift */,
 			);
 			path = Speech;
 			sourceTree = "<group>";
@@ -697,6 +722,7 @@
 				867B25282BF3424B00861B66 /* RealmSampleCode.swift in Sources */,
 				86A636CD2BFDF1A200840B86 /* FeedbackBottomButton.swift in Sources */,
 				86A636D12BFDF82B00840B86 /* FeedbackManuals.swift in Sources */,
+				BAE3E4B42BFF9FEC00784AED /* ChatAzureResponseData.swift in Sources */,
 				8617DC972BE2AE5A007CFB73 /* ModelDetailView.swift in Sources */,
 				861C49202BFC75A7008D9706 /* CheckLevelView.swift in Sources */,
 				861C49232BFC8CB5008D9706 /* TestLevelView.swift in Sources */,
@@ -712,8 +738,8 @@
 				8631A0BF2BE3D06D00C442B0 /* ModelModal.swift in Sources */,
 				861C491C2BFC5634008D9706 /* ServiceLanguage.swift in Sources */,
 				86A636C52BFDDB9D00840B86 /* FeedbackManualView.swift in Sources */,
+				BAE3E4AF2BFF91AD00784AED /* AudioCaptureViewModel.swift in Sources */,
 				86AF00BE2BE567C0007DAF5F /* CallingView.swift in Sources */,
-				BA740F942BF7A8FC00CA1885 /* ConversationView.swift in Sources */,
 				BA740F922BF744C400CA1885 /* ConversationViewModel.swift in Sources */,
 				860DDCA62BDFA39F007A8F13 /* MainView.swift in Sources */,
 				860DDC9A2BDF7977007A8F13 /* BackGround.swift in Sources */,
@@ -721,7 +747,9 @@
 				861C491A2BFC345A008D9706 /* ExRoundCorner.swift in Sources */,
 				8617DC952BE29E87007CFB73 /* HomeView.swift in Sources */,
 				86AF00C02BE56EF0007DAF5F /* CallBackground.swift in Sources */,
+				BAE3E4B12BFF92F000784AED /* FixedWidthInteger.swift in Sources */,
 				86A636BC2BFCEDD900840B86 /* ModelCard.swift in Sources */,
+				BAB37C152BFB402600943009 /* AudioStreamPlayer.swift in Sources */,
 				86447C202BF1182800C1988E /* TopicsSet.swift in Sources */,
 				861C49182BFC2D65008D9706 /* BottomActionButton.swift in Sources */,
 				86447C272BF11B7700C1988E /* CallRecordsDB.swift in Sources */,

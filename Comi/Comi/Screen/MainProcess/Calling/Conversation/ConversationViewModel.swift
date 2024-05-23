@@ -19,8 +19,8 @@ class CustomEventMonitor: EventMonitor {
     var streamHandler: ((Data) -> Void)?
 
     func requestDidResume(_ request: Request) {
-            print("Request did resume: \(request)")
-        }
+        print("Request did resume: \(request)")
+    }
 
     func requestDidComplete(_ request: Request) {
         print("Request did complete: \(request)")
@@ -83,23 +83,25 @@ struct ChatRequestData: Codable {
     let conversationLanguage: String
     let explanationLanguage: String
     let model: String
+    let modelId: Int
+    let callId: Int?
+    let level: Int
 
     enum CodingKeys: String, CodingKey {
+        case id, topic, model, level
         case conversationLanguage = "conv_lan"
         case explanationLanguage = "ex_lan"
-        case id, topic, model
+        case modelId = "model_id"
+        case callId = "call_id"
     }
 }
 
 struct ConversationRequestData: Codable {
     let answer: String
     let id: String
-    let conversationLanguage: String
-    let model: String
 
     enum CodingKeys: String, CodingKey {
-        case answer, id, model
-        case conversationLanguage = "lan"
+        case answer, id
     }
 }
 
@@ -110,26 +112,13 @@ class ConversationViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     @Published var audioPlayer: AVAudioPlayer?
-    let topicMapping: [String: String] = [
-        "프리토킹": "free talking",
-        "연애": "love",
-        "시사": "actualities",
-        "운동": "exercise",
-        "일상생활": "daily",
-        "비즈니스": "business"
-    ]
-    let modelMapping: [String: String] = [
-        "카리나": "karina",
-        "윈터": "winter"
-    ]
 
     private var session: Session!
 
-    func startConversation2(chatRequestData: ChatRequestData, completion: @escaping (Result<ChatResponseData, Error>) -> Void) {
+    func startConversation(chatRequestData: ChatRequestData, completion: @escaping (Result<ChatResponseData, Error>) -> Void) {
         let url = "http://211.216.233.107:91/gemini/create"
         let headers: HTTPHeaders = [
-            "Content-Type": "application/json",
-            "Accept": "application/json, audio/wav"
+            "Content-Type": "application/json"
         ]
 
         // EventMonitor를 사용하여 스트리밍 이벤트 처리
@@ -148,104 +137,36 @@ class ConversationViewModel: ObservableObject {
                 case let .stream(result):
                     switch result {
                     case let .success(data):
-                        if let rawString = String(data: data, encoding: .utf8) { // stream data가 text로 들어오는 경우
-                            print("Raw string: \(rawString)")
+                        print("data received: \(data.count) bytes.")
+                        // 텍스트 또는 오디오 데이터 확인
+                        if let rawString = String(data: data, encoding: .utf8) {
+                            print("Received text data: \(rawString)")
                             if let dicData = self.convertStringToDictionary(text: rawString) {
-                                print("Converted string to dictionary: \(dicData)")
                                 DispatchQueue.main.async {
                                     if let responseData = self.parseChatResponseData(from: dicData) {
                                         self.responseData = responseData
                                         self.aiChat = responseData.conv
                                         completion(.success(responseData))
                                     } else {
-                                        print(self.errorMessage ?? "")
                                         self.errorMessage = "Failed to parse response data"
                                         completion(.failure(ResponseErrors.dictionaryToStructError))
                                     }
                                 }
                             }
                         } else {
-                            print("Stream data received: \(data.count) bytes.")
-                            self.processStreamData(data: data)
+                            // 오디오 데이터인지 확인
+                            if data.count > 12, data.prefix(4) == Data([0x52, 0x49, 0x46, 0x46]) && data[8..<12] == Data([0x57, 0x41, 0x56, 0x45]) {
+                                print("WAV data received: \(data.count) bytes.")
+                                self.processStreamData(data: data)
+                            }
                         }
                     case let .failure(error):
                         print("Error occurred during stream: \(error.localizedDescription)")
                     }
-                case let .complete(complete):
+                case .complete(_):
                     print("Stream complete")
                 }
             }
-    }
-
-    func startConversation(chatRequestData: ChatRequestData, completion: @escaping (Result<ChatResponseData, Error>) -> Void) {
-        let url = "http://211.216.233.107:91/gemini/create"
-        let parameters: [String: Any] = [
-            "id": chatRequestData.id,
-            "topic": chatRequestData.topic,
-            "conv_lan": chatRequestData.conversationLanguage,
-            "ex_lan": chatRequestData.explanationLanguage,
-            "model": chatRequestData.model
-        ]
-        let headers: HTTPHeaders = ["Content-Type": "application/json"]
-
-        // EventMonitor를 사용하여 스트리밍 이벤트 처리
-        let eventMonitor = CustomEventMonitor()
-        eventMonitor.streamHandler = { data in
-            print("Received stream data: \(data.count) bytes")
-            self.processStreamData(data: data)
-        }
-
-        // Alamofire Session 구성
-        self.session = Session(eventMonitors: [eventMonitor])
-
-        session.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-                    .responseData { response in
-                        print("Response received")
-                        switch response.result {
-                        case .success(let data):
-                            print("Response success with data: \(data.count) bytes")
-                            // 서버 응답 데이터 출력
-                            if let rawString = String(data: data, encoding: .utf8) {
-                                print("Raw string: \(rawString)")
-                                if let dicData = self.convertStringToDictionary(text: rawString) {
-                                    print("Converted string to dictionary: \(dicData)")
-                                    DispatchQueue.main.async {
-                                        if let responseData = self.parseChatResponseData(from: dicData) {
-                                            self.responseData = responseData
-                                            self.aiChat = responseData.conv
-                                            completion(.success(responseData))
-                                        } else {
-                                            print(self.errorMessage ?? "")
-                                            self.errorMessage = "Failed to parse response data"
-                                            completion(.failure(ResponseErrors.dictionaryToStructError))
-                                        }
-                                    }
-                                }
-//                                var dicData: Dictionary<String, Any> = [String: Any]()
-//                                do {
-//                                    dicData = try JSONSerialization.jsonObject(with: Data(rawString.utf8), options: []) as! [String : Any]
-//                                    // 딕셔너리를 ChatResponseData 구조체로 변환
-//                                    if let responseData = self.parseChatResponseData(from: dicData) {
-//                                        self.responseData = responseData
-//                                        completion(.success(responseData))
-//                                    } else {
-//                                        self.errorMessage = "Failed to parse response data"
-//                                        completion(.failure(ResponseErrors.dictionaryToStructError))
-//                                    }
-//                                } catch {
-//                                    print("딕셔너리화 에러: \(error.localizedDescription)")
-//                                    completion(.failure(ResponseErrors.stringToDictionaryError))
-//                                }
-                            } else {
-                                self.errorMessage = "Failed to decode response data"
-                                completion(.failure(ResponseErrors.stringDecodeError))
-                            }
-                        case .failure(let error):
-                            print("Error occurred: \(error)")
-                            print(self.errorMessage ?? "")
-                            completion(.failure(error))
-                        }
-                    }
     }
 
     func sendConversation(requestData: ConversationRequestData, completion: @escaping (Result<ChatResponseData, Error>) -> Void) {
@@ -270,28 +191,31 @@ class ConversationViewModel: ObservableObject {
                 case let .stream(result):
                     switch result {
                     case let .success(data):
-                        if let rawString = String(data: data, encoding: .utf8) { // stream data가 text로 들어오는 경우
-                            print("Raw string: \(rawString)")
+                        // 텍스트 또는 오디오 데이터 확인
+                        if let rawString = String(data: data, encoding: .utf8) {
+                            print("Received text data: \(rawString)")
                             if let dicData = self.convertStringToDictionary(text: rawString) {
-                                print("Converted string to dictionary: \(dicData)")
                                 DispatchQueue.main.async {
                                     if let responseData = self.parseChatResponseData(from: dicData) {
                                         self.responseData = responseData
                                         self.aiChat = responseData.conv
                                         completion(.success(responseData))
                                     } else {
-                                        print(self.errorMessage ?? "")
                                         self.errorMessage = "Failed to parse response data"
                                         completion(.failure(ResponseErrors.dictionaryToStructError))
                                     }
                                 }
                             }
                         } else {
-                            print("Stream data received: \(data.count) bytes.")
-                            self.processStreamData(data: data)
+                            // 오디오 데이터인지 확인
+                            if data.count > 12, data.prefix(4) == Data([0x52, 0x49, 0x46, 0x46]) && data[8..<12] == Data([0x57, 0x41, 0x56, 0x45]) {
+                                print("WAV data received: \(data.count) bytes.")
+                                self.processStreamData(data: data)
+                            }
                         }
                     case let .failure(error):
                         print("Error occurred during stream: \(error.localizedDescription)")
+                        completion(.failure(error))
                     }
                 case let .complete(complete):
                     print("Stream complete")
@@ -352,5 +276,4 @@ class ConversationViewModel: ObservableObject {
 
         return ChatResponseData(conv: conv, explain: explain, eval: evalArray, fix: fix)
     }
-
 }

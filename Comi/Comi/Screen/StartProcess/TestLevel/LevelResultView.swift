@@ -61,8 +61,3 @@ struct LevelResultView: View {
         }
     }
 }
-
-#Preview {
-    LevelResultView(userSetting: .constant(RealmSetting(userId: 0, level: 0, learning: "",local: "")), isReady: .constant(false))
-        .environmentObject(RealmViewModel())
-}

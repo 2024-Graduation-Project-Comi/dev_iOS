@@ -32,12 +32,10 @@ struct LanguageCard: View {
                     isSelect = selected == languageData ? true : false
                 }
                 userSetting.learning = selected?.globalTitle ?? ""
+                userSetting.globalCode = selected?.globalCode ?? ""
             }
         }
 
     }
 }
 
-#Preview {
-    LanguageCard(selected: .constant(LanguageData(localTitle: "", globalTitle: "")), isSelect: .constant(false), userSetting: .constant(RealmSetting(userId: 0, level: 0, learning: "", local: "")), languageData: LanguageData(localTitle: "", globalTitle: ""))
-}
