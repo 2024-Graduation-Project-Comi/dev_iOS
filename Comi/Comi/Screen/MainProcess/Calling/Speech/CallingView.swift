@@ -4,9 +4,11 @@
 //
 //  Created by yimkeul on 5/4/24.
 //
+var totalTime: Double = 0
 
 import SwiftUI
 import Kingfisher
+import Combine
 
 enum CallState {
     case ready
@@ -16,11 +18,6 @@ enum CallState {
 }
 
 struct CallingView: View {
-
-    let modelMapping: [String: String] = [
-        "카리나": "karina",
-        "윈터": "winter"
-    ]
     @EnvironmentObject var realmViewModel: RealmViewModel
     @State private var background: CallState = .ready
     @State private var gotoFeedback: Bool = false
@@ -29,9 +26,17 @@ struct CallingView: View {
     @StateObject private var speechViewModel = SpeechViewModel()
     @StateObject private var conversationViewModel = ConversationViewModel()
     @StateObject private var geminiAPIViewModel = GeminiAPIViewModel()
+    @StateObject private var audioCaptureViewModel = AudioCaptureViewModel()
     @Binding var gotoRoot: Bool
+    @State var isUserSpeaking = false
+    @State var userSpeechedText = ""
+
     var topicTitle: String
     var model: RealmModel
+    let callId: Int?
+    let speechClient = SpeechPlayingClient()
+    let ttsUrl = URL(string: "http://211.216.233.107:90/tts/tts_stream_chunk_static")!
+    var azureDatas: ChatAzureResponseData?
 
     var body: some View {
         VStack {
@@ -41,8 +46,11 @@ struct CallingView: View {
             VStack {
                 HStack {
                     VStack { // AI 대화창
-                        if response != nil {
+                        if response != nil && isUserSpeaking == true {
                             Text(response?.conv ?? "")
+                            Spacer()
+                            Text("음성을 입력해주세요!")
+                                .padding(.bottom, 10)
                         } else {
                             Text("채팅 생성을 기다리는 중이에요...")
                         }
@@ -71,7 +79,9 @@ struct CallingView: View {
                     if speechViewModel.isRecording {
                         speechViewModel.stopRecording()
                     } else {
-                        speechViewModel.pronEvalBuiltIn()
+                        speechViewModel.pronEvalBuiltIn { recognizedText in
+                            userSpeechedText = recognizedText ?? ""
+                        }
                     }
                 } label: {
                     Text(speechViewModel.isRecording ? "Stop Recording" : "Pronunciation evaluation internal")
@@ -90,7 +100,7 @@ struct CallingView: View {
                     .padding()
 
                 Button {
-                    let requestData = ConversationRequestData(answer: speechViewModel.speechedText!, id: "999", conversationLanguage: "en", model: "winter")
+                    let requestData = ConversationRequestData(answer: speechViewModel.speechedText ?? "", id: String(realmViewModel.userData.models.userId))
                     conversationViewModel.sendConversation(requestData: requestData) { result in
                         switch result {
                         case .success(let responseData):
@@ -99,6 +109,11 @@ struct CallingView: View {
                             print("Evaluation: \(responseData.eval)")
                             print("Fix: \(String(describing: responseData.fix))")
                             response = responseData
+
+                            let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as Dictionary
+                            audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
+                                isUserSpeaking = true
+                            }
                         case .failure(let error):
                             print("Error occurred: \(error)")
                         }
@@ -106,28 +121,92 @@ struct CallingView: View {
                 } label: {
                     Text("send next conversation.")
                 }
-
             }
         }
             .padding(.horizontal, 24)
             .background(CallBackground(status: $background))
             .onAppear {
-            let createConversationRequest: ChatRequestData = ChatRequestData(id: "999", topic: topicTitle, conversationLanguage: "en", explanationLanguage: "ko", model: model.name)
-//                conversationViewModel.startConversation(chatRequestData: createConversationRequest) { result in
-            conversationViewModel.startConversation2(chatRequestData: createConversationRequest) { result in
-                switch result {
-                case .success(let responseData):
-                    print("Conversation: \(responseData.conv)")
-                    print("Explanation: \(responseData.explain)")
-                    print("Evaluation: \(responseData.eval)")
-                    print("Fix: \(String(describing: responseData.fix))")
-                    response = responseData
-                case .failure(let error):
-                    print("Error occurred: \(error)")
+                let createConversationRequest: ChatRequestData = ChatRequestData(id: String(realmViewModel.userData.models.userId),
+                                                                                 topic: topicTitle,
+                                                                                 conversationLanguage: realmViewModel.settingData.models.globalCode,
+                                                                                 explanationLanguage: realmViewModel.settingData.models.local,
+                                                                                 model: model.name,
+                                                                                 modelId: model.id,
+                                                                                 callId: callId,
+                                                                                 level: realmViewModel.settingData.models.level)
+                conversationViewModel.startConversation(chatRequestData: createConversationRequest) { result in
+                    switch result {
+                    case .success(let responseData):
+                        print("Conversation: \(responseData.conv)")
+                        print("Explanation: \(responseData.explain)")
+                        print("Evaluation: \(responseData.eval)")
+                        print("Fix: \(String(describing: responseData.fix))")
+                        DispatchQueue.main.async {
+                            response = responseData
+                        }
+                        let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as Dictionary
+                        audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
+                            DispatchQueue.main.async {
+                                isUserSpeaking = true
+                                speechViewModel.startRecording() // AI 음성이 끝나면 대화 시작하도록 함
+                            }
+                        }
+                    case .failure(let error):
+                        print("Error occurred: \(error)")
+                    }
                 }
             }
-        }
+            .onReceive(speechViewModel.$isRecording) { isRecording in
+                if !isRecording {
+                    // 녹음이 종료되었을 때 수행할 작업
+                    print("Recording stopped")
+                    speechViewModel.pronEvalBuiltIn { recognizedText in
+                        print("Pronunciation evaluation internal")
+                        let requestData = ConversationRequestData(answer: recognizedText ?? "", id: String(realmViewModel.userData.models.userId))
+                        conversationViewModel.sendConversation(requestData: requestData) { result in
+                            switch result {
+                            case .success(let responseData):
+                                print("Conversation: \(responseData.conv)")
+                                print("Explanation: \(responseData.explain)")
+                                print("Evaluation: \(responseData.eval)")
+                                print("Fix: \(String(describing: responseData.fix))")
+                                response = responseData
+
+                                let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as [String: Any]
+                                audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
+                                    DispatchQueue.main.async {
+                                        isUserSpeaking = true
+                                    }
+                                }
+                            case .failure(let error):
+                                print("Error occurred: \(error)")
+                            }
+                        }
+//                    print("Pronunciation evaluation internal")
+//                    // 아래는 중복되는 로직이므로 캡슐화 하고싶다.
+//                    let requestData = ConversationRequestData(answer: speechViewModel.speechedText ?? "", id: String(realmViewModel.userData.models.userId))
+//                    conversationViewModel.sendConversation(requestData: requestData) { result in
+//                        switch result {
+//                        case .success(let responseData):
+//                            print("Conversation: \(responseData.conv)")
+//                            print("Explanation: \(responseData.explain)")
+//                            print("Evaluation: \(responseData.eval)")
+//                            print("Fix: \(String(describing: responseData.fix))")
+//                            response = responseData
+//
+//                            let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as Dictionary
+//                            audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
+//                                isUserSpeaking = true
+//                            }
+//                        case .failure(let error):
+//                            print("Error occurred: \(error)")
+//                        }
+                    }
+                    // 여기서 추가적인 로직을 실행할 수 있습니다.
+                }
+            }
     }
+
     @ViewBuilder
     private func callInterface(modelData: RealmModel, topicData: String) -> some View {
         VStack {
@@ -175,6 +254,7 @@ struct CallingView: View {
                     }
                         .padding(.horizontal, 16)
                         .padding(.top, 8)
+
                     ZStack {
                         RoundedRectangle(cornerRadius: 100, style: .continuous)
                         HStack(alignment: .center, spacing: 8) {
@@ -221,6 +301,6 @@ struct CallingView: View {
 }
 
 #Preview {
-    CallingView(gotoRoot: .constant(true), topicTitle: "", model: RealmModel(id: 0, name: "테스트", englishName: "test", group: nil, state: .available, image: ""))
+    CallingView(gotoRoot: .constant(true), topicTitle: "", model: RealmModel(id: 0, name: "테스트", englishName: "test", group: nil, state: .available, image: ""), callId: nil)
         .environmentObject(RealmViewModel())
 }

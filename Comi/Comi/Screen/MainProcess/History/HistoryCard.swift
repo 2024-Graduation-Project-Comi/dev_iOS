@@ -100,7 +100,7 @@ struct HistoryCard: View {
                 moreFuncButton(image: "Call filled", title: "전화하기")
             }
                 .background(
-                NavigationLink(destination: CallingView(gotoRoot: $gotoCallingView, topicTitle: self.data.topic, model: self.modelInfo)
+                    NavigationLink(destination: CallingView(gotoRoot: $gotoCallingView, topicTitle: self.data.topic, model: self.modelInfo, callId: self.data.id)
                     .navigationBarBackButtonHidden(),
                 isActive: $gotoCallingView,
                 label: { EmptyView() }

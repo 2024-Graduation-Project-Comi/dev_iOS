@@ -109,7 +109,3 @@ struct TestLevelView: View {
     }
 
 }
-
-#Preview {
-    TestLevelView(userSetting: .constant(RealmSetting(userId: 0, level: 0, learning: "",local: "")), isReady: .constant(false))
-}

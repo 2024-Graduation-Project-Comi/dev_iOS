@@ -11,7 +11,7 @@ import Alamofire
 struct CheckLangView: View {
 
     @EnvironmentObject var realmViewModel: RealmViewModel
-    @State var userSetting: RealmSetting = .init(userId: 0, level: 0, learning: "",local: "")
+    @State var userSetting: RealmSetting = .init(userId: 0, level: 0, learning: "",local: "", globalCode: "")
     @State private var selected: LanguageData?
     @State private var isSelect: Bool = false
     @State private var gotoLevelView: Bool = false

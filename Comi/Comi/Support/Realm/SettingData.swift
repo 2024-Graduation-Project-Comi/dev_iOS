@@ -13,6 +13,7 @@ class SettingData: Object, ObjectKeyIdentifiable {
     @Persisted var level: Int
     @Persisted var learning: String
     @Persisted var local: String
+    @Persisted var globalCode: String
 }
 
 class SettingViewModel: ObservableObject {
@@ -20,7 +21,7 @@ class SettingViewModel: ObservableObject {
     @Published var models: RealmSetting
 
     init() {
-        self.models = .init(userId: 0, level: 0, learning: "", local: "")
+        self.models = .init(userId: 0, level: 0, learning: "", local: "", globalCode: "")
     }
 
     func setData() {
@@ -31,6 +32,7 @@ class SettingViewModel: ObservableObject {
             realmData.level = 0
             realmData.learning = ""
             realmData.local = ""
+            realmData.globalCode = ""
             try realm.write {
                 realm.add(realmData)
             }
@@ -46,10 +48,10 @@ class SettingViewModel: ObservableObject {
             let arrData = Array(target)
             var trans: [RealmSetting] = []
             for data in arrData {
-                let temp = RealmSetting(userId: data.id, level: data.level, learning: data.learning, local: data.local)
+                let temp = RealmSetting(userId: data.id, level: data.level, learning: data.learning, local: data.local, globalCode: data.globalCode)
                 trans.append(temp)
             }
-            models = trans.first ?? .init(userId: 0, level: 0, learning: "", local: "")
+            models = trans.first ?? .init(userId: 0, level: 0, learning: "", local: "", globalCode: "")
             print("Setting Data : \(models)")
         } catch {
             print(error)
@@ -90,6 +92,7 @@ class SettingViewModel: ObservableObject {
                 target.level = data.level
                 target.learning = data.learning
                 target.local = data.local
+                target.globalCode = data.globalCode
             }
         } catch {
             print("user setting update 실패")

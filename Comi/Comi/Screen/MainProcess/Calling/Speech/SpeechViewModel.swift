@@ -17,7 +17,7 @@ class SpeechViewModel: ObservableObject {
     private var audioPlayer: AVAudioPlayer?
     private var recordingTimer: Timer?
     private var audioCheckInterval: TimeInterval = 0.1  // 타이머 간격
-    private var maxConsecutiveNoInputTime: TimeInterval = 3  // 사용자 입력 감지 간격
+    private var maxConsecutiveNoInputTime: TimeInterval = 2  // 사용자 입력 감지 간격
     private var consecutiveNoInputCount: TimeInterval = 0  // 사용자 입력 카운터
 
     @Published var isRecording = false
@@ -26,7 +26,7 @@ class SpeechViewModel: ObservableObject {
     @Published var speechedText: String?
 
     func startRecording() {
-        guard !isRecording else {return}
+        guard !isRecording else { return }
 
         let recordingSession = AVAudioSession.sharedInstance()
         do {
@@ -98,20 +98,28 @@ class SpeechViewModel: ObservableObject {
     }
 
     private func startRecordingTimer() {
+        consecutiveNoInputCount = 0
         recordingTimer = Timer.scheduledTimer(withTimeInterval: audioCheckInterval, repeats: true, block: { [weak self] _ in
             guard let self = self else { return }
-            self.audioRecorder?.updateMeters()
-            let db = self.audioRecorder?.averagePower(forChannel: 0) ?? 0
-            print("Current audio level: \(db) dB")
+            DispatchQueue.global(qos: .background).async {
+                self.audioRecorder?.updateMeters()
+                let db = self.audioRecorder?.averagePower(forChannel: 0) ?? 0
+                print("Current audio level: \(db) dB")
 
-            if db < -25 {  // 소리가 감지되지 않을 때
-                self.consecutiveNoInputCount += self.audioCheckInterval
-                print("No input detected. Consecutive no input time: \(self.consecutiveNoInputCount) seconds")
-                if self.consecutiveNoInputCount >= self.maxConsecutiveNoInputTime {
-                    print("No user input detected, stopping recording.")
-                    stopRecording()
-                } else {  // 소리 감지시
-                    self.consecutiveNoInputCount = 0
+                if db < -25 {  // 소리가 감지되지 않을 때
+                    DispatchQueue.main.async {
+                        self.consecutiveNoInputCount += self.audioCheckInterval
+                        print("No input detected. Consecutive no input time: \(self.consecutiveNoInputCount) seconds")
+                        if self.consecutiveNoInputCount >= self.maxConsecutiveNoInputTime {
+                            print("No user input detected, stopping recording.")
+                            self.stopRecording()
+                        }
+                    }
+                } else { // 소리 감지 시
+                    DispatchQueue.main.async {
+                        print("Input detected, resetting counter.")
+                        self.consecutiveNoInputCount = 0
+                    }
                 }
             }
         })
@@ -197,28 +205,28 @@ class SpeechViewModel: ObservableObject {
     }
 
     // MARK: 애플 기본 제공 Speech 라이브러리를 사용한 STT 기능
-    func pronEvalBuiltIn() {
-        guard let path = audioURL else { return }
-
+    func pronEvalBuiltIn(completion: @escaping (String?) -> Void) {
+        guard let path = audioURL else {
+            completion(nil)
+            return
+        }
+        // TODO: en-US 를 사용자 언어에 맞춰서 할 수 있도록 해야함
         let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
         // 음성 권한 요청
         SFSpeechRecognizer.requestAuthorization { status in
             switch status {
-            case .notDetermined:
+            case .notDetermined, .denied, .restricted:
                 print("\(status.rawValue)")
-            case .denied:
-                print("\(status.rawValue)")
-            case .restricted:
-                print("\(status.rawValue)")
+                completion(nil)
             case .authorized:
                 print("\(status.rawValue)")
             @unknown default:
                 print("Unknown case")
+                completion(nil)
             }
         }
 
         if speechRecognizer!.isAvailable {
-            let startTime = Date()
             let request = SFSpeechURLRecognitionRequest(url: path)
             speechRecognizer?.supportsOnDeviceRecognition = true
             speechRecognizer?.recognitionTask(
@@ -226,19 +234,18 @@ class SpeechViewModel: ObservableObject {
                 resultHandler: { (result, error) in
                     if let error = error {
                         print("Error: \(error.localizedDescription)")
+                        completion(nil)
                     }
 
                     guard let result = result else {
                         print("Error: speechRecognizer result not exist.")
+                        completion(nil)
                         return
                     }
                     print(result.bestTranscription.formattedString)
                     if result.isFinal {
                         self.speechedText = result.bestTranscription.formattedString
-
-                        let endTime = Date()
-                        let timeCost = endTime.timeIntervalSince(startTime) * 1000
-                        print("Time cost: \(timeCost)ms")
+                        completion(self.speechedText)
                     }
                 })
         }
@@ -248,7 +255,9 @@ class SpeechViewModel: ObservableObject {
 class SpeechPlayingClient {
     var audioPlayer: AVAudioPlayer?
     func startPlaying(url: URL, parameters: [String: String]) {
-        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: ["Content-Type":"application/json"]).responseData { response in
+        guard let newURL = createURL(baseURL: url, params: parameters) else { return }
+        print(newURL)
+        AF.request(newURL, method: .get, parameters: nil, encoding: JSONEncoding(options: []), headers: ["Content-Type":"application/json"]).responseData { response in
             switch response.result {
             case .success(let data):
                 let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -258,14 +267,31 @@ class SpeechPlayingClient {
                     try data.write(to: fileURL)
 
                     // AVAudioPlayer로 음성 파일 재생
-                    self.audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
+//                    self.audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
+                    self.audioPlayer = try AVAudioPlayer(data: data)
+                    self.audioPlayer?.prepareToPlay()
+                    self.audioPlayer?.volume = 1.0
                     self.audioPlayer?.play()
                 } catch {
                     print("Error: Failed to save or play audio data")
+                    print(error.localizedDescription)
                 }
             case .failure(let error):
                 print("Error: \(error)")
             }
         }
+    }
+
+    func createURL(baseURL: URL, params: [String: Any]) -> URL? {
+        var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)
+        var queryItems = [URLQueryItem]()
+
+        for (key, value) in params {
+            queryItems.append(URLQueryItem(name: key, value: "\(value)"))
+        }
+
+        urlComponents?.queryItems = queryItems
+
+        return urlComponents?.url
     }
 }
