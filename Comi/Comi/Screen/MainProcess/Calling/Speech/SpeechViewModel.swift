@@ -17,7 +17,7 @@ class SpeechViewModel: ObservableObject {
     private var audioPlayer: AVAudioPlayer?
     private var recordingTimer: Timer?
     private var audioCheckInterval: TimeInterval = 0.1  // 타이머 간격
-    private var maxConsecutiveNoInputTime: TimeInterval = 3  // 사용자 입력 감지 간격
+    private var maxConsecutiveNoInputTime: TimeInterval = 2  // 사용자 입력 감지 간격
     private var consecutiveNoInputCount: TimeInterval = 0  // 사용자 입력 카운터
 
     @Published var isRecording = false
@@ -270,7 +270,7 @@ class SpeechPlayingClient {
 //                    self.audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
                     self.audioPlayer = try AVAudioPlayer(data: data)
                     self.audioPlayer?.prepareToPlay()
-                    self.audioPlayer?.setVolume(1, fadeDuration: 0)
+                    self.audioPlayer?.volume = 1.0
                     self.audioPlayer?.play()
                 } catch {
                     print("Error: Failed to save or play audio data")
