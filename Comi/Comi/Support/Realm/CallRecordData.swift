@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class CallRecordData: Object, ObjectKeyIdentifiable {
-    @Persisted(primaryKey: true) var id: Int
+    @Persisted(primaryKey: true) var id: Int // callID
     @Persisted var modelId: Int
     @Persisted var topic: String
     @Persisted var convCount: Int

@@ -22,8 +22,10 @@ struct CallingView: View {
     @State private var background: CallState = .ready
     @State private var gotoFeedback: Bool = false
     @State var response: ChatResponseData?
+    @State private var feedBackLoading = true
     @StateObject private var speechViewModel = SpeechViewModel()
     @StateObject private var conversationViewModel = ConversationViewModel()
+    @StateObject private var geminiAPIViewModel = GeminiAPIViewModel()
     @StateObject private var audioCaptureViewModel = AudioCaptureViewModel()
     @Binding var gotoRoot: Bool
     @State var isUserSpeaking = false
@@ -71,7 +73,7 @@ struct CallingView: View {
                 } label: {
                     Text(speechViewModel.isRecording ? "Stop Recording" : "Start Recording")
                 }
-                .padding()
+                    .padding()
 
                 Button {
                     if speechViewModel.isRecording {
@@ -84,7 +86,7 @@ struct CallingView: View {
                 } label: {
                     Text(speechViewModel.isRecording ? "Stop Recording" : "Pronunciation evaluation internal")
                 }
-                .padding()
+                    .padding()
 
                 Button {
                     if speechViewModel.isRecording {
@@ -95,7 +97,7 @@ struct CallingView: View {
                 } label: {
                     Text(speechViewModel.isRecording ? "Stop Recording" : "Pronunciation evaluation azure")
                 }
-                .padding()
+                    .padding()
 
                 Button {
                     let requestData = ConversationRequestData(answer: speechViewModel.speechedText ?? "", id: String(realmViewModel.userData.models.userId))
@@ -227,6 +229,13 @@ struct CallingView: View {
                             .font(.ptSemiBold18)
                         Spacer()
                         Button {
+//                            geminiAPIViewModel.terminateChat(userID: realmViewModel.userData.models.userId, completion: {
+//                                result in
+//                                if result {
+//                                    gotoFeedback = true
+//                                }
+//                            })
+                            geminiAPIViewModel.terminateChat(userID: realmViewModel.userData.models.userId)
                             gotoFeedback = true
                         } label: {
                             Image("Disconnected")
@@ -235,8 +244,9 @@ struct CallingView: View {
                                 .frame(width: 40, height: 40)
                                 .clipShape(Circle())
                         }.background(
+                            // TODO: 영균이가 /gemini/terminate/{id} 호출시 나오는 데이터 전송
                             NavigationLink(
-                                destination: FeedbackView(gotoRoot: $gotoRoot, model: modelData, topicData: topicData)
+                                destination: FeedbackView(gotoRoot: $gotoRoot, targetCallID: "1020", isLoading: $feedBackLoading, model: modelData, topicData: topicData)
                                     .navigationBarHidden(true),
                                 isActive: $gotoFeedback,
                                 label: { EmptyView() }
@@ -247,7 +257,6 @@ struct CallingView: View {
 
                     ZStack {
                         RoundedRectangle(cornerRadius: 100, style: .continuous)
-                        // TODO: 언어 설정 나중에 받아와야함
                         HStack(alignment: .center, spacing: 8) {
                             Text("언어")
                                 .font(.ptRegular11)
@@ -287,7 +296,7 @@ struct CallingView: View {
                     .foregroundStyle(.constantsSemi)
             }
         }
-        .padding(.vertical, 16)
+            .padding(.vertical, 16)
     }
 }
 

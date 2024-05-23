@@ -13,32 +13,68 @@ struct FeedbackView: View {
     @Environment(\.dismiss) var dismiss
     @State private var isSelect: Bool = false
     @Binding var gotoRoot: Bool
+    var targetCallID: String
+    @Binding var isLoading: Bool
     var model: RealmModel
     var topicData: String
+    @State var sampleData: [CallConvResult] = []
+    @StateObject private var callAPIViewModel = CallAPIViewModel()
+    @State private var showAlert: Bool = false
 
     var body: some View {
-        VStack {
-            customNavBar()
-            GeometryReader { geo in
-                let size = geo.size
-                // TODO: 채팅화면
-                ScrollView {
-                    Text("asdfa")
-                        .font(.system(size: 50))
-                    Spacer()
-                        .frame(height: 116)
-                }
-                    .frame(maxWidth: .infinity, maxHeight: size.height)
-                    .offset(y: 116)
-                feedBackInterface()
-                    .offset(y: 8)
+        if isLoading {
+            VStack {
+                Spacer()
+                Text("로딩")
+                Spacer()
+            }.background(BackGround())
+                .onAppear {
+                callAPIViewModel.fetchConv(callId: targetCallID, completion: { result in
+                    if result {
+                        sampleData = callAPIViewModel.convItems
+                        print("샘플 데이터 저장 :\(sampleData)")
+                        self.isLoading = false
+                    } else {
+                        print("샘플 데이터 저장 실패")
+                        showAlert = true
+                        dismiss()
+                    }
+                })
             }
-            bottomBtn()
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("알림"), message: Text("분석 에러"), dismissButton: .destructive(Text("닫기"), action: {dismiss()}))
+            }
+        } else {
+            VStack {
+                customNavBar()
+                GeometryReader { geo in
+                    let size = geo.size
+                    ScrollView {
+
+                        ForEach(callAPIViewModel.aiTalk, id:\.self) { data in
+                            Text(data.conv)
+                            Text(data.explain)
+                            ForEach(data.eval, id:\.self) { Text($0) }
+                            Text(data.fix ?? "")
+                        }
+                        Divider()
+                        Spacer()
+                        Divider()
+                        ForEach(callAPIViewModel.usersTalk, id:\.self) { Text($0) }
+                            .frame(height: 116)
+                    }
+                        .frame(maxWidth: .infinity, maxHeight: size.height)
+                        .offset(y: 116)
+                    feedBackInterface()
+                        .offset(y: 8)
+                }
+                bottomBtn()
+            }
+                .fullScreenCover(isPresented: $isOnboarding) {
+                FeedbackManualTabView(isOnboarding: $isOnboarding)
+            }
+                .background(BackGround())
         }
-            .fullScreenCover(isPresented: $isOnboarding) {
-            FeedbackManualTabView(isOnboarding: $isOnboarding)
-        }
-            .background(BackGround())
     }
 
     @ViewBuilder
@@ -162,8 +198,4 @@ struct FeedbackView: View {
         }
             .frame(maxWidth: 163, maxHeight: 50)
     }
-}
-
-#Preview {
-    FeedbackView(gotoRoot: .constant(true), model: RealmModel(id: 0, name: "카리나", englishName: "karina", state: .available, image: ""), topicData: "")
 }

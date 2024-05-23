@@ -16,6 +16,7 @@ struct HistoryCard: View {
     @State private var gotoFeedbackView: Bool = false
     @State private var showMoreFunc: Bool = false
     @State private var showBG: Bool = false
+    @State private var feedBackLoading = true
     @Binding var selected: Int?
     var modelInfo: RealmModel
     var data: RealmCallRecord
@@ -69,7 +70,7 @@ struct HistoryCard: View {
             .frame(maxWidth: .infinity, minHeight: 78)
             .onAppear {
             recentedDate = RealmViewModel.shared.formatDate(data: data.ended)
-            }
+        }
     }
 
     private func toggleSelection(for id: Int) {
@@ -87,7 +88,7 @@ struct HistoryCard: View {
                 .background(
                 NavigationLink(
                     destination:
-                        FeedbackView(gotoRoot: $gotoFeedbackView, model: modelInfo, topicData: data.topic)
+                        FeedbackView(gotoRoot: $gotoFeedbackView, targetCallID: String(selected ?? 0) , isLoading: $feedBackLoading, model: modelInfo, topicData: data.topic)
                         .navigationBarBackButtonHidden(),
                     isActive: $gotoFeedbackView,
                     label: { EmptyView() }
