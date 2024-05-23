@@ -42,7 +42,7 @@ class CustomEventMonitor: EventMonitor {
     }
 }
 
-struct ChatResponseData: Codable {
+struct ChatResponseData: Codable, Hashable {
     let conv: String
     let explain: String
     let eval: [String]
