@@ -48,6 +48,8 @@
 		867B25282BF3424B00861B66 /* RealmSampleCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867B25272BF3424B00861B66 /* RealmSampleCode.swift */; };
 		867DA7C42BF22F52002BDA1C /* CallRecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DA7C32BF22F52002BDA1C /* CallRecordData.swift */; };
 		867DA7C62BF2368E002BDA1C /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DA7C52BF2368E002BDA1C /* RealmViewModel.swift */; };
+		86881CCF2BFF53A500D7A667 /* CallAPIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86881CCE2BFF53A500D7A667 /* CallAPIViewModel.swift */; };
+		86881CE12BFF957800D7A667 /* GeminiAPIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86881CE02BFF957800D7A667 /* GeminiAPIViewModel.swift */; };
 		8697B0402BF73B6C00F1C5EB /* SupabaseInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8697B03F2BF73B6C00F1C5EB /* SupabaseInfo.plist */; };
 		8697B0442BF73D3500F1C5EB /* SupabaseInfo++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8697B0432BF73D3500F1C5EB /* SupabaseInfo++Bundle.swift */; };
 		8697B0462BF73E3900F1C5EB /* SupaClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8697B0452BF73E3900F1C5EB /* SupaClient.swift */; };
@@ -125,6 +127,8 @@
 		867B25272BF3424B00861B66 /* RealmSampleCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSampleCode.swift; sourceTree = "<group>"; };
 		867DA7C32BF22F52002BDA1C /* CallRecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordData.swift; sourceTree = "<group>"; };
 		867DA7C52BF2368E002BDA1C /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
+		86881CCE2BFF53A500D7A667 /* CallAPIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallAPIViewModel.swift; sourceTree = "<group>"; };
+		86881CE02BFF957800D7A667 /* GeminiAPIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiAPIViewModel.swift; sourceTree = "<group>"; };
 		8697B03F2BF73B6C00F1C5EB /* SupabaseInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SupabaseInfo.plist; sourceTree = "<group>"; };
 		8697B0432BF73D3500F1C5EB /* SupabaseInfo++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SupabaseInfo++Bundle.swift"; sourceTree = "<group>"; };
 		8697B0452BF73E3900F1C5EB /* SupaClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaClient.swift; sourceTree = "<group>"; };
@@ -311,6 +315,8 @@
 		861C49132BFBB23B008D9706 /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
+				86881CDF2BFF955D00D7A667 /* Gemini */,
+				86881CCD2BFF536100D7A667 /* Call */,
 				861C49142BFBB267008D9706 /* UserSetting */,
 			);
 			path = Alamofire;
@@ -426,6 +432,22 @@
 				864B3FC72B9F1DBB00F51FF6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		86881CCD2BFF536100D7A667 /* Call */ = {
+			isa = PBXGroup;
+			children = (
+				86881CCE2BFF53A500D7A667 /* CallAPIViewModel.swift */,
+			);
+			name = Call;
+			sourceTree = "<group>";
+		};
+		86881CDF2BFF955D00D7A667 /* Gemini */ = {
+			isa = PBXGroup;
+			children = (
+				86881CE02BFF957800D7A667 /* GeminiAPIViewModel.swift */,
+			);
+			path = Gemini;
 			sourceTree = "<group>";
 		};
 		8697B0632BF7CAF900F1C5EB /* Search */ = {
@@ -718,6 +740,7 @@
 				860DDCA62BDFA39F007A8F13 /* MainView.swift in Sources */,
 				860DDC9A2BDF7977007A8F13 /* BackGround.swift in Sources */,
 				86447C222BF1183000C1988E /* TopicsDB.swift in Sources */,
+				86881CE12BFF957800D7A667 /* GeminiAPIViewModel.swift in Sources */,
 				861C491A2BFC345A008D9706 /* ExRoundCorner.swift in Sources */,
 				8617DC952BE29E87007CFB73 /* HomeView.swift in Sources */,
 				86AF00C02BE56EF0007DAF5F /* CallBackground.swift in Sources */,
@@ -731,6 +754,7 @@
 				860DDC9E2BDF90E6007A8F13 /* BottomStartBtn.swift in Sources */,
 				86F0ED962BEDCCE300D1B8E8 /* ModelsDB.swift in Sources */,
 				864B3FC12B9F1DBA00F51FF6 /* ComiApp.swift in Sources */,
+				86881CCF2BFF53A500D7A667 /* CallAPIViewModel.swift in Sources */,
 				86A636CF2BFDF7B100840B86 /* CustomPageControl.swift in Sources */,
 				860DDC962BDF6A2B007A8F13 /* SplashView.swift in Sources */,
 				86447C192BF1169300C1988E /* FavoritesViewModel.swift in Sources */,
