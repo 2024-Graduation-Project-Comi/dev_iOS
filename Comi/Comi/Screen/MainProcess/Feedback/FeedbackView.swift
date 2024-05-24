@@ -21,7 +21,6 @@ struct FeedbackView: View {
     var targetCallID: String
     var model: RealmModel
     var topicData: String
-    
 
     private enum Types: String {
         case ai = "model"

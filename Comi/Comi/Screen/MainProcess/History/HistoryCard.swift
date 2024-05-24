@@ -81,7 +81,7 @@ struct HistoryCard: View {
         HStack {
             Button {
                 gotoFeedbackView = true
-                print("Test : \(selected)")
+                print("Test : \(selected ?? 0)")
             } label: {
                 moreFuncButton(image: "Chat filled", title: "채팅보기")
             }
