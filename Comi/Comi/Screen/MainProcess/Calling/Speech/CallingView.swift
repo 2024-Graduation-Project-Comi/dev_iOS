@@ -22,7 +22,6 @@ struct CallingView: View {
     @State private var background: CallState = .ready
     @State private var gotoFeedback: Bool = false
     @State var response: ChatResponseData?
-    @State private var feedBackLoading = true
     @StateObject private var speechViewModel = SpeechViewModel()
     @StateObject private var conversationViewModel = ConversationViewModel()
     @StateObject private var geminiAPIViewModel = GeminiAPIViewModel()
@@ -126,62 +125,62 @@ struct CallingView: View {
             .padding(.horizontal, 24)
             .background(CallBackground(status: $background))
             .onAppear {
-                let createConversationRequest: ChatRequestData = ChatRequestData(id: String(realmViewModel.userData.models.userId),
-                                                                                 topic: topicTitle,
-                                                                                 conversationLanguage: realmViewModel.settingData.models.globalCode,
-                                                                                 explanationLanguage: realmViewModel.settingData.models.local,
-                                                                                 model: model.name,
-                                                                                 modelId: model.id,
-                                                                                 callId: callId,
-                                                                                 level: realmViewModel.settingData.models.level)
-                conversationViewModel.startConversation(chatRequestData: createConversationRequest) { result in
-                    switch result {
-                    case .success(let responseData):
-                        print("Conversation: \(responseData.conv)")
-                        print("Explanation: \(responseData.explain)")
-                        print("Evaluation: \(responseData.eval)")
-                        print("Fix: \(String(describing: responseData.fix))")
-                        DispatchQueue.main.async {
-                            response = responseData
-                        }
-                        let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as Dictionary
-                        audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
-                            DispatchQueue.main.async {
-                                isUserSpeaking = true
-                                speechViewModel.startRecording() // AI 음성이 끝나면 대화 시작하도록 함
-                            }
-                        }
-                    case .failure(let error):
-                        print("Error occurred: \(error)")
+            let createConversationRequest: ChatRequestData = ChatRequestData(id: String(realmViewModel.userData.models.userId),
+                                                                             topic: topicTitle,
+                                                                             conversationLanguage: realmViewModel.settingData.models.globalCode,
+                                                                             explanationLanguage: realmViewModel.settingData.models.local,
+                                                                             model: model.name,
+                                                                             modelId: model.id,
+                                                                             callId: callId,
+                                                                             level: realmViewModel.settingData.models.level)
+            conversationViewModel.startConversation(chatRequestData: createConversationRequest) { result in
+                switch result {
+                case .success(let responseData):
+                    print("Conversation: \(responseData.conv)")
+                    print("Explanation: \(responseData.explain)")
+                    print("Evaluation: \(responseData.eval)")
+                    print("Fix: \(String(describing: responseData.fix))")
+                    DispatchQueue.main.async {
+                        response = responseData
                     }
+                    let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as Dictionary
+                    audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
+                        DispatchQueue.main.async {
+                            isUserSpeaking = true
+                            speechViewModel.startRecording() // AI 음성이 끝나면 대화 시작하도록 함
+                        }
+                    }
+                case .failure(let error):
+                    print("Error occurred: \(error)")
                 }
             }
+        }
             .onReceive(speechViewModel.$isRecording) { isRecording in
-                if !isRecording {
-                    // 녹음이 종료되었을 때 수행할 작업
-                    print("Recording stopped")
-                    speechViewModel.pronEvalBuiltIn { recognizedText in
-                        print("Pronunciation evaluation internal")
-                        let requestData = ConversationRequestData(answer: recognizedText ?? "", id: String(realmViewModel.userData.models.userId))
-                        conversationViewModel.sendConversation(requestData: requestData) { result in
-                            switch result {
-                            case .success(let responseData):
-                                print("Conversation: \(responseData.conv)")
-                                print("Explanation: \(responseData.explain)")
-                                print("Evaluation: \(responseData.eval)")
-                                print("Fix: \(String(describing: responseData.fix))")
-                                response = responseData
+            if !isRecording {
+                // 녹음이 종료되었을 때 수행할 작업
+                print("Recording stopped")
+                speechViewModel.pronEvalBuiltIn { recognizedText in
+                    print("Pronunciation evaluation internal")
+                    let requestData = ConversationRequestData(answer: recognizedText ?? "", id: String(realmViewModel.userData.models.userId))
+                    conversationViewModel.sendConversation(requestData: requestData) { result in
+                        switch result {
+                        case .success(let responseData):
+                            print("Conversation: \(responseData.conv)")
+                            print("Explanation: \(responseData.explain)")
+                            print("Evaluation: \(responseData.eval)")
+                            print("Fix: \(String(describing: responseData.fix))")
+                            response = responseData
 
-                                let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as [String: Any]
-                                audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
-                                    DispatchQueue.main.async {
-                                        isUserSpeaking = true
-                                    }
+                            let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as [String: Any]
+                            audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
+                                DispatchQueue.main.async {
+                                    isUserSpeaking = true
                                 }
-                            case .failure(let error):
-                                print("Error occurred: \(error)")
                             }
+                        case .failure(let error):
+                            print("Error occurred: \(error)")
                         }
+                    }
 //                    print("Pronunciation evaluation internal")
 //                    // 아래는 중복되는 로직이므로 캡슐화 하고싶다.
 //                    let requestData = ConversationRequestData(answer: speechViewModel.speechedText ?? "", id: String(realmViewModel.userData.models.userId))
@@ -201,10 +200,10 @@ struct CallingView: View {
 //                        case .failure(let error):
 //                            print("Error occurred: \(error)")
 //                        }
-                    }
-                    // 여기서 추가적인 로직을 실행할 수 있습니다.
                 }
+                // 여기서 추가적인 로직을 실행할 수 있습니다.
             }
+        }
     }
 
     @ViewBuilder
@@ -246,7 +245,11 @@ struct CallingView: View {
                         }.background(
                             // TODO: 영균이가 /gemini/terminate/{id} 호출시 나오는 데이터 전송
                             NavigationLink(
-                                destination: FeedbackView(gotoRoot: $gotoRoot, targetCallID: "1020", isLoading: $feedBackLoading, model: modelData, topicData: topicData)
+                                destination: FeedbackView(
+                                    gotoRoot: $gotoRoot,
+                                    targetCallID: "1020",
+                                    model: modelData,
+                                    topicData: topicData)
                                     .navigationBarHidden(true),
                                 isActive: $gotoFeedback,
                                 label: { EmptyView() }

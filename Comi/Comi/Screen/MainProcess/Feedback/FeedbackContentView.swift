@@ -89,7 +89,7 @@ struct FeedbackContentView: View {
                                 .frame(width: 68)
                             Button {
                                 withAnimation {
-                                    checkType.toggle()
+                                    checkType = false
                                 }
                             } label: {
                                 Text("발음")
@@ -99,7 +99,7 @@ struct FeedbackContentView: View {
                             Spacer()
                             Button {
                                 withAnimation {
-                                    checkType.toggle()
+                                    checkType = true
                                 }
                             } label: {
                                 Text("어휘")
