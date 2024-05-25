@@ -19,7 +19,7 @@ class GeminiAPIViewModel: ObservableObject {
     func terminateChat(userID: Int) {
         print("테스트 중입니다 : ", userID)
     }
-    
+
     func terminateChat(userID: Int, completion: @escaping (Bool) -> Void) {
         let param:[String:Any] = [
             "id": String(userID)

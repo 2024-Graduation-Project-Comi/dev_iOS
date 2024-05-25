@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeedbackManualTabView: View {
-    
+
     @State private var isAnimation: Bool = false
     @State private var currentPage = 0
     @Binding var isOnboarding: Bool

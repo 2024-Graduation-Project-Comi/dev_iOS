@@ -52,14 +52,22 @@ struct CallConvResult: Codable, Hashable {
     }
 }
 
+enum Types {
+    case ai
+    case user
+}
 
+struct TestStruct: Hashable {
+    let role: String
+    let conv: String
+    var fix: String?
+}
 
 class CallAPIViewModel: ObservableObject {
 
     @Published var convItems: [CallConvResult] = []
-    @Published var usersTalk: [String] = []
-    @Published var aiTalk: [ChatResponseData] = []
-//        .init(conv: "", explain: "", eval: [""], fix: nil)
+    @Published var totalTalk: [TestStruct] = []
+
     // MARK: get /call/conv
     func fetchConv(callId: String, completion: @escaping (Bool) -> Void) {
         let url = "http://211.216.233.107:88/call/conv"
@@ -76,25 +84,27 @@ class CallAPIViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.convItems = items
                     if let allData = self.convItems.first {
-                        let models = allData.conversation.filter { $0.role == "model" }
-                        for model in models {
-                            if let modelsText = model.parts.first?.text {
-                                if let textToDic = self.convertStringToDictionary(text: modelsText) {
-                                    if let aiTalkData = self.parseChatResponseData(from: textToDic) {
-                                        self.aiTalk.append(aiTalkData)
+                        let data: [TestStruct] = allData.conversation.flatMap { datas in
+                            if datas.role == "model" {
+                                return datas.parts.compactMap { part in
+                                    if let dics = self.convertStringToDictionary(text: part.text),
+                                        let chats = self.parseChatResponseData(from: dics) {
+                                        return TestStruct(role: "model", conv: chats.conv, fix: chats.fix)
                                     }
+                                    return nil
+                                }
+                            } else {
+                                return datas.parts.compactMap { part in
+                                    return TestStruct(role: "user", conv: part.text, fix: nil)
                                 }
                             }
                         }
-
-                        let users = allData.conversation.filter { $0.role == "user" }
-                        for index in 1 ..< users.count {
-                            if let usersText = users[index].parts.first?.text {
-                                self.usersTalk.append(usersText)
-                            }
+                        self.totalTalk = Array(data.dropFirst())
+                        for i in 1 ..< self.totalTalk.count {
+                            self.totalTalk[i - 1].fix = self.totalTalk[i].fix
+                            self.totalTalk[i].fix = nil
                         }
                     }
-
                     completion(true)
                 }
             case .failure(let error):

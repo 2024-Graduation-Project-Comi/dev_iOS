@@ -15,10 +15,13 @@ struct HistoryView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Text("최근 기록")
+            VStack(alignment: .leading) {
+                Text("학습 기록")
                     .font(.ptBold22)
-                Spacer()
+                    .foregroundStyle(.black)
+                Text("코미와 학습한 기록입니다")
+                    .font(.ptRegular11)
+                    .foregroundStyle(.constantsSemi)
             }
                 .padding(.vertical, 16)
                 .padding(.horizontal, 24)

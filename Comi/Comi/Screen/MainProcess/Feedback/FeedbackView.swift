@@ -6,67 +6,77 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct FeedbackView: View {
 
     @AppStorage("isOnboarding") var isOnboarding: Bool = true
     @Environment(\.dismiss) var dismiss
-    @State private var isSelect: Bool = false
+    // TODO: 변수명 고쳐야함.
+    @State var sampleData: [CallConvResult] = []
+    @State private var showAlert: Bool = false
+    @State private var isLoading: Bool = true
+    @StateObject private var callAPIViewModel = CallAPIViewModel()
+    @StateObject private var staticAPIViewModel = StaticViewModel()
     @Binding var gotoRoot: Bool
     var targetCallID: String
-    @Binding var isLoading: Bool
     var model: RealmModel
     var topicData: String
-    @State var sampleData: [CallConvResult] = []
-    @StateObject private var callAPIViewModel = CallAPIViewModel()
-    @State private var showAlert: Bool = false
+    var intoRoute: String
+
+    private enum Types: String {
+        case ai = "model"
+        case user = "user"
+    }
 
     var body: some View {
         if isLoading {
-            VStack {
-                Spacer()
-                Text("로딩")
-                Spacer()
-            }.background(BackGround())
+            loadingView()
                 .onAppear {
                 callAPIViewModel.fetchConv(callId: targetCallID, completion: { result in
                     if result {
                         sampleData = callAPIViewModel.convItems
                         print("샘플 데이터 저장 :\(sampleData)")
-                        self.isLoading = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                            isLoading = false
+                        })
                     } else {
-                        print("샘플 데이터 저장 실패")
-                        showAlert = true
-                        dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                            print("샘플 데이터 저장 실패")
+                            showAlert = true
+                            dismiss()
+                        })
                     }
                 })
+                if intoRoute == "History" {
+                    //TODO: callID를 Int(targetCallID) ?? 0으로 수정하기 지금은 단순히 테스트용임.
+                    staticAPIViewModel.fetchChartData(callID: 2) { result in
+                        if result {
+                            print("차트 정보 저장 성공")
+                        } else {
+                            print("차트 정보 저장 실패")
+                        }
+                    }
+                }
             }
                 .alert(isPresented: $showAlert) {
-                    Alert(title: Text("알림"), message: Text("분석 에러"), dismissButton: .destructive(Text("닫기"), action: {dismiss()}))
+                Alert(title: Text("알림"), message: Text("분석 에러"), dismissButton: .destructive(Text("닫기"), action: { dismiss() }))
             }
         } else {
             VStack {
                 customNavBar()
                 GeometryReader { geo in
                     let size = geo.size
-                    ScrollView {
-
-                        ForEach(callAPIViewModel.aiTalk, id:\.self) { data in
-                            Text(data.conv)
-                            Text(data.explain)
-                            ForEach(data.eval, id:\.self) { Text($0) }
-                            Text(data.fix ?? "")
+                    ScrollView(showsIndicators: false) {
+                        ForEach(callAPIViewModel.totalTalk, id: \.self) { data in
+                            speechBubble(content: data.conv, content2: data.fix, type: Types(rawValue: data.role) ?? .ai)
                         }
-                        Divider()
                         Spacer()
-                        Divider()
-                        ForEach(callAPIViewModel.usersTalk, id:\.self) { Text($0) }
                             .frame(height: 116)
                     }
                         .frame(maxWidth: .infinity, maxHeight: size.height)
                         .offset(y: 116)
                     feedBackInterface()
-                        .offset(y: 8)
                 }
                 bottomBtn()
             }
@@ -74,6 +84,34 @@ struct FeedbackView: View {
                 FeedbackManualTabView(isOnboarding: $isOnboarding)
             }
                 .background(BackGround())
+        }
+    }
+
+    @ViewBuilder
+    private func loadingView() -> some View {
+        GeometryReader { geo in
+            let size = geo.size
+            VStack {
+                Spacer()
+                ZStack {
+                    Circle()
+                        .foregroundStyle(.red2)
+                        .frame(width: 480, height: 480)
+                        .offset(x: (-480 / 2))
+                    Circle()
+                        .foregroundStyle(.blue0)
+                        .frame(width: 480, height: 480)
+                        .offset(x: (480 / 2) - 100)
+                }.blur(radius: 20)
+                Spacer()
+            }
+                .background(.cwhite)
+            VStack(alignment: .center) {
+                Text("Comi")
+                    .font(.ptSemiBold32)
+                Text("LOADING")
+                    .font(.ptRegular14)
+            }.frame(width: size.width, height: size.height)
         }
     }
 
@@ -90,9 +128,11 @@ struct FeedbackView: View {
             HStack(spacing: 4) {
                 Text(model.name)
                     .font(.ptSemiBold18)
+                    .foregroundStyle(.black)
                 Text(topicData)
-                    .font(.ptRegular18)
-            }.foregroundStyle(.black)
+                    .font(.ptRegular14)
+                    .foregroundStyle(.constantsSemi)
+            }
             Spacer()
         }
             .padding(.vertical, 16)
@@ -104,11 +144,12 @@ struct FeedbackView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 32, style: .continuous)
             VStack {
-                Text("2024년 00월 00일 월요일")
+                Text(sampleData.first?.ended.toKoreanDateFormat() ?? "nil-nil-nil")
                     .font(.ptRegular14)
                     .foregroundStyle(.cwhite)
                 NavigationLink {
-                    FeedbackContentView()
+                    // MARK: intoRoute가 Calling이면 영균이가 만든 결과 전송, 아닌 경우 static/scores/chart api 호출함
+                    FeedbackContentView(ended: sampleData.first?.ended.toKoreanDateFormat() ?? "nil-nil-nil", totalScores: intoRoute == "Calling" ? nil : staticAPIViewModel.chartResult)
                         .navigationBarBackButtonHidden()
                 } label: {
                     ZStack {
@@ -136,6 +177,53 @@ struct FeedbackView: View {
         }
             .frame(maxWidth: .infinity, maxHeight: 110)
             .padding(.horizontal, 24)
+    }
+
+    @ViewBuilder
+    private func speechBubble(content: String, content2: String?, type: Types) -> some View {
+        HStack(alignment: .top, spacing: 0) {
+            if type == .user {
+                Spacer()
+            }
+            if type == .ai {
+                KFImage(URL(string: model.image))
+                    .fade(duration: 0.25)
+                    .startLoadingBeforeViewAppear(true)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 42, height: 42)
+                    .clipShape(Circle())
+                    .padding(.trailing, 8)
+            }
+
+            ZStack(alignment: .topLeading) {
+                Rectangle()
+                    .fill(.cwhite)
+                    .padding(1)
+                    .overlay {
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .stroke(Color.unavailableCircle, lineWidth: 1)
+                }
+                VStack(alignment: .leading) {
+                    Text(content)
+                    if let sub = content2 {
+                        Divider()
+                        Text(sub)
+                            .font(.ptSemiBold14)
+                            .foregroundStyle(.blue2)
+                    }
+                }
+                    .font(.ptRegular14)
+                    .foregroundStyle(.black)
+                    .padding(16)
+            }
+                .frame(maxWidth: 232)
+            if type == .ai {
+                Spacer()
+            }
+        }
+            .padding(.horizontal, 24)
+            .padding(.bottom, 12)
     }
 
     @ViewBuilder
