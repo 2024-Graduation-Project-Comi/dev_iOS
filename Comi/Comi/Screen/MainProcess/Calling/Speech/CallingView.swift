@@ -249,7 +249,9 @@ struct CallingView: View {
                                     gotoRoot: $gotoRoot,
                                     targetCallID: "1020",
                                     model: modelData,
-                                    topicData: topicData)
+                                    topicData: topicData,
+                                    intoRoute: "Calling"
+                                )
                                     .navigationBarHidden(true),
                                 isActive: $gotoFeedback,
                                 label: { EmptyView() }

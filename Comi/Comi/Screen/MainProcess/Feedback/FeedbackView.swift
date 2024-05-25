@@ -12,15 +12,17 @@ struct FeedbackView: View {
 
     @AppStorage("isOnboarding") var isOnboarding: Bool = true
     @Environment(\.dismiss) var dismiss
-    @State private var isSelect: Bool = false
+    // TODO: 변수명 고쳐야함.
     @State var sampleData: [CallConvResult] = []
     @State private var showAlert: Bool = false
     @State private var isLoading: Bool = true
     @StateObject private var callAPIViewModel = CallAPIViewModel()
+    @StateObject private var staticAPIViewModel = StaticViewModel()
     @Binding var gotoRoot: Bool
     var targetCallID: String
     var model: RealmModel
     var topicData: String
+    var intoRoute: String
 
     private enum Types: String {
         case ai = "model"
@@ -36,7 +38,7 @@ struct FeedbackView: View {
                         sampleData = callAPIViewModel.convItems
                         print("샘플 데이터 저장 :\(sampleData)")
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                            isLoading =  false
+                            isLoading = false
                         })
                     } else {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
@@ -46,6 +48,16 @@ struct FeedbackView: View {
                         })
                     }
                 })
+                if intoRoute == "History" {
+                    //TODO: callID를 Int(targetCallID) ?? 0으로 수정하기 지금은 단순히 테스트용임.
+                    staticAPIViewModel.fetchChartData(callID: 2) { result in
+                        if result {
+                            print("차트 정보 저장 성공")
+                        } else {
+                            print("차트 정보 저장 실패")
+                        }
+                    }
+                }
             }
                 .alert(isPresented: $showAlert) {
                 Alert(title: Text("알림"), message: Text("분석 에러"), dismissButton: .destructive(Text("닫기"), action: { dismiss() }))
@@ -67,9 +79,6 @@ struct FeedbackView: View {
                     feedBackInterface()
                 }
                 bottomBtn()
-            }
-            .onDisappear {
-                isLoading = true
             }
                 .fullScreenCover(isPresented: $isOnboarding) {
                 FeedbackManualTabView(isOnboarding: $isOnboarding)
@@ -135,11 +144,12 @@ struct FeedbackView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 32, style: .continuous)
             VStack {
-                Text("2024년 00월 00일 월요일")
+                Text(sampleData.first?.ended.toKoreanDateFormat() ?? "nil-nil-nil")
                     .font(.ptRegular14)
                     .foregroundStyle(.cwhite)
                 NavigationLink {
-                    FeedbackContentView()
+                    // MARK: intoRoute가 Calling이면 영균이가 만든 결과 전송, 아닌 경우 static/scores/chart api 호출함
+                    FeedbackContentView(ended: sampleData.first?.ended.toKoreanDateFormat() ?? "nil-nil-nil", totalScores: intoRoute == "Calling" ? nil : staticAPIViewModel.chartResult)
                         .navigationBarBackButtonHidden()
                 } label: {
                     ZStack {
@@ -214,27 +224,8 @@ struct FeedbackView: View {
         }
             .padding(.horizontal, 24)
             .padding(.bottom, 12)
-
-//        VStack {
-//            Text(content)
-//            if let sub = content2 {
-//                Divider()
-//                Text(sub)
-//            }
-//        }
-//            .frame(maxWidth: 232, minHeight: 54)
-//            .padding(16)
-//            .background(
-//            RoundedRectangle(cornerRadius: 16, style: .continuous)
-//                .fill(.cwhite)
-//                .padding(2)
-//        )
-//            .overlay(
-//            RoundedRectangle(cornerRadius: 16, style: .continuous)
-//                .stroke(Color.blue, lineWidth: 2)
-//        )
-
     }
+
     @ViewBuilder
     private func bottomBtn() -> some View {
         ZStack {

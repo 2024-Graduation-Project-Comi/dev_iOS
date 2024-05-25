@@ -92,7 +92,8 @@ struct HistoryCard: View {
                             gotoRoot: $gotoFeedbackView,
                             targetCallID: String(selected ?? 0),
                             model: modelInfo,
-                            topicData: data.topic)
+                            topicData: data.topic,
+                            intoRoute: "History")
                         .navigationBarBackButtonHidden(),
                     isActive: $gotoFeedbackView,
                     label: { EmptyView() }

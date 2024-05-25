@@ -11,6 +11,7 @@ import SwiftUI
 extension Font {
     static let ptBold18: Font = .custom("Pretendard-Bold", size: 18 * deviceSizeMultiplier())
     static let ptBold22: Font = .custom("Pretendard-Bold", size: 22 * deviceSizeMultiplier())
+    static let ptBold48: Font = .custom("Pretendard-Bold", size: 48 * deviceSizeMultiplier())
     static let ptSemiBold18: Font = .custom("Pretendard-SemiBold", size: 18 * deviceSizeMultiplier())
     static let ptSemiBold16: Font = .custom("Pretendard-SemiBold", size: 16 * deviceSizeMultiplier())
     static let ptSemiBold14: Font = .custom("Pretendard-SemiBold", size: 14 * deviceSizeMultiplier())
