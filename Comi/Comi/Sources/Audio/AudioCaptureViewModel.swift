@@ -8,12 +8,14 @@
 import Foundation
 import Alamofire
 import AVFAudio
+import AVFoundation
 
 class AudioCaptureViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     private var session: Session!
     private var audioPlayer: AVAudioPlayer?
     private var audioData = Data()
     private var completion: ((Bool) -> Void)?
+    @Published var isPlayable = true
 
     func playAiAudio(url: URL, params: [String: Any], completion: @escaping (Bool) -> Void) {
         self.completion = completion
@@ -23,6 +25,7 @@ class AudioCaptureViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         ]
         self.session = Session()
         audioData = Data()
+
         self.session.streamRequest(newURL, method: .get, parameters: Optional<Empty>.none, headers: headers)
             .responseStream { (stream) in
                 switch stream.event {
@@ -62,19 +65,35 @@ class AudioCaptureViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
         // 파일 저장
         let fileManager = FileManager.default
-        if let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let fileURL = documentDirectory.appendingPathComponent(filename)
-            do {
-                try wavFileData.write(to: fileURL)
-                print("WAV 파일이 저장되었습니다: \(fileURL)")
+        let documentPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = documentPath.appendingPathComponent(filename)
+        do {
+            try wavFileData.write(to: fileURL)
+            print("WAV 파일이 저장되었습니다: \(fileURL)")
+            if isPlayable {
                 playWAVFile(at: fileURL)
-                return true
-            } catch {
-                print("파일 저장 실패: \(error)")
-                return false
             }
+            return true
+        } catch {
+            print("파일 저장 실패: \(error)")
+            return false
         }
-        return false
+
+//        if let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+//            let fileURL = documentDirectory.appendingPathComponent(filename)
+//            do {
+//                try wavFileData.write(to: fileURL)
+//                print("WAV 파일이 저장되었습니다: \(fileURL)")
+//                if isPlayable {
+//                    playWAVFile(at: fileURL)
+//                }
+//                return true
+//            } catch {
+//                print("파일 저장 실패: \(error)")
+//                return false
+//            }
+//        }
+//        return false
     }
 
     private func createWAVHeader(dataSize: Int) -> Data {
@@ -110,10 +129,16 @@ class AudioCaptureViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     private func playWAVFile(at url: URL) {
         do {
+
+//            try AVAudioSession.sharedInstance().overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)  // 상단 스피커 대신 메인 스피커를 사용하도록 변경하여 크기가 작아짐을 방지함
+            try AVAudioSession.sharedInstance().setActive(true)
+            // 기존 플레이어 중지 및 초기화
+//            audioPlayer?.stop()
+//            audioPlayer = nil
+            // 새로운 플레이어 생성 및 설정
             audioPlayer = try AVAudioPlayer(contentsOf: url)
             audioPlayer?.delegate = self
             audioPlayer?.prepareToPlay()
-            audioPlayer?.setVolume(1, fadeDuration: 0)
             audioPlayer?.play()
             print("Playing WAV file")
         } catch {
@@ -124,6 +149,8 @@ class AudioCaptureViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     // AVAudioPlayerDelegate 메서드 구현
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         print("Audio finished playing")
+        player.stop()
+        audioPlayer = nil
         completion?(flag)
     }
 }

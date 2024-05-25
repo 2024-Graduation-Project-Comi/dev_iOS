@@ -79,6 +79,7 @@
 		BAE3E4AF2BFF91AD00784AED /* AudioCaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE3E4AE2BFF91AD00784AED /* AudioCaptureViewModel.swift */; };
 		BAE3E4B12BFF92F000784AED /* FixedWidthInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE3E4B02BFF92F000784AED /* FixedWidthInteger.swift */; };
 		BAE3E4B42BFF9FEC00784AED /* ChatAzureResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE3E4B32BFF9FEC00784AED /* ChatAzureResponseData.swift */; };
+		BAE3E4B62C00731300784AED /* STTViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE3E4B52C00731300784AED /* STTViewModel.swift */; };
 		BAE76CCF2BECE6650003C17A /* SpeechViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */; };
 		BAE76CD62BF0DE1B0003C17A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */; };
 		BAF5B97B2BF7253400ADCC08 /* AzureInfo++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF5B97A2BF7253400ADCC08 /* AzureInfo++Bundle.swift */; };
@@ -162,6 +163,7 @@
 		BAE3E4AE2BFF91AD00784AED /* AudioCaptureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCaptureViewModel.swift; sourceTree = "<group>"; };
 		BAE3E4B02BFF92F000784AED /* FixedWidthInteger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthInteger.swift; sourceTree = "<group>"; };
 		BAE3E4B32BFF9FEC00784AED /* ChatAzureResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAzureResponseData.swift; sourceTree = "<group>"; };
+		BAE3E4B52C00731300784AED /* STTViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTViewModel.swift; sourceTree = "<group>"; };
 		BAE76CCE2BECE6650003C17A /* SpeechViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechViewModel.swift; sourceTree = "<group>"; };
 		BAE76CD52BF0DE1B0003C17A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BAF5B97A2BF7253400ADCC08 /* AzureInfo++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AzureInfo++Bundle.swift"; sourceTree = "<group>"; };
@@ -530,12 +532,13 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
-		BAE3E4B22BFF9FA400784AED /* Azure */ = {
+		BAE3E4B22BFF9FA400784AED /* PronEvaluation */ = {
 			isa = PBXGroup;
 			children = (
 				BAE3E4B32BFF9FEC00784AED /* ChatAzureResponseData.swift */,
+				BAE3E4B52C00731300784AED /* STTViewModel.swift */,
 			);
-			path = Azure;
+			path = PronEvaluation;
 			sourceTree = "<group>";
 		};
 		BAE76CCB2BECE34B0003C17A /* Sources */ = {
@@ -555,7 +558,7 @@
 				86447C1A2BF116C800C1988E /* Supabase */,
 				86447C0C2BEFF60D00C1988E /* Realm */,
 				861C49132BFBB23B008D9706 /* Alamofire */,
-				BAE3E4B22BFF9FA400784AED /* Azure */,
+				BAE3E4B22BFF9FA400784AED /* PronEvaluation */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -787,6 +790,7 @@
 				867DA7C62BF2368E002BDA1C /* RealmViewModel.swift in Sources */,
 				86C162232BE0E05A00362250 /* BottomTabBarView.swift in Sources */,
 				860DDCA02BDF9EAC007A8F13 /* LoginView.swift in Sources */,
+				BAE3E4B62C00731300784AED /* STTViewModel.swift in Sources */,
 				86A636C02BFDBB8200840B86 /* ScorePieChart.swift in Sources */,
 				8697B0652BF7CB0100F1C5EB /* SearchBar.swift in Sources */,
 				860DDC8A2BDF66BB007A8F13 /* ExFont.swift in Sources */,

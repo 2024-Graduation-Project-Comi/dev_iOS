@@ -19,8 +19,8 @@ class GeminiAPIViewModel: ObservableObject {
     func terminateChat(userID: Int) {
         print("테스트 중입니다 : ", userID)
     }
-    
-    func terminateChat(userID: Int, completion: @escaping (Bool) -> Void) {
+
+    func terminateChat(userID: Int, completion: @escaping (Bool) -> Void) {  // conv_id 줘야댐 리턴값으로 줄것
         let param:[String:Any] = [
             "id": String(userID)
         ]
