@@ -105,6 +105,7 @@ struct CallingView: View {
                 if !isRecording {
                     handleRecordingStopped()
                 }
+                // 여기서 추가적인 로직을 실행할 수 있습니다.
             }
         }
     }
@@ -143,7 +144,13 @@ struct CallingView: View {
                         }.background(
                             // TODO: 영균이가 /gemini/terminate/{id} 호출시 나오는 데이터 전송
                             NavigationLink(
-                                destination: FeedbackView(gotoRoot: $gotoRoot, targetCallID: "1020", isLoading: $feedBackLoading, model: modelData, topicData: topicData)
+                                destination: FeedbackView(
+                                    gotoRoot: $gotoRoot,
+                                    targetCallID: "1020",
+                                    model: modelData,
+                                    topicData: topicData,
+                                    intoRoute: "Calling"
+                                )
                                     .navigationBarHidden(true),
                                 isActive: $gotoFeedback,
                                 label: { EmptyView() }

@@ -54,6 +54,7 @@
 		8697B0442BF73D3500F1C5EB /* SupabaseInfo++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8697B0432BF73D3500F1C5EB /* SupabaseInfo++Bundle.swift */; };
 		8697B0462BF73E3900F1C5EB /* SupaClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8697B0452BF73E3900F1C5EB /* SupaClient.swift */; };
 		8697B0652BF7CB0100F1C5EB /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8697B0642BF7CB0100F1C5EB /* SearchBar.swift */; };
+		869ACFA22C00DBE9007A32A5 /* StaticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869ACFA12C00DBE9007A32A5 /* StaticViewModel.swift */; };
 		86A636BC2BFCEDD900840B86 /* ModelCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A636BB2BFCEDD900840B86 /* ModelCard.swift */; };
 		86A636C02BFDBB8200840B86 /* ScorePieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A636BF2BFDBB8200840B86 /* ScorePieChart.swift */; };
 		86A636C32BFDDB2B00840B86 /* FeedbackManualTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A636C22BFDDB2B00840B86 /* FeedbackManualTabView.swift */; };
@@ -74,6 +75,7 @@
 		86D192CC2BE68B6200C4CDAE /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D192CB2BE68B6200C4CDAE /* FeedbackView.swift */; };
 		86D192CE2BE69ECE00C4CDAE /* FeedbackContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */; };
 		86F0ED962BEDCCE300D1B8E8 /* ModelsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */; };
+		86FFE9CD2C02638700F072E7 /* String++DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFE9CC2C02638700F072E7 /* String++DateFormat.swift */; };
 		BA740F8B2BF72EDC00CA1885 /* AzureInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */; };
 		BA740F922BF744C400CA1885 /* ConversationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA740F912BF744C400CA1885 /* ConversationViewModel.swift */; };
 		BAE3E4AF2BFF91AD00784AED /* AudioCaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE3E4AE2BFF91AD00784AED /* AudioCaptureViewModel.swift */; };
@@ -136,6 +138,7 @@
 		8697B0432BF73D3500F1C5EB /* SupabaseInfo++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SupabaseInfo++Bundle.swift"; sourceTree = "<group>"; };
 		8697B0452BF73E3900F1C5EB /* SupaClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupaClient.swift; sourceTree = "<group>"; };
 		8697B0642BF7CB0100F1C5EB /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		869ACFA12C00DBE9007A32A5 /* StaticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticViewModel.swift; sourceTree = "<group>"; };
 		86A636BB2BFCEDD900840B86 /* ModelCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCard.swift; sourceTree = "<group>"; };
 		86A636BF2BFDBB8200840B86 /* ScorePieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorePieChart.swift; sourceTree = "<group>"; };
 		86A636C22BFDDB2B00840B86 /* FeedbackManualTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManualTabView.swift; sourceTree = "<group>"; };
@@ -156,6 +159,7 @@
 		86D192CB2BE68B6200C4CDAE /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackContentView.swift; sourceTree = "<group>"; };
 		86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsDB.swift; sourceTree = "<group>"; };
+		86FFE9CC2C02638700F072E7 /* String++DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String++DateFormat.swift"; sourceTree = "<group>"; };
 		B0C36C82EAD07ADEAEBD718C /* Pods_Comi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Comi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E050BA6F61CD507CE2C49E /* Pods-Comi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Comi.debug.xcconfig"; path = "Target Support Files/Pods-Comi/Pods-Comi.debug.xcconfig"; sourceTree = "<group>"; };
 		BA740F8A2BF72EDC00CA1885 /* AzureInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AzureInfo.plist; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				860DDC892BDF66BB007A8F13 /* ExFont.swift */,
 				861C49192BFC345A008D9706 /* ExRoundCorner.swift */,
 				BAE3E4B02BFF92F000784AED /* FixedWidthInteger.swift */,
+				86FFE9CC2C02638700F072E7 /* String++DateFormat.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 		861C49132BFBB23B008D9706 /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
+				869ACFA02C00DBDC007A32A5 /* Static */,
 				86881CDF2BFF955D00D7A667 /* Gemini */,
 				86881CCD2BFF536100D7A667 /* Call */,
 				861C49142BFBB267008D9706 /* UserSetting */,
@@ -463,6 +469,14 @@
 				8697B0642BF7CB0100F1C5EB /* SearchBar.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		869ACFA02C00DBDC007A32A5 /* Static */ = {
+			isa = PBXGroup;
+			children = (
+				869ACFA12C00DBE9007A32A5 /* StaticViewModel.swift */,
+			);
+			path = Static;
 			sourceTree = "<group>";
 		};
 		86A636C12BFDDA9300840B86 /* FeedbackManual */ = {
@@ -769,12 +783,14 @@
 				86881CE12BFF957800D7A667 /* GeminiAPIViewModel.swift in Sources */,
 				861C491A2BFC345A008D9706 /* ExRoundCorner.swift in Sources */,
 				8617DC952BE29E87007CFB73 /* HomeView.swift in Sources */,
+				86FFE9CD2C02638700F072E7 /* String++DateFormat.swift in Sources */,
 				86AF00C02BE56EF0007DAF5F /* CallBackground.swift in Sources */,
 				BAE3E4B12BFF92F000784AED /* FixedWidthInteger.swift in Sources */,
 				86A636BC2BFCEDD900840B86 /* ModelCard.swift in Sources */,
 				86447C202BF1182800C1988E /* TopicsSet.swift in Sources */,
 				861C49182BFC2D65008D9706 /* BottomActionButton.swift in Sources */,
 				86447C272BF11B7700C1988E /* CallRecordsDB.swift in Sources */,
+				869ACFA22C00DBE9007A32A5 /* StaticViewModel.swift in Sources */,
 				8617DC932BE29E81007CFB73 /* ProfileView.swift in Sources */,
 				867B25262BF33FF200861B66 /* UserData.swift in Sources */,
 				861C491E2BFC59DC008D9706 /* LanguageCard.swift in Sources */,
@@ -868,7 +884,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -926,7 +942,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

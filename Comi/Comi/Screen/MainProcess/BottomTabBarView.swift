@@ -20,22 +20,11 @@ struct BottomTabBarView: View {
         HStack {
             Spacer()
             Button {
-                selectedTab = .home
-            } label: {
-                VStack(spacing: 0) {
-                    Image(selectedTab == .home ? "Home filled" : "Home filled Disabled")
-                    Text("홈")
-                        .foregroundStyle(selectedTab == .home ? .blue2 : .disabled)
-                        .font(.ptRegular11)
-                }
-            }
-            Spacer()
-            Button {
                 selectedTab = .history
             } label: {
                 VStack(spacing: 0) {
                     Image(selectedTab == .history ? "History" : "History Disabled")
-                    Text("최근 기록")
+                    Text("학습 기록")
                         .foregroundStyle(selectedTab == .history ? .blue2 : .disabled)
                         .font(.ptRegular11)
                 }
@@ -48,17 +37,6 @@ struct BottomTabBarView: View {
                     Image(selectedTab == .contact ? "Contacts" : "Contacts Disabled")
                     Text("연락처")
                         .foregroundStyle(selectedTab == .contact ? .blue2 : .disabled)
-                        .font(.ptRegular11)
-                }
-            }
-            Spacer()
-            Button {
-                selectedTab = .profile
-            } label: {
-                VStack(spacing: 0) {
-                    Image(selectedTab == .profile ? "Person" : "Person Disabled")
-                    Text("프로필")
-                        .foregroundStyle(selectedTab == .profile ? .blue2 : .disabled)
                         .font(.ptRegular11)
                 }
             }
@@ -76,5 +54,28 @@ struct BottomTabBarView: View {
 }
 
 #Preview {
-    BottomTabBarView(selectedTab: .constant(.home))
+    BottomTabBarView(selectedTab: .constant(.contact))
 }
+
+
+// TODO: 나중에 추가
+//            Button {
+//                selectedTab = .home
+//            } label: {
+//                VStack(spacing: 0) {
+//                    Image(selectedTab == .home ? "Home filled" : "Home filled Disabled")
+//                    Text("홈")
+//                        .foregroundStyle(selectedTab == .home ? .blue2 : .disabled)
+//                        .font(.ptRegular11)
+//                }
+//            }
+//            Button {
+//                selectedTab = .profile
+//            } label: {
+//                VStack(spacing: 0) {
+//                    Image(selectedTab == .profile ? "Person" : "Person Disabled")
+//                    Text("프로필")
+//                        .foregroundStyle(selectedTab == .profile ? .blue2 : .disabled)
+//                        .font(.ptRegular11)
+//                }
+//            }

@@ -24,9 +24,13 @@ struct ContactsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack {
+            VStack(alignment: .leading) {
                 Text("연락처")
                     .font(.ptBold22)
+                    .foregroundStyle(.black)
+                Text("코미와 학습할 목소리를 선택해주세요 ")
+                    .font(.ptRegular11)
+                    .foregroundStyle(.constantsSemi)
             }
                 .padding(.vertical, 16)
                 .padding(.horizontal, 24)
