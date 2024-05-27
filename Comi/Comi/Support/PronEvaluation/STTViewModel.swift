@@ -123,9 +123,10 @@ class STTViewModel: ObservableObject {
                         completion(nil)
                         return
                     }
-                    print(result.bestTranscription.formattedString)
+
                     if result.isFinal {
                         self.speechedText = result.bestTranscription.formattedString
+                        print(result.bestTranscription.formattedString)
                         completion(self.speechedText)
                     }
                 })

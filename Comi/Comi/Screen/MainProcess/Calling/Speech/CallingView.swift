@@ -34,6 +34,7 @@ struct CallingView: View {
     @StateObject private var conversationViewModel = ConversationViewModel()
     @StateObject private var geminiAPIViewModel = GeminiAPIViewModel()
     @StateObject private var audioCaptureViewModel = AudioCaptureViewModel()
+    @State private var terminateCallId: String?
     @EnvironmentObject var realmViewModel: RealmViewModel
     @Environment(\.presentationMode) var presentationMode
 
@@ -41,7 +42,6 @@ struct CallingView: View {
     var model: RealmModel
     let callId: Int?
     let ttsUrl = URL(string: "http://211.216.233.107:90/tts/tts_stream_chunk_static")!
-    var azureDatas: ChatAzureResponseData?
 
     var body: some View {
         VStack {
@@ -53,17 +53,27 @@ struct CallingView: View {
                     VStack { // AI 대화창
                         if response != nil {
                             Text(response?.conv ?? "")
+                                .padding(.bottom, 30)
+                            VStack(alignment: .leading) {
+                                // 각 반복문 텍스트에 번호를 매기고 싶다
+                                ForEach(response?.eval ?? [], id: \.self) { eval in
+                                    Text("추천 문장 \(String(describing: response?.eval.firstIndex(of: eval))) : \(eval)")
+                                        .padding(.bottom, 10)
+                                }
+                            }
                             Spacer()
                             if isUserSpeaking {
-                                Text("음성을 입력해주세요!")
-                                    .padding(.bottom, 10)
+                                if !speechViewModel.isRecording {
+                                    Text("음성을 입력해주세요!")
+                                        .padding(.bottom, 10)
+                                } else {
+                                    Text("음성을 듣고있어요!")
+                                        .padding(.bottom, 10)
+                                }
                             }
                         } else {
                             Text("채팅 생성을 기다리는 중이에요...")
                         }
-                    }
-                    VStack { // User 대화창
-
                     }
                 }
             }
@@ -73,8 +83,11 @@ struct CallingView: View {
                 Button {
                     if speechViewModel.isRecording {
                         speechViewModel.stopRecording()
+                        handleRecordingStopped()
                     } else {
-                        speechViewModel.startRecording()
+                        speechViewModel.startRecording {
+                            handleRecordingStopped()
+                        }
                     }
                 } label: {
                     Text(speechViewModel.isRecording ? "대답 전송하기" : "대답하기")
@@ -94,19 +107,6 @@ struct CallingView: View {
             .onDisappear {
             print("CallingView onDisappear")
             terminateChat()
-        }
-            .onReceive(speechViewModel.$isRecording) { isRecording in
-            if initialLoad {
-                initialLoad = false
-            } else {
-                if isTerminated {
-                    return
-                }
-                if !isRecording {
-                    handleRecordingStopped()
-                }
-                // 여기서 추가적인 로직을 실행할 수 있습니다.
-            }
         }
     }
 
@@ -133,8 +133,6 @@ struct CallingView: View {
                         Spacer()
                         Button {
                             terminateChat()
-//                            geminiAPIViewModel.terminateChat(userID: realmViewModel.userData.models.userId)
-//                            gotoFeedback = true
                         } label: {
                             Image("Disconnected")
                                 .resizable()
@@ -144,9 +142,17 @@ struct CallingView: View {
                         }.background(
                             // TODO: 영균이가 /gemini/terminate/{id} 호출시 나오는 데이터 전송
                             NavigationLink(
-                                destination: FeedbackView(
+                                destination:
+//                                    FeedbackView(
+//                                    gotoRoot: $gotoRoot,
+//                                    targetCallID: "1020",
+//                                    model: modelData,
+//                                    topicData: topicData,
+//                                    intoRoute: "Calling"
+//                                )
+                                FeedbackView(
                                     gotoRoot: $gotoRoot,
-                                    targetCallID: "1020",
+                                    targetCallID: terminateCallId ?? "",
                                     model: modelData,
                                     topicData: topicData,
                                     intoRoute: "Calling"
@@ -227,7 +233,6 @@ extension CallingView {
                 audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
                     DispatchQueue.main.async {
                         isUserSpeaking = true
-                        speechViewModel.startRecording() // AI 음성이 끝나면 대화 시작하도록 함
                     }
                 }
             case .failure(let error):
@@ -240,10 +245,8 @@ extension CallingView {
         // 녹음이 종료되었을 때 수행할 작업
         sttViewModel.audioURL = speechViewModel.audioURL
         isUserSpeaking = false
-        // 비동기로 Azure API 호출
-//        DispatchQueue.global().async {
-//            sttViewModel.pronEval()
-//        }
+
+        sttViewModel.pronEval()
         sttViewModel.pronEvalBuiltIn { recognizedText in
             print("Pronunciation evaluation internal")
             let requestData = ConversationRequestData(answer: recognizedText ?? "", id: String(realmViewModel.userData.models.userId), azureScore: sttViewModel.azureResponses)
@@ -261,7 +264,6 @@ extension CallingView {
                     audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
                         DispatchQueue.main.async {
                             isUserSpeaking = true
-                            speechViewModel.startRecording() // AI 음성이 끝나면 대화 시작하도록 함
                         }
                     }
                 case .failure(let error):
@@ -269,12 +271,6 @@ extension CallingView {
                 }
             }
         }
-
-//        DispatchQueue.global(qos: .utility).async {
-//            sttViewModel.pronEval()
-//            print("Pronunciation evaluation")
-//            print(sttViewModel.azureResponses)
-//        }
     }
 
     private func terminateChat() {
@@ -294,8 +290,14 @@ extension CallingView {
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
 
-        geminiAPIViewModel.terminateChat(userID: realmViewModel.userData.models.userId)
-        gotoFeedback = true
-        // 모든 비동기 작업을 취소합니다.
+        geminiAPIViewModel.terminateChat(userID: realmViewModel.userData.models.userId, azureScore: sttViewModel.azureResponses) { response in
+            sttViewModel.azureResponses.removeAll()
+            if let terminateCallId = geminiAPIViewModel.result.result.first?.callId {
+                self.terminateCallId = String(terminateCallId)
+                gotoFeedback = true // api 호출이 완료되어 파라미터가 전달 된 후에 화면을 넘겨야 하기 때문
+            } else {
+                print("Call id not found.")
+            }
+        }
     }
 }

@@ -15,3 +15,19 @@ struct ChatAzureResponseData: Codable {
     var fluencyScore: Double
     var prosodyScore: Double
 }
+
+struct AzureAverageScore: Codable {
+    let accuracyScore: Double?
+    let pronunciationScore: Double?
+    let completenessScore: Double?
+    let fluencyScore: Double?
+    let prosodyScore: Double?
+
+    enum CodingKeys: String, CodingKey {
+        case accuracyScore = "Accuracy_score"
+        case pronunciationScore = "Pronunciation_score"
+        case completenessScore = "Completeness_score"
+        case fluencyScore = "Fluency_score"
+        case prosodyScore = "Prosody_score"
+    }
+}
