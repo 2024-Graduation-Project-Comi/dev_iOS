@@ -14,7 +14,7 @@ struct GraphResult: Codable, Hashable {
 }
 struct GraphData: Codable, Hashable {
     let label: String
-    var data: [Int?]
+    var data: [Double?]
     let borderColor: String
     let fill: Bool
 }
@@ -38,11 +38,11 @@ enum FeedbackTypes: String {
 }
 
 struct ChartData: Codable, Hashable {
-    let Accuracy_score: Int
-    let Prosody_score: Int
-    let Pronunciation_score: Int
-    let Completeness_Score: Int
-    let Fluency_score: Int
+    let Accuracy_score: Double?
+    let Prosody_score: Double?
+    let Pronunciation_score: Double?
+    let Completeness_Score: Double?
+    let Fluency_score: Double?
     init() {
         Accuracy_score = 0
         Prosody_score = 0
@@ -50,6 +50,13 @@ struct ChartData: Codable, Hashable {
         Completeness_Score = 0
         Fluency_score = 0
       }
+    enum CodingKeys: CodingKey {
+        case Accuracy_score
+        case Prosody_score
+        case Pronunciation_score
+        case Completeness_Score
+        case Fluency_score
+    }
 }
 
 class StaticViewModel: ObservableObject {
@@ -152,12 +159,12 @@ class StaticViewModel: ObservableObject {
                 let value = dataset.data[index] ?? 0
 
                 if year < currentYear {
-                    yearlyData["\(year)년", default: []].append(value)
+                    yearlyData["\(year)년", default: []].append(Int(value))
                 } else if year == currentYear && month < currentMonth {
                     let monthString = "\(month)월"
-                    monthlyData[monthString, default: []].append(value)
+                    monthlyData[monthString, default: []].append(Int(value))
                 } else if year == currentYear && month == currentMonth {
-                    dailyData["\(day)일", default: []].append(value)
+                    dailyData["\(day)일", default: []].append(Int(value))
                 }
             }
 

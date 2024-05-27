@@ -143,19 +143,11 @@ struct CallingView: View {
                             // TODO: 영균이가 /gemini/terminate/{id} 호출시 나오는 데이터 전송
                             NavigationLink(
                                 destination:
-//                                    FeedbackView(
-//                                    gotoRoot: $gotoRoot,
-//                                    targetCallID: "1020",
-//                                    model: modelData,
-//                                    topicData: topicData,
-//                                    intoRoute: "Calling"
-//                                )
                                 FeedbackView(
                                     gotoRoot: $gotoRoot,
                                     targetCallID: terminateCallId ?? "",
                                     model: modelData,
-                                    topicData: topicData,
-                                    intoRoute: "Calling"
+                                    topicData: topicData
                                 )
                                     .navigationBarHidden(true),
                                 isActive: $gotoFeedback,
@@ -249,8 +241,8 @@ extension CallingView {
         sttViewModel.pronEval()
         sttViewModel.pronEvalBuiltIn { recognizedText in
             print("Pronunciation evaluation internal")
-            let requestData = ConversationRequestData(answer: recognizedText ?? "", id: String(realmViewModel.userData.models.userId), azureScore: sttViewModel.azureResponses)
-            sttViewModel.azureResponses.removeAll()
+            let requestData = ConversationRequestData(answer: recognizedText ?? "", id: String(realmViewModel.userData.models.userId), azureScores: sttViewModel.azureResponses)
+            print("send Request: \(requestData)")
             conversationViewModel.sendConversation(requestData: requestData) { result in
                 switch result {
                 case .success(let responseData):
@@ -270,6 +262,8 @@ extension CallingView {
                     print("Error occurred: \(error)")
                 }
             }
+            print("Azure score: \(sttViewModel.azureResponses)")
+            sttViewModel.azureResponses.removeAll()
         }
     }
 
@@ -289,7 +283,7 @@ extension CallingView {
         speechViewModel.stopRecordingTimer()
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
-
+        
         geminiAPIViewModel.terminateChat(userID: realmViewModel.userData.models.userId, azureScore: sttViewModel.azureResponses) { response in
             sttViewModel.azureResponses.removeAll()
             if let terminateCallId = geminiAPIViewModel.result.result.first?.callId {
@@ -299,5 +293,6 @@ extension CallingView {
                 print("Call id not found.")
             }
         }
+        // TODO: 여기서 history용 db 업데이트
     }
 }
