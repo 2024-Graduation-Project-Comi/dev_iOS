@@ -40,7 +40,6 @@ struct FeedbackView: View {
                 callAPIViewModel.fetchConv(callId: targetCallID, completion: { result in
                     if result {
                         sampleData = callAPIViewModel.convItems
-//                        print("샘플 데이터 저장 :\(sampleData)")
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                             isLoading = false
                         })
@@ -52,16 +51,26 @@ struct FeedbackView: View {
                         })
                     }
                 })
-                if intoRoute == "History" {
-                    //TODO: callID를 Int(targetCallID) ?? 0으로 수정하기 지금은 단순히 테스트용임.
-                    staticAPIViewModel.fetchChartData(callID: 2) { result in
-                        if result {
-                            print("차트 정보 저장 성공")
-                        } else {
-                            print("차트 정보 저장 실패")
-                        }
+//                if intoRoute == "History" {
+//                    //TODO: callID를 Int(targetCallID) ?? 0으로 수정하기 지금은 단순히 테스트용임.
+//                    staticAPIViewModel.fetchChartData(callID: Int(targetCallID) ?? 0) { result in
+//                        if result {
+//                            print("차트 정보 저장 성공")
+//                        } else {
+//                            print("차트 정보 저장 실패")
+//                        }
+//                    }
+//                }
+
+                // TODO: callID를 Int(targetCallID) ?? 0으로 수정하기 지금은 단순히 테스트용임.
+                staticAPIViewModel.fetchChartData(callID: Int(targetCallID) ?? 2) { result in
+                    if result {
+                        print("차트 정보 저장 성공")
+                    } else {
+                        print("차트 정보 저장 실패")
                     }
                 }
+
             }
                 .alert(isPresented: $showAlert) {
                 Alert(title: Text("알림"), message: Text("분석 에러"), dismissButton: .destructive(Text("닫기"), action: { dismiss() }))
@@ -153,7 +162,7 @@ struct FeedbackView: View {
                     .foregroundStyle(.cwhite)
                 NavigationLink {
                     // MARK: intoRoute가 Calling이면 영균이가 만든 결과 전송, 아닌 경우 static/scores/chart api 호출함
-                    FeedbackContentView(ended: sampleData.first?.ended.toKoreanDateFormat() ?? "nil-nil-nil", totalScores: intoRoute == "Calling" ? nil : staticAPIViewModel.chartResult)
+                    FeedbackContentView(ended: sampleData.first?.ended.toKoreanDateFormat() ?? "nil-nil-nil", totalScores: staticAPIViewModel.chartResult)
                         .navigationBarBackButtonHidden()
                 } label: {
                     ZStack {
@@ -307,9 +316,9 @@ struct FeedbackView: View {
             .background(
             NavigationLink(
                 destination: CallingView(gotoRoot: $gotoRoot, topicTitle: topicData, model: selectedModel, callId: Int(targetCallID))
-                .navigationBarBackButtonHidden(),
-            isActive: $gotoCallingView,
-            label: { EmptyView() }
+                    .navigationBarBackButtonHidden(),
+                isActive: $gotoCallingView,
+                label: { EmptyView() }
             )
         )
     }

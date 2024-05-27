@@ -60,7 +60,7 @@ extension SplashView {
                 try audioSession.setActive(true)
                 try audioSession.overrideOutputAudioPort(.speaker)
             } catch {
-                print("333 Failed to configure audio session: \(error.localizedDescription)")
+                print("Failed to configure audio session: \(error.localizedDescription)")
             }
 
         }

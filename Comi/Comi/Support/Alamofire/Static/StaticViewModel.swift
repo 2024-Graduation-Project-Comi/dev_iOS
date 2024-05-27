@@ -50,6 +50,13 @@ struct ChartData: Codable, Hashable {
         Completeness_Score = 0
         Fluency_score = 0
       }
+    enum CodingKeys: CodingKey {
+        case Accuracy_score
+        case Prosody_score
+        case Pronunciation_score
+        case Completeness_Score
+        case Fluency_score
+    }
 }
 
 class StaticViewModel: ObservableObject {

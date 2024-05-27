@@ -143,13 +143,6 @@ struct CallingView: View {
                             // TODO: 영균이가 /gemini/terminate/{id} 호출시 나오는 데이터 전송
                             NavigationLink(
                                 destination:
-//                                    FeedbackView(
-//                                    gotoRoot: $gotoRoot,
-//                                    targetCallID: "1020",
-//                                    model: modelData,
-//                                    topicData: topicData,
-//                                    intoRoute: "Calling"
-//                                )
                                 FeedbackView(
                                     gotoRoot: $gotoRoot,
                                     targetCallID: terminateCallId ?? "",
@@ -250,7 +243,7 @@ extension CallingView {
         sttViewModel.pronEvalBuiltIn { recognizedText in
             print("Pronunciation evaluation internal")
             let requestData = ConversationRequestData(answer: recognizedText ?? "", id: String(realmViewModel.userData.models.userId), azureScore: sttViewModel.azureResponses)
-            sttViewModel.azureResponses.removeAll()
+
             conversationViewModel.sendConversation(requestData: requestData) { result in
                 switch result {
                 case .success(let responseData):
@@ -270,6 +263,8 @@ extension CallingView {
                     print("Error occurred: \(error)")
                 }
             }
+            print("Azure score: \(sttViewModel.azureResponses)")
+            sttViewModel.azureResponses.removeAll()
         }
     }
 

@@ -26,7 +26,7 @@ struct AzureAverageScore: Codable {
     enum CodingKeys: String, CodingKey {
         case accuracyScore = "Accuracy_score"
         case pronunciationScore = "Pronunciation_score"
-        case completenessScore = "Completeness_score"
+        case completenessScore = "Completeness_Score"
         case fluencyScore = "Fluency_score"
         case prosodyScore = "Prosody_score"
     }

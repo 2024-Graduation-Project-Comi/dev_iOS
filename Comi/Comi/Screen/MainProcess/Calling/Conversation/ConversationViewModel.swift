@@ -169,7 +169,7 @@ class ConversationViewModel: ObservableObject {
                         print("Error occurred during stream: \(error.localizedDescription)")
                     }
                 case .complete(_):
-                    print("Stream complete")
+                    print("Create complete")
                 }
             }
     }
