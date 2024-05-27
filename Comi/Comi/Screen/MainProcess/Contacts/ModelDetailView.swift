@@ -170,5 +170,5 @@ struct ModelDetailView: View {
 }
 
 #Preview {
-    ModelDetailView(gotoRoot: .constant(true), model: RealmModel(id: 0, name: "카리나", englishName: "karina", state: .available, image: ""))
+    ModelDetailView(gotoRoot: .constant(true), model: RealmModel.init())
 }

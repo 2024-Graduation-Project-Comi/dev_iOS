@@ -16,6 +16,9 @@ struct FeedbackView: View {
     @State var sampleData: [CallConvResult] = []
     @State private var showAlert: Bool = false
     @State private var isLoading: Bool = true
+    @State private var gotoModelDetailView: Bool = false
+    @State private var gotoCallingView: Bool = false
+    @State private var selectedModel: RealmModel = .init()
     @StateObject private var callAPIViewModel = CallAPIViewModel()
     @StateObject private var staticAPIViewModel = StaticViewModel()
     @Binding var gotoRoot: Bool
@@ -33,6 +36,7 @@ struct FeedbackView: View {
         if isLoading {
             loadingView()
                 .onAppear {
+                selectedModel = model
                 callAPIViewModel.fetchConv(callId: targetCallID, completion: { result in
                     if result {
                         sampleData = callAPIViewModel.convItems
@@ -230,9 +234,17 @@ struct FeedbackView: View {
     private func bottomBtn() -> some View {
         ZStack {
             HStack {
-                newConversationBtn()
+                Button {
+                    gotoModelDetailView = true
+                } label: {
+                    newConversationBtn()
+                }
                 Spacer()
-                callBtn()
+                Button {
+                    gotoCallingView = true
+                } label: {
+                    callBtn()
+                }
             }.padding(.horizontal, 24)
         }
             .frame(maxWidth: .infinity, minHeight: 82, maxHeight: 82, alignment: .center)
@@ -259,6 +271,13 @@ struct FeedbackView: View {
                 .foregroundStyle(.constantsSemi)
         }
             .frame(maxWidth: 163, maxHeight: 50)
+            .background(
+            NavigationLink(
+                destination: ModelDetailView(gotoRoot: $gotoRoot, model: selectedModel)
+                    .navigationBarHidden(true),
+                isActive: $gotoModelDetailView,
+                label: { EmptyView() })
+        )
     }
 
     @ViewBuilder
@@ -285,5 +304,13 @@ struct FeedbackView: View {
             }
         }
             .frame(maxWidth: 163, maxHeight: 50)
+            .background(
+            NavigationLink(
+                destination: CallingView(gotoRoot: $gotoRoot, topicTitle: topicData, model: selectedModel, callId: Int(targetCallID))
+                .navigationBarBackButtonHidden(),
+            isActive: $gotoCallingView,
+            label: { EmptyView() }
+            )
+        )
     }
 }

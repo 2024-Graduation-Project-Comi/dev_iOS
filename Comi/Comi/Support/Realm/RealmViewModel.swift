@@ -68,6 +68,23 @@ struct RealmModel: Codable, Hashable {
     var group: String?
     var state: RealmModelState
     var image: String
+
+    init() {
+        self.id = 0
+        self.name = ""
+        self.englishName = ""
+        self.group = group ?? ""
+        self.state = .unavailable
+        self.image = ""
+    }
+    init(id:Int, name:String, englishName: String, group:String?,state: RealmModelState,image: String) {
+        self.id = id
+        self.name = name
+        self.englishName = englishName
+        self.group = group ?? ""
+        self.state = state
+        self.image = image
+    }
 }
 
 enum RealmModelState: Int, Codable {
