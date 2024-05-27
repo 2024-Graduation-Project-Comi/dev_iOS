@@ -40,7 +40,7 @@ class GeminiAPIViewModel: ObservableObject {
                 completion(true)
 
             case .failure(let error):
-                print("Error: \(error)")
+                print("Error terminate: \(error)")
                 completion(false)
 
             }

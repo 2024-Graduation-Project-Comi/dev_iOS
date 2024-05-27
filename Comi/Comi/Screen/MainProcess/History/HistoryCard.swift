@@ -30,7 +30,7 @@ struct HistoryCard: View {
                     .frame(height: 1)
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(data.convCount == 0 ? modelInfo.name : "\(modelInfo.name)(\(Int(data.convCount)))")
+                        Text(data.convCount <= 1 ? modelInfo.name : "\(modelInfo.name)(\(Int(data.convCount)))")
                             .font(.ptSemiBold18)
                         Text("\(data.topic) · \(data.times)")
                             .font(.ptRegular14)
@@ -81,7 +81,6 @@ struct HistoryCard: View {
         HStack {
             Button {
                 gotoFeedbackView = true
-                print("Test : \(selected ?? 0)")
             } label: {
                 moreFuncButton(image: "Chat filled", title: "채팅보기")
             }
@@ -100,11 +99,12 @@ struct HistoryCard: View {
             )
             Button {
                 gotoCallingView = true
+                print("Test HistoryView : \(data.id)")
             } label: {
                 moreFuncButton(image: "Call filled", title: "전화하기")
             }
                 .background(
-                    NavigationLink(destination: CallingView(gotoRoot: $gotoCallingView, topicTitle: self.data.topic, model: self.modelInfo, callId: self.data.id)
+                    NavigationLink(destination: CallingView(gotoRoot: $gotoCallingView, topicTitle: self.data.topic, model: self.modelInfo, callId: selected)
                     .navigationBarBackButtonHidden(),
                 isActive: $gotoCallingView,
                 label: { EmptyView() }

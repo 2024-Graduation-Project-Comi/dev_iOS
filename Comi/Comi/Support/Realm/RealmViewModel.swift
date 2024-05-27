@@ -20,10 +20,10 @@ class RealmViewModel: ObservableObject {
 
     func start() async {
         print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
-        modelData.readyData()
-        callRecordData.readyData()
         userData.readyData()
         settingData.readyData()
+        modelData.readyData()
+        callRecordData.readyData()
     }
 
     func findModelInfo(modelId: Int) -> RealmModel? {

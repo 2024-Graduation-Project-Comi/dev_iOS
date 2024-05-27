@@ -23,6 +23,7 @@ class CallRecordViewModel: ObservableObject {
 
     init() {
         self.models = []
+        fetchData()
     }
 
     func setData(callRecordData: CallRecords) {
@@ -32,16 +33,17 @@ class CallRecordViewModel: ObservableObject {
             realmData.id = callRecordData.callId
             realmData.modelId = callRecordData.modelId
             realmData.topic = callRecordData.topic
-            realmData.convCount = {
-                guard let value = callRecordData.convCnt else {
-                    return 0
-                }
-                if value <= 1 {
-                    return 0
-                } else {
-                    return value
-                }
-            }()
+            realmData.convCount = callRecordData.convCnt ?? 0
+//            {
+//                guard let value = callRecordData.convCnt else {
+//                    return 0
+//                }
+//                if value <= 1 {
+//                    return 0
+//                } else {
+//                    return value
+//                }
+//            }()
             realmData.ended = callRecordData.ended
             realmData.times = RealmViewModel.shared.millisecondsToMMSS(milliseconds: callRecordData.times)
             try realm.write {
@@ -74,9 +76,10 @@ class CallRecordViewModel: ObservableObject {
             print(error)
         }
     }
-
     func copySupaData() {
         Task {
+            let userId = await RealmViewModel.shared.userData.models.userId
+            print("copyTest userID : \(userId)")
             let datas = await CallRecordsDB.shared.getData()
             for data in datas {
                 setData(callRecordData: data)
@@ -89,11 +92,23 @@ class CallRecordViewModel: ObservableObject {
     func readyData() {
         if checkDB(type: .callRecordData) {
             Task {
-                copySupaData()
+//                copySupaData()
             }
         } else {
             fetchData()
         }
         print("CallRecord Ready")
     }
+
+    func updateData(id: Int) {
+        Task {
+            let datas = await CallRecordsDB.shared.getData(id: id)
+            for data in datas {
+                setData(callRecordData: data)
+            }
+            fetchData()
+            print("CallRecord Update success")
+        }
+    }
+
 }

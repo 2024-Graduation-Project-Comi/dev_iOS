@@ -24,7 +24,20 @@ class UserViewModel: ObservableObject {
     init() {
         self.models = .init(userId: 0, createdAt: Date.now, email: "", social: "", remainTime: 0, isLogin: false, isReady: false)
     }
+    func makeID() -> Int {
+        // 현재 날짜와 시간을 가져옵니다.
+        let now = Date()
 
+        // DateFormatter를 사용하여 날짜 형식을 설정합니다.
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMddHH"
+
+        // 날짜를 문자열로 변환합니다.
+        let dateString = dateFormatter.string(from: now)
+
+        // 문자열을 Int로 변환하여 반환합니다.
+        return Int(dateString) ?? 0
+    }
     // TODO: 수정필요
     func setData() {
         do {

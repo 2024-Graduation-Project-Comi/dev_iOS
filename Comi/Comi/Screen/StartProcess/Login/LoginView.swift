@@ -41,8 +41,12 @@ struct LoginView: View {
 
             BottomActionButton(action: {
                 Task {
-                    await realmViewModel.userData.updateData(id: 1)
+//                    let userID = realmViewModel.userData.makeID()
+                    let userID = 1
+                    // TODO: userID로 변경하기
+                    await realmViewModel.userData.updateData(id: userID)
                     isLogin = realmViewModel.userData.models.isLogin
+                    realmViewModel.callRecordData.updateData(id: userID)
                 }
             }, title: "간편 로그인")
         }

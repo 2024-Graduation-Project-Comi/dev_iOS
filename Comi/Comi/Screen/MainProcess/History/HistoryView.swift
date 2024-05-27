@@ -32,7 +32,7 @@ struct HistoryView: View {
                     Text("오늘")
                         .font(.ptRegular14)
                     ForEach(
-                        realmViewModel.callRecordData.models
+                        realmViewModel.callRecordData.models.reversed()
                             .filter { Calendar.current.isDate($0.ended, inSameDayAs: Date()) }, id: \.self
                     ) { data in
                         let modelInfo =
@@ -44,7 +44,7 @@ struct HistoryView: View {
                         .font(.ptRegular14)
 
                     ForEach(
-                        realmViewModel.callRecordData.models
+                        realmViewModel.callRecordData.models.reversed()
                             .filter { !Calendar.current.isDate($0.ended, inSameDayAs: Date()) }, id: \.self
                     ) { data in
                         let modelInfo =
@@ -55,6 +55,13 @@ struct HistoryView: View {
                     .padding(.horizontal, 24)
                     .frame(alignment: .leading)
             }
+                .refreshable(action: {
+                let userID = realmViewModel.userData.models.userId
+                realmViewModel.callRecordData.updateData(id: userID)
+            })
+                .onAppear {
+                    print("HistoryView id : \(realmViewModel.userData.models.userId)")
+                }
                 .padding(.bottom, 32)
             BottomTabBarView(selectedTab: $selectedTab)
         }

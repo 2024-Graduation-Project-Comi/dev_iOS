@@ -28,7 +28,6 @@ struct FeedbackManualTabView: View {
                     .tag(3)
             } .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             CustomPageControl(currentPage: $currentPage, isAnimation: $isAnimation, numberOfPages: numberOfPages)
-                .padding(.top, 64)
             FeedbackBottomButton(currentPage: $currentPage, action: {isOnboarding.toggle()}, title: "대화내역 보러가기")
         }
         .background(BackGround())

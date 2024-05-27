@@ -25,6 +25,7 @@ struct FeedbackManualView: View {
                 .foregroundStyle(.constantsSemi)
             Image(content.image)
                 .padding(.top, 40)
+                .padding(.bottom, 64)
         }.onAppear {
             isAnimation.toggle()
         }

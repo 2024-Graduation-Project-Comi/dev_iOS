@@ -33,4 +33,20 @@ class CallRecordsDB: ObservableObject {
         }
     }
 
+    func getData(id: Int) async -> [CallRecords] {
+        do {
+            print("supa call id : \(id)")
+            let datas: [CallRecords] = try await client
+                .from("CallRecords")
+                .select()
+                .eq("user_id", value: id)
+                .execute()
+                .value
+            return datas
+        } catch {
+            print(error)
+            return []
+        }
+    }
+
 }

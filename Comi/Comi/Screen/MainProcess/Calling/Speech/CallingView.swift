@@ -140,10 +140,9 @@ struct CallingView: View {
                                 .frame(width: 40, height: 40)
                                 .clipShape(Circle())
                         }.background(
-                            // TODO: 영균이가 /gemini/terminate/{id} 호출시 나오는 데이터 전송
                             NavigationLink(
                                 destination:
-                                FeedbackView(
+                                    FeedbackView(
                                     gotoRoot: $gotoRoot,
                                     targetCallID: terminateCallId ?? "",
                                     model: modelData,
@@ -204,6 +203,10 @@ struct CallingView: View {
 
 extension CallingView {
     private func initiateConversation() {
+        // TODO: 05.28 여기 확인
+        if let callID = callId {
+            terminateCallId = String(callID)
+        }
         let createConversationRequest = ChatRequestData(id: String(realmViewModel.userData.models.userId),
                                                         topic: topicTitle,
                                                         conversationLanguage: realmViewModel.settingData.models.globalCode,
@@ -283,16 +286,26 @@ extension CallingView {
         speechViewModel.stopRecordingTimer()
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
-        
         geminiAPIViewModel.terminateChat(userID: realmViewModel.userData.models.userId, azureScore: sttViewModel.azureResponses) { response in
             sttViewModel.azureResponses.removeAll()
-            if let terminateCallId = geminiAPIViewModel.result.result.first?.callId {
-                self.terminateCallId = String(terminateCallId)
-                gotoFeedback = true // api 호출이 완료되어 파라미터가 전달 된 후에 화면을 넘겨야 하기 때문
+            // TODO: 05.28 여기 확인
+            if self.terminateCallId == nil {
+                if let terminateCallId = geminiAPIViewModel.result.result.first?.callId {
+                    self.terminateCallId = String(terminateCallId)
+                    gotoFeedback = true // api 호출이 완료되어 파라미터가 전달 된 후에 화면을 넘겨야 하기 때문
+                } else {
+                    print("Call id not found.")
+                }
             } else {
-                print("Call id not found.")
+                gotoFeedback = true
             }
         }
         // TODO: 여기서 history용 db 업데이트
+        let userID = realmViewModel.userData.models.userId
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            print("test update start")
+            realmViewModel.callRecordData.updateData(id: userID)
+            print("test update fin")
+        }
     }
 }
