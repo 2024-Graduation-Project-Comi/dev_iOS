@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import AVFoundation
 struct SplashView: View {
 
     @EnvironmentObject var realmViewModel: RealmViewModel
@@ -40,6 +40,7 @@ struct SplashView: View {
             .onAppear {
             Task {
                 await realmViewModel.start()
+                configureAudioSession()
             }
         }
     }
@@ -48,4 +49,20 @@ struct SplashView: View {
 #Preview {
     SplashView()
         .environmentObject(RealmViewModel())
+}
+
+extension SplashView {
+    func configureAudioSession() {
+        let audioSession = AVAudioSession.sharedInstance()
+        Task {
+            do {
+                try audioSession.setCategory(.playAndRecord, mode: .default, options: [])
+                try audioSession.setActive(true)
+                try audioSession.overrideOutputAudioPort(.speaker)
+            } catch {
+                print("333 Failed to configure audio session: \(error.localizedDescription)")
+            }
+
+        }
+    }
 }

@@ -99,9 +99,11 @@ struct ChatRequestData: Codable {
 struct ConversationRequestData: Codable {
     let answer: String
     let id: String
+    let azureScore: [ChatAzureResponseData]
 
     enum CodingKeys: String, CodingKey {
         case answer, id
+        case azureScore = "azure_score"
     }
 }
 
@@ -115,7 +117,7 @@ class ConversationViewModel: ObservableObject {
 
     private var session: Session!
 
-    func startConversation(chatRequestData: ChatRequestData, completion: @escaping (Result<ChatResponseData, Error>) -> Void) {
+    func startConversation(chatRequestData: ChatRequestData, retryCount: Int = 3, completion: @escaping (Result<ChatResponseData, Error>) -> Void) {
         let url = "http://211.216.233.107:91/gemini/create"
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
@@ -137,7 +139,7 @@ class ConversationViewModel: ObservableObject {
                 case let .stream(result):
                     switch result {
                     case let .success(data):
-                        print("data received: \(data.count) bytes.")
+//                        print("data received: \(data.count) bytes.")
                         // 텍스트 또는 오디오 데이터 확인
                         if let rawString = String(data: data, encoding: .utf8) {
                             print("Received text data: \(rawString)")
@@ -152,6 +154,9 @@ class ConversationViewModel: ObservableObject {
                                         completion(.failure(ResponseErrors.dictionaryToStructError))
                                     }
                                 }
+                            } else {
+                                print("Failed to convert string to dictionary")
+                                self.startConversation(chatRequestData: chatRequestData, retryCount: retryCount - 1, completion: completion)
                             }
                         } else {
                             // 오디오 데이터인지 확인

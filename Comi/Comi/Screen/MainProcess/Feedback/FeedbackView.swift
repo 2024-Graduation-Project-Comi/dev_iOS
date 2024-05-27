@@ -40,13 +40,13 @@ struct FeedbackView: View {
                 callAPIViewModel.fetchConv(callId: targetCallID, completion: { result in
                     if result {
                         sampleData = callAPIViewModel.convItems
-                        print("샘플 데이터 저장 :\(sampleData)")
+//                        print("샘플 데이터 저장 :\(sampleData)")
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                             isLoading = false
                         })
                     } else {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                            print("샘플 데이터 저장 실패")
+                            print("데이터 저장 실패")
                             showAlert = true
                             dismiss()
                         })

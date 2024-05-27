@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 @main
 struct ComiApp: App {
     @StateObject var realmViewModel = RealmViewModel()
+
+//    init() {
+//        configureAudioSession()
+//    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
