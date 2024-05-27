@@ -306,6 +306,6 @@ struct CallingView: View {
 }
 
 #Preview {
-    CallingView(gotoRoot: .constant(true), topicTitle: "", model: RealmModel(id: 0, name: "테스트", englishName: "test", group: nil, state: .available, image: ""), callId: nil)
+    CallingView(gotoRoot: .constant(true), topicTitle: "", model: RealmModel.init(), callId: nil)
         .environmentObject(RealmViewModel())
 }

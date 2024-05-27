@@ -57,7 +57,6 @@ struct BottomTabBarView: View {
     BottomTabBarView(selectedTab: .constant(.contact))
 }
 
-
 // TODO: 나중에 추가
 //            Button {
 //                selectedTab = .home
