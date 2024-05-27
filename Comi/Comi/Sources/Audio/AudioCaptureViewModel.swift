@@ -25,28 +25,28 @@ class AudioCaptureViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         ]
         self.session = Session()
         audioData = Data()
-
-        self.session.streamRequest(newURL, method: .get, parameters: Optional<Empty>.none, headers: headers)
-            .responseStream { (stream) in
-                switch stream.event {
-                case let .stream(result):
-                    switch result {
-                    case let .success(data):
-                        print("data received: \(data.count) bytes.")
-                        self.processDataChunk(data) // 데이터 청크 저장
-                    case let .failure(error):
-                        print("Error occurred during stream: \(error.localizedDescription)")
-                    }
-                case .complete(_):
-                    print("Stream complete")
-                    let result = self.saveToWAVFile(filename: "output.wav")
-                    if result {
-
-                    } else {
-                        completion(false)
-                    }
-                }
-            }
+        completion(true)
+//        self.session.streamRequest(newURL, method: .get, parameters: Optional<Empty>.none, headers: headers)
+//            .responseStream { (stream) in
+//                switch stream.event {
+//                case let .stream(result):
+//                    switch result {
+//                    case let .success(data):
+//                        print("data received: \(data.count) bytes.")
+//                        self.processDataChunk(data) // 데이터 청크 저장
+//                    case let .failure(error):
+//                        print("Error occurred during stream: \(error.localizedDescription)")
+//                    }
+//                case .complete(_):
+//                    print("Stream complete")
+//                    let result = self.saveToWAVFile(filename: "output.wav")
+//                    if result {
+//
+//                    } else {
+//                        completion(false)
+//                    }
+//                }
+//            }
     }
 
     private func processDataChunk(_ chunk: Data) {

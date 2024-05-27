@@ -20,11 +20,11 @@ struct Part: Codable, Hashable {
 
 struct AzureScore: Codable, Hashable {
     let text: String
-    let accuracy: Int
-    let prosody: Int
-    let pronunciation: Int
-    let completeness: Int
-    let fluency: Int
+    let accuracy: Double
+    let prosody: Double
+    let pronunciation: Double
+    let completeness: Double
+    let fluency: Double
     enum CodingKeys: String, CodingKey {
         case accuracy = "Accuracy_score"
         case prosody = "Prosody_score"

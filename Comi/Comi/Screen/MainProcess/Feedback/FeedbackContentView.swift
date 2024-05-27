@@ -16,7 +16,7 @@ struct FeedbackContentView: View {
     @State private var checkTypeNonAnimation: Bool = false
     // 원형 그래프 변수
     // TODO: value state 수정 필요
-    @State private var value: Int = 0
+    @State private var value: Double = 0
     @State private var showValue: Bool = false
     @State private var scoreColor: Color = .clear
     // 사용자 학습 그래프 선택
@@ -45,7 +45,7 @@ struct FeedbackContentView: View {
             Spacer()
         }
             .onAppear {
-            value = totalScores?.Pronunciation_score ?? 88
+                value = totalScores?.Pronunciation_score ?? 88
 
             let userID = realmViewModel.userData.models.userId
             staticViewModel.fetchGraphData(userID: userID, completion: { result in
@@ -223,7 +223,7 @@ struct FeedbackContentView: View {
     }
 
     @ViewBuilder
-    private func scoreCard(title: FeedbackTypes, desc: String, score: Int) -> some View {
+    private func scoreCard(title: FeedbackTypes, desc: String, score: Double) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .fill(.disabled3)
@@ -235,7 +235,7 @@ struct FeedbackContentView: View {
                     .font(.ptRegular11)
                     .foregroundStyle(.constantsSemi)
                 Spacer().frame(height: 8)
-                Text("\(score)")
+                Text("\(Int(score))")
                     .font(.ptBold48)
                     .foregroundStyle(self.updateScoreColor(for: score))
             }
@@ -245,7 +245,7 @@ struct FeedbackContentView: View {
             .frame(width: 108, height: 112)
     }
 
-    func updateScoreColor(for value: Int) -> Color {
+    func updateScoreColor(for value: Double) -> Color {
         if value == 0 {
             return .clear
         } else if value <= 59 {
