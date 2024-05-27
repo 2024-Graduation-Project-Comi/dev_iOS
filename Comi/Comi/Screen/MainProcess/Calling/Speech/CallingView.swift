@@ -147,8 +147,7 @@ struct CallingView: View {
                                     gotoRoot: $gotoRoot,
                                     targetCallID: terminateCallId ?? "",
                                     model: modelData,
-                                    topicData: topicData,
-                                    intoRoute: "Calling"
+                                    topicData: topicData
                                 )
                                     .navigationBarHidden(true),
                                 isActive: $gotoFeedback,
@@ -242,8 +241,8 @@ extension CallingView {
         sttViewModel.pronEval()
         sttViewModel.pronEvalBuiltIn { recognizedText in
             print("Pronunciation evaluation internal")
-            let requestData = ConversationRequestData(answer: recognizedText ?? "", id: String(realmViewModel.userData.models.userId), azureScore: sttViewModel.azureResponses)
-
+            let requestData = ConversationRequestData(answer: recognizedText ?? "", id: String(realmViewModel.userData.models.userId), azureScores: sttViewModel.azureResponses)
+            print("send Request: \(requestData)")
             conversationViewModel.sendConversation(requestData: requestData) { result in
                 switch result {
                 case .success(let responseData):
@@ -284,7 +283,7 @@ extension CallingView {
         speechViewModel.stopRecordingTimer()
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
-
+        
         geminiAPIViewModel.terminateChat(userID: realmViewModel.userData.models.userId, azureScore: sttViewModel.azureResponses) { response in
             sttViewModel.azureResponses.removeAll()
             if let terminateCallId = geminiAPIViewModel.result.result.first?.callId {
@@ -294,5 +293,6 @@ extension CallingView {
                 print("Call id not found.")
             }
         }
+        // TODO: 여기서 history용 db 업데이트
     }
 }

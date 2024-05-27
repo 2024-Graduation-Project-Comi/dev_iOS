@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ScorePieChart: View {
 
-    @Binding var value: Int
+    @Binding var value: Double
     @Binding var showValue: Bool
     @Binding var scoreColor: Color
 
@@ -31,7 +31,7 @@ struct ScorePieChart: View {
                 .rotationEffect(.degrees(-90))
                 .foregroundStyle(self.gradientForValue(value))
             if showValue {
-                Text("\(value)")
+                Text("\(Int(value))")
                     .font(.ptSemiBold112)
                     .foregroundStyle(scoreColor)
             }
@@ -47,7 +47,7 @@ struct ScorePieChart: View {
         }
     }
 
-    func gradientForValue(_ value: Int) -> LinearGradient {
+    func gradientForValue(_ value: Double) -> LinearGradient {
         let gradient: Gradient
         if value <= 59 {
             gradient = Gradient(colors: [.red])
@@ -59,7 +59,7 @@ struct ScorePieChart: View {
         return LinearGradient(gradient: gradient, startPoint: .topLeading, endPoint: .bottomTrailing)
     }
 
-    func updateScoreColor(for value: Int) {
+    func updateScoreColor(for value: Double) {
         if value == 1 {
             scoreColor = .clear
         } else if value <= 59 {

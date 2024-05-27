@@ -99,11 +99,11 @@ struct ChatRequestData: Codable {
 struct ConversationRequestData: Codable {
     let answer: String
     let id: String
-    let azureScore: [ChatAzureResponseData]
+    let azureScores: [ChatAzureResponseData]
 
     enum CodingKeys: String, CodingKey {
         case answer, id
-        case azureScore = "azure_score"
+        case azureScores = "azure_scores"
     }
 }
 
