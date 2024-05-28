@@ -112,7 +112,7 @@ class SpeechViewModel: ObservableObject {
                 let db = self.audioRecorder?.averagePower(forChannel: 0) ?? 0
                 print("Current audio level: \(db) dB")
 
-                if db < -20 {  // 소리가 감지되지 않을 때
+                if db < -23 {  // 소리가 감지되지 않을 때
                     DispatchQueue.main.async {
                         self.consecutiveNoInputCount += self.audioCheckInterval
                         print("No input detected. Consecutive no input time: \(self.consecutiveNoInputCount) seconds")

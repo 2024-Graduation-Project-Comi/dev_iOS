@@ -24,6 +24,21 @@ class SettingViewModel: ObservableObject {
         self.models = .init(userId: 0, level: 0, learning: "", local: "", globalCode: "")
     }
 
+    func getLocale(globalCode: String) -> String {
+        switch globalCode {
+        case "en":
+            return "en-US"
+        case "ja":
+            return "ja-JP"
+        case "fr":
+            return "fr-FR"
+        case "cn":
+            return "zh-CN"
+        default:
+            return "en-US"
+        }
+    }
+
     func setData() {
         do {
             let realm = try Realm()
