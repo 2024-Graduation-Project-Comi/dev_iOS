@@ -248,8 +248,8 @@ extension CallingView {
         withAnimation {
             background = .ai
         }
-        sttViewModel.pronEval()
-        sttViewModel.pronEvalBuiltIn { recognizedText in
+        sttViewModel.pronEval(globalCode: realmViewModel.settingData.models.globalCode)
+        sttViewModel.pronEvalBuiltIn(globalCode: realmViewModel.settingData.models.globalCode) { recognizedText in
             print("Pronunciation evaluation internal")
             let requestData = ConversationRequestData(answer: recognizedText ?? "", id: String(realmViewModel.userData.models.userId), azureScores: sttViewModel.azureResponses)
             print("send Request: \(requestData)")
