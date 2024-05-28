@@ -45,6 +45,7 @@ struct LoginView: View {
                     let userID = 1
                     // TODO: userID로 변경하기
                     await realmViewModel.userData.updateData(id: userID)
+                    await UsersDB.shared.insertData(id: userID)
                     isLogin = realmViewModel.userData.models.isLogin
                     realmViewModel.callRecordData.updateData(id: userID)
                 }

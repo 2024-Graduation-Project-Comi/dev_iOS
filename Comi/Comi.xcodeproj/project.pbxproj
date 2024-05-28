@@ -72,6 +72,8 @@
 		86C162232BE0E05A00362250 /* BottomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162222BE0E05A00362250 /* BottomTabBarView.swift */; };
 		86C162252BE0E9BB00362250 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162242BE0E9BB00362250 /* HistoryView.swift */; };
 		86C162282BE0EAA500362250 /* HistoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C162272BE0EAA500362250 /* HistoryCard.swift */; };
+		86CFCA682C05971600322F49 /* UsersSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CFCA672C05971600322F49 /* UsersSet.swift */; };
+		86CFCA6A2C05979400322F49 /* UsersDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CFCA692C05979400322F49 /* UsersDB.swift */; };
 		86D192CC2BE68B6200C4CDAE /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D192CB2BE68B6200C4CDAE /* FeedbackView.swift */; };
 		86D192CE2BE69ECE00C4CDAE /* FeedbackContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */; };
 		86F0ED962BEDCCE300D1B8E8 /* ModelsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */; };
@@ -156,6 +158,8 @@
 		86C162222BE0E05A00362250 /* BottomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTabBarView.swift; sourceTree = "<group>"; };
 		86C162242BE0E9BB00362250 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		86C162272BE0EAA500362250 /* HistoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCard.swift; sourceTree = "<group>"; };
+		86CFCA672C05971600322F49 /* UsersSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersSet.swift; sourceTree = "<group>"; };
+		86CFCA692C05979400322F49 /* UsersDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersDB.swift; sourceTree = "<group>"; };
 		86D192CB2BE68B6200C4CDAE /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		86D192CD2BE69ECE00C4CDAE /* FeedbackContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackContentView.swift; sourceTree = "<group>"; };
 		86F0ED952BEDCCE300D1B8E8 /* ModelsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsDB.swift; sourceTree = "<group>"; };
@@ -373,6 +377,7 @@
 				86447C232BF11B3A00C1988E /* CallRecords */,
 				86447C1E2BF117EB00C1988E /* Topics */,
 				86447C1B2BF116D600C1988E /* Models */,
+				86CFCA662C0596DA00322F49 /* Users */,
 			);
 			path = Supabase;
 			sourceTree = "<group>";
@@ -508,6 +513,15 @@
 				86C162272BE0EAA500362250 /* HistoryCard.swift */,
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		86CFCA662C0596DA00322F49 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				86CFCA672C05971600322F49 /* UsersSet.swift */,
+				86CFCA692C05979400322F49 /* UsersDB.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		86D192CA2BE68B5200C4CDAE /* Feedback */ = {
@@ -769,6 +783,7 @@
 				861C49252BFC8FB1008D9706 /* LevelResultView.swift in Sources */,
 				86447C252BF11B6C00C1988E /* CallRecordsSet.swift in Sources */,
 				86447C0B2BEFDC8300C1988E /* ModelData.swift in Sources */,
+				86CFCA6A2C05979400322F49 /* UsersDB.swift in Sources */,
 				86AF00BB2BE54681007DAF5F /* TopicCard.swift in Sources */,
 				864B3FC32B9F1DBA00F51FF6 /* ContentView.swift in Sources */,
 				8631A0BF2BE3D06D00C442B0 /* ModelModal.swift in Sources */,
@@ -806,6 +821,7 @@
 				867DA7C62BF2368E002BDA1C /* RealmViewModel.swift in Sources */,
 				86C162232BE0E05A00362250 /* BottomTabBarView.swift in Sources */,
 				860DDCA02BDF9EAC007A8F13 /* LoginView.swift in Sources */,
+				86CFCA682C05971600322F49 /* UsersSet.swift in Sources */,
 				BAE3E4B62C00731300784AED /* STTViewModel.swift in Sources */,
 				86A636C02BFDBB8200840B86 /* ScorePieChart.swift in Sources */,
 				8697B0652BF7CB0100F1C5EB /* SearchBar.swift in Sources */,

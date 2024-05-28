@@ -45,6 +45,7 @@ struct LevelResultView: View {
                     Task {
                         await realmViewModel.settingData.updateData(data: userSetting)
                         await realmViewModel.userData.updateData(id: userSetting.userId)
+                        await UsersDB.shared.updateData(data: realmViewModel.userData.models)
                         isReady = realmViewModel.userData.models.isReady
                     }
                 } else {
