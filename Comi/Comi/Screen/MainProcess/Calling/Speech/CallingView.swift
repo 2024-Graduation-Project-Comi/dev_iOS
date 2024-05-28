@@ -41,7 +41,8 @@ struct CallingView: View {
     var topicTitle: String
     var model: RealmModel
     let callId: Int?
-    let ttsUrl = URL(string: "http://211.216.233.107:90/tts/tts_stream_chunk_static")!
+//    let ttsUrl = URL(string: "http://211.216.233.107:90/tts/tts_stream_chunk_static")!
+    let ttsUrl = URL(string: "http://211.216.233.107:93/tts/tts_file")!
 
     var body: some View {
         VStack {
@@ -73,6 +74,7 @@ struct CallingView: View {
                             }
                         } else {
                             Text("채팅 생성을 기다리는 중이에요...")
+                                .offset(y: -50)
                         }
                     }
                 }
@@ -224,10 +226,13 @@ extension CallingView {
                 print("Fix: \(String(describing: responseData.fix))")
 
                 response = responseData
-                let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as [String: Any]
-                audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
+                let requestParams = ["id": String(realmViewModel.userData.models.userId), "text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as [String: Any]
+                audioCaptureViewModel.playAiAudio2(url: ttsUrl, params: requestParams) { _ in
                     DispatchQueue.main.async {
                         isUserSpeaking = true
+                        withAnimation {
+                            background = .user
+                        }
                     }
                 }
             case .failure(let error):
@@ -240,7 +245,9 @@ extension CallingView {
         // 녹음이 종료되었을 때 수행할 작업
         sttViewModel.audioURL = speechViewModel.audioURL
         isUserSpeaking = false
-
+        withAnimation {
+            background = .ai
+        }
         sttViewModel.pronEval()
         sttViewModel.pronEvalBuiltIn { recognizedText in
             print("Pronunciation evaluation internal")
@@ -255,10 +262,13 @@ extension CallingView {
                     print("Fix: \(String(describing: responseData.fix))")
                     response = responseData
 
-                    let requestParams = ["text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as [String: Any]
-                    audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
+                    let requestParams = ["id": String(realmViewModel.userData.models.userId),"text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as [String: Any]
+                    audioCaptureViewModel.playAiAudio2(url: ttsUrl, params: requestParams) { _ in
                         DispatchQueue.main.async {
                             isUserSpeaking = true
+                            withAnimation {
+                                background = .user
+                            }
                         }
                     }
                 case .failure(let error):
@@ -308,4 +318,10 @@ extension CallingView {
             print("test update fin")
         }
     }
+}
+
+#Preview {
+    CallingView(gotoRoot: .constant(false), topicTitle: "", model: RealmModel(id: 0, name: "", englishName: "", group: nil, state: .available, image: "")
+                , callId: nil)
+        .environmentObject(RealmViewModel())
 }
