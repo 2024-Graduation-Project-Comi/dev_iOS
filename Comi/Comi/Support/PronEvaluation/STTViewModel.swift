@@ -13,11 +13,14 @@ class STTViewModel: ObservableObject {
     @Published var audioURL: URL?
     @Published var speechedText: String?
     @Published var azureResponses: [ChatAzureResponseData] = []
+    private var settingViewModel = SettingViewModel()
 
 //    var chatAzureResponseData: ChatAzureResponseData?
 
     // MARK: Azure API를 사용해서 발음 평가 및 STT
-    func pronEval() {
+    func pronEval(globalCode: String) {
+        let locale = settingViewModel.getLocale(globalCode: globalCode)
+
         guard let path = audioURL else { return }
         guard let sub = Bundle.main.azureApiKey else {
             print("Azure Key 로드 실패")
@@ -39,7 +42,7 @@ class STTViewModel: ObservableObject {
             print("Error: audioConfig is Nil")
             return
         }
-        let speechRecognizer = try! SPXSpeechRecognizer(speechConfiguration: speechConfig, language: "en-US", audioConfiguration: audioConfig)
+        let speechRecognizer = try! SPXSpeechRecognizer(speechConfiguration: speechConfig, language: locale, audioConfiguration: audioConfig)
         let referenceText = ""
         let pronAssessmentConfig = try! SPXPronunciationAssessmentConfiguration(referenceText, gradingSystem: SPXPronunciationAssessmentGradingSystem.hundredMark, granularity: SPXPronunciationAssessmentGranularity.word, enableMiscue: true)
 
@@ -86,13 +89,13 @@ class STTViewModel: ObservableObject {
     }
 
     // MARK: 애플 기본 제공 Speech 라이브러리를 사용한 STT 기능
-    func pronEvalBuiltIn(completion: @escaping (String?) -> Void) {
+    func pronEvalBuiltIn(globalCode: String, completion: @escaping (String?) -> Void) {
+        let locale = settingViewModel.getLocale(globalCode: globalCode)
         guard let path = audioURL else {
             completion(nil)
             return
         }
-        // TODO: en-US 를 사용자 언어에 맞춰서 할 수 있도록 해야함
-        let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+        let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: locale))
         // 음성 권한 요청
         SFSpeechRecognizer.requestAuthorization { status in
             switch status {
