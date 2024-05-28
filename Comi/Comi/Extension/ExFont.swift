@@ -17,6 +17,7 @@ extension Font {
     static let ptSemiBold14: Font = .custom("Pretendard-SemiBold", size: 14 * deviceSizeMultiplier())
     static let ptSemiBold22: Font = .custom("Pretendard-SemiBold", size: 22 * deviceSizeMultiplier())
     static let ptSemiBold32: Font = .custom("Pretendard-SemiBold", size: 32 * deviceSizeMultiplier())
+    static let ptSemiBold58: Font = .custom("Pretendard-SemiBold", size: 58 * deviceSizeMultiplier())
     static let ptSemiBold112: Font = .custom("Pretendard-SemiBold", size: 112 * deviceSizeMultiplier())
     static let ptRegular18: Font = .custom("Pretendard-Regular", size: 18 * deviceSizeMultiplier())
     static let ptRegular14: Font = .custom("Pretendard-Regular", size: 14 * deviceSizeMultiplier())
