@@ -54,6 +54,7 @@ struct HistoryView: View {
                 }
                     .padding(.horizontal, 24)
                     .frame(alignment: .leading)
+                Spacer().frame(height: 32)
             }
                 .refreshable(action: {
                 let userID = realmViewModel.userData.models.userId
@@ -62,7 +63,6 @@ struct HistoryView: View {
                 .onAppear {
                     print("HistoryView id : \(realmViewModel.userData.models.userId)")
                 }
-                .padding(.bottom, 32)
             BottomTabBarView(selectedTab: $selectedTab)
         }
             .background {
