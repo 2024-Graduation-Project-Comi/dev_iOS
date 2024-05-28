@@ -197,13 +197,13 @@ struct FeedbackView: View {
             }
 
             ZStack(alignment: .topLeading) {
-                Rectangle()
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(.cwhite)
                     .padding(1)
                     .overlay {
                     RoundedRectangle(cornerRadius: 16, style: .continuous)
                         .stroke(Color.unavailableCircle, lineWidth: 1)
-                }
+                    }
                 VStack(alignment: .leading) {
                     Text(content)
                     if let sub = content2 {

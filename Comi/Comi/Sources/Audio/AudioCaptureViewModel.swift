@@ -17,6 +17,38 @@ class AudioCaptureViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     private var completion: ((Bool) -> Void)?
     @Published var isPlayable = true
 
+    func playAiAudio2(url: URL, params: [String: Any], completion: @escaping (Bool) -> Void) {
+        self.completion = completion
+        let newURL = createURL(baseURL: url, params: params)!
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        self.session = Session()
+        let destination: DownloadRequest.Destination = { _, _ in
+            let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let fileURL = documentPath.appendingPathComponent("aivoice.wav")
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+
+        self.session.download(newURL, method: .get, parameters: Optional<Empty>.none, headers: headers, to: destination)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .success:
+                    print("Audio file downloaded successfully")
+                    if let fileURL = response.fileURL {
+                        if self.isPlayable {
+                            self.playWAVFile(at: fileURL)
+                        }
+                    }
+                    completion(true)
+                case .failure(let error):
+                    print("Error: \(error)")
+                    completion(false)
+                }
+            }
+    }
+
     func playAiAudio(url: URL, params: [String: Any], completion: @escaping (Bool) -> Void) {
         self.completion = completion
         let newURL = createURL(baseURL: url, params: params)!
@@ -25,28 +57,28 @@ class AudioCaptureViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         ]
         self.session = Session()
         audioData = Data()
-        completion(true)
-//        self.session.streamRequest(newURL, method: .get, parameters: Optional<Empty>.none, headers: headers)
-//            .responseStream { (stream) in
-//                switch stream.event {
-//                case let .stream(result):
-//                    switch result {
-//                    case let .success(data):
-//                        print("data received: \(data.count) bytes.")
-//                        self.processDataChunk(data) // 데이터 청크 저장
-//                    case let .failure(error):
-//                        print("Error occurred during stream: \(error.localizedDescription)")
-//                    }
-//                case .complete(_):
-//                    print("Stream complete")
-//                    let result = self.saveToWAVFile(filename: "output.wav")
-//                    if result {
-//
-//                    } else {
-//                        completion(false)
-//                    }
-//                }
-//            }
+//        completion(true)
+        self.session.streamRequest(newURL, method: .get, parameters: Optional<Empty>.none, headers: headers)
+            .responseStream { (stream) in
+                switch stream.event {
+                case let .stream(result):
+                    switch result {
+                    case let .success(data):
+                        print("data received: \(data.count) bytes.")
+                        self.processDataChunk(data) // 데이터 청크 저장
+                    case let .failure(error):
+                        print("Error occurred during stream: \(error.localizedDescription)")
+                    }
+                case .complete(_):
+                    print("Stream complete")
+                    let result = self.saveToWAVFile(filename: "output.wav")
+                    if result {
+
+                    } else {
+                        completion(false)
+                    }
+                }
+            }
     }
 
     private func processDataChunk(_ chunk: Data) {
