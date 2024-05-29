@@ -20,7 +20,7 @@ struct TopicCard: View {
                     .fill(.cwhite)
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(topic.title)
+                        Text(topic.koTitle)
                             .font(.ptSemiBold16)
                         Text(topic.desc)
                             .font(.ptRegular14)

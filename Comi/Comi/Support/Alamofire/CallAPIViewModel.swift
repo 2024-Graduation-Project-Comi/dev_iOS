@@ -100,9 +100,13 @@ class CallAPIViewModel: ObservableObject {
                             }
                         }
                         self.totalTalk = Array(data.dropFirst())
-                        for i in 1 ..< self.totalTalk.count {
-                            self.totalTalk[i - 1].fix = self.totalTalk[i].fix
-                            self.totalTalk[i].fix = nil
+                        if self.totalTalk.count < 2 {
+                            print("pass to fix data")
+                        } else {
+                            for i in 2 ..< self.totalTalk.count {
+                                self.totalTalk[i - 1].fix = self.totalTalk[i].fix
+                                self.totalTalk[i].fix = nil
+                            }
                         }
                     }
                     completion(true)

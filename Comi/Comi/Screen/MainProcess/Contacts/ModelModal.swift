@@ -35,7 +35,7 @@ struct ModelModal: View {
 
             VStack {
                 ScrollView(showsIndicators: false) {
-                    ForEach(topics.kodata, id: \.id) { data in
+                    ForEach(topics.data, id: \.id) { data in
                         TopicCard(selected: self.$selected, isSelected: $isSelected, topic: data)
                     }
                     Spacer().frame(height: 110)

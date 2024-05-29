@@ -10,6 +10,7 @@ import Foundation
 struct Topics: Codable, Hashable {
     let id: Int
     var title: String
+    var koTitle: String = ""
     let desc: String
 
     enum CodingKeys: String, CodingKey {

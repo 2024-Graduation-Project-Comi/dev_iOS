@@ -207,10 +207,12 @@ struct FeedbackView: View {
                 VStack(alignment: .leading) {
                     Text(content)
                     if let sub = content2 {
-                        Divider()
-                        Text(sub)
-                            .font(.ptSemiBold14)
-                            .foregroundStyle(.blue2)
+                        if sub != "null" {
+                            Divider()
+                            Text(sub)
+                                .font(.ptSemiBold14)
+                                .foregroundStyle(.blue2)
+                        }
                     }
                 }
                     .font(.ptRegular14)

@@ -39,11 +39,11 @@ class TopicsDB: ObservableObject {
 
     static var shared = TopicsDB()
     @Published var data: [Topics]
-    @Published var kodata: [Topics]
+//    @Published var kodata: [Topics]
 
     init() {
         self.data = []
-        self.kodata = []
+//        self.kodata = []
     }
 
     let client = SupaClient.shared.setClient()
@@ -59,14 +59,14 @@ class TopicsDB: ObservableObject {
 
                 let sorted = datas.sorted { $0.id > $1.id }
                 self.data = sorted
-                self.kodata = sorted
+//                self.kodata = sorted
 
-                for index in 0 ..< kodata.count {
-                    kodata[index].title = KoreanTopics(rawValue: kodata[index].id)?.description() ?? ""
+//                for index in 0 ..< kodata.count {
+//                    kodata[index].title = KoreanTopics(rawValue: kodata[index].id)?.description() ?? ""
+//                }
+                for index in 0 ..< data.count {
+                    data[index].koTitle = KoreanTopics(rawValue: data[index].id)?.description() ?? ""
                 }
-                
-
-
             } catch {
                 print(error)
             }
