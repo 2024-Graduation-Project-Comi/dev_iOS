@@ -207,7 +207,7 @@ struct FeedbackView: View {
                 VStack(alignment: .leading) {
                     Text(content)
                     if let sub = content2 {
-                        if sub != "null" {
+                        if sub != "null" && type == .user{
                             Divider()
                             Text(sub)
                                 .font(.ptSemiBold14)
