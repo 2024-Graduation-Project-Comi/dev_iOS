@@ -103,9 +103,9 @@ class CallAPIViewModel: ObservableObject {
                         if self.totalTalk.count < 2 {
                             print("pass to fix data")
                         } else {
-                            for i in 2 ..< self.totalTalk.count {
+                            for i in stride(from: 2, to:self.totalTalk.count, by: 2) {
                                 self.totalTalk[i - 1].fix = self.totalTalk[i].fix
-                                self.totalTalk[i].fix = nil
+//                                self.totalTalk[i].fix = nil
                             }
                         }
                     }

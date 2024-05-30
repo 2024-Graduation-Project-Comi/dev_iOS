@@ -45,7 +45,6 @@
 		864B3FC52B9F1DBB00F51FF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */; };
 		864B3FC82B9F1DBB00F51FF6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864B3FC72B9F1DBB00F51FF6 /* Preview Assets.xcassets */; };
 		867B25262BF33FF200861B66 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867B25252BF33FF200861B66 /* UserData.swift */; };
-		867B25282BF3424B00861B66 /* RealmSampleCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867B25272BF3424B00861B66 /* RealmSampleCode.swift */; };
 		867DA7C42BF22F52002BDA1C /* CallRecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DA7C32BF22F52002BDA1C /* CallRecordData.swift */; };
 		867DA7C62BF2368E002BDA1C /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DA7C52BF2368E002BDA1C /* RealmViewModel.swift */; };
 		86881CCF2BFF53A500D7A667 /* CallAPIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86881CCE2BFF53A500D7A667 /* CallAPIViewModel.swift */; };
@@ -131,7 +130,6 @@
 		864B3FC42B9F1DBB00F51FF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		864B3FC72B9F1DBB00F51FF6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		867B25252BF33FF200861B66 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
-		867B25272BF3424B00861B66 /* RealmSampleCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSampleCode.swift; sourceTree = "<group>"; };
 		867DA7C32BF22F52002BDA1C /* CallRecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordData.swift; sourceTree = "<group>"; };
 		867DA7C52BF2368E002BDA1C /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
 		86881CCE2BFF53A500D7A667 /* CallAPIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallAPIViewModel.swift; sourceTree = "<group>"; };
@@ -365,7 +363,6 @@
 				867DA7C32BF22F52002BDA1C /* CallRecordData.swift */,
 				867B25252BF33FF200861B66 /* UserData.swift */,
 				861C49112BFBADA1008D9706 /* SettingData.swift */,
-				867B25272BF3424B00861B66 /* RealmSampleCode.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -769,7 +766,6 @@
 				861C49162BFBB272008D9706 /* UserSettingViewModel.swift in Sources */,
 				860DDC9C2BDF7B0B007A8F13 /* OnboardingView.swift in Sources */,
 				BAF5B97B2BF7253400ADCC08 /* AzureInfo++Bundle.swift in Sources */,
-				867B25282BF3424B00861B66 /* RealmSampleCode.swift in Sources */,
 				86A636CD2BFDF1A200840B86 /* FeedbackBottomButton.swift in Sources */,
 				86A636D12BFDF82B00840B86 /* FeedbackManuals.swift in Sources */,
 				BAE3E4B42BFF9FEC00784AED /* ChatAzureResponseData.swift in Sources */,
