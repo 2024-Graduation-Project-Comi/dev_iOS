@@ -56,9 +56,9 @@ struct CheckLevelView: View {
                     SFSpeechRecognizer.requestAuthorization { status in
                         switch status {
                         case .notDetermined, .denied, .restricted:
-                            print("\(status.rawValue)")
+                            print("SFSpeechRecognizer status : \(status.rawValue)")
                         case .authorized:
-                            print("\(status.rawValue)")
+                            print("SFSpeechRecognizer status : \(status.rawValue)")
                             speechPermission = true
                         @unknown default:
                             print("Unknown case")
