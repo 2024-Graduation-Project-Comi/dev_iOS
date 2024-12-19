@@ -75,7 +75,6 @@ class StaticViewModel: ObservableObject {
                     self.result = items
                     self.sortGraphData(graphResult: &self.result)
                     self.processResult = self.processGraphData(graphResult: self.result)
-//                    print("PROCESS : \(self.processResult)")
                     completion(true)
                 }
             case .failure(let error):

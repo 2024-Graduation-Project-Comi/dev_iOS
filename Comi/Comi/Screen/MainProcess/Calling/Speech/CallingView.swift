@@ -227,7 +227,7 @@ extension CallingView {
 
                 response = responseData
                 let requestParams = ["id": String(realmViewModel.userData.models.userId), "text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as [String: Any]
-                audioCaptureViewModel.playAiAudio2(url: ttsUrl, params: requestParams) { _ in
+                audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
                     DispatchQueue.main.async {
                         isUserSpeaking = true
                         withAnimation {
@@ -263,7 +263,7 @@ extension CallingView {
                     response = responseData
 
                     let requestParams = ["id": String(realmViewModel.userData.models.userId),"text": responseData.conv, "model": model.englishName, "language": realmViewModel.settingData.models.globalCode] as [String: Any]
-                    audioCaptureViewModel.playAiAudio2(url: ttsUrl, params: requestParams) { _ in
+                    audioCaptureViewModel.playAiAudio(url: ttsUrl, params: requestParams) { _ in
                         DispatchQueue.main.async {
                             isUserSpeaking = true
                             withAnimation {
