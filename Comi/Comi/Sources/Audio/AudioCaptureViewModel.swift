@@ -17,7 +17,7 @@ class AudioCaptureViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     private var completion: ((Bool) -> Void)?
     @Published var isPlayable = true
 
-    func playAiAudio2(url: URL, params: [String: Any], completion: @escaping (Bool) -> Void) {
+    func playAiAudio(url: URL, params: [String: Any], completion: @escaping (Bool) -> Void) {
         self.completion = completion
         let newURL = createURL(baseURL: url, params: params)!
         let headers: HTTPHeaders = [
@@ -45,38 +45,6 @@ class AudioCaptureViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
                 case .failure(let error):
                     print("Error: \(error)")
                     completion(false)
-                }
-            }
-    }
-
-    func playAiAudio(url: URL, params: [String: Any], completion: @escaping (Bool) -> Void) {
-        self.completion = completion
-        let newURL = createURL(baseURL: url, params: params)!
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        self.session = Session()
-        audioData = Data()
-//        completion(true)
-        self.session.streamRequest(newURL, method: .get, parameters: Optional<Empty>.none, headers: headers)
-            .responseStream { (stream) in
-                switch stream.event {
-                case let .stream(result):
-                    switch result {
-                    case let .success(data):
-                        print("data received: \(data.count) bytes.")
-                        self.processDataChunk(data) // 데이터 청크 저장
-                    case let .failure(error):
-                        print("Error occurred during stream: \(error.localizedDescription)")
-                    }
-                case .complete(_):
-                    print("Stream complete")
-                    let result = self.saveToWAVFile(filename: "output.wav")
-                    if result {
-
-                    } else {
-                        completion(false)
-                    }
                 }
             }
     }
@@ -111,21 +79,6 @@ class AudioCaptureViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             return false
         }
 
-//        if let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-//            let fileURL = documentDirectory.appendingPathComponent(filename)
-//            do {
-//                try wavFileData.write(to: fileURL)
-//                print("WAV 파일이 저장되었습니다: \(fileURL)")
-//                if isPlayable {
-//                    playWAVFile(at: fileURL)
-//                }
-//                return true
-//            } catch {
-//                print("파일 저장 실패: \(error)")
-//                return false
-//            }
-//        }
-//        return false
     }
 
     private func createWAVHeader(dataSize: Int) -> Data {
@@ -161,12 +114,7 @@ class AudioCaptureViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     private func playWAVFile(at url: URL) {
         do {
-
-//            try AVAudioSession.sharedInstance().overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)  // 상단 스피커 대신 메인 스피커를 사용하도록 변경하여 크기가 작아짐을 방지함
             try AVAudioSession.sharedInstance().setActive(true)
-            // 기존 플레이어 중지 및 초기화
-//            audioPlayer?.stop()
-//            audioPlayer = nil
             // 새로운 플레이어 생성 및 설정
             audioPlayer = try AVAudioPlayer(contentsOf: url)
             audioPlayer?.delegate = self

@@ -15,8 +15,6 @@ class STTViewModel: ObservableObject {
     @Published var azureResponses: [ChatAzureResponseData] = []
     private var settingViewModel = SettingViewModel()
 
-//    var chatAzureResponseData: ChatAzureResponseData?
-
     // MARK: Azure API를 사용해서 발음 평가 및 STT
     func pronEval(globalCode: String) {
         let locale = settingViewModel.getLocale(globalCode: globalCode)

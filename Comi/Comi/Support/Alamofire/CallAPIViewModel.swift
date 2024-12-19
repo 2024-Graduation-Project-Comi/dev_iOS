@@ -105,7 +105,6 @@ class CallAPIViewModel: ObservableObject {
                         } else {
                             for i in stride(from: 2, to:self.totalTalk.count, by: 2) {
                                 self.totalTalk[i - 1].fix = self.totalTalk[i].fix
-//                                self.totalTalk[i].fix = nil
                             }
                         }
                     }

@@ -45,18 +45,5 @@ class GeminiAPIViewModel: ObservableObject {
 
             }
         }
-//            .response { response in
-//            switch response.result {
-//            case .success:
-//                DispatchQueue.main.async {
-//                    completion(true)
-//                }
-//            case .failure(let error):
-//                print("Error: \(error)")
-//                DispatchQueue.main.async {
-//                    completion(false)
-//                }
-//            }
-//        }
     }
 }
