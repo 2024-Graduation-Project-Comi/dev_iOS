@@ -103,3 +103,6 @@ Comi는 클라이언트와 서버가 유기적으로 연동되어 AI 기반 음�
   - 박재우 (컴퓨터융합학부)
 ---
 
+## 발표 영상
+https://www.youtube.com/watch?v=MPyhXbWAC-M&ab_channel=%EB%AC%B8%EA%B5%B0
+
